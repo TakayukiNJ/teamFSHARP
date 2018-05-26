@@ -1,0 +1,284 @@
+<?php
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+use App\Book;
+use Illuminate\Http\Request;
+
+/**
+* ダッシュボード表示 */
+//Route::get('/', 'BooksController@index');
+
+/**
+* 新「本」を追加 */
+//Route::post('/books', 'BooksController@store');
+
+/**
+* 本を削除 */
+//Route::post('/book/delete/{book}', function (Book $book) {
+//    $book->delete();
+//    return redirect('/');
+//});
+
+//更新画面
+//Route::post('/booksedit/{books}', 'BooksController@edit');
+
+//更新処理
+//Route::post('/books/update', 'BooksController@update');
+
+//scaffold
+//Route::resource("tasks","TaskController"); // Add this line in routes.php
+
+
+/*********************/
+// A-0 ログイン機能
+// Auth/LoginController.php
+/*********************/
+Auth::routes();
+//Auth::get('/login', 'LoginController@__construct');
+//Auth::get('/login', 'LoginController@__construct');
+//Route::get('/login', 'HomeController@home_own_timeline');
+// Route::group(['middleware' => 'guest'], function () {
+//     Route::get('/', function () {
+//         return view('welcome');
+//     });
+// });
+
+Route::get('/', 'BooksController@welcome');
+Route::get('/cms', 'BooksController@welcome');
+//一覧
+Route::get('/menu', 'BooksController@index');
+
+Route::post('/menu', 'BooksController@index');
+
+
+/*********************/
+// B-0 登録退会機能
+// RegistController.php
+/*********************/
+//Route::post('/register', 'HomeController@register');
+
+
+/*********************/
+// C-0 自己紹介機能
+// WhoAmIController.php
+/*********************/
+//Route::get('/home', 'HomeController@index'); ←HomeController.phpに集約
+
+/*********************/
+// D-0 コミュニティ機能
+// PostsController.php
+/*********************/
+Route::get('/chat', 'PostsController@index');
+//いいね処理
+Route::post('posts/good', 'PostsController@good');
+//シェア処理
+Route::post('posts/share', 'PostsController@share');
+//タグ処理
+Route::post('posts/tag', 'PostsController@tag');
+//イベント処理
+Route::post('posts/event', 'PostsController@event');
+//フォロー処理
+Route::post('posts/follow', 'PostsController@follow');
+
+/*********************/
+// E-0 Vision売買機能
+// VisionDealController.php
+/*********************/
+//Vision購入画面
+Route::post('/connect/buy', 'VisionDealController@buy');
+//Vision購入確認画面
+Route::post('/connect/buy_confirm', 'VisionDealController@buy_confirm');
+//Vision購入完了画面
+Route::post('/connect/buy_complete', 'VisionDealController@buy_complete');
+
+//Vision作成画面
+Route::post('/connect/vision_sell_regist', 'VisionDealController@vision_sell_regist');
+Route::get('/connect/vision_sell_regist', 'VisionDealController@vision_sell_regist');
+//Vision作成確認画面
+Route::post('/connect/vision_sell_regist_confirm', 'VisionDealController@vision_sell_regist_confirm');
+//Vision作成処理
+Route::post('/connect/vision_sell_regist_process', 'VisionDealController@vision_sell_regist_process');
+//Vision作成完了画面
+Route::post('/connect/vision_sell_regist_complete', 'VisionDealController@vision_sell_regist_complete');
+//Vision更新画面
+Route::post('/connect/vision_sell_modify', 'VisionDealController@vision_sell_modify');
+//Vision更新確認画面
+Route::post('/connect/vision_sell_modify_confirm', 'VisionDealController@vision_sell_modify_confirm');
+//Vision更新処理
+Route::post('/connect/vision_sell_modify_process', 'VisionDealController@vision_sell_modify_process');
+//Vision更新完了画面
+Route::post('/connect/vision_sell_modify_complete', 'VisionDealController@vision_sell_modify_complete');
+//VISION売却詳細画面
+Route::post('/connect/sell_detail', 'VisionDealController@sell_detail');
+//VISION売却詳細OPEN画面
+Route::post('/connect/sell_detail_open', 'VisionDealController@sell_detail_open');
+//VISION売却詳細CLOSE画面
+Route::post('/connect/sell_detail_close', 'VisionDealController@sell_detail_close');
+//VISION売却詳細抽選画面
+Route::post('/connect/sell_detail_lottery', 'VisionDealController@sell_detail_lottery');
+//VISION売却詳細抽選結果画面
+Route::post('/connect/sell_detail_lottery_result', 'VisionDealController@sell_detail_lottery_result');
+//新規優待登録画面
+Route::post('/connect/sell_detail_regist', 'VisionDealController@sell_detail_regist');
+//新規優待登録確認画面
+Route::post('/connect/sell_detail_regist_confirm', 'VisionDealController@sell_detail_regist_confirm');
+//新規優待登録処理
+Route::post('/connect/sell_detail_regist_process', 'VisionDealController@sell_detail_regist_process');
+//新規優待登録完了画面
+Route::post('/connect/sell_detail_regist_complete', 'VisionDealController@sell_detail_regist_complete');
+//優待編集画面
+Route::post('/connect/sell_detail_modify', 'VisionDealController@sell_detail_modify');
+//優待編集確認画面
+Route::post('/connect/sell_detail_modify_confirm', 'VisionDealController@sell_detail_modify_confirm');
+//優待編集録処理
+Route::post('/connect/sell_detail_modify_process', 'VisionDealController@sell_detail_modify_process');
+//優待編集完了画面
+Route::post('/connect/sell_detail_modify_complete', 'VisionDealController@sell_detail_modify_complete');
+
+/*********************/
+// F-0 チャージ機能
+// ChargeController.php
+/*********************/
+//Route::post('/Charge/charge', 'HomeController@t_masaki');
+
+/*********************/
+// G-0 推薦者募集機能
+// RecommendsController.php
+/*********************/
+
+/*********************/
+// H-0 ホーム画面
+// HomeController.php
+/*********************/
+// ログイン後初期画面は、自分のホーム画面
+Route::get('/home', 'HomeController@index');
+Route::post('/home', 'HomeController@index');
+
+Route::get('/home/register', 'HomeController@register');
+
+Route::get('/home/edit', 'HomeController@edit');
+
+Route::get('/terms', 'HomeController@terms');
+
+//サンプル1
+Route::get('/home/ProjectFriends', 'HomeController@p_friends');
+//サンプル2
+Route::get('/home/TakeuchiMasaki', 'HomeController@t_masaki');
+//サンプル3
+// Route::get('/2hj', 'HomeController@secondharvest');
+
+//自己紹介表示画面
+Route::post('/home/home_disp', 'HomeController@home_disp');
+//自己紹介登録入力画面
+Route::post('/home/home_register', 'HomeController@home_register');
+Route::get('/home/home_register', 'HomeController@home_register');
+//自己紹介登録確認画面
+Route::post('/home/home_register_confirm', 'HomeController@home_register_confirm');
+//自己紹介登録処理
+Route::post('/home/home_register_process', 'HomeController@home_register_process');
+//自己紹介登録完了画面
+Route::post('/home/home_register_complete', 'HomeController@home_register_complete');
+//自己紹介編集入力画面
+Route::post('/home/home_edit', 'HomeController@home_edit');
+//自己紹介編集確認画面
+Route::post('/home/home_edit_confirm', 'HomeController@home_edit_confirm');
+//自己紹介編集登録処理
+Route::post('/home/home_edit_process', 'HomeController@home_edit_process');
+//自己紹介編集完了画面
+Route::post('/home/home_edit_complete', 'HomeController@home_edit_complete');
+
+//ホーム画面自分のタイムライン
+Route::post('/home/home_own_timeline', 'HomeController@home_own_timeline');
+Route::get('/home/home_own_timeline', 'HomeController@home_own_timeline');
+
+Route::post('/home/{name}', 'HomeController@home_own');
+Route::get('/home/{name}', 'HomeController@home_own');
+
+//ホーム画面投資家や選手のタイムライン
+Route::post('/home/home_outer_timeline/{folder_name}', 'HomeController@home_outer_timeline');
+//検索画面
+Route::post('/home/home_search_outer_member', 'HomeController@home_search_outer_member');
+Route::get('/home/home_search_outer_member', 'HomeController@home_search_outer_member');
+//検索実行処理
+Route::post('/home/home_search_outer_member_process', 'HomeController@home_search_outer_member_process');
+Route::get('/home/home_search_outer_member_process', 'HomeController@home_search_outer_member_process');
+//検索結果一覧表示画面
+Route::post('/home/home_search_outer_member_result', 'HomeController@home_search_outer_member_result');
+
+/*********************/
+// I-0 設定画面
+// settingController.php
+/*********************/
+//設定画面
+Route::get('/setting', 'SettingController@index');
+
+//履歴画面
+Route::get('/history', 'SettingController@history');
+
+// Z-0 外部連携機能
+// OuteriteRelationController.php
+
+// ZZ-0 その他
+// 画像イメージアップロード
+Route::post('/other/image_upload_index', 'ImageUploadController@index');
+Route::get('/other/image_upload_index', 'ImageUploadController@index');
+Route::post('/other/image_upload', 'ImageUploadController@image_upload');
+Route::get('/other/image_upload', 'ImageUploadController@image_upload');
+Route::get('/other/own_image_picture', 'ImageUploadController@own_image_picture');
+
+// P-0 投稿画面
+
+//投稿処理のコントローラー
+Route::get('/post', 'PostsController@post');
+
+
+/********************************************
+ Scaffoldで作ったもの(2017/12/09)
+********************************************/
+// おみくじ
+Route::resource("mikujis","MikujiController");
+Route::resource("omikujis","OmikujiController"); // 使えてない？->テーブルがない。
+// ビジョン
+Route::resource("visions","VisionController");
+
+// NPO
+Route::resource("npo_registers","Npo_registerController");
+
+//自己紹介表示画面
+Route::post('/npo_register/create', 'Npo_registerController@create');
+Route::get('npo/shj', 'Npo_registerController@secondharvest' );
+// Route::post('/2hj', 'Npo_registerController@secondharvest');
+
+//フォルダ名をURLに反映(2018.01.04仲条追加項目)
+Route::get('npo/{npo_name}','Npo_registerController@landing');
+
+// スタブ機能
+Route::post('/testviews', 'TestViewController@index');
+
+//[管理機能]会員検索機能
+Route::post('/mastermentenance/login_user_manager', 'TestViewController@login_user_manager');
+
+//Twitter
+Route::get('auth/login/twitter', 'Auth\SocialController@getTwitterAuth');
+Route::get('auth/login/callback/twitter', 'Auth\SocialController@getTwitterAuthCallback');
+
+//Facebook
+Route::get('auth/login/facebook', 'Auth\SocialController@getFacebookAuth');
+Route::get('auth/login/callback/facebook', 'Auth\SocialController@getFacebookAuthCallback');
+
+//Google
+Route::get('auth/login/google', 'Auth\SocialController@getGoogleAuth');
+Route::get('auth/login/callback/google', 'Auth\SocialController@getGoogleAuthCallback');
+
+
+//Route::group(['prefix' => 'admin'], function () {
+//    Voyager::routes();
+//});
