@@ -36,6 +36,17 @@
     <script src="{{ url('/') }}/../js/paper-kit.js?v=2.1.0"></script>
     <!-- <script src="{{ url('/') }}/../js/demo.js"></script> -->
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119878421-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-119878421-1');
+    </script>
+
+
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),

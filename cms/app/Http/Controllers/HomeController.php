@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms', 'privacy', 'npo/teamFSHARP', 'npo_landing_page']]);
+        $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms', 'privacy', 'npo_landing_page']]);
     }
 
     /**
@@ -64,6 +64,16 @@ class HomeController extends Controller
     public function terms()
     {
         return view('terms');
+    }
+    
+    public function privacy_policy()
+    {
+        return view('privacy_policy');
+    }
+    
+    public function thank_you_for_support()
+    {
+        return view('thank_you_for_support');
     }
 
     public function edit()

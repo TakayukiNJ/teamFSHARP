@@ -167,6 +167,8 @@ Route::get('/home/register', 'HomeController@register');
 Route::get('/home/edit', 'HomeController@edit');
 
 Route::get('/terms', 'HomeController@terms');
+Route::get('/privacy_policy', 'HomeController@privacy_policy');
+Route::get('/thank_you_for_support', 'HomeController@thank_you_for_support');
 
 //サンプル1
 Route::get('/home/ProjectFriends', 'HomeController@p_friends');
