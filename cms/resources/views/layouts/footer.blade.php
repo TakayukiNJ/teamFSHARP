@@ -68,53 +68,54 @@
         </div>
         <div class="col-md-9 col-sm-9 col-12 ml-auto mr-auto">
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-6">
-                    <div class="links">
-                        <ul class="uppercase-links stacked-links">
-                            <li>
-                                <a href="#home" >
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Discover
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#paper-kit">
-                                    Blog
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#paper-kit">
-                                    Live Support
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#paper-kit">
-                                    Money Back
-                                </a>
-                            </li>
-                        </ul>
+                <!--<div class="col-md-3 col-sm-3 col-6">-->
+                <!--    <div class="links">-->
+                <!--        <ul class="uppercase-links stacked-links">-->
+                <!--            <li>-->
+                <!--                <a href="#home" >-->
+                <!--                    Home-->
+                <!--                </a>-->
+                <!--            </li>-->
+                <!--            <li>-->
+                <!--                <a href="#">-->
+                <!--                    Discover-->
+                <!--                </a>-->
+                <!--            </li>-->
+                <!--            <li>-->
+                <!--                <a href="#paper-kit">-->
+                <!--                    Blog-->
+                <!--                </a>-->
+                <!--            </li>-->
+                <!--            <li>-->
+                <!--                <a href="#paper-kit">-->
+                <!--                    Live Support-->
+                <!--                </a>-->
+                <!--            </li>-->
+                <!--            <li>-->
+                <!--                <a href="#paper-kit">-->
+                <!--                    Money Back-->
+                <!--                </a>-->
+                <!--            </li>-->
+                <!--        </ul>-->
 
-                    </div>
-                </div>
+                <!--    </div>-->
+                <!--</div>-->
                 <div class="col-md-3 col-sm-3 col-6">
                     <div class="links">
                         <ul class="uppercase-links stacked-links">
                             <li>
-                                <a href="#paper-kit">
+                                <a href="https://goo.gl/YZLao1">
                                     Contact Us
                                 </a>
                             </li>
                             <li>
-                                <a href="#paper-kit">
-                                    We're Hiring
+                                <a href="{{ url('home/home_own_timeline') }}">
+                                    <!--We're Hiring-->
+                                    Own page
                                 </a>
                             </li>
                             <li>
-                                <a href="#paper-kit">
+                                <a href="{{ url('npo/teamFSHARP') }}">
                                     About Us
                                 </a>
                             </li>
@@ -125,59 +126,59 @@
                     <div class="links">
                         <ul class="uppercase-links stacked-links">
                             <li>
-                                <a href="#paper-kit">
-                                    Portfolio
+                                <a href="{{ url('/npo/teamFSHARP#my-tab-content') }}">
+                                    Origin
                                 </a>
                             </li>
                             <li>
-                                <a href="#paper-kit">
-                                    How it works
+                                <a href="{{ url('/npo/teamFSHARP#teams') }}">
+                                    Team F# members
                                 </a>
                             </li>
                             <li>
-                                <a href="#paper-kit">
-                                    Testimonials
+                                <a href="{{ url('/npo/teamFSHARP#pricing') }}">
+                                    Support with F#
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-6">
-                    <div class="links">
-                        <ul class="stacked-links">
-                            <li>
-                                <h4>3<br /> <small>NPOs</small></h4>
-                            </li>
-                            <li>
-                                <h4>20<br /> <small>Users</small></h4>
-                            </li>
+                <!--<div class="col-md-3 col-sm-3 col-6">-->
+                <!--    <div class="links">-->
+                <!--        <ul class="stacked-links">-->
+                <!--            <li>-->
+                <!--                <h4>3<br /> <small>NPOs</small></h4>-->
+                <!--            </li>-->
+                <!--            <li>-->
+                <!--                <h4>20<br /> <small>Users</small></h4>-->
+                <!--            </li>-->
 
-                        </ul>
-                    </div>
-                </div>
+                <!--        </ul>-->
+                <!--    </div>-->
+                <!--</div>-->
             </div>
             <hr />
             <div class="copyright">
                 <div class="pull-left">
-                    &copy; <script>document.write(new Date().getFullYear())</script> F#, made with love
+                    &copy; <script>document.write(new Date().getFullYear())</script> FSHARP, made with love
                 </div>
                 <div class="links pull-right">
                     <ul>
+                        <!--<li>-->
+                        <!--    <a href="#paper-kit">-->
+                        <!--        Company Policy-->
+                        <!--    </a>-->
+                        <!--</li>-->
+                        <!--|-->
                         <li>
-                            <a href="#paper-kit">
-                                Company Policy
-                            </a>
-                        </li>
-                        |
-                        <li>
-                            <a href="#paper-kit">
+                            <a href="{{ url('/terms') }}">
                                 Terms
                             </a>
                         </li>
                         |
                         <li>
-                            <a href="#paper-kit">
-                                Privacy
+                            <a href="{{ url('/privacy_policy') }}">
+                                Privacy policy
                             </a>
                         </li>
                     </ul>

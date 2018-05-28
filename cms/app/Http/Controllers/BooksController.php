@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class BooksController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index', 'welcome', 'npo/npo_landing_page']]);
+        $this->middleware('auth', ['except' => ['index', 'welcome']]);
         // $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms']]);
         //$this->middleware('guest', ['except' => 'index']);
     }
