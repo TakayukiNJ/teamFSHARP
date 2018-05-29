@@ -43,7 +43,6 @@ use Illuminate\Http\Request;
 /*********************/
 Auth::routes();
 //Auth::get('/login', 'LoginController@__construct');
-//Auth::get('/login', 'LoginController@__construct');
 //Route::get('/login', 'HomeController@home_own_timeline');
 // Route::group(['middleware' => 'guest'], function () {
 //     Route::get('/', function () {
@@ -253,8 +252,8 @@ Route::resource("visions","VisionController");
 
 // NPO
 Route::resource("npo_registers","Npo_registerController");
-// Route::resource("npo_registers/{npo_name}/edit","Npo_registerController@edit");
-Route::post('npo_registers/{npo_name}/edit', 'Npo_registerController@edit')->middleware('auth');
+Route::resource("npo_register/{npo_name}/edit","Npo_registerController@edit");
+// Route::get('npo_registers/{npo_name}/edit', 'Npo_registerController@edit')->middleware('auth');
 
 //自己紹介表示画面
 Route::post('/npo_register/create', 'Npo_registerController@create');
@@ -263,6 +262,8 @@ Route::get('npo/shj', 'Npo_registerController@secondharvest' );
 
 //フォルダ名をURLに反映(2018.01.04仲条追加項目)
 Route::get('npo/{npo_name}','Npo_registerController@landing');
+Route::get('npo/{npo_name}/edit','Npo_registerController@editing');
+
 
 // スタブ機能
 Route::post('/testviews', 'TestViewController@index');
@@ -281,7 +282,6 @@ Route::get('auth/login/callback/facebook', 'Auth\SocialController@getFacebookAut
 //Google
 Route::get('auth/login/google', 'Auth\SocialController@getGoogleAuth');
 Route::get('auth/login/callback/google', 'Auth\SocialController@getGoogleAuthCallback');
-
 
 //Route::group(['prefix' => 'admin'], function () {
 //    Voyager::routes();

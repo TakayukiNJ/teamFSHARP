@@ -13,8 +13,8 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware('auth');
-        $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms', 'privacy', 'npo_landing_page']]);
+        // ログイン不要で開きたいページはここに記入していく。
+        $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms', 'privacy_policy', 'npo_landing_page']]);
     }
 
     /**

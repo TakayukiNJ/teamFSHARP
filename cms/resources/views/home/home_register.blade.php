@@ -10,8 +10,8 @@
         <div class="col-md-12">
             <form name="changeform" method="POST">
                     <div class="form-group">
-                        <label for="title-field">ID</label>
-                        <input type="text" id="title-field" name="id" class="form-control" value="{{ $id }}" readonly="readonly"/>
+                        <label for="title-field">USERNAME</label>
+                        <input type="text" id="title-field" name="name" class="form-control" value="{{ Auth::user()->name }}" readonly="readonly"/>
                     </div>
 
                     <div class="form-group">
@@ -21,7 +21,7 @@
 
 
                     <div class="form-group @if($errors->has('user_name_sei_kanji')) has-error @endif">
-                        <label for="title-field">姓(漢字)</label>
+                        <label for="title-field">姓</label>
                         <input type="text" id="user_name_sei_kanji-field" name="user_name_sei_kanji" class="form-control" value="{{ $user_name_sei_kanji }}"/>
                         @if($errors->has("user_name_sei_kanji"))
                            <span class="help-block">{{ $errors->first("user_name_sei_kanji") }}</span>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="form-group @if($errors->has('user_name_mei_kanji')) has-error @endif">
-                        <label for="title-field">名(漢字)</label>
+                        <label for="title-field">名</label>
                         <input type="text" id="user_name_mei_kanji-field" name="user_name_mei_kanji" class="form-control" value="{{ $user_name_mei_kanji }}"/>
                         @if($errors->has("user_name_mei_kanji"))
                            <span class="help-block">{{ $errors->first("user_name_mei_kanji") }}</span>
@@ -95,6 +95,7 @@
                     <a class="btn btn-link pull-right" onClick="H01_run()"><i class="glyphicon glyphicon-backward"></i> 戻る</a>
                 </div>
 {{ csrf_field() }}
+<BR>
 <BR>
 <BR>
 <BR>
