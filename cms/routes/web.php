@@ -253,6 +253,8 @@ Route::resource("visions","VisionController");
 
 // NPO
 Route::resource("npo_registers","Npo_registerController");
+// Route::resource("npo_registers/{npo_name}/edit","Npo_registerController@edit");
+Route::post('npo_registers/{npo_name}/edit', 'Npo_registerController@edit')->middleware('auth');
 
 //自己紹介表示画面
 Route::post('/npo_register/create', 'Npo_registerController@create');

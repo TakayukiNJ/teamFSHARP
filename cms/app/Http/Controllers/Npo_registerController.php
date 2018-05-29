@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-// use Auth;
+use Auth;
 
 use App\Npo_register;
 use App;
@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 class Npo_registerController extends Controller {
 	public function __construct()
     {
-        //$this->middleware('auth');
         $this->middleware('auth', ['except' => ['landing', 'pieces']]);
     }
 	/**
@@ -40,7 +39,7 @@ class Npo_registerController extends Controller {
 
 	public function index()
 	{
-		$npo_registers = Npo_register::orderBy('id', 'desc')->paginate(10);
+		$npo_registers = Npo_register::orderBy('id', 'desc')->paginate(5);
 		
 		return view('npo_registers.index', compact('npo_registers'));
 	}
@@ -115,7 +114,10 @@ class Npo_registerController extends Controller {
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
 		
-		// $manager = 
+	// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
+        $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+		// //連想配列に入れtBladeテンプレートに渡しています。
+        $data['npo_info'] = $currentNpoInfo;
 		
 		$npo_register = Npo_register::findOrFail($npo_name);
 		
