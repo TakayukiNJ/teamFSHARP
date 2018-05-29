@@ -69,7 +69,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <!--<label>-->
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="terms-of-service" required> <a href="{{ url('/terms') }}"><strong>利用規約</strong></a>に同意する
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="terms-of-service" required><a href="{{ url('/terms') }}"><strong> 利用規約 </strong></a>および<strong><a href="{{ url('/privacy_policy') }}"> プライバシーポリシー <a></strong>に同意する
                                     <!--</label>-->
                                 </div>
                             </div>

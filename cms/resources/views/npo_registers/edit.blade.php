@@ -79,6 +79,7 @@
                         <span class="help-block">{{ $errors->first("url") }}</span>
                        @endif
                     </div>
+                    
                     <!--<div class="form-group @if($errors->has('code1')) has-error @endif">-->
                     <!--   <label for="code1-field">寄付先</label>-->
                     <!--<input type="text" id="code1-field" name="code1" class="form-control" value="{{ is_null(old("code1")) ? $npo_register->code1 : old("code1") }}"/>-->

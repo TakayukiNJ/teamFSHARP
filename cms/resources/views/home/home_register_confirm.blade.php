@@ -14,8 +14,8 @@
             <!-- 自己紹介登録確認画面 -->
                 以下の内容で登録してよいですか？<BR>
                 <div class="form-group">
-                    <label for="vision_status">[ID]</label>
-                    <p class="form-control-static">{{$id}}</p>
+                    <label for="vision_status">[USERNAME]</label>
+                    <p class="form-control-static">{{ Auth::user()->name }}</p>
                 </div>
                 <div class="form-group">
                     <label for="vision_status">[USER]</label>

@@ -34,7 +34,8 @@
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
                                     @if ((Auth::user()->npo) == ($npo_register->npo_name))
-                                    <a class="btn btn-xs btn-warning" href="{{ route('npo_registers.edit', $npo_register->npo_name) }}"><i class="glyphicon glyphicon-edit"></i> 編集/Edit</a>
+                                    <!--<a class="btn btn-xs btn-warning" href="{{ route('npo_registers.edit', $npo_register->npo_name) }}"><i class="glyphicon glyphicon-edit"></i> 編集/Edit</a>-->
+                                    <a class="btn btn-xs btn-warning" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}/edit"><i class="glyphicon glyphicon-edit"></i> 編集/Edit</a>
                                     @endif
                                     <!--m action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">-->
                                     <!--<input type="hidden" name="_method" value="DELETE">-->
