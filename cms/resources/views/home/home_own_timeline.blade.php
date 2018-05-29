@@ -125,18 +125,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <div class="w3-container w3-padding-large">
     <!--<h4 id="about"><b>About Me (自己紹介)</b></h4>-->
     <h4 id="about"><b>USAGE (使い方)</b></h4>
-    <p><strong>①支援・寄附に関して</strong></p>
-    <p>もしビットコインをお持ちなら、応援したい団体を選んで支援や寄附をすることができます。仮想通貨なので、世界中どこからでも手数料・送金速度は一律です。</p>
+    <p><strong>ご登録、誠にありがとうございます。</strong></p>
+    <p>もしビットコインをお持ちなら、応援したい団体を選んで支援や寄附をすることができます。仮想通貨なので、世界中どこからでも送金手数料・送金速度は一律です。</p>
     <p>NPOの支援・寄附した場合、お名前（ユーザーネーム）がサイトに公開され、NPO側にはメールアドレスもお伝えいたします。(購入履歴は、今後ご活用できる仕組みを作成中です。)</p>
-    <p>購入履歴は、今後その支援した団体のオリジナルコイン(トークン)をゲットしてご利用できるようになります。お楽しみに！</p>
+    <!--<p>購入履歴は、今後その支援した団体のオリジナルコイン(トークン)をゲットしてご利用できるようになります。お楽しみに！</p>-->
     <!--<p><strong>①マイページに関して</strong></p>-->
     <!--<p>トップバーの「ユーザー名」→マイページ編集」で、ご本名や生年月日を入力して本登録完了といたします。(外部公開はいたしません。)</p>-->
     <!--<p>本登録完了後、マイページに写真を追加したり、ご自身のNPOをICOで資金調達にチャレンジすることができます。</p>-->
-    <p><strong>②NPOページ掲載に関して</strong></p>
-    <p>トップバーの「掲載/相談する」から、ご自身のNPOを登録できます。（審査期間：約1週間）</p>
+    <p><strong>【NPOページ掲載に関して】</strong></p>
+    <p>ご自身のNPOを登録することできます。（審査期間：約1週間）</p>
+    <p>お気軽に、ご申請の程よろしくお願いいたします。</p>
     <!--<p><strong>③ICO(資金調達)に関して</strong></p>-->
     <p>ご自身のNPOページが登録されると、新たに項目がトップバーに追加されます。</p>
-    <p>トップバーの「NPO名」→「NPOページ編集」から、優待を設定し、資金調達を始めることができます。（審査期間：約1週間）</p>
+    <p>自分のNPOのホームページとしてだけでもご活用いただけますし、資金調達も始めることができます。（審査期間：約1週間）</p>
     <p>お気軽に、ご相談ください。</p>
     <!--<p>オリジナルトークン(ICO)ではなく、</p>-->
     <hr>
@@ -177,6 +178,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
         <a class="indiesquare-tip-button" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me" style="width:150px">Donate with IndieSquare</a><script src="//widget.indiesquare.me/tip/buttonjs" async="" type="text/javascript"></script>
       
     </form>
+    
+<br><br><br><br><br>
   </div>
 
   <!-- Footer -->
@@ -288,7 +291,6 @@ function E04_1_run(val) {
 </script>
 
 </div>
-
 <!-- End page content -->
 </div>
 @endsection

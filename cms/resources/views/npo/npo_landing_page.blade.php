@@ -280,10 +280,13 @@
                                 <div class="tab-content text-center" >
                                     <!-- <div class="tab-pane active" id="aa" role="tabpanel">
                                         <div class="row"> -->
-                                            <p class="description text-gray">
+                                            <p>
                                                 F#のWebサービスは、全て仮想通貨でNPOに資金調達の支援（寄付）を行います。<br>
                                                 仮想通貨の送金が受理されると、支援したNPOの<b>コインがもらえます</b>。そのコインを保有していると<strong>リターン（優待）がもらえる場合もございます。</strong>
                                                 リターンを受け取った後も、<strong>コインが失われることはございません。</strong>
+                                            </p>
+                                            <p class="description text-gray">
+                                                【アドバンスト】独自のNPOトークンで運用したい場合は、別途ご相談ください。
                                             </p>
                                         <!-- </div>
                                     </div> -->
@@ -297,7 +300,7 @@
                                 </div>
                             </div>
         
-                            <div class="col-md-7 ml-auto" id="support"3>
+                            <div class="col-md-7 ml-auto" id="support">
                                 <div class="tab-content text-center" >
                                     <div class="tab-pane active" id="personal" role="tabpanel">
                                         <div class="space-top"></div>
@@ -352,8 +355,8 @@
                                                         <h1 class="card-title">¥100</h1>
                                                         <ul>
                                                             <li>F#のトークンを保有していると</li>
-                                                            <li><b>利益の10%をビットコインで還元。</b></li>
-                                                            <li>XCPに上場しているので<b>取引可能</b></li>
+                                                            <li><b>利益が出たらビットコインで還元。</b></li>
+                                                            <li>XCPに上場中なので<b>売買取引可能</b></li>
                                                             <li>※価格は今後、上下する可能性あり</li>
                                                         </ul>
                                                         <a class="indiesquare-tip-button btn btn-danger btn-round" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me">

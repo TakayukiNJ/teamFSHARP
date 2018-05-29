@@ -8452,3 +8452,9 @@ Stack trace:
 #3 /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(254): Illuminate\Foundation\Application->bootstrapWith(Array)
 #4 /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Founda in /home/ubuntu/workspace/cms/config/app.php on line 183
 [27-Jan-2018 18:15:48 Asia/Tokyo] PHP Fatal error:  Cannot use App\Npo_register as Npo_register because the name is already in use in /home/ubuntu/workspace/cms/app/Http/Controllers/Npo_registerController.php on line 8
+[29-May-2018 22:19:57 Asia/Tokyo] PHP Fatal error:  Trait 'App\Notifiable' not found in /home/ubuntu/workspace/cms/app/Npo_register.php on line 9
+[29-May-2018 23:32:46 Asia/Tokyo] PHP Fatal error:  Trait 'App\Notifiable' not found in /home/ubuntu/workspace/cms/app/Npo_register.php on line 9
+[29-May-2018 23:34:35 Asia/Tokyo] PHP Fatal error:  Class 'App\Model' not found in /home/ubuntu/workspace/cms/app/Npo_register.php on line 6
+[29-May-2018 23:34:47 Asia/Tokyo] PHP Fatal error:  Trait 'App\Notifiable' not found in /home/ubuntu/workspace/cms/app/Npo_register.php on line 12
+[29-May-2018 23:36:27 Asia/Tokyo] PHP Fatal error:  Cannot use Illuminate\Database\Eloquent\Model as Model because the name is already in use in /home/ubuntu/workspace/cms/app/Npo_register.php on line 13
+[29-May-2018 23:36:50 Asia/Tokyo] PHP Fatal error:  Cannot use Illuminate\Database\Eloquent\Model as Model because the name is already in use in /home/ubuntu/workspace/cms/app/Npo_register.php on line 13

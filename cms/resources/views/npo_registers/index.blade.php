@@ -18,10 +18,9 @@
                 <table class="table table-condensed table-striped">
                     <thead>
                         <tr>
-                            
                             <th>TITLE</th>
-                        <th>SUBTITLE</th>
-                        <th>DETAILS</th>
+                            <th>SUBTITLE</th>
+                            <!--<th>DETAILS</th>-->
                             <th class="text-right">OPTIONS</th>
                         </tr>
                     </thead>
@@ -31,7 +30,7 @@
                             <tr>
                                 <td>{{$npo_register->title}}</td>
                                 <td>{{$npo_register->subtitle}}</td>
-                                <td>{{$npo_register->body}}</td>
+                                <!--<td>{{$npo_register->body}}</td>-->
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
                                     @if ((Auth::user()->npo) == ($npo_register->npo_name))
