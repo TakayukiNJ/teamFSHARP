@@ -252,14 +252,13 @@ Route::resource("visions","VisionController");
 
 // NPO
 Route::resource("npo_registers","Npo_registerController");
-Route::resource("npo_register/{npo_name}/edit","Npo_registerController@edit");
+// Route::resource("npo_register/{npo_name}/edit","Npo_registerController@edit");
 // Route::get('npo_registers/{npo_name}/edit', 'Npo_registerController@edit')->middleware('auth');
 
 //自己紹介表示画面
 Route::post('/npo_register/create', 'Npo_registerController@create');
-Route::get('npo/shj', 'Npo_registerController@secondharvest' );
-// Route::post('/2hj', 'Npo_registerController@secondharvest');
-
+Route::post('/npo_register/edit_npopage/{npo_name}', 'Npo_registerController@edit_npopage');
+Route::post('/npo_register/{npo_name}/edit', 'Npo_registerController@edit');
 //フォルダ名をURLに反映(2018.01.04仲条追加項目)
 Route::get('npo/{npo_name}','Npo_registerController@landing');
 Route::get('npo/{npo_name}/edit','Npo_registerController@editing');
