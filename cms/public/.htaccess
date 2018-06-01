@@ -1,7 +1,8 @@
 <IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews
-    </IfModule>
+    #   さくらアップロード時削除
+    # <IfModule mod_negotiation.c>
+    #     Options -MultiViews
+    # </IfModule>
 
     RewriteEngine On
 

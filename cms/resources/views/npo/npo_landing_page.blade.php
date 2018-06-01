@@ -282,7 +282,7 @@
                                         <div class="row"> -->
                                             <p>
                                                 F#のWebサービスは、全て仮想通貨でNPOに資金調達の支援（寄付）を行います。<br>
-                                                仮想通貨の送金が受理されると、支援したNPOの<b>コインがもらえます</b>。そのコインを保有していると<strong>リターン（優待）がもらえる場合もございます。</strong>
+                                                仮想通貨の送金が受理されると、支援したNPOの<b>コインがもらえます</b>。そのコインを保有していると<strong>リターン（特典）がもらえる場合もございます。</strong>
                                                 リターンを受け取った後も、<strong>コインが失われることはございません。</strong>
                                             </p>
                                             <p class="description text-gray">
@@ -310,13 +310,13 @@
                                             <div class="col-md-6">
                                                 <div class="card card-pricing">
                                                     <div class="card-body">
-                                                        <h6 class="card-category text-danger">支援してコインをもらう</h6>
-                                                        <h1 class="card-title">¥{{ $npo_info->support_amount }}</h1>
+                                                        <h6 class="card-category text-danger">{{ $npo_info->title }}のファンになる</h6>
+                                                        <h1 class="card-title">{{ $npo_info->support_amount }}BTC</h1>
                                                         <ul>
-                                                            <li><b>コイン名: {{ $npo_info->title }}</b></li>
+                                                            <li><b>ファンクラブ名: {{ $npo_info->title }}</b></li>
                                                             <li><b>リターン: {{ $npo_info->support_contents }}</b></li>
-                                                            <li><b>優待利用期限: {!! nl2br(e(trans($npo_info->support_contents_detail))) !!}</b></li>
-                                                            <!--<li>※優待は変更する場合がございます。</li>-->
+                                                            <li><b>特典利用期限: {!! nl2br(e(trans($npo_info->support_contents_detail))) !!}</b></li>
+                                                            <!--<li>※特典は変更する場合がございます。</li>-->
                                                             <li>※ご購入は、ビットコイン決済です。</li>
                                                         </ul>
                                                         @if (Auth::guest())

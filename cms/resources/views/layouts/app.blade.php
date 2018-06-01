@@ -60,7 +60,7 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- ヘッダーの左側 -->
-                    <form class="navbar-form navbar-left" action="{{ url('/home/home_search_outer_member_process') }}">
+                    <form class="navbar-form navbar-left" action="{{ url('/npo_registers') }}">
                       <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="search">
                         <div class="input-group-btn">
@@ -96,8 +96,8 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <!-- ホーム画面 -->
                                     <li><a href="{{ url('/npo') }}/{{ Auth::user()->npo }}" onClick="C01_run();return false;">@lang('app.npo page')</a></li>
-                                    <li><a href="{{ url('/home') }}" onClick="C01_run();return false;">@lang('app.npo return edit')</a></li>
-                                    <li><a href="{{ url('/npo_registers') }}" onClick="C01_run();return false;">@lang('app.npo detail edit')</a></li><!-- 将来、ここはチャットに変更 -->
+                                    <!--<li><a href="{{ url('/home') }}" onClick="C01_run();return false;">@lang('app.npo return edit')</a></li>-->
+                                    <li><a href="{{ url('/npo') }}/{{ Auth::user()->npo }}/edit" onClick="C01_run();return false;">@lang('app.npo detail edit')</a></li><!-- 将来、ここはチャットに変更 -->
                                     <!--<li><a href="{{ url('/connect/vision_sell_regist') }}" onClick="C01_run();return false;">@lang('app.return setting')</a></li><!-- 将来、ここはチャットに変更 -->
                                     <!-- 設定画面 -->
                                     <!--<li><a href="{{ url('/npo/setting') }}">@lang('app.npo setting')</a></li>-->
