@@ -33,10 +33,12 @@
                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
                        @endif
                     </div>
-                       <input type="hidden" id="subtitle-field" name="proval" class="form-control" value="0" />
-                       @if($errors->has("proval"))
-                        <span class="help-block">{{ $errors->first("proval") }}</span>
-                       @endif
+                    
+                   <input type="hidden" id="subtitle-field" name="proval" class="form-control" value="0" />
+                   @if($errors->has("proval"))
+                    <span class="help-block">{{ $errors->first("proval") }}</span>
+                   @endif
+                   
                     <!--<div class="form-group @if($errors->has('facebook')) has-error @endif">-->
                     <!--   <label for="facebook-field">Facebook</label>-->
                     <!--<input type="text" id="facebook-field" name="facebook" class="form-control" value="{{ old("facebook") }}"/>-->

@@ -118,7 +118,7 @@
                             </li>
                             
                             @else
-                            <li><a href="https://goo.gl/YZLao1" target="_blank">@lang('app.make/ask my page')</a></li>
+                            <li><a href="{{ url('/npo_registers/create') }}">NPOページを作成</a></li>
                             @endif
                             
                             <!-- ユーザー -->
