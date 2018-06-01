@@ -58,10 +58,10 @@
         <div class="col-md-2 text-center col-sm-3 col-12 ml-auto mr-auto">
             <h4>F#</h4>
             <div class="social-area">
-                <a class="btn btn-just-icon btn-round btn-facebook">
+                <a class="btn btn-just-icon btn-round btn-facebook" href="https://www.facebook.com/nj.takayuki">
                     <i class="fa fa-facebook" aria-hidden="true"></i>
                 </a>
-                <a class="btn btn-just-icon btn-round btn-twitter">
+                <a class="btn btn-just-icon btn-round btn-twitter" href="https://twitter.com/IbRducocvvsX0bC">
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
             </div>

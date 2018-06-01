@@ -41,7 +41,7 @@
                     @else
                         @if ((Auth::user()->npo) == "")
                         <li class="nav-item">
-                            <a class="nav-link" href="https://goo.gl/YZLao1">@lang('app.make/ask my page')</a>
+                            <a class="nav-link" href="{{ url('/npo_registers/create') }}">@lang('app.make/ask my page')</a>
                         </li>
         						
         				<li class="nav-item dropdown">

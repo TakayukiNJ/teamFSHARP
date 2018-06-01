@@ -149,7 +149,7 @@ class Npo_registerController extends Controller {
 		$npo_register->proval = $request->input("proval");
 		
 		$npo_register->save();
-// return view('npo.npo_landing_page', compact('npo_register'));
+		// return view('npo.npo_landing_page', compact('npo_register'));
 
 		return redirect()->route('npo_registers.index')->with('message', 'Item updated successfully.');
 	}

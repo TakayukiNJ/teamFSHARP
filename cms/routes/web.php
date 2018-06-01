@@ -257,7 +257,7 @@ Route::resource("npo_registers","Npo_registerController");
 
 //自己紹介表示画面
 Route::post('/npo_register/create', 'Npo_registerController@create');
-Route::post('/npo_register/edit_npopage/{npo_name}', 'Npo_registerController@edit_npopage');
+// Route::post('/npo_register/edit_npopage/{npo_name}', function(Npo_name $npo_name);
 Route::post('/npo_register/{npo_name}/edit', 'Npo_registerController@edit');
 //フォルダ名をURLに反映(2018.01.04仲条追加項目)
 Route::get('npo/{npo_name}','Npo_registerController@landing');
