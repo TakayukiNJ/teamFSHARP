@@ -13,7 +13,7 @@ class Npo_register extends Model
         'id',
         'npo_name', 
         'title', 
-        'subtitle', 
+        'subtitle',
         'url', 
         'embed_youtube',
         'blue_card_title',
