@@ -19,6 +19,8 @@
 |
 */
 
+// さくらアップロード時変更
+// require __DIR__.'/../cms/bootstrap/autoload.php';
 require __DIR__.'/../bootstrap/autoload.php';
 
 /*
@@ -33,6 +35,8 @@ require __DIR__.'/../bootstrap/autoload.php';
 |
 */
 
+// さくらアップロード時変更
+// $app = require_once __DIR__.'/../cms/bootstrap/app.php';
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 /*

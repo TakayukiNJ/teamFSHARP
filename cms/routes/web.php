@@ -50,6 +50,9 @@ Auth::routes();
 //     });
 // });
 
+// 日付を簡単に取得できるCarbon
+Route::get('/carbon', 'CarbonController@getIndex');
+
 Route::get('/', 'BooksController@welcome');
 Route::get('/cms', 'BooksController@welcome');
 //一覧

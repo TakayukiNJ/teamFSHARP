@@ -22,7 +22,7 @@
                 
                 <ul class="navbar-nav ml-auto">
     
-                    <form class="form-inline" action="{{ url('/home/home_search_outer_member_process') }}">
+                    <form class="form-inline" action="{{ url('/npo_registers') }}">
                         <input class="form-control mr-sm-2 no-border" type="text" placeholder="Search" name="search">
                         <button type="submit" class="btn btn-primary btn-just-icon btn-round"><i class="nc-icon nc-zoom-split"></i></button>
                     </form>
@@ -59,8 +59,8 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }} </a>
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                                 <a class="dropdown-item" href="{{ url('/npo') }}/{{ Auth::user()->npo }}"><i class="nc-icon nc-bank"></i>&nbsp; {{ Auth::user()->npo }}</a>
-                                <a class="dropdown-item" href="{{ url('/home') }}"><i class="nc-icon nc-basket"></i>&nbsp; @lang('app.npo return edit')</a>
-        						<a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; @lang('app.npo detail edit')</a>
+                                <!--<a class="dropdown-item" href="{{ url('/home') }}"><i class="nc-icon nc-basket"></i>&nbsp; @lang('app.npo return edit')</a>-->
+        						<a class="dropdown-item" href="{{ url('/npo') }}/{{ Auth::user()->npo }}/edit"><i class="nc-icon nc-money-coins"></i>&nbsp; @lang('app.npo detail edit')</a>
                             
                             
                         @endif        		

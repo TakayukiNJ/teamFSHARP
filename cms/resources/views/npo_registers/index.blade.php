@@ -7,7 +7,7 @@
 <div class="container">
     <div class="page-header clearfix">
         <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Npo_registers
+            <i class="glyphicon glyphicon-align-justify"></i> 登録NPO
             <!--lass="btn btn-success pull-right" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>-->
         </h1>
 
@@ -32,18 +32,20 @@
                                 <td>{{$npo_register->subtitle}}</td>
                                 <!--<td>{{$npo_register->body}}</td>-->
                                 <td class="text-right">
-                                    @if (($npo_register->proval) != 0)
+                                    @if (($npo_register->proval) != 0 || (Auth::user()->name) == ($npo_register->manager))
                                     <a class="btn btn-xs btn-primary" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
                                     @endif
-                                    @if ((Auth::user()->npo) == ($npo_register->npo_name))
-                                    <!--<a class="btn btn-xs btn-warning" href="{{ route('npo_registers.edit', $npo_register->npo_name) }}"><i class="glyphicon glyphicon-edit"></i> 編集/Edit</a>-->
-                                    <a class="btn btn-xs btn-warning" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}/edit"><i class="glyphicon glyphicon-edit"></i> 編集/Edit</a>
+                                    @if ((Auth::user()->name) == ($npo_register->manager))
+                                        <!--<a class="btn btn-xs btn-warning" href="{{ route('npo_registers.edit', $npo_register->npo_name) }}"><i class="glyphicon glyphicon-edit"></i> 編集/Edit</a>-->
+                                        <a class="btn btn-xs btn-warning" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}/edit"><i class="glyphicon glyphicon-edit"></i> 編集/Edit</a>
+                                        @if (($npo_register->proval) != 1)
+                                        <form action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                        </form>
+                                        @endif
                                     @endif
-                                    <!--m action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">-->
-                                    <!--<input type="hidden" name="_method" value="DELETE">-->
-                                    <!--<input type="hidden" name="_token" value="{{ csrf_token() }}">-->
-                                    <!--<button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>-->
-                                    <!--rm>-->
                                 </td>
                             </tr>
                         @endforeach

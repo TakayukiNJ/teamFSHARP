@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     @include('error')
 <div class="container">
+    <div class="page-header">
+        <h1><i class="glyphicon glyphicon-edit"></i> Create NPO Page</h1>
+    </div>
     <div class="row">
         <div class="col-md-12">
 
@@ -33,10 +36,23 @@
                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
                        @endif
                     </div>
-                       <input type="hidden" id="subtitle-field" name="proval" class="form-control" value="0" />
-                       @if($errors->has("proval"))
-                        <span class="help-block">{{ $errors->first("proval") }}</span>
-                       @endif
+                    
+                   <input type="hidden" name="manager" class="form-control" value="{{ Auth::user()->name }}" />
+                   <input type="hidden" name="blue_card_title" class="form-control" value="私たちのミッション" />
+                   <input type="hidden" name="blue_card_body" class="form-control" value="自由にご記載ください。" />
+                   <input type="hidden" name="green_card_title" class="form-control" value="活動内容" />
+                   <input type="hidden" name="green_card_body" class="form-control" value="自由にご記載ください。" />
+                   <input type="hidden" name="yellow_card_title" class="form-control" value="ファンクラブの特典" />
+                   <input type="hidden" name="yellow_card_body" class="form-control" value="タイトルがファンクラブの特典の場合、期限のご記載もお願いします。(ファンクラブ特典は必須ではございません) " />
+                   
+                   <input type="hidden" name="member1" class="form-control" value="0" />
+                   <input type="hidden" name="member1_pos" class="form-control" value="0" />
+                   <input type="hidden" name="member1_detail" class="form-control" value="自己紹介内容" />
+                   <input type="hidden" name="support_contents" class="form-control" value="現在設定なし" />
+                   <input type="hidden" name="support_contents_detail" class="form-control" value="現在設定なし" />
+                   <input type="hidden" name="support_amount" class="form-control" value="0" />
+                   
+                   <input type="hidden" name="proval" class="form-control" value="0" />
                     <!--<div class="form-group @if($errors->has('facebook')) has-error @endif">-->
                     <!--   <label for="facebook-field">Facebook</label>-->
                     <!--<input type="text" id="facebook-field" name="facebook" class="form-control" value="{{ old("facebook") }}"/>-->
