@@ -38,13 +38,12 @@
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <h1 color="linear-gradient(180deg, #2af598 0%, #009efd 100%);">F#</h1>
-                        <h3>もうNPOは、資金に困らない。</h3>
-                        <h3>簡単・安全・便利にICOで調達</h3>
+                        <h3>NPOの資金不足を解決！</h3>
+                        <h3>資金調達WEBサービス</h3>
                         <hr class="intro-divider">
 
                         <div class="w3-panel w3-large">
-                            <a style="background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);" href="{{ url('/register') }}" class="btn btn-default btn-lg"><span class="network-name">登録</span></a>
-                            <a style="background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);" href="{{ url('/login') }}" class="btn btn-default btn-lg"><span class="network-name">ログイン</span></a>
+                            <a style="background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);" href="{{ url('/npo_registers/create') }}" class="btn btn-default btn-lg"><span class="network-name">NPOページ作成</span></a>
                         </div>
                     </div>
                 </div>

@@ -52,8 +52,7 @@
                             <!--<br>-->
                             <!--<a class="indiesquare-tip-button" href="//widget.indiesquare.me/tip/074c8e2222f52e13" target="_blank" data-vid="074c8e2222f52e13" data-domain="indiesquare.me" style="width:150px">Donate with IndieSquare</a><script src="//widget.indiesquare.me/tip/buttonjs" async="" type="text/javascript"></script>-->
                             <!--<ul class="list-inline intro-social-buttons">-->
-                            <a href="{{ url('/register') }}" class="btn btn-default btn-lg"><span class="network-name">登録</span></a>
-                            <a href="{{ url('/login') }}" class="btn btn-default btn-lg"><span class="network-name">ログイン</span></a>
+                            <a href="{{ url('/npo_registers/create') }}" class="btn btn-default btn-lg"><span class="network-name">NPO登録</span></a>
                             <!--</ul>-->
                         </div>
                     </div>
