@@ -36,32 +36,28 @@
                 </div>
                 <div class="form-group">
                      <label for="amount_all-field">おみくじの総数</label>
-                     <p class="form-control-static">{{$mikuji->amount_all-field}}</p>
+                     <p class="form-control-static">{{$mikuji->amount_all}}</p>
                 </div>
                 <div class="form-group">
                      <label for="return_big-field">大当たり優待の内容</label>
-                     <p class="form-control-static">{{$mikuji->return_big-field}}</p>
+                     <p class="form-control-static">{{$mikuji->return_big}}</p>
                 </div>
                 <div class="form-group">
                      <label for="amount_big-field">大当たり優待の数</label>
-                     <p class="form-control-static">{{$mikuji->amount_big-field}}</p>
+                     <p class="form-control-static">{{$mikuji->amount_big}}</p>
                 </div>
                 <div class="form-group">
                      <label for="return_small-field">当たり優待の内容</label>
-                     <p class="form-control-static">{{$mikuji->return_small-field}}</p>
+                     <p class="form-control-static">{{$mikuji->return_small}}</p>
                 </div>
                 <div class="form-group">
                      <label for="amount_small-field">当たり優待の数</label>
-                     <p class="form-control-static">{{$mikuji->amount_small-field}}</p>
+                     <p class="form-control-static">{{$mikuji->amount_small}}</p>
                 </div>
                 
                 <div class="form-group">
                      <label for="published">PUBLISHED</label>
                      <p class="form-control-static">{{$mikuji->published}}</p>
-                </div>
-                <div class="form-group">
-                     <label for="delete_flg"></label>
-                     <p class="form-control-static">{{$mikuji->delete_flg}}</p>
                 </div>
             </form>
 

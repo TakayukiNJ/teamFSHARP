@@ -15,7 +15,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     
                     <div class="form-group @if($errors->has('title')) has-error @endif">
-                       <label for="title-field">NPO NAME</label>
+                       <label for="title-field">ページURL（https://fsharp.me/npo/〇〇〇〇の〇部分）</label>
                     <input type="text" id="title-field" name="npo_name" class="form-control" value="{{ old("npo_name") }}"/>
                        @if($errors->has("npo_name"))
                         <span class="help-block">{{ $errors->first("npo_name") }}</span>
@@ -23,21 +23,20 @@
                     </div>
                     
                     <div class="form-group @if($errors->has('title')) has-error @endif">
-                       <label for="title-field">Title</label>
+                       <label for="title-field">NPOの名前</label>
                     <input type="text" id="title-field" name="title" class="form-control" value="{{ old("title") }}"/>
                        @if($errors->has("title"))
                         <span class="help-block">{{ $errors->first("title") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
-                       <label for="subtitle-field">Subtitle</label>
+                       <label for="subtitle-field">Subtitle(見出し部分)</label>
                     <input type="text" id="subtitle-field" name="subtitle" class="form-control" value="{{ old("subtitle") }}"/>
                        @if($errors->has("subtitle"))
                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
                        @endif
                     </div>
                     
-                   <input type="hidden" name="manager" class="form-control" value="{{ Auth::user()->name }}" />
                    <input type="hidden" name="blue_card_title" class="form-control" value="私たちのミッション" />
                    <input type="hidden" name="blue_card_body" class="form-control" value="自由にご記載ください。" />
                    <input type="hidden" name="green_card_title" class="form-control" value="活動内容" />
@@ -45,14 +44,9 @@
                    <input type="hidden" name="yellow_card_title" class="form-control" value="ファンクラブの特典" />
                    <input type="hidden" name="yellow_card_body" class="form-control" value="タイトルがファンクラブの特典の場合、期限のご記載もお願いします。(ファンクラブ特典は必須ではございません) " />
                    
-                   <input type="hidden" name="member1" class="form-control" value="0" />
-                   <input type="hidden" name="member1_pos" class="form-control" value="0" />
-                   <input type="hidden" name="member1_detail" class="form-control" value="自己紹介内容" />
                    <input type="hidden" name="support_contents" class="form-control" value="現在設定なし" />
                    <input type="hidden" name="support_contents_detail" class="form-control" value="現在設定なし" />
-                   <input type="hidden" name="support_amount" class="form-control" value="0" />
                    
-                   <input type="hidden" name="proval" class="form-control" value="0" />
                     <!--<div class="form-group @if($errors->has('facebook')) has-error @endif">-->
                     <!--   <label for="facebook-field">Facebook</label>-->
                     <!--<input type="text" id="facebook-field" name="facebook" class="form-control" value="{{ old("facebook") }}"/>-->
