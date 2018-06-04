@@ -100,198 +100,567 @@
                         <span class="help-block">{{ $errors->first("member1") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member1_pos')) has-error @endif">
-                       <label for="member1_pos-field">①のメンバーの役割</label>
-                    <input type="text" id="member1_pos-field" name="member1_pos" class="form-control" value="{{ is_null(old("member1_pos")) ? $npo_info->member1_pos : old("member1_pos") }}"/>
-                       @if($errors->has("member1_pos"))
-                        <span class="help-block">{{ $errors->first("member1_pos") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member1_detail')) has-error @endif">
-                       <label for="member1_detail-field">①のメンバーの詳細</label>
-                    <input type="text" id="member1_detail-field" name="member1_detail" class="form-control" value="{{ is_null(old("member1_detail")) ? $npo_info->member1_detail : old("member1_detail") }}"/>
-                       @if($errors->has("member1_detail"))
-                        <span class="help-block">{{ $errors->first("member1_detail") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member1_twitter')) has-error @endif">
-                       <label for="member1_twitter-field">①のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member1_twitter-field" name="member1_twitter" class="form-control" value="{{ is_null(old("member1_twitter")) ? $npo_info->member1_twitter : old("member1_twitter") }}"/>
-                       @if($errors->has("member1_twitter"))
-                        <span class="help-block">{{ $errors->first("member1_twitter") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member1_facebook')) has-error @endif">
-                       <label for="member1_facebook-field">①のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member1_facebook-field" name="member1_facebook" class="form-control" value="{{ is_null(old("member1_facebook")) ? $npo_info->member1_facebook : old("member1_facebook") }}"/>
-                       @if($errors->has("member1_facebook"))
-                        <span class="help-block">{{ $errors->first("member1_facebook") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member1_insta')) has-error @endif">
-                       <label for="member1_insta-field">①のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member1_insta-field" name="member1_insta" class="form-control" value="{{ is_null(old("member1_insta")) ? $npo_info->member1_insta : old("member1_insta") }}"/>
-                       @if($errors->has("member1_insta"))
-                        <span class="help-block">{{ $errors->first("member1_insta") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member1_youtube')) has-error @endif">
-                       <label for="member1_youtube-field">①のメンバーのYouTubeのURL</label>
-                    <input type="text" id="member1_youtube-field" name="member1_youtube" class="form-control" value="{{ is_null(old("member1_youtube")) ? $npo_info->member1_youtube : old("member1_youtube") }}"/>
-                       @if($errors->has("member1_youtube"))
-                        <span class="help-block">{{ $errors->first("member1_youtube") }}</span>
-                       @endif
-                    </div>
+                    @if(old("member1") != "")
+                       <div class="form-group @if($errors->has('member1_pos')) has-error @endif">
+                          <label for="member1_pos-field">①のメンバーの役割</label>
+                       <input type="text" id="member1_pos-field" name="member1_pos" class="form-control" value="{{ is_null(old("member1_pos")) ? $npo_info->member1_pos : old("member1_pos") }}"/>
+                          @if($errors->has("member1_pos"))
+                           <span class="help-block">{{ $errors->first("member1_pos") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member1_detail')) has-error @endif">
+                          <label for="member1_detail-field">①のメンバーの詳細</label>
+                       <input type="text" id="member1_detail-field" name="member1_detail" class="form-control" value="{{ is_null(old("member1_detail")) ? $npo_info->member1_detail : old("member1_detail") }}"/>
+                          @if($errors->has("member1_detail"))
+                           <span class="help-block">{{ $errors->first("member1_detail") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member1_twitter')) has-error @endif">
+                          <label for="member1_twitter-field">①のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member1_twitter-field" name="member1_twitter" class="form-control" value="{{ is_null(old("member1_twitter")) ? $npo_info->member1_twitter : old("member1_twitter") }}"/>
+                          @if($errors->has("member1_twitter"))
+                           <span class="help-block">{{ $errors->first("member1_twitter") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member1_facebook')) has-error @endif">
+                          <label for="member1_facebook-field">①のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member1_facebook-field" name="member1_facebook" class="form-control" value="{{ is_null(old("member1_facebook")) ? $npo_info->member1_facebook : old("member1_facebook") }}"/>
+                          @if($errors->has("member1_facebook"))
+                           <span class="help-block">{{ $errors->first("member1_facebook") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member1_insta')) has-error @endif">
+                          <label for="member1_insta-field">①のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member1_insta-field" name="member1_insta" class="form-control" value="{{ is_null(old("member1_insta")) ? $npo_info->member1_insta : old("member1_insta") }}"/>
+                          @if($errors->has("member1_insta"))
+                           <span class="help-block">{{ $errors->first("member1_insta") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member1_youtube')) has-error @endif">
+                          <label for="member1_youtube-field">①のメンバーのYouTubeのURL</label>
+                       <input type="text" id="member1_youtube-field" name="member1_youtube" class="form-control" value="{{ is_null(old("member1_youtube")) ? $npo_info->member1_youtube : old("member1_youtube") }}"/>
+                          @if($errors->has("member1_youtube"))
+                           <span class="help-block">{{ $errors->first("member1_youtube") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member1_linkedin')) has-error @endif">
+                          <label for="member1_linkedin-field">①のメンバーのlinkedinのURL</label>
+                       <input type="text" id="member1_linkedin-field" name="member1_linkedin" class="form-control" value="{{ is_null(old("member1_linkedin")) ? $npo_info->member1_linkedin : old("member1_linkedin") }}"/>
+                          @if($errors->has("member1_linkedin"))
+                           <span class="help-block">{{ $errors->first("member1_linkedin") }}</span>
+                          @endif
+                       </div>
+                    @endif
+                    
                     <!-- 2人目 -->
                     <div class="form-group @if($errors->has('member2')) has-error @endif">
-                       <label for="member2-field">メンバーの名前①</label>
+                       <label for="member2-field">メンバーの名前②</label>
                     <input type="text" id="member2-field" name="member2" class="form-control" value="{{ is_null(old("member2")) ? $npo_info->member2 : old("member2") }}"/>
                        @if($errors->has("member2"))
                         <span class="help-block">{{ $errors->first("member2") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member2_pos')) has-error @endif">
-                       <label for="member2_pos-field">①のメンバーの役割</label>
-                    <input type="text" id="member2_pos-field" name="member2_pos" class="form-control" value="{{ is_null(old("member2_pos")) ? $npo_info->member2_pos : old("member2_pos") }}"/>
-                       @if($errors->has("member2_pos"))
-                        <span class="help-block">{{ $errors->first("member2_pos") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member2_detail')) has-error @endif">
-                       <label for="member2_detail-field">①のメンバーの詳細</label>
-                    <input type="text" id="member2_detail-field" name="member2_detail" class="form-control" value="{{ is_null(old("member2_detail")) ? $npo_info->member2_detail : old("member2_detail") }}"/>
-                       @if($errors->has("member2_detail"))
-                        <span class="help-block">{{ $errors->first("member2_detail") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member2_twitter')) has-error @endif">
-                       <label for="member2_twitter-field">①のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member2_twitter-field" name="member2_twitter" class="form-control" value="{{ is_null(old("member2_twitter")) ? $npo_info->member2_twitter : old("member2_twitter") }}"/>
-                       @if($errors->has("member2_twitter"))
-                        <span class="help-block">{{ $errors->first("member2_twitter") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member2_facebook')) has-error @endif">
-                       <label for="member2_facebook-field">①のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member2_facebook-field" name="member2_facebook" class="form-control" value="{{ is_null(old("member2_facebook")) ? $npo_info->member2_facebook : old("member2_facebook") }}"/>
-                       @if($errors->has("member2_facebook"))
-                        <span class="help-block">{{ $errors->first("member2_facebook") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member2_insta')) has-error @endif">
-                       <label for="member2_insta-field">①のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member2_insta-field" name="member2_insta" class="form-control" value="{{ is_null(old("member2_insta")) ? $npo_info->member2_insta : old("member2_insta") }}"/>
-                       @if($errors->has("member2_insta"))
-                        <span class="help-block">{{ $errors->first("member2_insta") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member2_youtube')) has-error @endif">
-                       <label for="member2_youtube-field">①のメンバーのYouTubeのURL</label>
-                    <input type="text" id="member2_youtube-field" name="member2_youtube" class="form-control" value="{{ is_null(old("member2_youtube")) ? $npo_info->member2_youtube : old("member2_youtube") }}"/>
-                       @if($errors->has("member2_youtube"))
-                        <span class="help-block">{{ $errors->first("member2_youtube") }}</span>
-                       @endif
-                    </div>
+                    @if(old("member2") != "")
+                       <div class="form-group @if($errors->has('member2_pos')) has-error @endif">
+                          <label for="member2_pos-field">②のメンバーの役割</label>
+                       <input type="text" id="member2_pos-field" name="member2_pos" class="form-control" value="{{ is_null(old("member2_pos")) ? $npo_info->member2_pos : old("member2_pos") }}"/>
+                          @if($errors->has("member2_pos"))
+                           <span class="help-block">{{ $errors->first("member2_pos") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member2_detail')) has-error @endif">
+                          <label for="member2_detail-field">②のメンバーの詳細</label>
+                       <input type="text" id="member2_detail-field" name="member2_detail" class="form-control" value="{{ is_null(old("member2_detail")) ? $npo_info->member2_detail : old("member2_detail") }}"/>
+                          @if($errors->has("member2_detail"))
+                           <span class="help-block">{{ $errors->first("member2_detail") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member2_twitter')) has-error @endif">
+                          <label for="member2_twitter-field">②のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member2_twitter-field" name="member2_twitter" class="form-control" value="{{ is_null(old("member2_twitter")) ? $npo_info->member2_twitter : old("member2_twitter") }}"/>
+                          @if($errors->has("member2_twitter"))
+                           <span class="help-block">{{ $errors->first("member2_twitter") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member2_facebook')) has-error @endif">
+                          <label for="member2_facebook-field">②のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member2_facebook-field" name="member2_facebook" class="form-control" value="{{ is_null(old("member2_facebook")) ? $npo_info->member2_facebook : old("member2_facebook") }}"/>
+                          @if($errors->has("member2_facebook"))
+                           <span class="help-block">{{ $errors->first("member2_facebook") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member2_insta')) has-error @endif">
+                          <label for="member2_insta-field">②のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member2_insta-field" name="member2_insta" class="form-control" value="{{ is_null(old("member2_insta")) ? $npo_info->member2_insta : old("member2_insta") }}"/>
+                          @if($errors->has("member2_insta"))
+                           <span class="help-block">{{ $errors->first("member2_insta") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member2_youtube')) has-error @endif">
+                          <label for="member2_youtube-field">②のメンバーのYouTubeのURL</label>
+                       <input type="text" id="member2_youtube-field" name="member2_youtube" class="form-control" value="{{ is_null(old("member2_youtube")) ? $npo_info->member2_youtube : old("member2_youtube") }}"/>
+                          @if($errors->has("member2_youtube"))
+                           <span class="help-block">{{ $errors->first("member2_youtube") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member2_linkedin')) has-error @endif">
+                          <label for="member2_linkedin-field">②のメンバーのlinkedinのURL</label>
+                       <input type="text" id="member2_linkedin-field" name="member2_linkedin" class="form-control" value="{{ is_null(old("member2_linkedin")) ? $npo_info->member2_linkedin : old("member2_linkedin") }}"/>
+                          @if($errors->has("member2_linkedin"))
+                           <span class="help-block">{{ $errors->first("member2_linkedin") }}</span>
+                          @endif
+                       </div>
+                    @endif
+                    
                     <!-- 3人目 -->
                     <div class="form-group @if($errors->has('member3')) has-error @endif">
-                       <label for="member3-field">メンバーの名前①</label>
+                       <label for="member3-field">メンバーの名前③</label>
                     <input type="text" id="member3-field" name="member3" class="form-control" value="{{ is_null(old("member3")) ? $npo_info->member3 : old("member3") }}"/>
                        @if($errors->has("member3"))
                         <span class="help-block">{{ $errors->first("member3") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member3_pos')) has-error @endif">
-                       <label for="member3_pos-field">①のメンバーの役割</label>
-                    <input type="text" id="member3_pos-field" name="member3_pos" class="form-control" value="{{ is_null(old("member3_pos")) ? $npo_info->member3_pos : old("member3_pos") }}"/>
-                       @if($errors->has("member3_pos"))
-                        <span class="help-block">{{ $errors->first("member3_pos") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member3_detail')) has-error @endif">
-                       <label for="member3_detail-field">①のメンバーの詳細</label>
-                    <input type="text" id="member3_detail-field" name="member3_detail" class="form-control" value="{{ is_null(old("member3_detail")) ? $npo_info->member3_detail : old("member3_detail") }}"/>
-                       @if($errors->has("member3_detail"))
-                        <span class="help-block">{{ $errors->first("member3_detail") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member3_twitter')) has-error @endif">
-                       <label for="member3_twitter-field">①のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member3_twitter-field" name="member3_twitter" class="form-control" value="{{ is_null(old("member3_twitter")) ? $npo_info->member3_twitter : old("member3_twitter") }}"/>
-                       @if($errors->has("member3_twitter"))
-                        <span class="help-block">{{ $errors->first("member3_twitter") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member3_facebook')) has-error @endif">
-                       <label for="member3_facebook-field">①のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member3_facebook-field" name="member3_facebook" class="form-control" value="{{ is_null(old("member3_facebook")) ? $npo_info->member3_facebook : old("member3_facebook") }}"/>
-                       @if($errors->has("member3_facebook"))
-                        <span class="help-block">{{ $errors->first("member3_facebook") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member3_insta')) has-error @endif">
-                       <label for="member3_insta-field">①のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member3_insta-field" name="member3_insta" class="form-control" value="{{ is_null(old("member3_insta")) ? $npo_info->member3_insta : old("member3_insta") }}"/>
-                       @if($errors->has("member3_insta"))
-                        <span class="help-block">{{ $errors->first("member3_insta") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('member3_youtube')) has-error @endif">
-                       <label for="member3_youtube-field">①のメンバーのYouTubeのURL</label>
-                    <input type="text" id="member3_youtube-field" name="member3_youtube" class="form-control" value="{{ is_null(old("member3_youtube")) ? $npo_info->member3_youtube : old("member3_youtube") }}"/>
-                       @if($errors->has("member3_youtube"))
-                        <span class="help-block">{{ $errors->first("member3_youtube") }}</span>
-                       @endif
-                    </div>
+                    @if(old("member3") != "")
+                       <div class="form-group @if($errors->has('member3_pos')) has-error @endif">
+                          <label for="member3_pos-field">③のメンバーの役割</label>
+                       <input type="text" id="member3_pos-field" name="member3_pos" class="form-control" value="{{ is_null(old("member3_pos")) ? $npo_info->member3_pos : old("member3_pos") }}"/>
+                          @if($errors->has("member3_pos"))
+                           <span class="help-block">{{ $errors->first("member3_pos") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member3_detail')) has-error @endif">
+                          <label for="member3_detail-field">③のメンバーの詳細</label>
+                       <input type="text" id="member3_detail-field" name="member3_detail" class="form-control" value="{{ is_null(old("member3_detail")) ? $npo_info->member3_detail : old("member3_detail") }}"/>
+                          @if($errors->has("member3_detail"))
+                           <span class="help-block">{{ $errors->first("member3_detail") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member3_twitter')) has-error @endif">
+                          <label for="member3_twitter-field">③のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member3_twitter-field" name="member3_twitter" class="form-control" value="{{ is_null(old("member3_twitter")) ? $npo_info->member3_twitter : old("member3_twitter") }}"/>
+                          @if($errors->has("member3_twitter"))
+                           <span class="help-block">{{ $errors->first("member3_twitter") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member3_facebook')) has-error @endif">
+                          <label for="member3_facebook-field">③のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member3_facebook-field" name="member3_facebook" class="form-control" value="{{ is_null(old("member3_facebook")) ? $npo_info->member3_facebook : old("member3_facebook") }}"/>
+                          @if($errors->has("member3_facebook"))
+                           <span class="help-block">{{ $errors->first("member3_facebook") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member3_insta')) has-error @endif">
+                          <label for="member3_insta-field">③のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                       <input type="text" id="member3_insta-field" name="member3_insta" class="form-control" value="{{ is_null(old("member3_insta")) ? $npo_info->member3_insta : old("member3_insta") }}"/>
+                          @if($errors->has("member3_insta"))
+                           <span class="help-block">{{ $errors->first("member3_insta") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member3_youtube')) has-error @endif">
+                          <label for="member3_youtube-field">③のメンバーのYouTubeのURL</label>
+                       <input type="text" id="member3_youtube-field" name="member3_youtube" class="form-control" value="{{ is_null(old("member3_youtube")) ? $npo_info->member3_youtube : old("member3_youtube") }}"/>
+                          @if($errors->has("member3_youtube"))
+                           <span class="help-block">{{ $errors->first("member3_youtube") }}</span>
+                          @endif
+                       </div>
+                       <div class="form-group @if($errors->has('member3_linkedin')) has-error @endif">
+                          <label for="member3_linkedin-field">③のメンバーのlinkedinのURL</label>
+                       <input type="text" id="member3_linkedin-field" name="member3_linkedin" class="form-control" value="{{ is_null(old("member3_linkedin")) ? $npo_info->member3_linkedin : old("member3_linkedin") }}"/>
+                          @if($errors->has("member3_linkedin"))
+                           <span class="help-block">{{ $errors->first("member3_linkedin") }}</span>
+                          @endif
+                       </div>
+                    @endif
+                    
                     <!-- 4人目 -->
                     <div class="form-group @if($errors->has('member4')) has-error @endif">
-                       <label for="member4-field">メンバーの名前①</label>
+                       <label for="member4-field">メンバーの名前④</label>
                     <input type="text" id="member4-field" name="member4" class="form-control" value="{{ is_null(old("member4")) ? $npo_info->member4 : old("member4") }}"/>
                        @if($errors->has("member4"))
                         <span class="help-block">{{ $errors->first("member4") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member4_pos')) has-error @endif">
-                       <label for="member4_pos-field">①のメンバーの役割</label>
-                    <input type="text" id="member4_pos-field" name="member4_pos" class="form-control" value="{{ is_null(old("member4_pos")) ? $npo_info->member4_pos : old("member4_pos") }}"/>
-                       @if($errors->has("member4_pos"))
-                        <span class="help-block">{{ $errors->first("member4_pos") }}</span>
+                    @if(old("member4") != "")
+                      <div class="form-group @if($errors->has('member4_pos')) has-error @endif">
+                         <label for="member4_pos-field">④のメンバーの役割</label>
+                      <input type="text" id="member4_pos-field" name="member4_pos" class="form-control" value="{{ is_null(old("member4_pos")) ? $npo_info->member4_pos : old("member4_pos") }}"/>
+                         @if($errors->has("member4_pos"))
+                          <span class="help-block">{{ $errors->first("member4_pos") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member4_detail')) has-error @endif">
+                         <label for="member4_detail-field">④のメンバーの詳細</label>
+                      <input type="text" id="member4_detail-field" name="member4_detail" class="form-control" value="{{ is_null(old("member4_detail")) ? $npo_info->member4_detail : old("member4_detail") }}"/>
+                         @if($errors->has("member4_detail"))
+                          <span class="help-block">{{ $errors->first("member4_detail") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member4_twitter')) has-error @endif">
+                         <label for="member4_twitter-field">④のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member4_twitter-field" name="member4_twitter" class="form-control" value="{{ is_null(old("member4_twitter")) ? $npo_info->member4_twitter : old("member4_twitter") }}"/>
+                         @if($errors->has("member4_twitter"))
+                          <span class="help-block">{{ $errors->first("member4_twitter") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member4_facebook')) has-error @endif">
+                         <label for="member4_facebook-field">④のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member4_facebook-field" name="member4_facebook" class="form-control" value="{{ is_null(old("member4_facebook")) ? $npo_info->member4_facebook : old("member4_facebook") }}"/>
+                         @if($errors->has("member4_facebook"))
+                          <span class="help-block">{{ $errors->first("member4_facebook") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member4_insta')) has-error @endif">
+                         <label for="member4_insta-field">④のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member4_insta-field" name="member4_insta" class="form-control" value="{{ is_null(old("member4_insta")) ? $npo_info->member4_insta : old("member4_insta") }}"/>
+                         @if($errors->has("member4_insta"))
+                          <span class="help-block">{{ $errors->first("member4_insta") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member4_youtube')) has-error @endif">
+                         <label for="member4_youtube-field">④のメンバーのYouTubeのURL</label>
+                      <input type="text" id="member4_youtube-field" name="member4_youtube" class="form-control" value="{{ is_null(old("member4_youtube")) ? $npo_info->member4_youtube : old("member4_youtube") }}"/>
+                         @if($errors->has("member4_youtube"))
+                          <span class="help-block">{{ $errors->first("member4_youtube") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member4_linkedin')) has-error @endif">
+                         <label for="member4_linkedin-field">④のメンバーのlinkedinのURL</label>
+                      <input type="text" id="member4_linkedin-field" name="member4_linkedin" class="form-control" value="{{ is_null(old("member4_linkedin")) ? $npo_info->member4_linkedin : old("member4_linkedin") }}"/>
+                         @if($errors->has("member4_linkedin"))
+                          <span class="help-block">{{ $errors->first("member4_linkedin") }}</span>
+                         @endif
+                      </div>
+                    @endif
+                    
+                    <!-- 5人目 -->
+                    <div class="form-group @if($errors->has('member5')) has-error @endif">
+                       <label for="member5-field">メンバーの名前⑤</label>
+                    <input type="text" id="member5-field" name="member5" class="form-control" value="{{ is_null(old("member5")) ? $npo_info->member5 : old("member5") }}"/>
+                       @if($errors->has("member5"))
+                        <span class="help-block">{{ $errors->first("member5") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member4_detail')) has-error @endif">
-                       <label for="member4_detail-field">①のメンバーの詳細</label>
-                    <input type="text" id="member4_detail-field" name="member4_detail" class="form-control" value="{{ is_null(old("member4_detail")) ? $npo_info->member4_detail : old("member4_detail") }}"/>
-                       @if($errors->has("member4_detail"))
-                        <span class="help-block">{{ $errors->first("member4_detail") }}</span>
+                    @if(old("member5") != "")
+                      <div class="form-group @if($errors->has('member5_pos')) has-error @endif">
+                         <label for="member5_pos-field">⑤のメンバーの役割</label>
+                      <input type="text" id="member5_pos-field" name="member5_pos" class="form-control" value="{{ is_null(old("member5_pos")) ? $npo_info->member5_pos : old("member5_pos") }}"/>
+                         @if($errors->has("member5_pos"))
+                          <span class="help-block">{{ $errors->first("member5_pos") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member5_detail')) has-error @endif">
+                         <label for="member5_detail-field">⑤のメンバーの詳細</label>
+                      <input type="text" id="member5_detail-field" name="member5_detail" class="form-control" value="{{ is_null(old("member5_detail")) ? $npo_info->member5_detail : old("member5_detail") }}"/>
+                         @if($errors->has("member5_detail"))
+                          <span class="help-block">{{ $errors->first("member5_detail") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member5_twitter')) has-error @endif">
+                         <label for="member5_twitter-field">⑤のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member5_twitter-field" name="member5_twitter" class="form-control" value="{{ is_null(old("member5_twitter")) ? $npo_info->member5_twitter : old("member5_twitter") }}"/>
+                         @if($errors->has("member5_twitter"))
+                          <span class="help-block">{{ $errors->first("member5_twitter") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member5_facebook')) has-error @endif">
+                         <label for="member5_facebook-field">⑤のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member5_facebook-field" name="member5_facebook" class="form-control" value="{{ is_null(old("member5_facebook")) ? $npo_info->member5_facebook : old("member5_facebook") }}"/>
+                         @if($errors->has("member5_facebook"))
+                          <span class="help-block">{{ $errors->first("member5_facebook") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member5_insta')) has-error @endif">
+                         <label for="member5_insta-field">⑤のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member5_insta-field" name="member5_insta" class="form-control" value="{{ is_null(old("member5_insta")) ? $npo_info->member5_insta : old("member5_insta") }}"/>
+                         @if($errors->has("member5_insta"))
+                          <span class="help-block">{{ $errors->first("member5_insta") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member5_youtube')) has-error @endif">
+                         <label for="member5_youtube-field">⑤のメンバーのYouTubeのURL</label>
+                      <input type="text" id="member5_youtube-field" name="member5_youtube" class="form-control" value="{{ is_null(old("member5_youtube")) ? $npo_info->member5_youtube : old("member5_youtube") }}"/>
+                         @if($errors->has("member5_youtube"))
+                          <span class="help-block">{{ $errors->first("member5_youtube") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member5_linkedin')) has-error @endif">
+                         <label for="member5_linkedin-field">⑤のメンバーのlinkedinのURL</label>
+                      <input type="text" id="member5_linkedin-field" name="member5_linkedin" class="form-control" value="{{ is_null(old("member5_linkedin")) ? $npo_info->member5_linkedin : old("member5_linkedin") }}"/>
+                         @if($errors->has("member5_linkedin"))
+                          <span class="help-block">{{ $errors->first("member5_linkedin") }}</span>
+                         @endif
+                      </div>
+                    @endif
+                    
+                    
+                    <!-- 5人目 -->
+                    <div class="form-group @if($errors->has('member6')) has-error @endif">
+                       <label for="member6-field">メンバーの名前⑥</label>
+                    <input type="text" id="member6-field" name="member6" class="form-control" value="{{ is_null(old("member6")) ? $npo_info->member6 : old("member6") }}"/>
+                       @if($errors->has("member6"))
+                        <span class="help-block">{{ $errors->first("member6") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member4_twitter')) has-error @endif">
-                       <label for="member4_twitter-field">①のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member4_twitter-field" name="member4_twitter" class="form-control" value="{{ is_null(old("member4_twitter")) ? $npo_info->member4_twitter : old("member4_twitter") }}"/>
-                       @if($errors->has("member4_twitter"))
-                        <span class="help-block">{{ $errors->first("member4_twitter") }}</span>
+                    @if(old("member6") != "")
+                      <div class="form-group @if($errors->has('member6_pos')) has-error @endif">
+                         <label for="member6_pos-field">⑥のメンバーの役割</label>
+                      <input type="text" id="member6_pos-field" name="member6_pos" class="form-control" value="{{ is_null(old("member6_pos")) ? $npo_info->member6_pos : old("member6_pos") }}"/>
+                         @if($errors->has("member6_pos"))
+                          <span class="help-block">{{ $errors->first("member6_pos") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member6_detail')) has-error @endif">
+                         <label for="member6_detail-field">⑥のメンバーの詳細</label>
+                      <input type="text" id="member6_detail-field" name="member6_detail" class="form-control" value="{{ is_null(old("member6_detail")) ? $npo_info->member6_detail : old("member6_detail") }}"/>
+                         @if($errors->has("member6_detail"))
+                          <span class="help-block">{{ $errors->first("member6_detail") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member6_twitter')) has-error @endif">
+                         <label for="member6_twitter-field">⑥のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member6_twitter-field" name="member6_twitter" class="form-control" value="{{ is_null(old("member6_twitter")) ? $npo_info->member6_twitter : old("member6_twitter") }}"/>
+                         @if($errors->has("member6_twitter"))
+                          <span class="help-block">{{ $errors->first("member6_twitter") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member6_facebook')) has-error @endif">
+                         <label for="member6_facebook-field">⑥のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member6_facebook-field" name="member6_facebook" class="form-control" value="{{ is_null(old("member6_facebook")) ? $npo_info->member6_facebook : old("member6_facebook") }}"/>
+                         @if($errors->has("member6_facebook"))
+                          <span class="help-block">{{ $errors->first("member6_facebook") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member6_insta')) has-error @endif">
+                         <label for="member6_insta-field">⑥のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member6_insta-field" name="member6_insta" class="form-control" value="{{ is_null(old("member6_insta")) ? $npo_info->member6_insta : old("member6_insta") }}"/>
+                         @if($errors->has("member6_insta"))
+                          <span class="help-block">{{ $errors->first("member6_insta") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member6_youtube')) has-error @endif">
+                         <label for="member6_youtube-field">⑥のメンバーのYouTubeのURL</label>
+                      <input type="text" id="member6_youtube-field" name="member6_youtube" class="form-control" value="{{ is_null(old("member6_youtube")) ? $npo_info->member6_youtube : old("member6_youtube") }}"/>
+                         @if($errors->has("member6_youtube"))
+                          <span class="help-block">{{ $errors->first("member6_youtube") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member6_linkedin')) has-error @endif">
+                         <label for="member6_linkedin-field">⑥のメンバーのlinkedinのURL</label>
+                      <input type="text" id="member6_linkedin-field" name="member6_linkedin" class="form-control" value="{{ is_null(old("member6_linkedin")) ? $npo_info->member6_linkedin : old("member6_linkedin") }}"/>
+                         @if($errors->has("member6_linkedin"))
+                          <span class="help-block">{{ $errors->first("member6_linkedin") }}</span>
+                         @endif
+                      </div>
+                    @endif
+                    
+                    
+                    <!-- 5人目 -->
+                    <div class="form-group @if($errors->has('member7')) has-error @endif">
+                       <label for="member7-field">メンバーの名前⑦</label>
+                    <input type="text" id="member7-field" name="member7" class="form-control" value="{{ is_null(old("member7")) ? $npo_info->member7 : old("member7") }}"/>
+                       @if($errors->has("member7"))
+                        <span class="help-block">{{ $errors->first("member7") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member4_facebook')) has-error @endif">
-                       <label for="member4_facebook-field">①のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member4_facebook-field" name="member4_facebook" class="form-control" value="{{ is_null(old("member4_facebook")) ? $npo_info->member4_facebook : old("member4_facebook") }}"/>
-                       @if($errors->has("member4_facebook"))
-                        <span class="help-block">{{ $errors->first("member4_facebook") }}</span>
+                    @if(old("member7") != "")
+                      <div class="form-group @if($errors->has('member7_pos')) has-error @endif">
+                         <label for="member7_pos-field">⑦のメンバーの役割</label>
+                      <input type="text" id="member7_pos-field" name="member7_pos" class="form-control" value="{{ is_null(old("member7_pos")) ? $npo_info->member7_pos : old("member7_pos") }}"/>
+                         @if($errors->has("member7_pos"))
+                          <span class="help-block">{{ $errors->first("member7_pos") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member7_detail')) has-error @endif">
+                         <label for="member7_detail-field">⑦のメンバーの詳細</label>
+                      <input type="text" id="member7_detail-field" name="member7_detail" class="form-control" value="{{ is_null(old("member7_detail")) ? $npo_info->member7_detail : old("member7_detail") }}"/>
+                         @if($errors->has("member7_detail"))
+                          <span class="help-block">{{ $errors->first("member7_detail") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member7_twitter')) has-error @endif">
+                         <label for="member7_twitter-field">⑦のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member7_twitter-field" name="member7_twitter" class="form-control" value="{{ is_null(old("member7_twitter")) ? $npo_info->member7_twitter : old("member7_twitter") }}"/>
+                         @if($errors->has("member7_twitter"))
+                          <span class="help-block">{{ $errors->first("member7_twitter") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member7_facebook')) has-error @endif">
+                         <label for="member7_facebook-field">⑦のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member7_facebook-field" name="member7_facebook" class="form-control" value="{{ is_null(old("member7_facebook")) ? $npo_info->member7_facebook : old("member7_facebook") }}"/>
+                         @if($errors->has("member7_facebook"))
+                          <span class="help-block">{{ $errors->first("member7_facebook") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member7_insta')) has-error @endif">
+                         <label for="member7_insta-field">⑦のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member7_insta-field" name="member7_insta" class="form-control" value="{{ is_null(old("member7_insta")) ? $npo_info->member7_insta : old("member7_insta") }}"/>
+                         @if($errors->has("member7_insta"))
+                          <span class="help-block">{{ $errors->first("member7_insta") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member7_youtube')) has-error @endif">
+                         <label for="member7_youtube-field">⑦のメンバーのYouTubeのURL</label>
+                      <input type="text" id="member7_youtube-field" name="member7_youtube" class="form-control" value="{{ is_null(old("member7_youtube")) ? $npo_info->member7_youtube : old("member7_youtube") }}"/>
+                         @if($errors->has("member7_youtube"))
+                          <span class="help-block">{{ $errors->first("member7_youtube") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member7_linkedin')) has-error @endif">
+                         <label for="member7_linkedin-field">⑦のメンバーのlinkedinのURL</label>
+                      <input type="text" id="member7_linkedin-field" name="member7_linkedin" class="form-control" value="{{ is_null(old("member7_linkedin")) ? $npo_info->member7_linkedin : old("member7_linkedin") }}"/>
+                         @if($errors->has("member7_linkedin"))
+                          <span class="help-block">{{ $errors->first("member7_linkedin") }}</span>
+                         @endif
+                      </div>
+                    @endif
+                    
+                    
+                    <!-- 5人目 -->
+                    <div class="form-group @if($errors->has('member8')) has-error @endif">
+                       <label for="member8-field">メンバーの名前⑧</label>
+                    <input type="text" id="member8-field" name="member8" class="form-control" value="{{ is_null(old("member8")) ? $npo_info->member8 : old("member8") }}"/>
+                       @if($errors->has("member8"))
+                        <span class="help-block">{{ $errors->first("member8") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member4_insta')) has-error @endif">
-                       <label for="member4_insta-field">①のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                    <input type="text" id="member4_insta-field" name="member4_insta" class="form-control" value="{{ is_null(old("member4_insta")) ? $npo_info->member4_insta : old("member4_insta") }}"/>
-                       @if($errors->has("member4_insta"))
-                        <span class="help-block">{{ $errors->first("member4_insta") }}</span>
+                    @if(old("member8") != "")
+                      <div class="form-group @if($errors->has('member8_pos')) has-error @endif">
+                         <label for="member8_pos-field">⑧のメンバーの役割</label>
+                      <input type="text" id="member8_pos-field" name="member8_pos" class="form-control" value="{{ is_null(old("member8_pos")) ? $npo_info->member8_pos : old("member8_pos") }}"/>
+                         @if($errors->has("member8_pos"))
+                          <span class="help-block">{{ $errors->first("member8_pos") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member8_detail')) has-error @endif">
+                         <label for="member8_detail-field">⑧のメンバーの詳細</label>
+                      <input type="text" id="member8_detail-field" name="member8_detail" class="form-control" value="{{ is_null(old("member8_detail")) ? $npo_info->member8_detail : old("member8_detail") }}"/>
+                         @if($errors->has("member8_detail"))
+                          <span class="help-block">{{ $errors->first("member8_detail") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member8_twitter')) has-error @endif">
+                         <label for="member8_twitter-field">⑧のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member8_twitter-field" name="member8_twitter" class="form-control" value="{{ is_null(old("member8_twitter")) ? $npo_info->member8_twitter : old("member8_twitter") }}"/>
+                         @if($errors->has("member8_twitter"))
+                          <span class="help-block">{{ $errors->first("member8_twitter") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member8_facebook')) has-error @endif">
+                         <label for="member8_facebook-field">⑧のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member8_facebook-field" name="member8_facebook" class="form-control" value="{{ is_null(old("member8_facebook")) ? $npo_info->member8_facebook : old("member8_facebook") }}"/>
+                         @if($errors->has("member8_facebook"))
+                          <span class="help-block">{{ $errors->first("member8_facebook") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member8_insta')) has-error @endif">
+                         <label for="member8_insta-field">⑧のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member8_insta-field" name="member8_insta" class="form-control" value="{{ is_null(old("member8_insta")) ? $npo_info->member8_insta : old("member8_insta") }}"/>
+                         @if($errors->has("member8_insta"))
+                          <span class="help-block">{{ $errors->first("member8_insta") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member8_youtube')) has-error @endif">
+                         <label for="member8_youtube-field">⑧のメンバーのYouTubeのURL</label>
+                      <input type="text" id="member8_youtube-field" name="member8_youtube" class="form-control" value="{{ is_null(old("member8_youtube")) ? $npo_info->member8_youtube : old("member8_youtube") }}"/>
+                         @if($errors->has("member8_youtube"))
+                          <span class="help-block">{{ $errors->first("member8_youtube") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member8_linkedin')) has-error @endif">
+                         <label for="member8_linkedin-field">⑧のメンバーのlinkedinのURL</label>
+                      <input type="text" id="member8_linkedin-field" name="member8_linkedin" class="form-control" value="{{ is_null(old("member8_linkedin")) ? $npo_info->member8_linkedin : old("member8_linkedin") }}"/>
+                         @if($errors->has("member8_linkedin"))
+                          <span class="help-block">{{ $errors->first("member8_linkedin") }}</span>
+                         @endif
+                      </div>
+                    @endif
+                    
+                    
+                    <!-- 5人目 -->
+                    <div class="form-group @if($errors->has('member9')) has-error @endif">
+                       <label for="member9-field">メンバーの名前⑨</label>
+                    <input type="text" id="member9-field" name="member9" class="form-control" value="{{ is_null(old("member9")) ? $npo_info->member9 : old("member9") }}"/>
+                       @if($errors->has("member9"))
+                        <span class="help-block">{{ $errors->first("member9") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('member4_youtube')) has-error @endif">
-                       <label for="member4_youtube-field">①のメンバーのYouTubeのURL</label>
-                    <input type="text" id="member4_youtube-field" name="member4_youtube" class="form-control" value="{{ is_null(old("member4_youtube")) ? $npo_info->member4_youtube : old("member4_youtube") }}"/>
-                       @if($errors->has("member4_youtube"))
-                        <span class="help-block">{{ $errors->first("member4_youtube") }}</span>
+                    @if(old("member9") != "")
+                      <div class="form-group @if($errors->has('member9_pos')) has-error @endif">
+                         <label for="member9_pos-field">⑨のメンバーの役割</label>
+                      <input type="text" id="member9_pos-field" name="member9_pos" class="form-control" value="{{ is_null(old("member9_pos")) ? $npo_info->member9_pos : old("member9_pos") }}"/>
+                         @if($errors->has("member9_pos"))
+                          <span class="help-block">{{ $errors->first("member9_pos") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member9_detail')) has-error @endif">
+                         <label for="member9_detail-field">⑨のメンバーの詳細</label>
+                      <input type="text" id="member9_detail-field" name="member9_detail" class="form-control" value="{{ is_null(old("member9_detail")) ? $npo_info->member9_detail : old("member9_detail") }}"/>
+                         @if($errors->has("member9_detail"))
+                          <span class="help-block">{{ $errors->first("member9_detail") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member9_twitter')) has-error @endif">
+                         <label for="member9_twitter-field">⑨のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member9_twitter-field" name="member9_twitter" class="form-control" value="{{ is_null(old("member9_twitter")) ? $npo_info->member9_twitter : old("member9_twitter") }}"/>
+                         @if($errors->has("member9_twitter"))
+                          <span class="help-block">{{ $errors->first("member9_twitter") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member9_facebook')) has-error @endif">
+                         <label for="member9_facebook-field">⑨のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member9_facebook-field" name="member9_facebook" class="form-control" value="{{ is_null(old("member9_facebook")) ? $npo_info->member9_facebook : old("member9_facebook") }}"/>
+                         @if($errors->has("member9_facebook"))
+                          <span class="help-block">{{ $errors->first("member9_facebook") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member9_insta')) has-error @endif">
+                         <label for="member9_insta-field">⑨のメンバーのインスタ（instagram.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                      <input type="text" id="member9_insta-field" name="member9_insta" class="form-control" value="{{ is_null(old("member9_insta")) ? $npo_info->member9_insta : old("member9_insta") }}"/>
+                         @if($errors->has("member9_insta"))
+                          <span class="help-block">{{ $errors->first("member9_insta") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member9_youtube')) has-error @endif">
+                         <label for="member9_youtube-field">⑨のメンバーのYouTubeのURL</label>
+                      <input type="text" id="member9_youtube-field" name="member9_youtube" class="form-control" value="{{ is_null(old("member9_youtube")) ? $npo_info->member9_youtube : old("member9_youtube") }}"/>
+                         @if($errors->has("member9_youtube"))
+                          <span class="help-block">{{ $errors->first("member9_youtube") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member9_linkedin')) has-error @endif">
+                         <label for="member9_linkedin-field">⑨のメンバーのlinkedinのURL</label>
+                      <input type="text" id="member9_linkedin-field" name="member9_linkedin" class="form-control" value="{{ is_null(old("member9_linkedin")) ? $npo_info->member9_linkedin : old("member9_linkedin") }}"/>
+                         @if($errors->has("member9_linkedin"))
+                          <span class="help-block">{{ $errors->first("member9_linkedin") }}</span>
+                         @endif
+                      </div>
+                    @endif
+                    
+                    
+                    <!-- 5人目 -->
+                    <div class="form-group @if($errors->has('member10')) has-error @endif">
+                       <label for="member10-field">メンバーの名前⑩</label>
+                    <input type="text" id="member10-field" name="member10" class="form-control" value="{{ is_null(old("member10")) ? $npo_info->member10 : old("member10") }}"/>
+                       @if($errors->has("member10"))
+                        <span class="help-block">{{ $errors->first("member10") }}</span>
                        @endif
                     </div>
+                    @if(old("member10") != "")
+                      <div class="form-group @if($errors->has('member10_pos')) has-error @endif">
+                         <label for="member10_pos-field">⑩のメンバーの役割</label>
+                      <input type="text" id="member10_pos-field" name="member10_pos" class="form-control" value="{{ is_null(old("member10_pos")) ? $npo_info->member10_pos : old("member10_pos") }}"/>
+                         @if($errors->has("member10_pos"))
+                          <span class="help-block">{{ $errors->first("member10_pos") }}</span>
+                         @endif
+                      </div>
+                      <div class="form-group @if($errors->has('member10_detail')) has-error @endif">
+                         <label for="member10_detail-field">⑩のメンバーの詳細</label>
+                      <input type="text" id="member10_detail-field" name="member10_detail" class="form-control" value="{{ is_null(old("member10_detail")) ? $npo_info->member10_detail : old("member10_detail") }}"/>
+                         @if($errors->has("member10_detail"))
+                          <span class="help-block">{{ $errors->first("member10_detail") }}</span>
+                         @endif
+                      </div>
+                    @endif
                     
                     <h1><i class="glyphicon glyphicon-edit"></i>ファンクラブ設定</h1>
                     <!-- リターン -->

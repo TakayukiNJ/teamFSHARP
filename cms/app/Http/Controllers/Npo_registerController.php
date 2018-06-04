@@ -41,6 +41,10 @@ class Npo_registerController extends Controller {
 	public function store(Request $request)
 	{
 		$npo_register = new Npo_register();
+		
+		$id_auth   = Auth::user()->id;
+        $name_auth = Auth::user()->name;
+        $user_auth = Auth::user()->email;
 
 		$npo_register->npo_name = $request->input("npo_name");
 		$npo_register->title = $request->input("title");
@@ -62,20 +66,17 @@ class Npo_registerController extends Controller {
         $npo_register->yellow_card_title = $request->input("yellow_card_title");
         $npo_register->yellow_card_body  = $request->input("yellow_card_body");
         
-        $npo_register->manager = $request->input("manager");
-        $npo_register->member1 = $request->input("member1");
-        $npo_register->member1_pos = $request->input("member1_pos");
-        $npo_register->member1_detail = $request->input("member1_detail");
+        $npo_register->manager = $name_auth;
          
         $npo_register->support_contents = $request->input("support_contents");
         $npo_register->support_contents_detail = $request->input("support_contents_detail");
-        $npo_register->support_amount = $request->input("support_amount");
+        $npo_register->support_amount = "0";
         
         // $npo_register->follower = $request->input("follower");
         // $npo_register->buyer = $request->input("buyer");
         // $npo_register->body = $request->input("body");
         // $npo_register->proval = $request->input("proval");
-        $npo_register->proval = input("9");
+        $npo_register->proval = "0";
         
         $npo_register->published = new Carbon(Carbon::now()->addWeek(1));
         // dd($npo_register->addMonth(1));
@@ -273,13 +274,6 @@ class Npo_registerController extends Controller {
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
-		
-	// // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
- //       $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
-	// 	// //連想配列に入れtBladeテンプレートに渡しています。
- //       $data['npo_info'] = $currentNpoInfo;
-    
-    	// $npo_register = Npo_register::find($npo_name);
     	
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
