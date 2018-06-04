@@ -225,11 +225,11 @@ class Npo_registerController extends Controller {
         $npo_register->member10 = $request->input("member10");
         $npo_register->member10_pos = $request->input("member10_pos");
         $npo_register->member10_detail = $request->input("member10_detail");
-        $npo_register->member10_twitter = $request->input("member10_twitter");
-        $npo_register->member10_facebook = $request->input("member10_facebook");
-        $npo_register->member10_insta = $request->input("member10_insta");
-        $npo_register->member10_youtube = $request->input("member10_youtube");
-        $npo_register->member10_linkedin = $request->input("member10_linkedin");
+        // $npo_register->member10_twitter = $request->input("member10_twitter");
+        // $npo_register->member10_facebook = $request->input("member10_facebook");
+        // $npo_register->member10_insta = $request->input("member10_insta");
+        // $npo_register->member10_youtube = $request->input("member10_youtube");
+        // $npo_register->member10_linkedin = $request->input("member10_linkedin");
         
         $npo_register->support_contents = $request->input("support_contents");
         $npo_register->support_contents_detail = $request->input("support_contents_detail");
