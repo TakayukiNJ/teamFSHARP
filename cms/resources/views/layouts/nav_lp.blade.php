@@ -8,7 +8,7 @@
         <div class="container">
             <div class="navbar-translate">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ url('/npo_registers') }}">F#</a>
+                    <a class="navbar-brand" href="{{ url('/npo_registers') }}">F♯</a>
                 </div>
     
                 <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,10 +22,10 @@
                 
                 <ul class="navbar-nav ml-auto">
     
-                    <form class="form-inline" action="{{ url('/npo_registers') }}">
-                        <input class="form-control mr-sm-2 no-border" type="text" placeholder="Search" name="search">
-                        <button type="submit" class="btn btn-primary btn-just-icon btn-round"><i class="nc-icon nc-zoom-split"></i></button>
-                    </form>
+                    <!--<form class="form-inline" action="{{ url('/npo_registers') }}">-->
+                    <!--    <input class="form-control mr-sm-2 no-border" type="text" placeholder="Search" name="search">-->
+                    <!--    <button type="submit" class="btn btn-primary btn-just-icon btn-round"><i class="nc-icon nc-zoom-split"></i></button>-->
+                    <!--</form>-->
                     
                     @if (Auth::guest())
                     <li class="nav-item">

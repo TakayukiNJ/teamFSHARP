@@ -107,7 +107,11 @@
                                     <div class="col-md-5">
                                         <div class="card-img-top">
                                             <a href="#pablo">
+                                                @if(($npo_info->member1_pic) != "")
                                                 <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member1_pic }}"/>
+                                                @else
+                                                <img class="img" src="{{ url('/') }}/../img/img/placeholder.jpg"/>
+                                                @endif
                                             </a>
                                         </div>
                                     </div>
@@ -126,11 +130,8 @@
                                                 @if (( $npo_info->member1_facebook ) != "")
                                                 <a href="https://www.facebook.com/{{ $npo_info->member1_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                                 @endif
-                                                @if (( $npo_info->member1_insta ) != "")
-                                                <a href="https://www.instagram.com/{{ $npo_info->member1_insta }}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
-                                                @endif
-                                                @if (( $npo_info->member1_youtube ) != "")
-                                                <a href="{{ $npo_info->member1_youtube }}" class="btn btn-just-icon btn-link btn-youtube"><i class="fa fa-youtube"></i></a>
+                                                @if (( $npo_info->member1_linkedin ) != "")
+                                                <a href="https://www.linkedin.com/in/{{ $npo_info->member1_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-facebook"></i></a>
                                                 @endif
                                             </div>
                                         </div>
@@ -148,7 +149,11 @@
                                     <div class="col-md-5">
                                         <div class="card-img-top">
                                             <a href="#pablo">
+                                                @if(($npo_info->member2_pic) != "")
                                                 <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member2_pic }}"/>
+                                                @else
+                                                <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
+                                                @endif    
                                             </a>
                                         </div>
                                     </div>
@@ -167,8 +172,8 @@
                                                 @if (( $npo_info->member2_facebook ) != "")
                                                 <a href="https://www.facebook.com/{{ $npo_info->member2_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                                 @endif
-                                                @if (( $npo_info->member2_insta ) != "")
-                                                <a href="https://www.instagram.com/{{ $npo_info->member2_insta }}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+                                                @if (( $npo_info->member2_linkedin ) != "")
+                                                <a href="https://www.linkedin.com/in/{{ $npo_info->member2_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-facebook"></i></a>
                                                 @endif
                                             </div>
                                         </div>
@@ -187,7 +192,11 @@
                                     <div class="col-md-5">
                                         <div class="card-img-top">
                                             <a href="#pablo">
+                                                @if(($npo_info->member3_pic) != "")
                                                 <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member3_pic }}"/>
+                                                @else
+                                                <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
+                                                @endif    
                                             </a>
                                         </div>
                                     </div>
@@ -206,8 +215,8 @@
                                                 @if (( $npo_info->member3_facebook ) != "")
                                                 <a href="https://www.facebook.com/{{ $npo_info->member3_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                                 @endif
-                                                @if (( $npo_info->member3_insta ) != "")
-                                                <a href="https://www.instagram.com/{{ $npo_info->member3_insta }}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+                                                @if (( $npo_info->member3_linkedin ) != "")
+                                                <a href="https://www.linkedin.com/in/{{ $npo_info->member3_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-facebook"></i></a>
                                                 @endif
                                             </div>
                                         </div>
@@ -226,7 +235,11 @@
                                     <div class="col-md-5">
                                         <div class="card-img-top">
                                             <a href="#pablo">
+                                                @if(($npo_info->member4_pic) != "")
                                                 <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member4_pic }}"/>
+                                                @else
+                                                <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
+                                                @endif    
                                             </a>
                                         </div>
                                     </div>
@@ -245,8 +258,8 @@
                                                 @if (( $npo_info->member4_facebook ) != "")
                                                 <a href="https://www.facebook.com/{{ $npo_info->member4_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                                 @endif
-                                                @if (( $npo_info->member4_insta ) != "")
-                                                <a href="https://www.instagram.com/{{ $npo_info->member4_insta }}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+                                                @if (( $npo_info->member4_linkedin ) != "")
+                                                <a href="https://www.linkedin.com/in/{{ $npo_info->member4_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-facebook"></i></a>
                                                 @endif
                                             </div>
                                         </div>
@@ -278,25 +291,18 @@
                                 </div>
                                 <br/>
                                 <div class="tab-content text-center" >
-                                    <!-- <div class="tab-pane active" id="aa" role="tabpanel">
-                                        <div class="row"> -->
-                                            <p>
-                                                F#のWebサービスは、全て仮想通貨でNPOに資金調達の支援（寄付）を行います。<br>
-                                                仮想通貨の送金が受理されると、支援したNPOの<b>コインがもらえます</b>。そのコインを保有していると<strong>リターン（特典）がもらえる場合もございます。</strong>
-                                                リターンを受け取った後も、<strong>コインが失われることはございません。</strong>
-                                            </p>
-                                            <p class="description text-gray">
-                                                【アドバンスト】独自のNPOトークンで運用したい場合は、別途ご相談ください。
-                                            </p>
-                                        <!-- </div>
-                                    </div> -->
-                                    <!-- <div class="tab-pane" id="bb" role="tabpanel">
-                                        <div class="row">
-                                            <p class="description text-gray">
-                                                トークンの説明
-                                            </p>
-                                        </div>
-                                    </div> -->
+                                    <p>
+                                        F♯のWebサービスは、全て仮想通貨でNPOに支援（寄付）を行います。支援には2種類あります。<br>
+                                        【スポンサー】スポンサーとは、支援した人（企業、法人など）が、このF♯のWebサービスに名前が記載されるということです。
+                                        スポンサーになると、NPOによってはリターン（特典）がもらえる場合もありますので、そちらもお楽しみください。<br>
+                                        【アドバンスト】NPOのオリジナル仮想通貨（トークン）をご購入できます。自由にブロックチェーン上で、NPOの価値を売買することが可能です。
+                                        
+                                    </p>
+                                    @if (( $npo_info->code1 ) == "")
+                                    <p class="description text-gray">
+                                        【アドバンスト】独自のNPOトークンで運用したい場合は、別途ご相談ください。
+                                    </p>
+                                    @endif
                                 </div>
                             </div>
         
@@ -310,10 +316,10 @@
                                             <div class="col-md-6">
                                                 <div class="card card-pricing">
                                                     <div class="card-body">
-                                                        <h6 class="card-category text-danger">{{ $npo_info->title }}のファンになる</h6>
+                                                        <h6 class="card-category text-danger">{{ $npo_info->title }}のスポンサーになる</h6>
                                                         <h1 class="card-title">{{ $npo_info->support_amount }}BTC</h1>
                                                         <ul>
-                                                            <li><b>ファンクラブ名: {{ $npo_info->title }}</b></li>
+                                                            <li><b>使用目的: {{ $npo_info->support_purpose }}</b></li>
                                                             <li><b>リターン: {{ $npo_info->support_contents }}</b></li>
                                                             <li><b>特典利用期限: {!! nl2br(e(trans($npo_info->support_contents_detail))) !!}</b></li>
                                                             <!--<li>※特典は変更する場合がございます。</li>-->
@@ -351,17 +357,31 @@
                                             <div class="col-md-6">
                                                 <div class="card card-pricing">
                                                     <div class="card-body">
+                                                        @if (( $npo_info->code1 ) == "")
                                                         <h6 class="card-category text-danger">F#の運営を支援する</h6>
                                                         <h1 class="card-title">¥100</h1>
                                                         <ul>
-                                                            <li>F#のトークンを保有していると</li>
-                                                            <li><b>利益が出たらビットコインで還元。</b></li>
-                                                            <li>XCPに上場中なので<b>売買取引可能</b></li>
+                                                            <li>F#の仮想通貨(トークン)です。</li>
+                                                            <li><b>ブロックチェーンで管理しています。</b></li>
+                                                            <li>XCP上で<b>売買取引</b>も可能です。</li>
                                                             <li>※価格は今後、上下する可能性あり</li>
                                                         </ul>
                                                         <a class="indiesquare-tip-button btn btn-danger btn-round" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me">
                                                             F#のトークンをもらう
                                                         </a>
+                                                        @else
+                                                        <h6 class="card-category text-danger">{{ $npo_info->title }}の運営を支援する</h6>
+                                                        <h1 class="card-title">¥100</h1>
+                                                        <ul>
+                                                            <li>{{ $npo_info->title }}の仮想通貨(トークン)です。</li>
+                                                            <li><b>ブロックチェーンで管理しています。</b></li>
+                                                            <li>XCP上で<b>売買取引</b>も可能です。</li>
+                                                            <li>※価格は今後、上下する可能性あり</li>
+                                                        </ul>
+                                                        <a class="indiesquare-tip-button btn btn-danger btn-round" href="//widget.indiesquare.me/tip/{{ $npo_info->code1 }}" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me">
+                                                            F#のトークンをもらう
+                                                        </a>
+                                                        @endif
                                                         <!-- <a href="//widget.indiesquare.me/tip/abc690e1a12d9e88" class="btn btn-warning btn-round">
                                                             
                                                         </a> -->
@@ -376,9 +396,9 @@
                                                         <h1 class="card-title">¥0</h1>
                                                         <ul>
                                                             <li><b>1.</b> トークンが買えるアプリを<a href="https://wallet.indiesquare.me/">入手</a></li>
-                                                            <li><b>2.</b> BTCとXCPを入金する</li>
-                                                            <li><b>3.</b> FSHARPのトークンを検索</li>
-                                                            <li><b>4.</b> BTC・XCPで取引して購入</li>
+                                                            <li><b>2.</b> ビットコインを入金します。</li>
+                                                            <li><b>3.</b> XCP(カウンターパーティ)で検索</li>
+                                                            <li><b>4.</b> BTCをXCPに変える取引開始</li>
                                                         </ul>
                                                         <a href="https://wallet.indiesquare.me/" class="btn btn-neutral btn-round">ダウンロード(無料)</a>
                                                     </div>

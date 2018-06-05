@@ -121,11 +121,6 @@ class Npo_registerController extends Controller {
 
 		$npo_register->title = $request->input("title");
         $npo_register->subtitle = $request->input("subtitle");
-        // $npo_register->facebook = $request->input("facebook");
-        // $npo_register->twitter = $request->input("twitter");
-        // $npo_register->instagram = $request->input("instagram");
-        // $npo_register->youtube = $request->input("youtube");
-        // $npo_register->linkedin = $request->input("linkedin");
         // $npo_register->url = $request->input("url");
         // $npo_register->code1 = $request->input("code1");
         // $npo_register->code2 = $request->input("code2");
@@ -146,8 +141,6 @@ class Npo_registerController extends Controller {
         $npo_register->member1_detail = $request->input("member1_detail");
         $npo_register->member1_twitter = $request->input("member1_twitter");
         $npo_register->member1_facebook = $request->input("member1_facebook");
-        $npo_register->member1_insta = $request->input("member1_insta");
-        $npo_register->member1_youtube = $request->input("member1_youtube");
         $npo_register->member1_linkedin = $request->input("member1_linkedin");
         
         $npo_register->member2 = $request->input("member2");
@@ -155,8 +148,6 @@ class Npo_registerController extends Controller {
         $npo_register->member2_detail = $request->input("member2_detail");
         $npo_register->member2_twitter = $request->input("member2_twitter");
         $npo_register->member2_facebook = $request->input("member2_facebook");
-        $npo_register->member2_insta = $request->input("member2_insta");
-        $npo_register->member2_youtube = $request->input("member2_youtube");
         $npo_register->member2_linkedin = $request->input("member2_linkedin");
         
         $npo_register->member3 = $request->input("member3");
@@ -164,8 +155,6 @@ class Npo_registerController extends Controller {
         $npo_register->member3_detail = $request->input("member3_detail");
         $npo_register->member3_twitter = $request->input("member3_twitter");
         $npo_register->member3_facebook = $request->input("member3_facebook");
-        $npo_register->member3_insta = $request->input("member3_insta");
-        $npo_register->member3_youtube = $request->input("member3_youtube");
         $npo_register->member3_linkedin = $request->input("member3_linkedin");
         
         $npo_register->member4 = $request->input("member4");
@@ -173,8 +162,6 @@ class Npo_registerController extends Controller {
         $npo_register->member4_detail = $request->input("member4_detail");
         $npo_register->member4_twitter = $request->input("member4_twitter");
         $npo_register->member4_facebook = $request->input("member4_facebook");
-        $npo_register->member4_insta = $request->input("member4_insta");
-        $npo_register->member4_youtube = $request->input("member4_youtube");
         $npo_register->member4_linkedin = $request->input("member4_linkedin");
         
         $npo_register->member5 = $request->input("member5");
@@ -182,8 +169,6 @@ class Npo_registerController extends Controller {
         $npo_register->member5_detail = $request->input("member5_detail");
         $npo_register->member5_twitter = $request->input("member5_twitter");
         $npo_register->member5_facebook = $request->input("member5_facebook");
-        $npo_register->member5_insta = $request->input("member5_insta");
-        $npo_register->member5_youtube = $request->input("member5_youtube");
         $npo_register->member5_linkedin = $request->input("member5_linkedin");
         
         $npo_register->member6 = $request->input("member6");
@@ -191,8 +176,6 @@ class Npo_registerController extends Controller {
         $npo_register->member6_detail = $request->input("member6_detail");
         $npo_register->member6_twitter = $request->input("member6_twitter");
         $npo_register->member6_facebook = $request->input("member6_facebook");
-        $npo_register->member6_insta = $request->input("member6_insta");
-        $npo_register->member6_youtube = $request->input("member6_youtube");
         $npo_register->member6_linkedin = $request->input("member6_linkedin");
         
         $npo_register->member7 = $request->input("member7");
@@ -200,8 +183,6 @@ class Npo_registerController extends Controller {
         $npo_register->member7_detail = $request->input("member7_detail");
         $npo_register->member7_twitter = $request->input("member7_twitter");
         $npo_register->member7_facebook = $request->input("member7_facebook");
-        $npo_register->member7_insta = $request->input("member7_insta");
-        $npo_register->member7_youtube = $request->input("member7_youtube");
         $npo_register->member7_linkedin = $request->input("member7_youtube");
         
         $npo_register->member8 = $request->input("member8");
@@ -209,8 +190,6 @@ class Npo_registerController extends Controller {
         $npo_register->member8_detail = $request->input("member8_detail");
         $npo_register->member8_twitter = $request->input("member8_twitter");
         $npo_register->member8_facebook = $request->input("member8_facebook");
-        $npo_register->member8_insta = $request->input("member8_insta");
-        $npo_register->member8_youtube = $request->input("member8_youtube");
         $npo_register->member8_linkedin = $request->input("member8_linkedin");
         
         $npo_register->member9 = $request->input("member9");
@@ -218,25 +197,41 @@ class Npo_registerController extends Controller {
         $npo_register->member9_detail = $request->input("member9_detail");
         $npo_register->member9_twitter = $request->input("member9_twitter");
         $npo_register->member9_facebook = $request->input("member9_facebook");
-        $npo_register->member9_insta = $request->input("member9_insta");
-        $npo_register->member9_youtube = $request->input("member9_youtube");
         $npo_register->member9_linkedin = $request->input("member9_linkedin");
         
         $npo_register->member10 = $request->input("member10");
         $npo_register->member10_pos = $request->input("member10_pos");
         $npo_register->member10_detail = $request->input("member10_detail");
-        // $npo_register->member10_twitter = $request->input("member10_twitter");
-        // $npo_register->member10_facebook = $request->input("member10_facebook");
-        // $npo_register->member10_insta = $request->input("member10_insta");
-        // $npo_register->member10_youtube = $request->input("member10_youtube");
-        // $npo_register->member10_linkedin = $request->input("member10_linkedin");
+        $npo_register->member10_twitter = $request->input("member10_twitter");
+        $npo_register->member10_facebook = $request->input("member10_facebook");
+        $npo_register->member10_linkedin = $request->input("member10_linkedin");
         
+        $npo_register->support_purpose = $request->input("support_purpose");
         $npo_register->support_contents = $request->input("support_contents");
         $npo_register->support_contents_detail = $request->input("support_contents_detail");
         $npo_register->support_amount = $request->input("support_amount");
+        // $npo_register->support_price = $request->input("support_price");
+        
+        // $npo_register->support_purpose_gold = $request->input("support_purpose_gold");
+        // $npo_register->support_contents_gold = $request->input("support_contents_gold");
+        // $npo_register->support_contents_detail_gold = $request->input("support_contents_detail_gold");
+        // $npo_register->support_amount_gold = $request->input("support_amount_gold");
+        // $npo_register->support_price_gold = $request->input("support_price_gold");
+        
+        // $npo_register->support_purpose_crypto = $request->input("support_purpose_crypto");
+        // $npo_register->support_contents_crypto = $request->input("support_contents_crypto");
+        // $npo_register->support_contents_detail_crypto = $request->input("support_contents_detail_crypto");
+        // $npo_register->support_amount_crypto = $request->input("support_amount_crypto");
+        // $npo_register->support_price_crypto = $request->input("support_price_crypto");
+        
+        // $npo_register->support_purpose_pratinum = $request->input("support_purpose_pratinum");
+        // $npo_register->support_contents_pratinum = $request->input("support_contents_pratinum");
+        // $npo_register->support_contents_detail_pratinum = $request->input("support_contents_detail_pratinum");
+        // $npo_register->support_amount_pratinum = $request->input("support_amount_pratinum");
+        // $npo_register->support_price_pratinum = $request->input("support_price_pratinum");
         
         // $npo_register->body = $request->input("body");
-        // $npo_register->published = $request->input("published");
+        $npo_register->updated_at = new Carbon(Carbon::now());
         // $npo_register->proval = $request->input("proval");
 		
 		$npo_register->save();
