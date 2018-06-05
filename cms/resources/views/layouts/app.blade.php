@@ -61,14 +61,14 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- ヘッダーの左側 -->
                     <form class="navbar-form navbar-left" action="{{ url('/npo_registers') }}">
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="search">
-                        <div class="input-group-btn">
-                          <button class="btn btn-default" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
-                          </button>
-                        </div>
-                      </div>
+                      <!--<div class="input-group">-->
+                      <!--  <input type="text" class="form-control" placeholder="Search" name="search">-->
+                      <!--  <div class="input-group-btn">-->
+                      <!--    <button class="btn btn-default" type="submit">-->
+                      <!--      <i class="glyphicon glyphicon-search"></i>-->
+                      <!--    </button>-->
+                      <!--  </div>-->
+                      <!--</div>-->
                     </form>
                     <!--詳細設定-->
                     <!--<ul class="nav navbar-nav">-->

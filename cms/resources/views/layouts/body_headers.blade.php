@@ -45,7 +45,7 @@
                         </div> -->
 
                         
-                        <a href="https://twitter.com/intent/tweet?text={{ $npo_info->subtitle }} {{ $npo_info->title }}の支援のために。ひとりでも多くの方に広めてください♪%20-%20FSHARP%20%20https://fsharp.me/npo/{{ $npo_info->npo_name }}" class="btn btn-round btn-twitter">
+                        <a href="https://twitter.com/intent/tweet?text={!! $npo_info->subtitle !!} {!! $npo_info->title !!}の支援のために。ひとりでも多くの方に広めてください♪%20-%20FSHARP%20%20https://fsharp.me/npo/{{ $npo_info->npo_name }}" class="btn btn-round btn-twitter">
                             <!--<i class="twitter-share-button" data-href="https://fsharp.me/npo/{{ $npo_info->npo_name }}" aria-hidden="true" data-text="{{ $npo_info->subtitle }} {{ $npo_info->title }}の支援のために。ひとりでも多くの方に広めてください♪%20-%20F#%20%20https://fsharp.me/npo/{{ $npo_info->npo_name }}" data-show-count="true" data-dnt="true"></i>Tweet-->
                             <i class="fa fa-twitter" aria-hidden="true"></i> Tweet 
                         </a>
