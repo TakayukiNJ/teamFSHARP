@@ -237,6 +237,7 @@ Route::get('/other/image_upload_index', 'ImageUploadController@index');
 Route::post('/other/image_upload', 'ImageUploadController@image_upload');
 Route::get('/other/image_upload', 'ImageUploadController@image_upload');
 Route::get('/other/own_image_picture', 'ImageUploadController@own_image_picture');
+Route::get('/other/image_delete', 'ImageUploadController@image_delete');
 
 // P-0 投稿画面
 
@@ -269,6 +270,7 @@ Route::get('npo/{npo_name}/edit','Npo_registerController@editing');
 
 // スタブ機能
 Route::post('/testviews', 'TestViewController@index');
+Route::get('/testviews', 'TestViewController@index');
 
 //[管理機能]会員検索機能
 Route::post('/mastermentenance/login_user_manager', 'TestViewController@login_user_manager');
@@ -288,3 +290,25 @@ Route::get('auth/login/callback/google', 'Auth\SocialController@getGoogleAuthCal
 //Route::group(['prefix' => 'admin'], function () {
 //    Voyager::routes();
 //});
+
+// bitflyerの履歴(購入履歴：送金履歴）
+Route::get('bitflyer/getHistorySupportTo', function()
+{
+    $article = ['id' => 1, 'title' => "today's dialy", 'content' => "It's a sunny day."];
+    return Response::json($article);
+});
+
+// bitflyerの履歴(販売履歴：入金履歴)
+Route::get('bitflyer/getHistorySupportFrom', function()
+{
+    $article = ['id' => 1, 'title' => "today's dialy", 'content' => "It's a sunny day."];
+    return Response::json($article);
+});
+
+// bitflyerの送金
+Route::get('bitflyer/support', function()
+{
+    $article = ['id' => 1, 'title' => "today's dialy", 'content' => "It's a sunny day."];
+    return Response::json($article);
+});
+

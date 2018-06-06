@@ -39,6 +39,7 @@ var h03_1;
 var h03_2;
 var h03_3;
 var zz1;
+var zz2;
 /* 自己紹介画面表示 */
 function A90_run() {
     window.open("", "STUB");
@@ -295,6 +296,14 @@ function ZZ1_run() {
     window.document.show_stub.method = "POST";
     window.document.show_stub.submit();
 }
+/* 画像アップロード */
+function ZZ2_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "other/image_delete";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
 function clear() {
 	a90=0;
     $('#A90').empty();
@@ -360,6 +369,8 @@ function clear() {
     $('#H03_3').empty();
     zz1=0;
     $('#ZZ1').empty();
+    zz2=0;
+    $('#ZZ2').empty();
 }
 $(document).ready(function() {
 	clear();
@@ -815,13 +826,23 @@ $(document).ready(function() {
         if(zz1 == '0') {
             clear();
             $('#ZZ1').append("id：<input type=\"text\" name=\"id\"><BR>");
-            $('#ZZ1').append("user_id：<input type=\"text\" name=\"user_id\"><BR>");
-            $('#ZZ1').append("target_user_id：<input type=\"text\" name=\"target_user_id\"><BR>");
             $('#ZZ1').append("<input type=\"button\" value=\"表示\" onClick=\"ZZ1_run()\"><BR>");
             zz1='1';
         } else {
             $('#ZZ1').empty();
             zz1='0';
+        }
+    });
+/* ZZ2.画像イメージ削除 */
+    $('#ZZ2_front').click(function() {
+        if(zz2 == '0') {
+            clear();
+            $('#ZZ2').append("id：<input type=\"text\" name=\"id\"><BR>");
+            $('#ZZ2').append("<input type=\"button\" value=\"表示\" onClick=\"ZZ2_run()\"><BR>");
+            zz2='1';
+        } else {
+            $('#ZZ2').empty();
+            zz2='0';
         }
     });
 });
@@ -894,7 +915,11 @@ $(document).ready(function() {
 <div id="Z02">　ブログ連携</div>
 <div id="Z03">　Instagram連携</div>
 <div id="ZZ0">ZZ-0.その他</div>
+<BR><BR>
 <div id="ZZ1_front"><li><a href="#">画像イメージアップロード</a></li></div><div id="ZZ1"></div>
+<BR><BR>
+<div id="ZZ2_front"><li><a href="#">画像イメージ削除</a></li></div><div id="ZZ2"></div>
+<BR><BR>
 <div id="ZZ9">　システムエラー</div>
 </td>
 <td><div id="description"></div></td>

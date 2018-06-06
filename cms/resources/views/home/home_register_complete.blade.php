@@ -16,7 +16,7 @@
                 </div>
                 <div class="panel-body">
                 	自己紹介の登録を完了しました。<BR>
-                	<input type="button" value="戻る" onClick="T01_run()"><BR>
+                	<input type="button" value="自分のタイムラインに戻る" onClick="T01_run()"><BR>
 
                 </div>
             </div>

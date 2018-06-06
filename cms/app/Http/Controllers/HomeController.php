@@ -60,17 +60,17 @@ class HomeController extends Controller
 
         return view('home/home', $data)->with('id', $id)->with('user', $user);
     }
-    
+
     public function terms()
     {
         return view('terms');
     }
-    
+
     public function privacy_policy()
     {
         return view('privacy_policy');
     }
-    
+
     public function thank_you_for_support()
     {
         return view('thank_you_for_support');
@@ -85,7 +85,7 @@ class HomeController extends Controller
     {
         return view('home/register');
     }
-    
+
     // 自己紹介表示画面
     public function home_disp(Request $request)
     {
@@ -115,7 +115,7 @@ class HomeController extends Controller
             session(['param_birthday_year' => $query->birthday_year]);
             session(['param_birthday_month' => $query->birthday_month]);
             session(['param_birthday_day' => $query->birthday_day]);
-            session(['param_image_id' => '']);
+            session(['param_image_id' => $query->image_id]);
             return view('home/home_register')
             ->with('id', $id)
             ->with('user', $user)
@@ -168,27 +168,56 @@ class HomeController extends Controller
         $birthday_month      = $request->input('birthday_month');
         $birthday_day        = $request->input('birthday_day');
 
-        session(['param_user_name_sei_kanji' => $user_name_sei_kanji]);
-        session(['param_user_name_mei_kanji' => $user_name_mei_kanji]);
-        session(['param_user_name_sei_roma' => $user_name_sei_roma]);
-        session(['param_user_name_mei_roma' => $user_name_mei_roma]);
-        session(['param_sex_type' => $sex_type]);
-        session(['param_birthday_year' => $birthday_year]);
-        session(['param_birthday_month' => $birthday_month]);
-        session(['param_birthday_day' => $birthday_day]);
-
-        return view('home/home_register_confirm')
-        ->with('id', $id)
-        ->with('user', $user)
-        ->with('image_id', asset('/images'). '/'. session('image_id'))
-        ->with('user_name_sei_kanji', $user_name_sei_kanji)
-        ->with('user_name_mei_kanji', $user_name_mei_kanji)
-        ->with('user_name_sei_roma', $user_name_sei_roma)
-        ->with('user_name_mei_roma', $user_name_mei_roma)
-        ->with('sex_type', $sex_type)
-        ->with('birthday_year', $birthday_year)
-        ->with('birthday_month', $birthday_month)
-        ->with('birthday_day', $birthday_day);
+        // personal_infoが登録されているかどうかを取得する
+        $count = DB::table('personal_info')->where('user_id', $user)->count();
+        
+        $validator = Validator::make($request->all(),[
+            'user_name_sei_kanji' => 'required|string|between:1,16',
+            'user_name_sei_roma' => 'required|string|between:1,32',
+            'user_name_mei_kanji' => 'required|string|between:1,16',
+            'user_name_mei_roma' => 'required|string|between:1,32',
+            'sex_type' => 'required|string|between:1,1',
+            'birthday_year' => 'required|string|between:4,4',
+            'birthday_month' => 'required|string|between:2,2',
+            'birthday_day' => 'required|string|between:2,2',
+        ]);
+        if ($validator->fails()){
+            return view('home/home_register', compact('user'))
+            ->with('id', $id)
+            ->with('user', $user)
+            ->with('user_name_sei_kanji', $user_name_sei_kanji)
+            ->with('user_name_sei_roma', $user_name_sei_roma)
+            ->with('user_name_mei_kanji', $user_name_mei_kanji)
+            ->with('user_name_mei_roma', $user_name_mei_roma)
+            ->with('sex_type', $sex_type)
+            ->with('birthday_year', $birthday_year)
+            ->with('birthday_month', $birthday_month)
+            ->with('birthday_day', $birthday_day)
+            ->with('count', $count)
+            ->withErrors($validator);
+        } else {
+            session(['param_user_name_sei_kanji' => $user_name_sei_kanji]);
+            session(['param_user_name_mei_kanji' => $user_name_mei_kanji]);
+            session(['param_user_name_sei_roma' => $user_name_sei_roma]);
+            session(['param_user_name_mei_roma' => $user_name_mei_roma]);
+            session(['param_sex_type' => $sex_type]);
+            session(['param_birthday_year' => $birthday_year]);
+            session(['param_birthday_month' => $birthday_month]);
+            session(['param_birthday_day' => $birthday_day]);
+            
+            return view('home/home_register_confirm')
+            ->with('id', $id)
+            ->with('user', $user)
+            ->with('image_id', asset('/images'). '/'. session('image_id'))
+            ->with('user_name_sei_kanji', $user_name_sei_kanji)
+            ->with('user_name_mei_kanji', $user_name_mei_kanji)
+            ->with('user_name_sei_roma', $user_name_sei_roma)
+            ->with('user_name_mei_roma', $user_name_mei_roma)
+            ->with('sex_type', $sex_type)
+            ->with('birthday_year', $birthday_year)
+            ->with('birthday_month', $birthday_month)
+            ->with('birthday_day', $birthday_day);
+        }
     }
     // 自己紹介登録実行画面
     public function home_register_process(Request $request)
@@ -232,7 +261,7 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $user = Auth::user()->email;
-        
+
         // 用編集(データベースから取ってくる用に変更...)
         $user_name_sei_kanji=$request->input('user_name_sei_kanji');
         $user_name_mei_kanji=$request->input('user_name_mei_kanji');
@@ -252,22 +281,22 @@ class HomeController extends Controller
         session(['birthday_month' => $birthday_month]);
         session(['birthday_day' => $birthday_day]);
         // 要変更ここまで(2018.1.5)
-        
+
         $image_id = '';
         $image    = '';
-        
+
         $image = DB::table('image_data')
         ->where('user_id', $user)->first(); // firstは一個だけ取得  getは全て取得
-        
+
         // dd($query->image_id);
-        
+
         if($image){
             $image_id = $image->image_id; // $imageの中のimage_idを取得
             $image_id = asset('/images'). '/'. $image_id;
         } else {
             $image_id = '/img/contents/user-default.png';
         }
-        
+
         return view('home/home_own_timeline')
         ->with('id', $id)
         ->with('user', $user)
@@ -283,24 +312,24 @@ class HomeController extends Controller
         ->with('birthday_day', $birthday_day)
         ;
         //2018.1.4追加ここまで
-        
+
         return view('npo_landing_page', $data);
-        
+
     }
-    
-    
+
+
     // ホーム画面自分のタイムライン(urlも自分の)
     public function home_own(Request $request)
     {
         $id = Auth::user()->id;
         //$name = Auth::user()->name;
         $user = Auth::user()->email;
-        
+
         $currentUserInfo = \DB::table('users')->where('name', $request)->first();
 //連想配列に入れtBladeテンプレートに渡しています。
         $user_data['user_info'] = $currentUserInfo;
-        
-        
+
+
 //         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
 //         $currentUserInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
 // //連想配列に入れtBladeテンプレートに渡しています。
@@ -308,11 +337,11 @@ class HomeController extends Controller
 //         // $data['subtitle'] = $currentNpoInfo;
 //         return view('home/home_own_timeline', $data);
 
-        
-        
-        
+
+
+
         $query = DB::table('main_omikuji_data');
-        
+
         // 用編集(データベースから取ってくる用に変更...)
         $user_name_sei_kanji=$request->input('user_name_sei_kanji');
         $user_name_mei_kanji=$request->input('user_name_mei_kanji');
@@ -332,22 +361,22 @@ class HomeController extends Controller
         session(['birthday_month' => $birthday_month]);
         session(['birthday_day' => $birthday_day]);
         // 要変更ここまで(2018.1.5)
-        
+
         $image_id = '';
         $image    = '';
-        
+
         $image = DB::table('image_data')
         ->where('user_id', $user)->first(); // firstは一個だけ取得  getは全て取得
-        
+
         // dd($query->image_id);
-        
+
         if($image){
             $image_id = $image->image_id; // $imageの中のimage_idを取得
             $image_id = asset('/images'). '/'. $image_id;
         } else {
             $image_id = '/img/contents/user-default.png';
         }
-        
+
         return view('home/home_own_timeline')
         ->with('id', $id)
         ->with('user', $user)
@@ -363,11 +392,11 @@ class HomeController extends Controller
         ->with('birthday_day', $birthday_day)
         ;
         //2018.1.4追加ここまで
-        
+
         return view('home/home_own_timeline', $user_data);
     }
-    
-    
+
+
     // ホーム画面投資家や選手のタイムライン
     public function home_outer_timeline($folder_name, Request $request)
     {

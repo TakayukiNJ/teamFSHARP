@@ -45,15 +45,42 @@ class ImageUploadController extends Controller
      */
     public function image_upload(Request $request)
     {
-        $validator = Validator::make($request->all(),
-            ['file' => 'required|file|dimensions:min_width=120,min_height=120,max_width=400,max_height=400',]
-        );
+        $selfValidate = false;
 
-        if ($validator->fails()){
+        $validator = Validator::make($request->all(),
+            ['file' => 'required|image|dimensions:min_width=120,min_height=120,max_width=400,max_height=400',]
+        );
+        logger('a');
+        if ($request->file) {
+        logger('b');
+            if (file_exists($request->file->getRealPath())) {
+        logger('c');
+                $mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $request->file->getRealPath());
+                switch (strtolower($mime)) {
+                    case 'image/png':
+                    case 'image/x-png':
+                    case 'image/jpg':
+                    case 'image/jpeg':
+                    case 'image/pjpeg':
+                    case 'image/gif':
+                        $selfValidate = false;
+                        break;
+                    default:
+                        $selfValidate = true;
+                }        
+            } else {
+                $selfValidate = true;
+            }
+        }
+
+        logger('d');
+        if ($validator->fails() || $selfValidate){
+        logger('e');
             session(['success' => '']);
             $user = User::find(auth()->id());
             return view('image_uploader', compact('user'))->withErrors($validator);
         } else {
+        logger('f');
 
             $openPublicFileName = $request->file->getClientOriginalName();
 
@@ -105,11 +132,9 @@ class ImageUploadController extends Controller
             if (session('mode') == self::MODE_HOME_REGIST) {
                 // 画像ファイルを更新する
                 $cli = DB::table('personal_info')->where('user_id', $user)->update(['image_id' => $openPublicFileName]);
-                logger('test1');
 
             } elseif (session('mode') == self::MODE_VISION_SELL_REGIST) {
                 session(['image_id' => $openPublicFileName]);
-                logger('test2['. $openPublicFileName . ']');
 
             }
 
@@ -180,6 +205,33 @@ class ImageUploadController extends Controller
         }
     }
     
+    /**
+     * 画像の削除 
+     */
+    public function image_delete(Request $request) {
+        $id = Auth::user()->id;
+        $user = Auth::user()->email;
+
+        logger('target['. $request->target . ']');
+        if ($request->target == 'HOME_REGIST') {
+            // HOME 画面
+            $personal_info_count = DB::table('personal_info')
+            ->where('user_id', $user)
+            ->count();
+            if ($personal_info_count <> 0) {
+                /* image_dataテーブルから削除 */
+                $image_id = DB::table('personal_info')->where('user_id', $user)->first();
+                logger('image_id['. $image_id->image_id. ']');
+                $deleteRows = DB::table('image_data')->where('user_id', $user)->where('image_id', $image_id->image_id)->delete();
+                
+                /* personal_infoテーブルから削除 */
+                $cli = DB::table('personal_info')->where('user_id', $user)->update(['image_id' => '']);
+
+            }            
+        } else if ($request->target == 'VISION_SELL_REGIST') {
+            ;
+        }
+    }
     
     /**
      * 登録した画像をマイページで読み込む(マイページ)

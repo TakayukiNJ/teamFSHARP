@@ -14,7 +14,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/colorbox.css">
     <link rel="stylesheet" href="/css/range.css">
@@ -24,7 +24,7 @@
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
     <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>-->
     <script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
     <script src="//widget.indiesquare.me/tip/buttonjs" async="" type="text/javascript"></script>
@@ -74,10 +74,10 @@
                     <!--<ul class="nav navbar-nav">-->
                     <!--    <li>-->
                     <!--        <a href="{{ url('/home/home_search_outer_member') }}" onClick="H03_1_run();return false;">@lang('app.user search')</a>-->
-                            
+
                     <!--    </li>-->
                     <!--</ul>-->
-                    
+
                     <!-- ヘッダーの右側 -->
                     <ul class="nav navbar-nav navbar-right">
                         @if (Auth::guest())
@@ -89,7 +89,7 @@
                             <li><a href="https://goo.gl/YZLao1" target="_blank">@lang('app.ask my page')</a></li>
                             <!-- NPO（Vision） -->
                             <li class="dropdown">
-                                
+
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->npo }}<span class="caret"></span>
                             </a>
@@ -104,7 +104,7 @@
                                     <!-- チャット画面 -->
                                     <!--<li><a href="{{ url('/chat') }}">チャット</a></li>-->
                                     <!-- ログアウト -->
-                                    
+
                                     <!-- developer mode表示 -->
                                     <!--<li>-->
                                     <!--    <form action="{{ url('/testviews') }}" method="POST" class="form-horizontal">-->
@@ -116,11 +116,11 @@
                                     <!--</li>-->
                                 </ul>
                             </li>
-                            
+
                             @else
                             <li><a href="{{ url('/npo_registers/create') }}">NPOページを作成</a></li>
                             @endif
-                            
+
                             <!-- ユーザー -->
                             <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -146,6 +146,12 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    <!-- Developer's Window -->
+                                    @if (isset($user))
+                                    @if (($user=='watanabe.kazuki@plum.plala.or.jp') or ($user=='nj.takayuki@gmail.com') or ($user='unitednum@gmail.com'))
+                                    <li><a href="{{ url('/testviews') }}">developer's window</a></li>
+                                    @endif
+                                    @endif
                                 </ul>
                             </li>
                         @endif
@@ -153,7 +159,7 @@
                 </div>
             </div>
         </nav>
-    
+
     @yield('content')
     </div>
 
