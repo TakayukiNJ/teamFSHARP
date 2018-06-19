@@ -576,7 +576,7 @@
                     </div>
                     <!-- 特典利用期限 -->
                     <div class="form-group @if($errors->has('support_contents_detail')) has-error @endif">
-                       <label for="support_contents_detail-field">特典利用期限</label>
+                       <label for="support_contents_detail-field">特典利用期限（例:2018年12月31日）</label>
                     <input type="text" id="support_contents_detail-field" name="support_contents_detail" class="form-control" value="{{ is_null(old("support_contents_detail")) ? $npo_info->support_contents_detail : old("support_contents_detail") }}"/>
                        @if($errors->has("support_contents_detail"))
                         <span class="help-block">{{ $errors->first("support_contents_detail") }}</span>
@@ -584,7 +584,7 @@
                     </div>
                     <!-- 特典利用期限 -->
                     <div class="form-group @if($errors->has('support_amount')) has-error @endif">
-                       <label for="support_amount-field">特典利用期限（例:2018年12月31日）</label>
+                       <label for="support_amount-field">値段（例:0.01）</label>
                     <input type="text" id="support_amount-field" name="support_amount" class="form-control" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}"/>
                        @if($errors->has("support_amount"))
                         <span class="help-block">{{ $errors->first("support_amount") }}</span>

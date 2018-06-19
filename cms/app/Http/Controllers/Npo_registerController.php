@@ -210,6 +210,9 @@ class Npo_registerController extends Controller {
         $npo_register->support_contents = $request->input("support_contents");
         $npo_register->support_contents_detail = $request->input("support_contents_detail");
         $npo_register->support_amount = $request->input("support_amount");
+        if ($npo_register->support_amount == $npo_register['support_amount']) {
+            $npo_register->proval = 0;
+        }
         // $npo_register->support_price = $request->input("support_price");
         
         // $npo_register->support_purpose_gold = $request->input("support_purpose_gold");

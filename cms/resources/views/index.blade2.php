@@ -52,16 +52,6 @@
             </div>
           </div>
 
-
-
-
-
-
-
-
-
-
-
       <?php if (Auth::check())  { ?>
       <div class="center_column_bottom">
         <h3>&nbsp;【タイムライン】</h3>
