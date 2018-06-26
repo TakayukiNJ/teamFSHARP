@@ -110,7 +110,7 @@
                                                 @if(($npo_info->member1_pic) != "")
                                                 <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member1_pic }}"/>
                                                 @else
-                                                <img class="img" src="{{ url('/') }}/../img/img/placeholder.jpg"/>
+                                                <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
                                                 @endif
                                             </a>
                                         </div>
@@ -318,9 +318,9 @@
                                                         <h6 class="card-category text-danger">{{ $npo_info->title }}のスポンサーになる</h6>
                                                         <h1 class="card-title">{{ $npo_info->support_amount }}BTC</h1>
                                                         <ul>
-                                                            <li><b>使用目的: {{ $npo_info->support_purpose }}</b></li>
-                                                            <li><b>リターン: {{ $npo_info->support_contents }}</b></li>
-                                                            <li><b>特典利用期限: {!! nl2br(e(trans($npo_info->support_contents_detail))) !!}</b></li>
+                                                            <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
+                                                            <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
+                                                            <li><b>特典利用期限: {!! nl2br(e(trans($npo_info->support_contents_detail))) or '未設定' !!}</b></li>
                                                             <!--<li>※特典は変更する場合がございます。</li>-->
                                                             <li>※ご購入は、ビットコイン決済です。</li>
                                                         </ul>

@@ -45,40 +45,41 @@ class Npo_registerController extends Controller {
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
+    
+		$rules = [
+		    'npo_name' => 'required|unique:npo_registers,npo_name',
+		    'title' => 'required',
+		];
+		$this -> validate($request, $rules);
 
-		$npo_register->npo_name = $request->input("npo_name");
-		$npo_register->title = $request->input("title");
-        $npo_register->subtitle = $request->input("subtitle");
-        // $npo_register->facebook = $request->input("facebook");
-        // $npo_register->twitter = $request->input("twitter");
-        // $npo_register->instagram = $request->input("instagram");
-        // $npo_register->youtube = $request->input("youtube");
-        // $npo_register->linkedin = $request->input("linkedin");
-        // $npo_register->url = $request->input("url");
-        // $npo_register->code1 = $request->input("code1");
-        // $npo_register->code2 = $request->input("code2");
-        // $npo_register->code3 = $request->input("code3");
-        $npo_register->embed_youtube = $request->input("embed_youtube");
-        $npo_register->blue_card_title   = $request->input("blue_card_title");
-        $npo_register->blue_card_body    = $request->input("blue_card_body");
-        $npo_register->green_card_title  = $request->input("green_card_title");
-        $npo_register->green_card_body   = $request->input("green_card_body");
-        $npo_register->yellow_card_title = $request->input("yellow_card_title");
-        $npo_register->yellow_card_body  = $request->input("yellow_card_body");
+		$npo_register->npo_name                = $request->input("npo_name");
+		$npo_register->title                   = $request->input("title");
+        $npo_register->subtitle                = $request->input("subtitle");
         
-        $npo_register->manager = $name_auth;
-         
-        $npo_register->support_contents = $request->input("support_contents");
+        $npo_register->embed_youtube           = $request->input("embed_youtube");
+        $npo_register->blue_card_title         = $request->input("blue_card_title");
+        $npo_register->blue_card_body          = $request->input("blue_card_body");
+        $npo_register->green_card_title        = $request->input("green_card_title");
+        $npo_register->green_card_body         = $request->input("green_card_body");
+        $npo_register->yellow_card_title       = $request->input("yellow_card_title");
+        $npo_register->yellow_card_body        = $request->input("yellow_card_body");
+        $npo_register->manager                 = $name_auth;
+        $npo_register->member1                 = $name_auth;
+        $npo_register->support_contents        = $request->input("support_contents");
         $npo_register->support_contents_detail = $request->input("support_contents_detail");
-        $npo_register->support_amount = "0";
+        $npo_register->support_amount          = "0";
+        $npo_register->proval                  = "0";
         
-        // $npo_register->follower = $request->input("follower");
-        // $npo_register->buyer = $request->input("buyer");
-        // $npo_register->body = $request->input("body");
-        // $npo_register->proval = $request->input("proval");
-        $npo_register->proval = "0";
+        $npo_register->blue_card_title         = "私たちのミッション";
+        $npo_register->blue_card_body          = "自由にご記載ください。";
+        $npo_register->green_card_title        = "活動内容";
+        $npo_register->green_card_body         = "自由にご記載ください。";
+        $npo_register->yellow_card_title       = "ファンクラブの特典";
+        $npo_register->yellow_card_body        = "タイトルがファンクラブの特典の場合、期限のご記載もお願いします。(ファンクラブ特典は必須ではございません) ";
+        $npo_register->support_contents        = "現在設定なし";
+        $npo_register->support_contents_detail = "現在設定なし";
         
-        $npo_register->published = new Carbon(Carbon::now()->addWeek(1));
+        $npo_register->published               = new Carbon(Carbon::now()->addWeek(1));
         // dd($npo_register->addMonth(1));
         // dd($npo_register->addMonth(7));
         
@@ -106,7 +107,6 @@ class Npo_registerController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	 
 
 	/**
 	 * Update the specified resource in storage.
@@ -118,14 +118,29 @@ class Npo_registerController extends Controller {
 	public function update(Request $request, $npo_name)
 	{
 		$npo_register = Npo_register::findOrFail($npo_name);
-
+		
+		$rules = [
+		  //  'npo_name' => 'required|unique:npo_registers,npo_name',
+		    'title' => 'required',
+		];
+		$this -> validate($request, $rules);
+                // 'item_name' => 'required|min:3|max:255',
+                // 'item_number' => 'required | min:1 | max:3',
+                // 'item_amount' => 'required | max:6',
+                // 'published'   => 'required',
+        
+        // // //バリデーション:エラー
+        // if ($validator->fails()) {
+        //         return redirect('/')->withInput()->withErrors($validator);
+        // }
+        
 		$npo_register->title = $request->input("title");
         $npo_register->subtitle = $request->input("subtitle");
         // $npo_register->url = $request->input("url");
         // $npo_register->code1 = $request->input("code1");
         // $npo_register->code2 = $request->input("code2");
         // $npo_register->code3 = $request->input("code3");
-        $npo_register->manager = $request->input("manager");
+        // $npo_register->manager = $request->input("manager");
         $npo_register->embed_youtube = $request->input("embed_youtube");
         
         $npo_register->embed_youtube = $request->input("embed_youtube");

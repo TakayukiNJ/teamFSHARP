@@ -6,7 +6,7 @@
     @include('error')
 <div class="container">
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-edit"></i> Create NPO Page</h1>
+        <h1><i class="glyphicon glyphicon-edit"></i> NPOページ作成</h1>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -30,23 +30,13 @@
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
-                       <label for="subtitle-field">Subtitle(見出し部分)</label>
+                       <label for="subtitle-field">タイトル(見出し部分)</label>
                     <input type="text" id="subtitle-field" name="subtitle" class="form-control" value="{{ old("subtitle") }}"/>
                        @if($errors->has("subtitle"))
                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
                        @endif
                     </div>
                     
-                   <input type="hidden" name="blue_card_title" class="form-control" value="私たちのミッション" />
-                   <input type="hidden" name="blue_card_body" class="form-control" value="自由にご記載ください。" />
-                   <input type="hidden" name="green_card_title" class="form-control" value="活動内容" />
-                   <input type="hidden" name="green_card_body" class="form-control" value="自由にご記載ください。" />
-                   <input type="hidden" name="yellow_card_title" class="form-control" value="ファンクラブの特典" />
-                   <input type="hidden" name="yellow_card_body" class="form-control" value="タイトルがファンクラブの特典の場合、期限のご記載もお願いします。(ファンクラブ特典は必須ではございません) " />
-                   
-                   <input type="hidden" name="support_contents" class="form-control" value="現在設定なし" />
-                   <input type="hidden" name="support_contents_detail" class="form-control" value="現在設定なし" />
-                   
                     <!--<div class="form-group @if($errors->has('facebook')) has-error @endif">-->
                     <!--   <label for="facebook-field">Facebook</label>-->
                     <!--<input type="text" id="facebook-field" name="facebook" class="form-control" value="{{ old("facebook") }}"/>-->
