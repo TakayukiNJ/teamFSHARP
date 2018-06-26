@@ -74,7 +74,6 @@
                     <!--<ul class="nav navbar-nav">-->
                     <!--    <li>-->
                     <!--        <a href="{{ url('/home/home_search_outer_member') }}" onClick="H03_1_run();return false;">@lang('app.user search')</a>-->
-
                     <!--    </li>-->
                     <!--</ul>-->
 
