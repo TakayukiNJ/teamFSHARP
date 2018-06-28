@@ -80,8 +80,6 @@ class Npo_registerController extends Controller {
         $npo_register->support_contents_detail = "現在設定なし";
         
         $npo_register->published               = new Carbon(Carbon::now()->addWeek(1));
-        // dd($npo_register->addMonth(1));
-        // dd($npo_register->addMonth(7));
         
 		$npo_register->save();
 
@@ -121,27 +119,12 @@ class Npo_registerController extends Controller {
 		
 		$rules = [
 		  //  'npo_name' => 'required|unique:npo_registers,npo_name',
-		    'title' => 'required',
+		    'title' => 'required | min:3 | max:55',
 		];
 		$this -> validate($request, $rules);
-                // 'item_name' => 'required|min:3|max:255',
-                // 'item_number' => 'required | min:1 | max:3',
-                // 'item_amount' => 'required | max:6',
-                // 'published'   => 'required',
-        
-        // // //バリデーション:エラー
-        // if ($validator->fails()) {
-        //         return redirect('/')->withInput()->withErrors($validator);
-        // }
         
 		$npo_register->title = $request->input("title");
         $npo_register->subtitle = $request->input("subtitle");
-        // $npo_register->url = $request->input("url");
-        // $npo_register->code1 = $request->input("code1");
-        // $npo_register->code2 = $request->input("code2");
-        // $npo_register->code3 = $request->input("code3");
-        // $npo_register->manager = $request->input("manager");
-        $npo_register->embed_youtube = $request->input("embed_youtube");
         
         $npo_register->embed_youtube = $request->input("embed_youtube");
         $npo_register->blue_card_title   = $request->input("blue_card_title");

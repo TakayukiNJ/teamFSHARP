@@ -1,156 +1,79 @@
  <!DOCTYPE html>
 <html lang="ja">
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>FSHARP</title>
-
+    <title>F#</title>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="css/landing-page.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
-
     <!-- Header -->
     <a name="about"></a>
     <div class="intro-header">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>FSHARP</h1>
-                        <h3>もうNPOは、資金に困らない。</h3>
-                        <h3>簡単・安全・便利にICOで調達</h3>
+                        <h1 color="linear-gradient(180deg, #2af598 0%, #009efd 100%);">F#</h1>
+                        <h3>NPOの資金不足を解決！</h3>
+                        <h3>資金調達WEBサービス</h3>
                         <hr class="intro-divider">
-                                        
                         <div class="w3-panel w3-large">
-                            <!--<a href="http://fb.me" target="_blank"><i class="fa fa-facebook-official" style="font-size:24px"></i></a>-->
-                            <!--<a href="#" target="_blank"><i class="fa fa-twitter" style="font-size:24px"></i></a>-->
-                            <!--<a href="#" target="_blank"><i class="fa fa-instagram" style="font-size:24px"></i></a>-->
-                            <!--<a href="#" target="_blank"><i class="fa fa-youtube-play" style="font-size:24px"></i></a>-->
-                            <!--<a href="#" target="_blank"><i class="fa fa-linkedin-square" style="font-size:24px"></i></a>-->
-                            <!--<a href="#" target="_blank"><i class="fa fa-globe" style="font-size:24px"></i></a>-->
-                            <!--<br>-->
-                            <!--<a class="indiesquare-tip-button" href="//widget.indiesquare.me/tip/074c8e2222f52e13" target="_blank" data-vid="074c8e2222f52e13" data-domain="indiesquare.me" style="width:150px">Donate with IndieSquare</a><script src="//widget.indiesquare.me/tip/buttonjs" async="" type="text/javascript"></script>-->
-                            <!--<ul class="list-inline intro-social-buttons">-->
-                            <a href="{{ url('/npo_registers/create') }}" class="btn btn-default btn-lg"><span class="network-name">NPO登録</span></a>
-                            <!--</ul>-->
+                            <a style="background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);" href="{{ url('/npo_registers/create') }}" class="btn btn-default btn-lg"><span class="network-name">NPOページ作成</span></a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- /.container -->
-
     </div>
     <!-- /.intro-header -->
 
     <!-- Page Content -->
-
-	<a  name="services"></a>
-    <div class="content-section-a">
-
-        <div class="container">
-     
-            <div class="row">
+	<a name="services"></a>
+    <div class="content-section-a" align="center">
+        <div class="container" align="center" margin="0 autozs">
+            <div class="row" align="center">
                 <div class="col-lg-5 col-sm-6">
-                    <h2 class="section-heading">簡単！支援・寄附してコイン(トークン)をゲット！</h2>
-                    <!--<p><strong>①</strong></p>-->
-                    <p>もしビットコインをお持ちなら、応援したい団体を選んで支援や寄附をすることができます。仮想通貨なので、世界中どこからでも手数料・送金速度は一律です。</p>
-                    <p>NPOの支援・寄附した場合、お名前（ユーザーネーム）がサイトに公開され、NPO側にはメールアドレスもお伝えいたします。(購入履歴は、今後ご活用できる仕組みを作成中です。)</p>
-                    <p>購入履歴は、今後その支援した団体のオリジナルコイン(トークン)をゲットしてご利用できるようになります。お楽しみに！</p>
-                    
+                    <div class="w3-third w3-container w3-margin-bottom">
+                        <a href="{{ url('/npo/nipponshotenkai') }}">
+                            <img src="https://nipponshotenkai.com/wp-content/uploads/2017/03/others.png" alt="NPO" style="width:100%" class="w3-hover-opacity">
+                        </a>
+                        <div class="w3-container w3-white">
+                            <h3><b>共に学び共に成長し共に勝つ</b></h3>
+                            <p>NPO法人日本商店会</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/top03.png" alt="" height="20%">
+                    <div class="w3-third w3-container w3-margin-bottom">
+                        <a href="{{ url('/npo/teamFSHARP') }}">
+                            <img src="https://greatmiddleway.files.wordpress.com/2014/04/light.jpg?w=600&h=400" alt="NPO" style="width:100%" class="w3-hover-opacity">
+                        </a>
+                        <div class="w3-container w3-white">
+                            <h3><b>NPOの為の資金調達サービス</b></h3>
+                            <p>F#</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
         <!-- /.container -->
-
     </div>
-    <!-- /.content-section-a -->
-
-    <div class="content-section-b">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <h2 class="section-heading">挑戦！ページ掲載して資金調達をスタート！</h2>
-                    <p>トップバーの「掲載/相談する」から、ご自身のNPOを登録できます。（審査期間：約1週間）</p>
-                    <!--<p><strong>③ICO(資金調達)に関して</strong></p>-->
-                    <p>ご自身のNPOページが登録されると、新たに項目がトップバーに追加されます。</p>
-                    <p>トップバーの「NPO名」→「NPOページ編集」から、優待を設定し、資金調達を始めることができます。（審査期間：約1週間）</p>
-                </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/top02.png" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-b -->
-
-    <!--<div class="content-section-a">-->
-
-    <!--    <div class="container">-->
-
-    <!--        <div class="row">-->
-    <!--            <div class="col-lg-5 col-sm-6">-->
-    <!--                <h2 class="section-heading">安全！常に、最新のブロックチェーン技術を採用していきます。</h2>-->
-    <!--                <p class="lead">仮想通貨は、世界中探しても未だ誰もハッキングできたことのないブロックチェーン技術によって守られています。そして、寄付されたビットコインは、Multisig（マルチシグ）の実装されたウォレットに集められ、NPO側とFSHARP側の同意がないとビットコインを移動できない仕組みを取り入れています。この仕組みによって、仮にパスワードが一つ流出したりしてもビットコインの盗難を防ぐことができますし、FSHARP側も無断でビットコインを移動することができないため、マウントゴックス倒産（現在捜査継続中）のような事件も防ぐことができ、セキュリティーも万全です。</p>-->
-    <!--            </div>-->
-    <!--            <div class="col-lg-5 col-lg-offset-2 col-sm-6">-->
-    <!--                <img class="img-responsive" src="img/phones.png" alt="">-->
-    <!--            </div>-->
-    <!--        </div>-->
-
-    <!--    </div>-->
-        <!-- /.container -->
-
-    <!--</div>-->
-    <!-- /.content-section-a -->
-
-<!--    <div class="content-section-a">-->
-
-<!--        <div class="container">-->
-
-<!--            <div class="row">-->
-<!--<br>       (1) 発展途上国（例えばハイチ：外国への出稼ぎ労働者からの海外送金でGDPの2割（1,600億円）を獲得している。）-->
-<!--<br>-->
-　 
-
-<!--現在海外送金には間に入る銀行で8%送金手数料(ハイチの場合、128億円)がかかっており、ハイチで待つ家族へのお金がこの分減っている。ブロックチェーンを使った送金アプリでは0.25%の手数料にできた実績があり、このアプリをハイチ政府と協働開発して手数料を1%に設定・浸透させればハイチのGDP112億円上昇、開発ベンダーに16億円の収益があがる。-->
-
-<!--ここでハイチからきっと国家表彰もの。-->
-
-　
-
-<!--　<br>-->
 <!--ちなみにハイチ公認アプリを取れたらフィリピン（国内GDP37兆円、海外送金3.7兆円）にかかっている手数料2,960億円市場も変えられると思われ、フィリピンGDPを2,590億円上昇、開発ベンダーに370億円の収益があがる。-->
 
 　
@@ -176,36 +99,25 @@
 <!--発展途上国の子どもたちへお金を送る寄付のやり方も、ブロックチェーンを使うことで変える事ができます。投資先の子どもたちがきちんと体調管理が出来たり、勉強できたりしていると病院診断の結果やテスト結果などがブロックチェーンに書き込まれ、これが一定値以上であればスマートコントラクト(目的縛りを行い、親の目的外使い込みなども制限)で自動的に投資や融資を継続、状況がおかしい場合にはアラートを出し、直接連絡をとってみる等の遠方にいる人の状況把握がしやすくなります。これによって、社会貢献的な意識の人だけでなくマイクロファイナンスをしたい意識の方も途上国支援に参入してもらいやすくなり、信用するまで時間がかかっていた発展途上国起業家への投資も個人ベースで始まる気がします。例えばインド(途上国じゃないけど中国)の若い起業家など。ここの起業家リストを作成できるところがタイアップしたり。-->
 <!--　<br><br><br>-->
 <!--</div></div>-->
-
-
 <!--</div>-->
-
-
-
-
-	<a  name="contact"></a>
+	<a name="contact"></a>
     <div class="banner">
-
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>FSHARP</h2>
-                    
-                    <h3>もうNPOは、資金に困らない。</h3>
+                    <h2>F#</h2>
+                    <h3>NPOの為の資金調達サービス</h3>
                 </div>
                 <div class="col-lg-6">
                     <div class="w3-panel w3-large">
                         <br>
-                        <a href="{{ url('/register') }}" class="btn btn-default btn-lg"><span class="network-name">登録</span></a>
-                        <a href="{{ url('/login') }}" class="btn btn-default btn-lg"><span class="network-name">ログイン</span></a>
+                        <a style="background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);" href="{{ url('/register') }}" class="btn btn-default btn-lg"><span class="network-name">登録</span></a>
+                        <a style="background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);" href="{{ url('/login') }}" class="btn btn-default btn-lg"><span class="network-name">ログイン</span></a>
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- /.container -->
-
     </div>
     <!-- /.banner -->
 
