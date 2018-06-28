@@ -584,7 +584,7 @@
                     </div>
                     <!-- 特典利用期限 -->
                     <div class="form-group @if($errors->has('support_amount')) has-error @endif">
-                       <label for="support_amount-field">値段（例:0.01）</label>
+                       <label for="support_amount-field">値段（例:0.01）※審査期間一週間</label>
                     <input type="text" id="support_amount-field" name="support_amount" class="form-control" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}"/>
                        @if($errors->has("support_amount"))
                         <span class="help-block">{{ $errors->first("support_amount") }}</span>

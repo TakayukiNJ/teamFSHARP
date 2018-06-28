@@ -64,6 +64,9 @@
                 <a class="btn btn-just-icon btn-round btn-twitter" href="https://twitter.com/IbRducocvvsX0bC">
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
+                <a class="btn btn-just-icon btn-round btn-github" href="https://github.com/TakayukiNJ/tamFSHARP">
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
         <div class="col-md-9 col-sm-9 col-12 ml-auto mr-auto">
@@ -132,12 +135,12 @@
                             </li>
                             <li>
                                 <a href="{{ url('/npo/teamFSHARP#teams') }}">
-                                    Team F# members
+                                    F♯ members
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/npo/teamFSHARP#pricing') }}">
-                                    Support with F#
+                                    Support
                                 </a>
                             </li>
                         </ul>
@@ -172,7 +175,7 @@
                         <!--|-->
                         <li>
                             <a href="{{ url('/terms') }}">
-                                Terms
+                                Terms（利用規約）
                             </a>
                         </li>
                         |

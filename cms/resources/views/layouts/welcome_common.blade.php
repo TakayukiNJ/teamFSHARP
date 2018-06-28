@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-
 <head>
-  @yield('head')
-  @yield('script')
+@yield('welcome_head')
 </head>
-
 <body class="presentation-page loading">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113255449-1"></script>
@@ -15,13 +12,12 @@
     gtag('js', new Date());
     gtag('config', 'UA-113255449-1');
   </script>
-  @yield('nav_lp')
-  @yield('headers')
-  @yield('content')
+<!--@ yield('nav_lp')-->
+@yield('welcome_content')
 </body>
-
 <footer class="footer footer-black footer-big">
-  @yield('footer')
+@yield('footer')
 </footer>
-
+@yield('welcome_script')
 </html>
+
