@@ -6,7 +6,6 @@
 
 <body class="presentation-page loading">
 @yield('nav_lp')
-
 @yield('body_headers')
 @yield('content')
 

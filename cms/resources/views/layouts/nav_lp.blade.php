@@ -1,6 +1,6 @@
 @section('nav_lp')
 <!--<div class="header-1">-->
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
+    <!--<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">-->
         
     <!--<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">-->
     <!--<nav class="navbar navbar-expand-lg fixed-top nav-down">-->
@@ -31,7 +31,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-scroll="true" href="{{ url('/login') }}">
                             @lang('app.login')
-                            </a>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-round btn-danger" href="{{ url('/register') }}">
@@ -76,7 +76,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    <!--</nav>-->
 <!--</div>-->
     
 @endsection

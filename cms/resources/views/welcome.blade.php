@@ -1,35 +1,31 @@
 @extends('layouts.welcome_common')
 @include('layouts.welcome_head')
 @include('layouts.welcome_script')
-<!--@ include('layouts.nav_lp')-->
+@include('layouts.nav_lp')
+@include('layouts.welcome_body_headers')
 @include('layouts.footer')
 @section('welcome_content')
-    
-<div class="wrapper">
-	<div class="page-header section-dark" style="background-image: url('assets/img/sections/pk-pro-cover.jpg')">
-		<div class="content-center">
-			<div class="container">
-				<div class="title-brand">
-					<h1 class="presentation-title">F#</h1>
-					<!--<div class="type">F♯</div>-->
-					<div class="fog-low">
-						<img src="assets/img/sections/fog-low.png" alt="">
-					</div>
-					<div class="fog-low right">
-						<img src="assets/img/sections/fog-low.png" alt="">
-					</div>
+<div class="page-header section-dark" style="background-image: url('assets/img/sections/pk-pro-cover.jpg')">
+	<div class="content-center">
+		<div class="container">
+			<div class="title-brand">
+				<h1 class="presentation-title">F#</h1>
+				<!--<div class="type">F♯</div>-->
+				<div class="fog-low">
+					<img src="assets/img/sections/fog-low.png" alt="">
 				</div>
-
-				<h2 class="presentation-subtitle text-center">NPO専用の資金調達サービス </h2>
+				<div class="fog-low right">
+					<img src="assets/img/sections/fog-low.png" alt="">
+				</div>
 			</div>
+			<h2 class="presentation-subtitle text-center">NPO専用の資金調達サービス </h2>
 		</div>
-		<h6 class="category category-absolute">Designed and coded by
-			<a href="https://www.creative-tim.com" target="_blank">
-				<img src="assets/img/creative-tim-white-slim2.png" class="creative-tim-logo">
-			</a>
-		</h6>
 	</div>
-
+	<h6 class="category category-absolute">Designed and coded by
+		<a href="https://www.creative-tim.com" target="_blank">
+			<img src="assets/img/creative-tim-white-slim2.png" class="creative-tim-logo">
+		</a>
+	</h6>
 
 	<div class="section section-dark section-summary">
     	<div class="container">
@@ -73,7 +69,7 @@
 			</div>
     	</div>
     </div>
-
+<div class="wrapper">
 	<div class="section section-components section-dark">
 		<div class="row">
 			<div class="col-md-12 col-lg-6">
