@@ -15,7 +15,9 @@
     gtag('js', new Date());
     gtag('config', 'UA-113255449-1');
   </script>
-  @yield('nav_lp')
+  <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
+    @yield('nav_lp')
+  </nav>
   @yield('headers')
   @yield('content')
 </body>

@@ -5,7 +5,7 @@ return [
     'register' => ' 登録',
     'login' => ' ログイン',
     
-    'make/ask my page' => '掲載/相談する',
+    'produceMyPage' => '掲載する',
     'ask my page' => '相談する',
     'npo page' => 'NPOページ',
     'npo return edit' => '優待編集',

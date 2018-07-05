@@ -1,79 +1,30 @@
 @extends('layouts.welcome_common')
+
 @include('layouts.welcome_head')
 @include('layouts.welcome_script')
-<!--@ include('layouts.nav_lp')-->
-@include('layouts.footer')
+@include('layouts.nav_lp')
+@include('layouts.welcome_script')
+
 @section('welcome_content')
-    
-<div class="wrapper">
-	<div class="page-header section-dark" style="background-image: url('assets/img/sections/pk-pro-cover.jpg')">
-		<div class="content-center">
-			<div class="container">
-				<div class="title-brand">
-					<h1 class="presentation-title">F#</h1>
-					<!--<div class="type">F♯</div>-->
-					<div class="fog-low">
-						<img src="assets/img/sections/fog-low.png" alt="">
-					</div>
-					<div class="fog-low right">
-						<img src="assets/img/sections/fog-low.png" alt="">
-					</div>
-				</div>
 
-				<h2 class="presentation-subtitle text-center">NPO専用の資金調達サービス </h2>
+<div class="page-header section-dark" style="background-image: url('{{ url('/') }}/../img/sections/forest-bg.jpg')">
+	<div class="content-center">
+		<div class="container">
+			<div class="title-brand">
+				<h1 class="presentation-title">F♯</h1>
+				<!--<div class="type">F♯</div>-->
 			</div>
+			<h2 class="presentation-subtitle text-center">NPO専用の資金調達サービス</h2>
+			
+            <div class="w3-panel w3-large">
+                <br>
+                <a style="color: black; background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);" href="{{ url('/npo_registers/create') }}" class="btn btn-default btn-lg"><span class="network-name">NPOページ作成</span></a>
+            </div>
 		</div>
-		<h6 class="category category-absolute">Designed and coded by
-			<a href="https://www.creative-tim.com" target="_blank">
-				<img src="assets/img/creative-tim-white-slim2.png" class="creative-tim-logo">
-			</a>
-		</h6>
 	</div>
-
-
-	<div class="section section-dark section-summary">
-    	<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-				   <div class="info">
-						<div class="icon icon-danger">
-							<i class="nc-icon nc-layout-11"></i>
-						</div>
-						<div class="description">
-							<h4 class="info-title"> Huge Number of Components </h4>
-							<p>The kit comes with components designed to look perfect together. All components fit perfectly with each other.</p>
-						</div>
-				   </div>
-				</div>
-
-				<div class="col-md-4">
-				   <div class="info">
-						<div class="icon icon-danger">
-							<i class="nc-icon nc-tile-56"></i>
-						</div>
-						<div class="description">
-							<h4 class="info-title"> Multi-Purpose Sections </h4>
-							<p>The sections will help you generate pages in no time. From team presentation to pricing options, you can easily customise and built your examples.</p>
-						</div>
-				   </div>
-				</div>
-
-				<div class="col-md-4">
-				   <div class="info">
-						<div class="icon icon-danger">
-							<i class="nc-icon nc-paper"></i>
-						</div>
-						<div class="description">
-							<h4 class="info-title"> Example Pages </h4>
-							<p>Speed up your development time or get inspired with the large number of example pages. You can jump start your development with our pre-built example pages.</p>
-						</div>
-				   </div>
-				</div>
-
-			</div>
-    	</div>
-    </div>
-
+</div>
+	
+<div class="wrapper">
 	<div class="section section-components section-dark">
 		<div class="row">
 			<div class="col-md-12 col-lg-6">
@@ -199,9 +150,8 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="section-cols">
-				<div class="container-fluid">
-					<div class="row">
+			
+
 						<div class="col-md-3">
 							<img src="assets/img/presentation-page/screenshots/header-1.jpg" alt="" />
 						</div>
@@ -265,3 +215,7 @@
 		</div>
 	</div>
 </div>
+
+
+@endsection
+@include('layouts.footer')

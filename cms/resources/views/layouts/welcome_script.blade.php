@@ -45,8 +45,6 @@
     
       gtag('config', 'UA-119878421-1');
     </script>
-
-
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
