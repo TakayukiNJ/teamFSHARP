@@ -5,9 +5,14 @@
 </head>
 
 <body class="presentation-page loading">
-@yield('nav_lp')
-@yield('body_headers')
-@yield('content')
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
+    <!--<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">-->
+    <!--<nav class="navbar navbar-expand-lg fixed-top nav-down">-->
+    <!--<nav class="navbar navbar-expand-lg fixed-top navbar-transparent nav-down bg-success" color-on-scroll="220">-->
+        @yield('nav_lp')
+    </nav>
+    @yield('body_headers')
+    @yield('content')
 
 </body>
 

@@ -5,8 +5,8 @@ return [
     'register' => ' register',
     'login' => ' login',
     
-    'make/ask my page' => 'make/ask own page',
-    'ask my page' => 'ask own page',
+    'produceMyPage' => 'produce own page',
+    'ask my page' => 'ask my page',
     'npo page' => 'NPO page',
     'npo return edit' => 'return edit',
     'npo detail edit' => 'detail edit',
