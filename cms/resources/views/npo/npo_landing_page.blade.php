@@ -105,7 +105,7 @@
                                             <a href="https://www.facebook.com/{{ $npo_info->member1_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member1_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member1_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member1_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -283,7 +283,6 @@
                             <div class="tab-pane active" id="personal" role="tabpanel">
                                 <div class="space-top"></div>
                                 <div class="row">
-                                    
                                     <!-- ビットコインで支援する -->
                                     <div class="col-md-6">
                                         <div class="card card-pricing">
