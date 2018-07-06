@@ -25,197 +25,123 @@
 </div>
 	
 <div class="wrapper">
-	<div class="section section-components section-dark">
-		<div class="row">
-			<div class="col-md-12 col-lg-6">
-				<div class="image-container">
-					<img class="components-macbook" src="assets/img/presentation-page/laptop-basic.png" alt="" />
-					<img class="table-img" src="assets/img/presentation-page/table.jpg" alt="" />
-					<img class="share-btn-img" src="assets/img/presentation-page/share-btn.png" alt="" />
-					<img class="coloured-card-btn-img" src="assets/img/presentation-page/coloured-card-with-btn.png" alt="" />
-					<img class="coloured-card-img" src="assets/img/presentation-page/coloured-card.png" alt="" />
-					<img class="social-img" src="assets/img/presentation-page/social-row.png" alt="" />
-					<img class="pin-btn-img" src="assets/img/presentation-page/pin-btn.png" alt="" />
-				</div>
-			</div>
-			<div class="col-md-10 col-lg-4 ml-auto mr-auto">
-				<div class="container basic-container">
-					<h3 class="title">Basic Components</h2>
-					<h6 class="category">The core elements of your website</h6>
-					<h5 class="description">We re-styled every Bootstrap 4 element to match the Paper Kit style.  All the Bootstrap 4 components that you need in a development have been re-design with the new look. Besides the numerous basic elements, we have also created additional classes. All these items will help you take your project to the next level.</h5>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="section section-cards section-gold">
-		<div class="codrops-header">
-			<div class="row">
-				<div class="col-md-6 col-lg-4">
-					<div class="section-description">
-						<h3 class="title">Beautiful Cards</h3>
-						<h6 class="category">One Card for Every Problem</h6>
-						<h5 class="description">We have gone above and beyond with options for you to organise your information. From cards designed for blog posts, to product cards or user profiles, you will have many options to choose from. All the cards follow the Paper Kit style principles and have a design that stands out.  </h5>
-					</div>
-				</div>
-			</div>
-		</div>
-		<section class="section-intro ">
-			<div class="isolayer isolayer--deco1 isolayer--shadow ">
-				<ul class="grid">
-					<li class="grid__item first-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="https://nipponshotenkai.com/wp-content/uploads/2017/03/others.png" alt="01" />
-						</a>
-					</li>
-					<li class="grid__item second-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="assets/img/presentation-page/try/twitter-card.jpg" alt="02" />
-						</a>
-					</li>
-					<li class="grid__item third-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="assets/img/presentation-page/try/facebook-card.jpg" alt="03" />
-						</a>
-					</li>
-					<li class="grid__item fourth-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="assets/img/presentation-page/try/pricing-card.jpg" alt="04" />
-						</a>
-					</li>
-					<li class="grid__item fifth-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="assets/img/presentation-page/try/blog-card.jpg" alt="05" />
-						</a>
-					</li>
-					<li class="grid__item sixth-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="assets/img/presentation-page/try/capture.jpg" alt="06" />
-						</a>
-					</li>
-					<li class="grid__item seventh-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="assets/img/presentation-page/try/team-card.jpg" alt="07" />
-						</a>
-					</li>
-					<li class="grid__item eight-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="assets/img/presentation-page/try/testimonal-card.jpg" alt="07" />
-						</a>
-					</li>
-					<li class="grid__item ninth-card">
-						<a class="grid__link" href="index.html#cards">
-							<img class="grid__img layer" src="assets/img/presentation-page/try/pricing-card-icon.jpg" alt="07" />
-						</a>
-					</li>
-				</ul>
-			</div>
-		</section><!--/intro-->
-
-	</div>
-	<div id="fadeInAnim">
-		<div class="section section-content section-gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7">
-						<div class="image-container">
-							<img class="img" src="assets/img/presentation-page/ipad-content-2.png"/>
-							<img class="area-img add-animation" src="assets/img/presentation-page/ipad-left-img.jpg"/>
-							<img class="info-img add-animation" src="assets/img/presentation-page/ipad-right-img.jpg"/>
-						</div>
-					</div>
-
-					<div class="col-md-4 ">
-						<div class="section-description">
-							<h3 class="title">Content Areas</h3>
-							<h6 class="category">For Areas that Need More Space</h6>
-							<h5 class="description">We took into consideration multiple use cases and came up with some specific elements for you. If you need elements such as tables, comments, description areas, tabs and many others, we've got you covered. They're beautiful and easy to use for the end user navigating your website. </h5>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="section section-sections section-gray">
-		<div class="container">
-			<div class="col-md-8 ml-auto mr-auto">
-				<div class="section-description text-center">
-					<h2 class="title">Sections you will love</h2>
-
-					<h5 class="description"> Build pages in no time using pre-made sections! We have created multiple sections for you to put together and customise into pixel perfect example pages. From headers to footers, you will be able to choose the best combination for your project.</h5>
-					<br/>
-					<a href="sections.html" target="_blank" class="btn btn-rose btn-round">View All Sections</a>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid">
-			
-
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/header-1.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/header-2.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/header-3.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/header-4.jpg" alt="" />
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/team-cards-social.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/bg-pricing-card.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/white-pricing-card.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/team-member-card.jpg" alt="" />
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/testimonials-1.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/blog-bg-cards.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/our-products.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/projects-cards.jpg" alt="" />
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/blogpost-cards.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/blogpost-2-cards.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/coloured-picind-card.jpg" alt="" />
-						</div>
-						<div class="col-md-3">
-							<img src="assets/img/presentation-page/screenshots/team-3.jpg" alt="" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="team-5 section-image" style="background-image: url('{{ url('/') }}/../img/sections/martin-knize.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h2 class="title">The Executive Team 5</h2>
+                        <h5 class="description">F♯に関わっている、主なチームメンバーです。メンバー募集中です！</h5>
+                    </div>
+                </div>
+                <div class="row">
+    				<!-- 仲条 -->
+    				<div class="col-md-6">
+    					<div class="card card-profile card-plain">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="card-img-top">
+                                        <a href="#pablo">
+                                            <img class="img" src="{{ url('/') }}/../img/faces/nakajo.jpg" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body text-left">
+                                        <h4 class="card-title">Nakajo Takayuki</h4>
+                                        <h6 class="card-category">Founder</h6>
+                                        <p class="card-description">
+                                        	デジタルハリウッド大学大学院の1年生。個人の価値を売買するサービス『VALU』で、購入者ランキング3位。NPOを通じて1年間アメリカに留学経験有
+                                        </p>
+                                        <div class="card-footer">
+                                            <a href="https://twitter.com/TakayukiNakajo" class="btn btn-just-icon btn-link btn-neutral"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://www.facebook.com/nj.takayuki" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://github.com/TakayukiNJ" class="btn btn-just-icon btn-link btn-neutral"><i class="fa fa-github"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    					</div>
+    				</div>
+    				<!-- カズさん -->
+    				<div class="col-md-6">
+    					<div class="card card-profile card-plain">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="card-img-top">
+                                        <a href="#pablo">
+                                            <img class="img" src="{{ url('/') }}/../img/faces/kazu.jpg" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body text-left">
+                                        <h4 class="card-title">Watanabe Kazuki</h4>
+                                        <h6 class="card-category">WEB ENGENEER</h6>
+                                        <p class="card-description">
+                                        	WEBエンジニア歴20年以上。銀行の大規模システム開発経験有。北海道在住の二児の父。F♯のバグ改修や機能の改善をサポートしています。
+                                        </p>
+                                        <div class="card-footer">
+                                            <a href="https://www.facebook.com/DRGK.feat.lhormace" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://github.com/lhormace" class="btn btn-just-icon btn-link btn-neutral"><i class="fa fa-github"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    					</div>
+    				</div>
+    				<!-- 寺ちゃん -->
+    				<div class="col-md-6">
+    					<div class="card card-profile card-plain">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="card-img-top">
+                                        <a href="#pablo">
+                                            <img class="img" src="{{ url('/') }}/../img/faces/yuya.jpg" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body text-left">
+                                        <h4 class="card-title">Terada Yuya</h4>
+                                        <h6 class="card-category">General Researcher</h6>
+                                        <p class="card-description">
+                                        	メンタルヘルスのスタートアップで勤務する、大阪大学卒のAIエンジニア。現在米国シリコンバレーやデンマークで資金調達を実施中。
+                                        </p>
+                                        <div class="card-footer">
+                                            <a href="https://twitter.com/mktrdbg" class="btn btn-just-icon btn-link btn-neutral"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://www.facebook.com/yuya.terada.777" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    					</div>
+    				</div>
+    				<div class="col-md-6">
+    					<div class="card card-profile card-plain">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="card-img-top">
+                                        <a href="#pablo">
+                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body text-left">
+                                        <h4 class="card-title">WANTED</h4>
+                                        <h6 class="card-category"></h6>
+                                        <p class="card-description">
+                                            メンバー募集中
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+    					</div>
+    				</div>
+    			</div>
+            </div>
+        </div>
 </div>
-
 
 @endsection
 @include('layouts.footer')
