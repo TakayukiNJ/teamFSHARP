@@ -147,7 +147,7 @@
                                             <a href="https://www.facebook.com/{{ $npo_info->member2_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member2_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member2_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member2_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -190,7 +190,7 @@
                                             <a href="https://www.facebook.com/{{ $npo_info->member3_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member3_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member3_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member3_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -233,7 +233,7 @@
                                             <a href="https://www.facebook.com/{{ $npo_info->member4_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member4_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member4_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member4_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
