@@ -32,7 +32,7 @@
 
                             <div class="col-md-6" id="root">
                                 <input id="email" type="email" class="form-control" name="email" v-model="email" value="{{ old('email') }}" required autofocus>
-                                <p>あなたの入力しているemailは、{{ 'email' }}</p>
+                                <p>あなたの入力しているemailは、@{{ email }}</p>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
