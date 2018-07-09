@@ -1,5 +1,22 @@
 @extends('layouts.app')
 @section('content')
+
+<script src="https:/unpkg.com/vue@2.1.3/dist/vue.js"></script>
+<script>
+    
+    let data = {
+        email: "Hello World"
+    }
+
+    new Vue({
+        el: '#root',
+        data: {
+            email: 'Hello World'
+        }
+    })
+
+</script>
+
 <br>
 <div class="container">
     <div class="row">
@@ -13,9 +30,9 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mailアドレス</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
+                            <div class="col-md-6" id="root">
+                                <input id="email" type="email" class="form-control" name="email" v-model="email" value="{{ old('email') }}" required autofocus>
+                                <p>あなたの入力しているemailは、{{ 'email' }}</p>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>

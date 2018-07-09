@@ -14,7 +14,7 @@
 				<h1 class="presentation-title">F♯</h1>
 				<!--<div class="type">F♯</div>-->
 			</div>
-			<h2 class="presentation-subtitle text-center">NPO専用の資金調達サービス</h2>
+			<h2 class="presentation-subtitle text-center">NPO専用 資金調達サービス</h2>
 			
             <div class="w3-panel w3-large">
                 <br>
@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">The Executive Team 5</h2>
+                        <h2 class="title">The Executive Team</h2>
                         <h5 class="description">F♯に関わっている、主なチームメンバーです。メンバー募集中です！</h5>
                     </div>
                 </div>
