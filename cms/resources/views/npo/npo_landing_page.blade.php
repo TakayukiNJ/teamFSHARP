@@ -242,6 +242,49 @@
                         </div>
                     </div>
                     @endif
+                    
+                    <!-- ５人目 -->
+                    @if (( $npo_info->member5 ) != "")
+                    <div class="col-md-6">
+                        <div class="card card-profile card-plain">
+                            <div class="row">
+                                <!-- 画像 -->
+                                <div class="col-md-5">
+                                    <div class="card-img-top">
+                                        <a href="#pablo">
+                                            @if(($npo_info->member5_pic) != "")
+                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member5_pic }}"/>
+                                            @else
+                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
+                                            @endif    
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- 詳細 -->
+                                <div class="col-md-7">
+                                    <div class="card-body text-left">
+                                        <h4 class="card-title">{{ $npo_info->member5 }}</h4>
+                                        <h6 class="card-category">{{ $npo_info->member5_pos }}</h6>
+                                        <p class="card-description">
+                                            {{ $npo_info->member5_detail }}
+                                        </p>
+                                        <div class="card-footer pull-left">
+                                            @if (( $npo_info->member5_twitter ) != "")
+                                            <a href="https://twitter.com/{{ $npo_info->member5_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            @endif
+                                            @if (( $npo_info->member5_facebook ) != "")
+                                            <a href="https://www.facebook.com/{{ $npo_info->member5_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            @endif
+                                            @if (( $npo_info->member5_linkedin ) != "")
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member5_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
