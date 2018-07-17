@@ -103,7 +103,7 @@
                     @if($npo_info->member1 != "")
                        <div class="form-group @if($errors->has('member1_pos')) has-error @endif">
                           <label for="member1_pos-field">①のメンバーの役割</label>
-                       <input type="text" id="member1_pos-field" name="member1_pos" class="form-control" value="{{ is_null(old("member1_pos")) ? $npo_info->member1_pos : old("member1_pos") }}"/>
+                       <input type="text" id="member1_pos-field" rows="3" name="member1_pos" class="form-control" value="{{ is_null(old("member1_pos")) ? $npo_info->member1_pos : old("member1_pos") }}"/>
                           @if($errors->has("member1_pos"))
                            <span class="help-block">{{ $errors->first("member1_pos") }}</span>
                           @endif
@@ -149,7 +149,7 @@
                     @if($npo_info->member2 != "")
                        <div class="form-group @if($errors->has('member2_pos')) has-error @endif">
                           <label for="member2_pos-field">②のメンバーの役割</label>
-                       <input type="text" id="member2_pos-field" name="member2_pos" class="form-control" value="{{ is_null(old("member2_pos")) ? $npo_info->member2_pos : old("member2_pos") }}"/>
+                       <input type="text" id="member2_pos-field" rows="3" name="member2_pos" class="form-control" value="{{ is_null(old("member2_pos")) ? $npo_info->member2_pos : old("member2_pos") }}"/>
                           @if($errors->has("member2_pos"))
                            <span class="help-block">{{ $errors->first("member2_pos") }}</span>
                           @endif
@@ -195,7 +195,7 @@
                     @if($npo_info->member3 != "")
                        <div class="form-group @if($errors->has('member3_pos')) has-error @endif">
                           <label for="member3_pos-field">③のメンバーの役割</label>
-                       <input type="text" id="member3_pos-field" name="member3_pos" class="form-control" value="{{ is_null(old("member3_pos")) ? $npo_info->member3_pos : old("member3_pos") }}"/>
+                       <input type="text" id="member3_pos-field" rows="3" name="member3_pos" class="form-control" value="{{ is_null(old("member3_pos")) ? $npo_info->member3_pos : old("member3_pos") }}"/>
                           @if($errors->has("member3_pos"))
                            <span class="help-block">{{ $errors->first("member3_pos") }}</span>
                           @endif
@@ -241,7 +241,7 @@
                     @if($npo_info->member4 != "")
                       <div class="form-group @if($errors->has('member4_pos')) has-error @endif">
                          <label for="member4_pos-field">④のメンバーの役割</label>
-                      <input type="text" id="member4_pos-field" name="member4_pos" class="form-control" value="{{ is_null(old("member4_pos")) ? $npo_info->member4_pos : old("member4_pos") }}"/>
+                      <input type="text" id="member4_pos-field" rows="3" name="member4_pos" class="form-control" value="{{ is_null(old("member4_pos")) ? $npo_info->member4_pos : old("member4_pos") }}"/>
                          @if($errors->has("member4_pos"))
                           <span class="help-block">{{ $errors->first("member4_pos") }}</span>
                          @endif
@@ -287,7 +287,7 @@
                     @if($npo_info->member5 != "")
                       <div class="form-group @if($errors->has('member5_pos')) has-error @endif">
                          <label for="member5_pos-field">⑤のメンバーの役割</label>
-                      <input type="text" id="member5_pos-field" name="member5_pos" class="form-control" value="{{ is_null(old("member5_pos")) ? $npo_info->member5_pos : old("member5_pos") }}"/>
+                      <input type="text" id="member5_pos-field" rows="3" name="member5_pos" class="form-control" value="{{ is_null(old("member5_pos")) ? $npo_info->member5_pos : old("member5_pos") }}"/>
                          @if($errors->has("member5_pos"))
                           <span class="help-block">{{ $errors->first("member5_pos") }}</span>
                          @endif
@@ -334,7 +334,7 @@
                     @if($npo_info->member6 != "")
                       <div class="form-group @if($errors->has('member6_pos')) has-error @endif">
                          <label for="member6_pos-field">⑥のメンバーの役割</label>
-                      <input type="text" id="member6_pos-field" name="member6_pos" class="form-control" value="{{ is_null(old("member6_pos")) ? $npo_info->member6_pos : old("member6_pos") }}"/>
+                      <input type="text" id="member6_pos-field" rows="3" name="member6_pos" class="form-control" value="{{ is_null(old("member6_pos")) ? $npo_info->member6_pos : old("member6_pos") }}"/>
                          @if($errors->has("member6_pos"))
                           <span class="help-block">{{ $errors->first("member6_pos") }}</span>
                          @endif
@@ -381,7 +381,7 @@
                     @if($npo_info->member7 != "")
                       <div class="form-group @if($errors->has('member7_pos')) has-error @endif">
                          <label for="member7_pos-field">⑦のメンバーの役割</label>
-                      <input type="text" id="member7_pos-field" name="member7_pos" class="form-control" value="{{ is_null(old("member7_pos")) ? $npo_info->member7_pos : old("member7_pos") }}"/>
+                      <input type="text" id="member7_pos-field" rows="3" name="member7_pos" class="form-control" value="{{ is_null(old("member7_pos")) ? $npo_info->member7_pos : old("member7_pos") }}"/>
                          @if($errors->has("member7_pos"))
                           <span class="help-block">{{ $errors->first("member7_pos") }}</span>
                          @endif
@@ -428,7 +428,7 @@
                     @if($npo_info->member8 != "")
                       <div class="form-group @if($errors->has('member8_pos')) has-error @endif">
                          <label for="member8_pos-field">⑧のメンバーの役割</label>
-                      <input type="text" id="member8_pos-field" name="member8_pos" class="form-control" value="{{ is_null(old("member8_pos")) ? $npo_info->member8_pos : old("member8_pos") }}"/>
+                      <input type="text" id="member8_pos-field" rows="3" name="member8_pos" class="form-control" value="{{ is_null(old("member8_pos")) ? $npo_info->member8_pos : old("member8_pos") }}"/>
                          @if($errors->has("member8_pos"))
                           <span class="help-block">{{ $errors->first("member8_pos") }}</span>
                          @endif
@@ -475,7 +475,7 @@
                     @if($npo_info->member9 != "")
                       <div class="form-group @if($errors->has('member9_pos')) has-error @endif">
                          <label for="member9_pos-field">⑨のメンバーの役割</label>
-                      <input type="text" id="member9_pos-field" name="member9_pos" class="form-control" value="{{ is_null(old("member9_pos")) ? $npo_info->member9_pos : old("member9_pos") }}"/>
+                      <input type="text" id="member9_pos-field" rows="3" name="member9_pos" class="form-control" value="{{ is_null(old("member9_pos")) ? $npo_info->member9_pos : old("member9_pos") }}"/>
                          @if($errors->has("member9_pos"))
                           <span class="help-block">{{ $errors->first("member9_pos") }}</span>
                          @endif
@@ -522,7 +522,7 @@
                     @if($npo_info->member10) != "")
                       <div class="form-group @if($errors->has('member10_pos')) has-error @endif">
                          <label for="member10_pos-field">⑩のメンバーの役割</label>
-                      <input type="text" id="member10_pos-field" name="member10_pos" class="form-control" value="{{ is_null(old("member10_pos")) ? $npo_info->member10_pos : old("member10_pos") }}"/>
+                      <input type="text" id="member10_pos-field" rows="3" name="member10_pos" class="form-control" value="{{ is_null(old("member10_pos")) ? $npo_info->member10_pos : old("member10_pos") }}"/>
                          @if($errors->has("member10_pos"))
                           <span class="help-block">{{ $errors->first("member10_pos") }}</span>
                          @endif
