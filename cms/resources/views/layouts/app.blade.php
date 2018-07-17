@@ -122,7 +122,6 @@
 
                             <!-- ユーザー -->
                             <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -151,6 +150,8 @@
                                     <li><a href="{{ url('/testviews') }}">developer's window</a></li>
                                     @endif
                                     @endif
+                                    <!-- 送金・入金履歴 -->
+                                    <li><a href="{!! url('/view/rireki/index.html?id='. Auth::user()->id. '&url='. Request::fullUrl(),[],true) !!}" target="_blank">送金・入金履歴</a></li>
                                 </ul>
                             </li>
                         @endif
