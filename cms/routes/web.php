@@ -294,7 +294,10 @@ Route::get('auth/login/callback/google', 'Auth\SocialController@getGoogleAuthCal
 // bitflyerの履歴(購入履歴：送金履歴）
 Route::get('bitflyer/getHistorySupportTo', function()
 {
-    $article = ['id' => 1, 'title' => "today's dialy", 'content' => "It's a sunny day."];
+/*    $article = [
+    { "no": 1, "date1":"20180510", "date2":"20180510", "npo_or_person":"テストNPO", "amount":100000, "intermediary":"BitFlyer" , "hand_counting_material":500, "suitable_for": "送金"},
+    { "no": 2, "date1":"20180510", "date2":"20180510", "npo_or_person":"テストNPO", "amount":100000, "intermediary":"BitFlyer" , "hand_counting_material":500, "suitable_for": "送金"}
+    ];*/
     return Response::json($article);
 });
 
@@ -306,9 +309,24 @@ Route::get('bitflyer/getHistorySupportFrom', function()
 });
 
 // bitflyerの送金
-Route::get('bitflyer/support', function()
+
+/*Route::get('bitflyer/support/{id}', function()
 {
-    $article = ['id' => 1, 'title' => "today's dialy", 'content' => "It's a sunny day."];
+    // ユーザIDを含む検索条件を取得
+    $query = DB::table('vision_data');
+    $query -> where('user_id', $user);
+
+    $data['collections'] = $query->get();
+
+    // ユーザIDをキーにデータを読み出す
+
+    // 検索条件で絞り込む
+
+    // JSON形式のファイルを返す
+    $article = [['no' => 1, 'date1' => "20180510", 'date2' => "20180510", 'npo_or_person' => "テストNPO", 'amount' => "100000", 'intermediary' => "BitFlyer" , 'hand_counting_material' => 500, 'suitable_for' => "送金"]];
     return Response::json($article);
 });
+*/
 
+Route::get('bitflyer/support/transfer/{id}', 'Bitflyer\BitflyerHistoryController@transfer');
+Route::get('bitflyer/support/payment/{id}', 'Bitflyer\BitflyerHistoryController@payment');
