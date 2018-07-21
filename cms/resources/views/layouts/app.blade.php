@@ -122,8 +122,9 @@
 
                             <!-- ユーザー -->
                             <li class="dropdown">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
+                                <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">
+                                    {{ Auth::user()->name }}<span class="caret"></span>
+                                </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <!-- ホーム画面 -->
                                     <li><a href="{{ url('home/home_own_timeline') }}">@lang('app.mypage')</a></li>
@@ -146,12 +147,13 @@
                                     </li>
                                     <!-- Developer's Window -->
                                     @if (isset($user))
-                                    @if (($user=='watanabe.kazuki@plum.plala.or.jp') or ($user=='nj.takayuki@gmail.com') or ($user='unitednum@gmail.com'))
-                                    <li><a href="{{ url('/testviews') }}">developer's window</a></li>
-                                    @endif
+                                        @if (($user=='watanabe.kazuki@plum.plala.or.jp') or ($user=='nj.takayuki@gmail.com') or ($user='unitednum@gmail.com'))
+                                        <li><a href="{{ url('/testviews') }}">developer's window</a></li>
+                                        <!-- 送金・入金履歴 -->
+                                        <li><a href="{!! url('/view/rireki/index.html?id='. Auth::user()->id. '&url='. Request::fullUrl(),[],true) !!}" target="_blank">送金・入金履歴</a></li>@endif
                                     @endif
                                     <!-- 送金・入金履歴 -->
-                                    <li><a href="{!! url('/view/rireki/index.html?id='. Auth::user()->id. '&url='. Request::fullUrl(),[],true) !!}" target="_blank">送金・入金履歴</a></li>
+                                    <!--<li><a href="{!! url('/view/rireki/index.html?id='. Auth::user()->id. '&url='. Request::fullUrl(),[],true) !!}" target="_blank">送金・入金履歴</a></li>-->
                                 </ul>
                             </li>
                         @endif

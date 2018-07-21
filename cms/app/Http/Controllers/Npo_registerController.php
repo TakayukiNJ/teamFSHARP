@@ -119,7 +119,7 @@ class Npo_registerController extends Controller {
 		
 		$rules = [
 		  //  'npo_name' => 'required|unique:npo_registers,npo_name',
-		    'title' => 'required | min:3 | max:55',
+		    'title' => 'required | min:1 | max:55',
 		];
 		$this -> validate($request, $rules);
         
@@ -255,6 +255,12 @@ class Npo_registerController extends Controller {
 
 		return redirect()->route('npo_registers.index')->with('message', 'Item deleted successfully.');
 	}
+	
+	protected $dates = [
+        'support_contents_detail',
+        'created_at',
+        'updated_at'
+    ];
     
     public function landing(string $npo_name)
     {
@@ -262,6 +268,8 @@ class Npo_registerController extends Controller {
     	$currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
 		//連想配列に入れtBladeテンプレートに渡しています。
     	$data['npo_info'] = $currentNpoInfo;
+    // 	$data->support_contents_detail->format('Ymd');
+                      
     	return view('npo.npo_landing_page', $data);
     }
     
@@ -276,12 +284,6 @@ class Npo_registerController extends Controller {
 		//連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
         return view('npo_registers.edit', $data);
-    }
-    
-    public function edit_npopage(string $npo_name)
-    {
-    	
-    	
     }
     
 

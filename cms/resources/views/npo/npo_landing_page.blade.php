@@ -550,7 +550,7 @@
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
-                                                    <li><b>特典利用期限: {!! nl2br(e(trans($npo_info->support_contents_detail))) or '未設定' !!}</b></li>
+                                                    <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
                                                     <!--<li>※特典は変更する場合がございます。</li>-->
                                                     <li>※ご購入は、ビットコイン決済です。</li>
                                                 </ul>
@@ -572,7 +572,9 @@
                                                 <h6 class="card-category text-success">BTCをお持ちでない方</h6>
                                                 <h3 class="card-title">開設 ¥0</h3>
                                                 <div>
-                                                    <a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>
+                                                    <!-- 現在BitFlyer新規募集停止 -->
+                                                    <!--<a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
+                                                    <a href="https://zaif.jp/?ac=ha8meb0fu4 " target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -608,7 +610,7 @@
                                                     <li>※価格は今後、上下する可能性あり</li>
                                                 </ul>
                                                 <a class="indiesquare-tip-button btn btn-danger btn-round" href="//widget.indiesquare.me/tip/{{ $npo_info->code1 }}" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me">
-                                                    F#のトークンをもらう
+                                                    {{ $npo_info->title }}のトークンをもらう
                                                 </a>
                                                 @endif
                                                 <!-- <a href="//widget.indiesquare.me/tip/abc690e1a12d9e88" class="btn btn-warning btn-round">

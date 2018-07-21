@@ -162,7 +162,7 @@
                           @endif
                        </div>
                        <div class="form-group @if($errors->has('member2_twitter')) has-error @endif">
-                          <label for="member2_twitter-field">②のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
+                          <label for="member2_twitter-field">②のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入</label>
                        <input type="text" id="member2_twitter-field" name="member2_twitter" class="form-control" value="{{ is_null(old("member2_twitter")) ? $npo_info->member2_twitter : old("member2_twitter") }}"/>
                           @if($errors->has("member2_twitter"))
                            <span class="help-block">{{ $errors->first("member2_twitter") }}</span>
@@ -577,7 +577,7 @@
                     <!-- 特典利用期限 -->
                     <div class="form-group @if($errors->has('support_contents_detail')) has-error @endif">
                        <label for="support_contents_detail-field">特典利用期限（例:2018年12月31日）</label>
-                    <input type="text" id="support_contents_detail-field" name="support_contents_detail" class="form-control" value="{{ is_null(old("support_contents_detail")) ? $npo_info->support_contents_detail : old("support_contents_detail") }}"/>
+                    <input type="date" id="support_contents_detail-field" name="support_contents_detail" class="form-control" value="{{ is_null(old("support_contents_detail")) ? $npo_info->support_contents_detail : old("support_contents_detail") }}"/>
                        @if($errors->has("support_contents_detail"))
                         <span class="help-block">{{ $errors->first("support_contents_detail") }}</span>
                        @endif

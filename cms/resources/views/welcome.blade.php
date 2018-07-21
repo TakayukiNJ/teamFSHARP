@@ -7,7 +7,7 @@
 
 @section('welcome_content')
 
-<div class="page-header section-dark" style="background-image: url('{{ url('/') }}/../img/sections/forest-bg.jpg')">
+<div class="page-header section-dark" style="background-image: url('/img/sections/forest-bg.jpg')">
 	<div class="content-center">
 		<div class="container">
 			<div class="title-brand">
@@ -25,7 +25,7 @@
 </div>
 	
 <div class="wrapper">
-	<div class="team-5 section-image" style="background-image: url('{{ url('/') }}/../img/sections/martin-knize.jpg')">
+	<div class="team-5 section-image" style="background-image: url('/img/sections/martin-knize.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">

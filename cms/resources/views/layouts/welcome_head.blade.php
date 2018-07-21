@@ -1,7 +1,7 @@
 @section('welcome_head')
 
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="{{ url('/') }}/../favicon.ico" type="img/icon/favicon.ico"/>
+    <link rel="shortcut icon" href="{{ url('/') }}/../img/icon/favicon.ico" type="img/icon/favicon.ico"/>
     
     <link rel="apple-touch-icon" sizes="76x76" href="{{ url('/') }}/../img/apple-icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
