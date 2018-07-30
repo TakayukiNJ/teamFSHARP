@@ -323,7 +323,7 @@
                     @endif
                     
                     
-                    <!-- 5人目 -->
+                    <!-- 6人目 -->
                     <div class="form-group @if($errors->has('member6')) has-error @endif">
                        <label for="member6-field">メンバーの名前⑥</label>
                     <input type="text" id="member6-field" name="member6" class="form-control" value="{{ is_null(old("member6")) ? $npo_info->member6 : old("member6") }}"/>
@@ -369,8 +369,7 @@
                       </div>
                     @endif
                     
-                    
-                    <!-- 5人目 -->
+                    <!-- 7人目 -->
                     <div class="form-group @if($errors->has('member7')) has-error @endif">
                        <label for="member7-field">メンバーの名前⑦</label>
                     <input type="text" id="member7-field" name="member7" class="form-control" value="{{ is_null(old("member7")) ? $npo_info->member7 : old("member7") }}"/>
@@ -416,8 +415,7 @@
                       </div>
                     @endif
                     
-                    
-                    <!-- 5人目 -->
+                    <!-- 8人目 -->
                     <div class="form-group @if($errors->has('member8')) has-error @endif">
                        <label for="member8-field">メンバーの名前⑧</label>
                     <input type="text" id="member8-field" name="member8" class="form-control" value="{{ is_null(old("member8")) ? $npo_info->member8 : old("member8") }}"/>
@@ -463,8 +461,7 @@
                       </div>
                     @endif
                     
-                    
-                    <!-- 5人目 -->
+                    <!-- 9人目 -->
                     <div class="form-group @if($errors->has('member9')) has-error @endif">
                        <label for="member9-field">メンバーの名前⑨</label>
                     <input type="text" id="member9-field" name="member9" class="form-control" value="{{ is_null(old("member9")) ? $npo_info->member9 : old("member9") }}"/>
@@ -510,8 +507,7 @@
                       </div>
                     @endif
                     
-                    
-                    <!-- 5人目 -->
+                    <!-- 10人目 -->
                     <div class="form-group @if($errors->has('member10')) has-error @endif">
                        <label for="member10-field">メンバーの名前⑩</label>
                     <input type="text" id="member10-field" name="member10" class="form-control" value="{{ is_null(old("member10")) ? $npo_info->member10 : old("member10") }}"/>

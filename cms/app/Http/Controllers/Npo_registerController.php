@@ -255,12 +255,6 @@ class Npo_registerController extends Controller {
 
 		return redirect()->route('npo_registers.index')->with('message', 'Item deleted successfully.');
 	}
-	
-	protected $dates = [
-        'support_contents_detail',
-        'created_at',
-        'updated_at'
-    ];
     
     public function landing(string $npo_name)
     {
@@ -286,5 +280,4 @@ class Npo_registerController extends Controller {
         return view('npo_registers.edit', $data);
     }
     
-
 }
