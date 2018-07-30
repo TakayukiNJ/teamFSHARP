@@ -546,19 +546,30 @@
                                         <div class="card card-pricing">
                                             <div class="card-body">
                                                 <h6 class="card-category text-danger">{{ $npo_info->title }}のスポンサーになる</h6>
-                                                <h1 class="card-title">{{ $npo_info->support_amount }}BTC</h1>
+                                                <!--<h1 class="card-title">{{ $npo_info->support_amount }}BTC</h1>-->
+                                                <h1 class="card-title">3,000円</h1>
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
                                                     <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
-                                                    <!--<li>※特典は変更する場合がございます。</li>-->
-                                                    <li>※ご購入は、ビットコイン決済です。</li>
+                                                    <!--<li>※ご購入は、クレジットカードかビットコイン決済です。</li>-->
+                                                    <!--@if (Auth::guest())-->
+                                                    <!--<li><a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a></li>-->
+                                                    <!--@else-->
+                                                    <!--    @if (( $npo_info->code2 ) != "")-->
+                                                    <!--    <li><a href="{{ $npo_info->code2 }}" target="_blank" class="btn btn-danger btn-round">日本円で支援する</a></li>-->
+                                                    <!--    <li><a href="https://paymo.life/shops/4c67fab166/n0bisuke_dev10" class="btn btn-danger btn-round">ビットコインで支援する</a></li>-->
+                                                    <!--    @else-->
+                                                    <!--    <li><p class="btn btn-success btn-round">準備中</p></li>-->
+                                                    <!--    @endif-->
+                                                    <!--@endif-->
                                                 </ul>
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
                                                 @else
                                                     @if (( $npo_info->code2 ) != "")
-                                                    <a href="{{ $npo_info->code2 }}" target="_blank" class="btn btn-danger btn-round">支援する</a>
+                                                    <a href="https://paymo.life/shops/4c67fab166/n0bisuke_dev10" target="_blank" class="btn btn-danger btn-round">日本円決済</a>
+                                                    <a href="{{ $npo_info->code2 }}" class="btn btn-danger btn-round">ビットコイン決済</a>
                                                     @else
                                                     <p class="btn btn-success btn-round">準備中</p>
                                                     @endif
@@ -566,19 +577,43 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <!--よう編集！！-->
+                                    <!--よう編集！！-->
+                                    <!--よう編集！！-->
+                                    <!--よう編集！！-->
+                                    <!--よう編集！！-->
+                                    <!--よう編集！！-->
+                                    <!--よう編集！！-->
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
-                                                <h6 class="card-category text-success">BTCをお持ちでない方</h6>
-                                                <h3 class="card-title">開設 ¥0</h3>
-                                                <div>
-                                                    <!-- 現在BitFlyer新規募集停止 -->
-                                                    <!--<a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
-                                                    <a href="https://zaif.jp/?ac=ha8meb0fu4 " target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>
-                                                </div>
+                                                <h6 class="card-category text-success">{{ $npo_info->title }}の欲しいものリスト</h6>
+                                                <!--<h3 class="card-title">欲しいものリスト</h3>-->
+                                                <ul>
+                                                    <li>絵本 <b>100冊</b></li>
+                                                    <li>パソコン <b>10個</b></li>
+                                                    <li>スマートフォン <b>10個</b></li>
+                                                    <li>家庭用冷蔵庫 <b>1個</b></li>
+                                                </ul>
+                                                <a href="https://wallet.indiesquare.me/" class="btn btn-neutral btn-round">支援する</a>
                                             </div>
                                         </div>
                                     </div>
+                                    <!--<div class="col-md-6">-->
+                                    <!--    <div class="card card-pricing" data-color="orange">-->
+                                    <!--        <div class="card-body">-->
+                                    <!--            <h6 class="card-category text-success">BTCをお持ちでない方</h6>-->
+                                    <!--            <h3 class="card-title">開設 ¥0</h3>-->
+                                    <!--            <div>-->
+                                                    <!-- 現在BitFlyer新規募集停止 -->
+                                                    <!--<a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
+                                    <!--                <a href="https://zaif.jp/?ac=ha8meb0fu4 " target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
+                                    <!--            </div>-->
+                                    <!--        </div>-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                    <!--よう編集！！-->
                                 </div>
                             </div>
 
