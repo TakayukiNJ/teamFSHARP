@@ -55,17 +55,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-row-padding">
     <div class="w3-third w3-container w3-margin-bottom">
-      <a href="{{ url('/npo/teamFSHARP') }}">
-      <img src="https://greatmiddleway.files.wordpress.com/2014/04/light.jpg?w=600&h=400" alt="NPO" style="width:100%" class="w3-hover-opacity">
+      <a href="{{ url('/npo/helper-c') }}">
+      <img src="{{ url('/') }}/../img/npologo/helpercallLogo.jpg" alt="ヘルパーコール" style="width:100%" class="w3-hover-opacity">
       </a>
       <div class="w3-container w3-white">
-        <p><b>もうNPOは資金に困らない。</b></p>
-        <p>F#</p>
+        <p><b>前を向いて歩こう</b></p>
+        <p>ヘルパーコール</p>
       </div>
     </div>
     <div class="w3-third w3-container w3-margin-bottom">
       <a href="{{ url('/npo/nipponshotenkai') }}">
-      <img src="https://greatmiddleway.files.wordpress.com/2014/04/light.jpg?w=600&h=400" alt="NPO" style="width:100%" class="w3-hover-opacity">
+      <img src="{{ url('/') }}/../img/npologo/nihonShotenkaiLogo.png" alt="日本商店会" style="width:100%" class="w3-hover-opacity">
       </a>
       <div class="w3-container w3-white">
         <p><b>共に学び共に成長し共に勝つ</b></p>
