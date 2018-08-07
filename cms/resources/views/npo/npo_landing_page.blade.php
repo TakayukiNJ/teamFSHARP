@@ -99,13 +99,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member1_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member1_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member1_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member1_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member1_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member1_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member1_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member1_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member1_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -141,13 +141,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member2_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member2_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member2_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member2_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member2_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member2_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member2_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member2_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member2_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -184,13 +184,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member3_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member3_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member3_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member3_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member3_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member3_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member3_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member3_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member3_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -227,13 +227,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member4_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member4_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member4_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member4_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member4_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member4_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member4_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member4_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member4_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -270,13 +270,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member5_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member5_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member5_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member5_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member5_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member5_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member5_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member5_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member5_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -313,13 +313,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member6_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member6_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member6_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member6_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member6_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member6_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member6_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member6_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member6_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -356,13 +356,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member7_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member7_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member7_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member7_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member7_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member7_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member7_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member7_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member7_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -399,13 +399,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member8_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member8_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member8_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member8_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member8_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member8_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member8_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member8_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member8_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -442,13 +442,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member9_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member9_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member9_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member9_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member9_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member9_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member9_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member9_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member9_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -485,13 +485,13 @@
                                         </p>
                                         <div class="card-footer pull-left">
                                             @if (( $npo_info->member10_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member10_twitter }}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://twitter.com/{{ $npo_info->member10_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
                                             @endif
                                             @if (( $npo_info->member10_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member10_facebook }}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://www.facebook.com/{{ $npo_info->member10_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
                                             @endif
                                             @if (( $npo_info->member10_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member10_linkedin }}" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member10_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
                                             @endif
                                         </div>
                                     </div>
@@ -524,8 +524,8 @@
                         <div class="tab-content text-center" >
                             <p>
                                 F♯のWebサービスは、全て仮想通貨でNPOに支援（寄付）を行います。支援には2種類あります。<br>
-                                【スポンサー】スポンサーとは、支援した人（企業、法人など）が、このF♯のWebサービスに名前が記載されるということです。
-                                スポンサーになると、NPOによってはリターン（特典）がもらえる場合もありますので、そちらもお楽しみください。<br>
+                                【コイン】個人や法人（学生、社会人、株式会社、一般社団法人、NPO法人など）は、自由にコインを購入することができます。
+                                コインと引き換えに、特典を使用することができます。また、コインを持っているだけで支援をしている証明になったり、何かリターンや優待を得ることができる場合もございますので、そちらもお楽しみください。<br>
                                 【アドバンスト】NPOのオリジナル仮想通貨（トークン）をご購入できます。自由にブロックチェーン上で、NPOの価値を売買することが可能です。
                             </p>
                             @if (( $npo_info->code1 ) == "")
@@ -545,9 +545,8 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing">
                                             <div class="card-body">
-                                                <h6 class="card-category text-danger">{{ $npo_info->title }}のスポンサーになる</h6>
-                                                <!--<h1 class="card-title">{{ $npo_info->support_amount }}BTC</h1>-->
-                                                <h1 class="card-title">3,000円</h1>
+                                                <h6 class="card-category text-danger">{{ $npo_info->title }}のコインを買う</h6>
+                                                <h1 class="card-title">{{ $npo_info->support_amount }}円</h1>
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
@@ -568,7 +567,7 @@
                                                 <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
                                                 @else
                                                     @if (( $npo_info->code2 ) != "")
-                                                    <a href="https://paymo.life/shops/4c67fab166/n0bisuke_dev10" target="_blank" class="btn btn-danger btn-round">日本円決済</a>
+                                                    <a href="https://paymo.life/shops/4c67fab166/{{ $npo_info->npo_name }}" target="_blank" class="btn btn-danger btn-round">日本円決済</a>
                                                     <a href="{{ $npo_info->code2 }}" class="btn btn-danger btn-round">ビットコイン決済</a>
                                                     @else
                                                     <p class="btn btn-success btn-round">準備中</p>
@@ -585,34 +584,34 @@
                                     <!--よう編集！！-->
                                     <!--よう編集！！-->
                                     <!--よう編集！！-->
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing" data-color="orange">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-success">{{ $npo_info->title }}の欲しいものリスト</h6>
-                                                <!--<h3 class="card-title">欲しいものリスト</h3>-->
-                                                <ul>
-                                                    <li>絵本 <b>100冊</b></li>
-                                                    <li>パソコン <b>10個</b></li>
-                                                    <li>スマートフォン <b>10個</b></li>
-                                                    <li>家庭用冷蔵庫 <b>1個</b></li>
-                                                </ul>
-                                                <a href="https://wallet.indiesquare.me/" class="btn btn-neutral btn-round">支援する</a>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <!--<div class="col-md-6">-->
                                     <!--    <div class="card card-pricing" data-color="orange">-->
                                     <!--        <div class="card-body">-->
-                                    <!--            <h6 class="card-category text-success">BTCをお持ちでない方</h6>-->
-                                    <!--            <h3 class="card-title">開設 ¥0</h3>-->
-                                    <!--            <div>-->
-                                                    <!-- 現在BitFlyer新規募集停止 -->
-                                                    <!--<a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
-                                    <!--                <a href="https://zaif.jp/?ac=ha8meb0fu4 " target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
-                                    <!--            </div>-->
+                                    <!--            <h6 class="card-category text-success">{{ $npo_info->title }}の欲しいものリスト</h6>-->
+                                                <!--<h3 class="card-title">欲しいものリスト</h3>-->
+                                    <!--            <ul>-->
+                                    <!--                <li>絵本 <b>100冊</b></li>-->
+                                    <!--                <li>パソコン <b>10個</b></li>-->
+                                    <!--                <li>スマートフォン <b>10個</b></li>-->
+                                    <!--                <li>家庭用冷蔵庫 <b>1個</b></li>-->
+                                    <!--            </ul>-->
+                                    <!--            <a href="https://wallet.indiesquare.me/" class="btn btn-neutral btn-round">支援する</a>-->
                                     <!--        </div>-->
                                     <!--    </div>-->
                                     <!--</div>-->
+                                    <div class="col-md-6">
+                                        <div class="card card-pricing" data-color="orange">
+                                            <div class="card-body">
+                                                <h6 class="card-category text-success">BTCをお持ちでない方</h6>
+                                                <h3 class="card-title">開設 ¥0</h3>
+                                                <div>
+                                                    <!-- 現在BitFlyer新規募集停止 -->
+                                                    <!--<a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
+                                                    <a href="https://zaif.jp/?ac=ha8meb0fu4 " target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!--よう編集！！-->
                                 </div>
                             </div>
