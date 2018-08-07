@@ -602,7 +602,7 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
-                                                <h6 class="card-category text-success">BTCをお持ちでない方</h6>
+                                                <h6 class="card-category text-success">ビットコインをお持ちでない方</h6>
                                                 <h3 class="card-title">開設 ¥0</h3>
                                                 <div>
                                                     <!-- 現在BitFlyer新規募集停止 -->
