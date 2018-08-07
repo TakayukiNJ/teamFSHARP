@@ -20,7 +20,7 @@
                         <tr>
                             <th>NPO名</th>
                             <th>TITLE</th>
-                            <th>スポンサー価格</th>
+                            <th>コイン価格</th>
                             <!--<th>DETAILS</th>-->
                             <th class="text-right">OPTIONS</th>
                         </tr>
@@ -45,13 +45,13 @@
                                     <a class="btn btn-xs btn-primary" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}"><h1><i class="glyphicon glyphicon-eye-open"></i> View</h1></a>
                                     <a class="btn btn-xs btn-warning" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}/edit"><h1><i class="glyphicon glyphicon-edit"></i> 編集/Edit</h1></a>
                                     
-                                    @if (($npo_register->proval) == 0)
+                                    <!--@ if (($npo_register->proval) == 0)-->
                                     <form action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                                        <button type="submit" class="btn btn-xs btn-danger"><h1><i class="glyphicon glyphicon-trash"></i> 削除/Delete</h1></button>
                                     </form>
-                                    @endif
+                                    <!--@ endif-->
                                 </td>
                             </tr>
                             @endif
@@ -60,7 +60,7 @@
                             <tr>
                                 <td><h1>{{$npo_register->title}}</h1></td>
                                 <td><h1>{{$npo_register->subtitle}}</h1></td>
-                                <td><h1>{{$npo_register->support_amount}} BTC</h1></td>
+                                <td><h1>{{$npo_register->support_amount}} 円</h1></td>
                                 <td class="text-right">
                                     @if (($npo_register->proval) != 0 || (Auth::user()->name) == ($npo_register->manager))
                                     <a class="btn btn-xs btn-primary" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}"><h1><i class="glyphicon glyphicon-eye-open"></i> View</h1></a>
