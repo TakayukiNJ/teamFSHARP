@@ -19,8 +19,12 @@
             <div class="w3-panel w3-large">
                 <br>
                 @if (Auth::guest())
+                <a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                @elseif ((Auth::user()->npo) == "")
                 <a href="{{ url('/npo_registers/create') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
-                 @endif
+                @else
+                <a href="{{ url('/npo') }}/{{ Auth::user()->npo }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                @endif
             </div>
 		</div>
 	</div>
