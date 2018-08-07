@@ -36,12 +36,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
         <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
       </div>
       <div class="w3-panel w3-large">
-        <a href="https://fb.me/LiCleOrg" target="_blank"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>
+        <!--<a href="https://fb.me/LiCleOrg" target="_blank"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>-->
         <!--<a href="https://twitter.com/TakayukiNakajo" target="_blank"><i class="fa fa-twitter" style="font-size:36px"></i></a>-->
         <!--<a href="https://www.instagram.com/nj.takayuki" target="_blank"><i class="fa fa-instagram" style="font-size:36px"></i></a>-->
         <!--<a href="goo.gl/2fgfE" target="_blank"><i class="fa fa-youtube-play" style="font-size:36px"></i></a>-->
         <!--<a href="https://www.linkedin.com/in/%E9%AB%98%E5%B9%B8-%E4%BB%B2%E6%9D%A1-68513984/" target="_blank"><i class="fa fa-linkedin-square" style="font-size:36px"></i></a>-->
-        <a href="https://vote.fe-ver.jp/communities/90" target="_blank"><i class="fa fa-globe" style="font-size:36px"></i></a>
+        <!--<a href="https://vote.fe-ver.jp/communities/90" target="_blank"><i class="fa fa-globe" style="font-size:36px"></i></a>-->
       </div>
         
     </nav>
@@ -60,7 +60,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       </a>
       <div class="w3-container w3-white">
         <p><b>前を向いて歩こう</b></p>
-        <p>ヘルパーコール</p>
+        <p>NPO法人ヘルパーコール</p>
       </div>
     </div>
     <div class="w3-third w3-container w3-margin-bottom">
@@ -124,16 +124,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <!-- Contact Section -->
   <div class="w3-container w3-padding-large">
     <!--<h4 id="about"><b>About Me (自己紹介)</b></h4>-->
-    <p>ご登録、誠にありがとうございます。早速、<strong>お気に入りのNPOを見つけてファンになってみよう！</strong></p>
+    <p>ご登録、誠にありがとうございます。<br>F♯は、<strong>デジタルハリウッド大学大学院の2018年度学内コンペティション（インテリム・コンペティション）に選出されたWebサービスです。</strong></p>
     <h4 id="about"><b>USAGE (使い方)</b></h4>
-    <p>もしビットコインをお持ちなら、応援したい団体を選んで支援や寄附をすることができます。仮想通貨なので、世界中どこからでも送金手数料・送金速度は一律です。</p>
+    <p>応援したいNPOやコミュニティを選んで、コインを購入することによって支援や寄附をすることができます。</p>
     <!--<p>NPOの支援・寄附した場合、お名前（ユーザーネーム）がサイトに公開され、NPO側にはメールアドレスもお伝えいたします。(購入履歴は、今後ご活用できる仕組みを作成中です。)</p>-->
-    <p>NPOの支援・寄附した場合、NPO側にメールアドレスなどの個人情報をお伝えいたします。(購入履歴は、今後ご活用できる仕組みを作成中です。)</p>
+    <p>コインをご購入すると、その団体の特典などを使用することができます。</p>
     <p><strong>【NPOページ掲載に関して】</strong></p>
-    <p>ご自身のNPOを登録することできます。（審査期間：約1週間）</p>
+    <p>ご自身のNPOやコミュニティを登録することできます。（審査期間：約1週間）</p>
     <p>お気軽に、右上の「NPOページを作成」からご登録ください。</p>
     <!--<p><strong>③ICO(資金調達)に関して</strong></p>-->
-    <p>NPOページを登録して運営側から承認されると、新たにご自身のNPOが右上の項目に追加されます。</p>
+    <p>登録後、運営側からの承認を得ると、新たにご自身のNPOやコミュニティが右上の項目に追加されます。</p>
     <!--<p>公開されたご自身のホームページとしてだけでもご活用いただけますし、資金調達も始めることができます。（審査期間：約1週間）</p>-->
     <p>その他、何かご不明点がございましたら、<a href="https://docs.google.com/forms/d/e/1FAIpQLSfM5FkFx27lREs-yMsY11P9dmx8ZQCkDVlPXL2Ch-AOoiz1vA/viewform?c=0&w=1">お気軽にご相談ください。</a></p>
     <!--<p>オリジナルトークン(ICO)ではなく、</p>-->
@@ -165,14 +165,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
         <!--</button>-->
       </a>
       <!--<div>-->
-        <a href="https://fb.me/LiCleOrg"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>
+        <!--<a href="https://fb.me/LiCleOrg"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>-->
         <!--<a href="https://twitter.com/TakayukiNakajo"><i class="fa fa-twitter" style="font-size:36px"></i></a>-->
         <!--<a href="https://www.instagram.com/nj.takayuki"><i class="fa fa-instagram" style="font-size:36px"></i></a>-->
         <!--<a href="https://www.youtube.com/channel/UCtEvLQ00OoOioktf5g5EgIQ?view_as=subscriber" target="_blank"><i class="fa fa-youtube-play" style="font-size:36px"></i></a>-->
         <!--<a href="https://www.linkedin.com/in/%E9%AB%98%E5%B9%B8-%E4%BB%B2%E6%9D%A1-68513984/" target="_blank"><i class="fa fa-linkedin-square" style="font-size:36px"></i></a>-->
-        <a href="https://vote.fe-ver.jp/communities/90" target="_blank"><i class="fa fa-globe" style="font-size:36px"></i></a>
+        <!--<a href="https://vote.fe-ver.jp/communities/90" target="_blank"><i class="fa fa-globe" style="font-size:36px"></i></a>-->
       </div>
-        <a class="indiesquare-tip-button" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me" style="width:150px">Donate with IndieSquare</a><script src="//widget.indiesquare.me/tip/buttonjs" async="" type="text/javascript"></script>
+      <a class="indiesquare-tip-button" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me" style="width:150px">Donate with IndieSquare</a><script src="//widget.indiesquare.me/tip/buttonjs" async="" type="text/javascript"></script>
       
     </form>
     
