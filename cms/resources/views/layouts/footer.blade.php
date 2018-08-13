@@ -71,19 +71,19 @@
         </div>
         <div class="col-md-9 col-sm-9 col-12 ml-auto mr-auto">
             <div class="row">
-                <!--<div class="col-md-3 col-sm-3 col-6">-->
-                <!--    <div class="links">-->
-                <!--        <ul class="uppercase-links stacked-links">-->
-                <!--            <li>-->
-                <!--                <a href="#home" >-->
-                <!--                    Home-->
-                <!--                </a>-->
-                <!--            </li>-->
-                <!--            <li>-->
-                <!--                <a href="#">-->
-                <!--                    Discover-->
-                <!--                </a>-->
-                <!--            </li>-->
+                <div class="col-md-3 col-sm-3 col-6">
+                    <div class="links">
+                        <ul class="uppercase-links stacked-links">
+                            <li>
+                                <a href="{{ url('/') }}" >
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/npo_registers') }}">
+                                    Registers
+                                </a>
+                            </li>
                 <!--            <li>-->
                 <!--                <a href="#paper-kit">-->
                 <!--                    Blog-->
@@ -99,10 +99,10 @@
                 <!--                    Money Back-->
                 <!--                </a>-->
                 <!--            </li>-->
-                <!--        </ul>-->
+                        </ul>
 
-                <!--    </div>-->
-                <!--</div>-->
+                    </div>
+                </div>
                 <div class="col-md-3 col-sm-3 col-6">
                     <div class="links">
                         <ul class="uppercase-links stacked-links">

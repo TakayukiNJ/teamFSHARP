@@ -1,85 +1,81 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.welcome_common')
 
-<script src="https:/unpkg.com/vue@2.1.3/dist/vue.js"></script>
-<script>
+@include('layouts.welcome_head')
+@include('layouts.welcome_script')
+@include('layouts.nav_lp')
+@include('layouts.welcome_script')
+
+@section('welcome_content')
+
+<body class="full-screen login">
+    <div class="wrapper">
+        <div class="page-header" style="background-image: url('/img/sections/bruno-abatti.jpg');">
+            <div class="filter"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 ml-auto mr-auto">
+                        <div class="card card-register">
+                            <h3 class="card-title">ログイン</h3>
+                            
+                            
+                            <form class="register-form" role="form" method="POST" action="{{ url('/login') }}">
+                            {{ csrf_field() }}
     
-    let data = {
-        email: "Hello World"
-    }
-
-    new Vue({
-        el: '#root',
-        data: {
-            email: 'Hello World'
-        }
-    })
-
-</script>
-
-<br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">ログイン</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mailアドレス</label>
-
-                            <div class="col-md-6" id="root">
-                                <input id="email" type="email" class="form-control" name="email" v-model="email" value="{{ old('email') }}" required autofocus>
-                                <p>あなたの入力しているemailは、@{{ email }}</p>
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email">E-Mailアドレス</label>
+                                <div id="root">
+                                    <input id="email" type="email" class="form-control" name="email" v-model="email" value="{{ old('email') }}" required autofocus>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">パスワード</label>
-
-                            <div class="col-md-6">
+    
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password">パスワード</label>
                                 <input id="password" type="password" class="form-control" name="password" required>
-
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            
+                            <div class="form-group">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
                                     </label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    ログイン
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    パスワードを忘れた方はこちら
-                                </a>
+    
+                            <div class="form-group">
+                                <!--<div class="col-md-8 col-md-offset-4">-->
+                                    <button type="submit" class="btn btn-primary">
+                                        ログイン
+                                    </button>
+                                <!--</div>-->
+                            </div>
+                    
+                    
+                    
+                    
+                            <!--<button class="btn btn-danger btn-block btn-round">Register</button>-->
+                            </form>
+                            <div class="forgot">
+                                <a href="{{ url('/password/reset') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
+				<div class="demo-footer text-center">
+					<h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by F♯</h6>
+				</div>
             </div>
         </div>
     </div>
-</div>
+
+</body>
 @endsection
