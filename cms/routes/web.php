@@ -42,7 +42,7 @@ use Illuminate\Http\Request;
 // Auth/LoginController.php
 /*********************/
 Auth::routes();
-//Auth::get('/login', 'LoginController@__construct');
+// Auth::post('/', 'LoginController@__construct');
 //Route::get('/login', 'HomeController@home_own_timeline');
 // Route::group(['middleware' => 'guest'], function () {
 //     Route::get('/', function () {

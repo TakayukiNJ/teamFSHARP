@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 ml-auto mr-auto">
                         <div class="card card-register">
-                            <h3 class="card-title">ログイン</h3>
+                            <h3 class="card-title">ようこそ</h3>
                             
                             
                             <form class="register-form" role="form" method="POST" action="{{ url('/login') }}">
@@ -41,32 +41,22 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
+                                <label>
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
+                                </label>
                             </div>
-                            
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
-                                    </label>
-                                </div>
-                            </div>
+                                
     
                             <div class="form-group">
-                                <!--<div class="col-md-8 col-md-offset-4">-->
-                                    <button type="submit" class="btn btn-primary">
-                                        ログイン
-                                    </button>
-                                <!--</div>-->
+                                <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
+                                <a href="{{ url('/register') }}" class="btn btn-link">ご登録がお済みでない方はこちら</a>
                             </div>
-                    
-                    
-                    
-                    
-                            <!--<button class="btn btn-danger btn-block btn-round">Register</button>-->
+                            
                             </form>
-                            <div class="forgot">
-                                <a href="{{ url('/password/reset') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>
-                            </div>
+                            <!--<div class="forgot">-->
+                            <!--    <a href="{{ url('/password/reset') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>-->
+                            <!--</div>-->
+                            
                         </div>
                     </div>
                 </div>
