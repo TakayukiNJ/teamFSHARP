@@ -513,7 +513,7 @@
                         <div class="choose-plan">
                             <ul class="nav nav-pills nav-pills-danger" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" id="#aa" role="tab">ビットコインで{{ $npo_info->title }}を支援</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#personal" id="#aa" role="tab">{{ $npo_info->title }}を支援</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#commercial" id="bb" role="tab">アドバンスト</a>
@@ -541,11 +541,11 @@
                             <div class="tab-pane active" id="personal" role="tabpanel">
                                 <div class="space-top"></div>
                                 <div class="row">
-                                    <!-- ビットコインで支援する -->
+                                    <!-- 支援する -->
                                     <div class="col-md-6">
                                         <div class="card card-pricing">
                                             <div class="card-body">
-                                                <h6 class="card-category text-danger">{{ $npo_info->title }}のコインを買う</h6>
+                                                <h6 class="card-category text-danger">{{ $npo_info->title }}を支援</h6>
                                                 <h1 class="card-title">{{ $npo_info->support_amount }}円</h1>
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>

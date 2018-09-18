@@ -20,7 +20,57 @@
                 <div class="w3-panel w3-large">
                     <br>
                     @if (Auth::guest())
-                    <a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                    <!--<a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
+                    <button type="button" class="btn-lg btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
+                        スタート
+                    </button>
+                    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-register">
+                            <div class="modal-content">
+                                <div class="modal-header no-border-header text-center">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h3 class="modal-title text-center">ようこそ</h3>
+                                    <p>まずログインしてください。</p>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="register-form" role="form" method="POST" action="{{ url('/login') }}">
+                                        {!! csrf_field() !!}
+                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <label for="email">E-Mailアドレス</label>
+                                            <div id="root">
+                                                <input id="email" type="email" class="form-control" name="email" v-model="email" value="{{ old('email') }}" required autofocus>
+                                                @if ($errors->has('email'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                            <label for="password">パスワード</label>
+                                            <input id="password" type="password" class="form-control" name="password" required>
+                                            @if ($errors->has('password'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                            @endif
+                                            <label>
+                                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
+                                        </div>     
+                                    </form>
+                                </div>
+                                <div class="modal-footer no-border-footer">
+                                    <span class="text-muted  text-center">ご登録がお済みで無い方は <a href="#paper-kit">こちら</a> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     @elseif ((Auth::user()->npo) == "")
                     <a href="{{ url('/npo_registers/create') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
                     @else
@@ -48,7 +98,7 @@
                                     <a class="nav-link active" data-toggle="pill" href="#pick-up" role="tab">Pick Up</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#developers" role="tab">Developers</a>
+                                    <a class="nav-link" data-toggle="pill" href="#developers" role="tab">Developer</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="https://fsharp.me/npo/teamFSHARP#pricing" role="tab" target="_blank">Support Us</a>
@@ -144,8 +194,8 @@
                 						<div class="col-md-4">
                 							<div class="card card-blog">
                 								<div class="card-image">
-                									<a href="https://fsharp.me/npo/n0bisuke">
-                										<img class="img img-raised" src="{{ url('/') }}/../img/npologo/n0bisuke.jpg" />
+                									<a href="https://fsharp.me/npo/DHUMediaArt">
+                										<img class="img img-raised" src="{{ url('/') }}/../img/npologo/OchyaiYoichi.jpg" />
                 									</a>
                 								</div>
             
@@ -154,21 +204,21 @@
                 										Partnerships For The Goals
                 									</h6>
                 									<h5 class="card-title">
-                										<a href="https://fsharp.me/npo/n0bisuke">のびすけ班</a>
+                										<a href="https://fsharp.me/npo/DHUMediaArt">落合陽一メディアアート㍻展＠デジハリ</a>
                 									</h5>
                 									<p class="card-description">
-                									    G's Academy（エンジニア養成学校）で菅原のびすけさんのメンターを受けた（あるいは受けている）人たちのコミュニティ	
+                									    2017年からデジタルハリウッド大学で開催されている落合陽一先生の授業の最終成果物を展示する展示会です。2018年の展示会の名前は、㍻展です。	
                 									</p>
                                                     <hr>
                                                     <div class="card-footer">
                                                         <div class="author">
-                    	                                    <a href="https://fsharp.me/npo/n0bisuke">
-                    	                                       <img src="{{ url('/') }}/../img/faces/n0bisukeRice.jpg" alt="..." class="avatar img-raised">
-                    	                                       <span>支援者1人</span>
+                    	                                    <a href="https://fsharp.me/npo/DHUMediaArt">
+                    	                                       <!--<img src="{{ url('/') }}/../img/faces/n0bisukeRice.jpg" alt="..." class="avatar img-raised">-->
+                    	                                       <span>支援者0人</span>
                     	                                    </a>
                     	                                </div>
                                                         <div class="stats">
-                     	                                    3,000円
+                     	                                    9,800円
                      	                                </div>
                     	                            </div>
                 								</div>
@@ -211,81 +261,81 @@
             					</div>
             				</div>
             				<!-- カズさん -->
-            				<div class="col-md-6">
-            					<div class="card card-profile card-plain">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="card-img-top">
-                                                <a href="https://facebook.com/DRGK.feat.lhormace" target="_blank">
-                                                    <img class="img" src="{{ url('/') }}/../img/faces/kazu.jpg" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body text-left">
-                                                <h4 class="card-title">Watanabe Kazuki</h4>
-                                                <h6 class="card-category">WEB ENGENEER</h6>
-                                                <p class="card-description">
-                                                	WEBエンジニア歴20年以上。銀行の大規模システム開発経験有。北海道在住の二児の父。F♯のバグ改修や機能の改善をサポートしています。
-                                                </p>
-                                                <div class="card-footer">
-                                                    <a href="https://www.facebook.com/DRGK.feat.lhormace" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
-                                                    <a href="https://github.com/lhormace" class="btn btn-just-icon btn-link btn-neutral"><i class="fa fa-github"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            					</div>
-            				</div>
+            				<!--<div class="col-md-6">-->
+            				<!--	<div class="card card-profile card-plain">-->
+                <!--                    <div class="row">-->
+                <!--                        <div class="col-md-5">-->
+                <!--                            <div class="card-img-top">-->
+                <!--                                <a href="https://facebook.com/DRGK.feat.lhormace" target="_blank">-->
+                <!--                                    <img class="img" src="{{ url('/') }}/../img/faces/kazu.jpg" />-->
+                <!--                                </a>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="col-md-7">-->
+                <!--                            <div class="card-body text-left">-->
+                <!--                                <h4 class="card-title">Watanabe Kazuki</h4>-->
+                <!--                                <h6 class="card-category">WEB ENGENEER</h6>-->
+                <!--                                <p class="card-description">-->
+                <!--                                	WEBエンジニア歴20年以上。銀行の大規模システム開発経験有。北海道在住の二児の父。F♯のバグ改修や機能の改善をサポートしています。-->
+                <!--                                </p>-->
+                <!--                                <div class="card-footer">-->
+                <!--                                    <a href="https://www.facebook.com/DRGK.feat.lhormace" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>-->
+                <!--                                    <a href="https://github.com/lhormace" class="btn btn-just-icon btn-link btn-neutral"><i class="fa fa-github"></i></a>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+            				<!--	</div>-->
+            				<!--</div>-->
             				<!-- 寺ちゃん -->
-            				<div class="col-md-6">
-            					<div class="card card-profile card-plain">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="card-img-top">
-                                                <a href="https://facebook.com/mktrdbg" target="_blank">
-                                                    <img class="img" src="{{ url('/') }}/../img/faces/yuya.jpg" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body text-left">
-                                                <h4 class="card-title">Terada Yuya</h4>
-                                                <h6 class="card-category">General Researcher</h6>
-                                                <p class="card-description">
-                                                	スタートアップ企業でメンタルヘルス用チャットボットの開発経験がある、大阪大学卒のAIエンジニア。現在米国シリコンバレーやデンマークで資金調達を実施中。
-                                                </p>
-                                                <div class="card-footer">
-                                                    <a href="https://twitter.com/mktrdbg" class="btn btn-just-icon btn-link btn-neutral"><i class="fa fa-twitter"></i></a>
-                                                    <a href="https://www.facebook.com/yuya.terada.777" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            					</div>
-            				</div>
-            				<div class="col-md-6">
-            					<div class="card card-profile card-plain">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="card-img-top">
-                                                <a href="#pablo">
-                                                    <img class="img" src="{{ url('/') }}/../img/placeholder.jpg" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body text-left">
-                                                <h4 class="card-title">WANTED</h4>
-                                                <h6 class="card-category"></h6>
-                                                <p class="card-description">
-                                                    メンバー募集中
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-            					</div>
-            				</div>
+            				<!--<div class="col-md-6">-->
+            				<!--	<div class="card card-profile card-plain">-->
+                <!--                    <div class="row">-->
+                <!--                        <div class="col-md-5">-->
+                <!--                            <div class="card-img-top">-->
+                <!--                                <a href="https://facebook.com/mktrdbg" target="_blank">-->
+                <!--                                    <img class="img" src="{{ url('/') }}/../img/faces/yuya.jpg" />-->
+                <!--                                </a>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="col-md-7">-->
+                <!--                            <div class="card-body text-left">-->
+                <!--                                <h4 class="card-title">Terada Yuya</h4>-->
+                <!--                                <h6 class="card-category">General Researcher</h6>-->
+                <!--                                <p class="card-description">-->
+                <!--                                	スタートアップ企業でメンタルヘルス用チャットボットの開発経験がある、大阪大学卒のAIエンジニア。現在米国シリコンバレーやデンマークで資金調達を実施中。-->
+                <!--                                </p>-->
+                <!--                                <div class="card-footer">-->
+                <!--                                    <a href="https://twitter.com/mktrdbg" class="btn btn-just-icon btn-link btn-neutral"><i class="fa fa-twitter"></i></a>-->
+                <!--                                    <a href="https://www.facebook.com/yuya.terada.777" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+            				<!--	</div>-->
+            				<!--</div>-->
+            				<!--<div class="col-md-6">-->
+            				<!--	<div class="card card-profile card-plain">-->
+                <!--                    <div class="row">-->
+                <!--                        <div class="col-md-5">-->
+                <!--                            <div class="card-img-top">-->
+                <!--                                <a href="#pablo">-->
+                <!--                                    <img class="img" src="{{ url('/') }}/../img/placeholder.jpg" />-->
+                <!--                                </a>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <div class="col-md-7">-->
+                <!--                            <div class="card-body text-left">-->
+                <!--                                <h4 class="card-title">WANTED</h4>-->
+                <!--                                <h6 class="card-category"></h6>-->
+                <!--                                <p class="card-description">-->
+                <!--                                    メンバー募集中-->
+                <!--                                </p>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+            				<!--	</div>-->
+            				<!--</div>-->
             			<!-- team member ここまで -->
             			</div>
             			
