@@ -1,0 +1,138 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  color: #0f0f0f;
+  text-align: left;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+TD.list_column_1 {
+	width: 50px;
+	text-align:left;
+	background-color: #C0C0C0;
+	color: #0F0F0F;
+}
+
+TD.list_column_2 {
+	width: 120px;
+	text-align:left;
+	background-color: #C0C0C0;
+	color: #0F0F0F;
+}
+
+TD.list_column_3 {
+	width: 120px;
+	text-align:left;
+	background-color: #C0C0C0;
+	color: #0F0F0F;
+}
+
+TD.list_column_4 {
+	width: 150px;
+	text-align:left;
+	background-color: #C0C0C0;
+	color: #0F0F0F;
+}
+
+TD.list_column_5 {
+	width: 140px;
+	text-align:left;
+	background-color: #C0C0C0;
+	color: #0F0F0F;
+}
+
+TD.list_column_6 {
+	width: 120px;
+	text-align:left;
+	background-color: #C0C0C0;
+	color: #0F0F0F;
+}
+
+TD.list_column_7 {
+	width: 100px;
+	text-align:left;
+	background-color: #C0C0C0;
+	color: #0F0F0F;
+}
+
+TD.list_column_8 {
+	width: 150px;
+	text-align:left;
+	background-color: #C0C0C0;
+	color: #0F0F0F;
+}
+
+TD.list_column_value_1 {
+	width: 50px;
+	text-align:left;
+	background-color: #F0F0F0;
+	color: #0F0F0F;
+}
+
+TD.list_column_value_2 {
+	width: 120px;
+	text-align:left;
+	background-color: #F0F0F0;
+	color: #0F0F0F;
+}
+
+TD.list_column_value_3 {
+	width: 120px;
+	text-align:left;
+	background-color: #F0F0F0;
+	color: #0F0F0F;
+}
+
+TD.list_column_value_4 {
+	width: 150px;
+	text-align:left;
+	background-color: #F0F0F0;
+	color: #0F0F0F;
+}
+
+TD.list_column_value_5 {
+	width: 140px;
+	text-align:left;
+	background-color: #F0F0F0;
+	color: #0F0F0F;
+}
+
+TD.list_column_value_6 {
+	width: 120px;
+	text-align:left;
+	background-color: #F0F0F0;
+	color: #0F0F0F;
+}
+
+TD.list_column_value_7 {
+	width: 100px;
+	text-align:left;
+	background-color: #F0F0F0;
+	color: #0F0F0F;
+}
+
+TD.list_column_value_8 {
+	width: 150px;
+	text-align:left;
+	background-color: #F0F0F0;
+	color: #0F0F0F;
+}
