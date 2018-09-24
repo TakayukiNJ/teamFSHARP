@@ -48,7 +48,7 @@ class Mentenance_Search extends Component {
 
   fetchData(id) {
     request
-      .get('/bitflyer/support/search/'+id).end((err, res) => {
+      .get('/bitflyer/support/mentenance_search/'+id).end((err, res) => {
 		if (res) {
 			if (res.text !== "") {
 				console.log(res.body);
