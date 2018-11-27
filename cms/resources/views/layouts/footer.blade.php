@@ -174,8 +174,14 @@
                         <!--</li>-->
                         <!--|-->
                         <li>
+                            <a href="{{ url('/specified_commercial_transactions_law') }}">
+                                Specified Commercial Transactions Law
+                            </a>
+                        </li>
+                        |
+                        <li>
                             <a href="{{ url('/terms') }}">
-                                Terms（利用規約）
+                                Terms
                             </a>
                         </li>
                         |

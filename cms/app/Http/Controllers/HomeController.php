@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function __construct()
     {
         // ログイン不要で開きたいページはここに記入していく。
-        $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms', 'privacy_policy', 'npo_landing_page']]);
+        $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms', 'privacy_policy', 'specified_commercial_transactions_law', 'npo_landing_page']]);
     }
 
     /**
@@ -70,7 +70,12 @@ class HomeController extends Controller
     {
         return view('privacy_policy');
     }
-
+    
+    public function specified_commercial_transactions_law()
+    {
+        return view('specified_commercial_transactions_law');
+    }
+    
     public function thank_you_for_support()
     {
         return view('thank_you_for_support');
@@ -336,9 +341,6 @@ class HomeController extends Controller
 //         $data['npo_info'] = $currentNpoInfo;
 //         // $data['subtitle'] = $currentNpoInfo;
 //         return view('home/home_own_timeline', $data);
-
-
-
 
         $query = DB::table('main_omikuji_data');
 

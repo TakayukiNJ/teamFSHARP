@@ -10,14 +10,14 @@
 
 <h1>
 <span style="color: rgb(89, 229, 39);">
-<h1>FSHARP <span style="color: rgb(70, 70, 70);">プライバシーポリシー
+<h1>F♯ <span style="color: rgb(70, 70, 70);">プライバシーポリシー
 </span></h1></span></h1>
 
 <div><br></div>
 
 </div>
 
-<p>FSHARP（以下，「当Webサービス」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）におけるプライバシー情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</p>
+<p>F♯（以下，「当Webサービス」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）におけるプライバシー情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</p>
 <br>
 <b>第1条（プライバシー情報）</b>
 <ul>
@@ -96,14 +96,14 @@
 <b>第９条（お問い合わせ窓口）</b>
 <p>本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。</p>
 <p>住所：〒151-0053 東京都渋谷区代々木1丁目5-8 セボン代々木105<br>
-Webサービス名：FSHARP<br>
+Webサービス名：F♯<br>
 担当部署：プライバシーポリシー担当<br>
-Eメールアドレス：fsharp.npo@gmail.com<br>
+Eメールアドレス：F♯.npo@gmail.com<br>
 
 <div style="text-align: right;" align="right">以上</div>
 <br>
-<div style="text-align: right;" align="right">作成日：2018年06月01日
-<br><br><br><br><br><br><br>
+<div style="text-align: right;" align="right">
+作成日：2018年06月01日<br>変更日：2018年11月21日<br><br><br><br><br><br><br>
 </p></div>
 
 </div><br>
