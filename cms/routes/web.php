@@ -170,6 +170,7 @@ Route::get('/home/edit', 'HomeController@edit');
 
 Route::get('/terms', 'HomeController@terms');
 Route::get('/privacy_policy', 'HomeController@privacy_policy');
+Route::get('/specified_commercial_transactions_law', 'HomeController@specified_commercial_transactions_law');
 Route::get('/thank_you_for_support', 'HomeController@thank_you_for_support');
 
 //サンプル1
