@@ -8,7 +8,7 @@
         <div><br></div>
     </div>
 
-    <div>スポンサーになられた方は、1週間以内にWebサイトに反映いたしますので、しばらくお待ちください。</div>
+    <div>すぐに反映されない場合がございますが、1週間以内にWebサイトに反映いたしますので、しばらくお待ちください。</div>
     <div><br></div>
     <div><a href="{{ url('home/home_own_timeline') }}">マイページに戻る</a>&nbsp;</div>
 </div><br>
