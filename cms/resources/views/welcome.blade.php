@@ -119,11 +119,7 @@
         				    <div class="row">
                                 <div class="col-md-10 ml-auto mr-auto">
                 					<h4 class="title">社会課題の解決を目的とする事業に取り組むNPO（内閣府公式サイトに掲載されている特定非営利活動法人）向けに作っています。F♯（当サイト）を通じてボランティアやプロボノとして関わったり、寄付を行ったりすると、当サイトに名前（ニックネーム）を載せることができます。</h4>
-                					<!--<br>-->
-                					
-                					
-                					
-                					
+
                 					<div class="page-header section-dark" style="background-image: url('/img/farid-askerov.jpg')">
                 					<div class="content-center">
                                 		<div class="container">
@@ -147,7 +143,7 @@
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                   <span aria-hidden="true">&times;</span>
                                                                 </button>
-                                                                <h3 class="modal-title text-center">ようこそ</h3>
+                                                                <h3 class="modal-title text-center">ようこそ!</h3>
                                                                 <p>まずログインしてください。</p>
                                                             </div>
                                                             <div class="modal-body">
@@ -182,7 +178,7 @@
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer no-border-footer">
-                                                                <span class="text-muted  text-center">ご登録がお済みで無い方は <a href="#paper-kit">こちら</a> </span>
+                                                                <span class="text-muted  text-center">ご登録がお済みで無い方は <a href="{{ url('/login') }}">こちら!</a> </span>
                                                             </div>
                                                         </div>
                                                     </div>
