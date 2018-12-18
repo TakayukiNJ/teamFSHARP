@@ -57,7 +57,6 @@ Route::get('/', 'BooksController@welcome');
 Route::get('/cms', 'BooksController@welcome');
 //一覧
 Route::get('/menu', 'BooksController@index');
-
 Route::post('/menu', 'BooksController@index');
 
 
