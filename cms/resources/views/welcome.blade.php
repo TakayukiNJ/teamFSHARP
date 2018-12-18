@@ -91,6 +91,31 @@
                         
                         <div class="col-md-8 ml-auto mr-auto text-center">
                             <h2 class="title">【DHGS公式】<br></h2>
+
+
+
+                            <form action="/welcome" method="POST">
+                                {!! csrf_field() !!}
+                                <script
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                                    data-amount="1000"
+                                    data-name="F#"
+                                    data-description="Example charge"
+                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                    data-locale="auto"
+                                    data-currency="jpy"
+
+                                    $.ajaxSetup({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        }
+                                    })
+                                >
+                                </script>
+                            </form>
+
+
                             <h5 class="description">デジタルハリウッド大学大学院の2018年度学内コンペティション（インテリム・コンペティション）に選出された、NPOの人とお金の流れをテクノロジーで変えるWebサービスです。</h5>
                             </div>
                         <div class="project-pills">
