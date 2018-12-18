@@ -11,7 +11,7 @@
 */
 use App\Book;
 use Illuminate\Http\Request;
-
+use Stripe\Stripe;
 /**
 * ダッシュボード表示 */
 //Route::get('/', 'BooksController@index');
@@ -35,7 +35,6 @@ use Illuminate\Http\Request;
 
 //scaffold
 //Route::resource("tasks","TaskController"); // Add this line in routes.php
-
 
 /*********************/
 // A-0 ログイン機能
@@ -62,7 +61,7 @@ Route::post('/menu', 'BooksController@index');
 
 /*********************/
 // B-0 登録退会機能
-// RegistController.php
+// RegiびstController.php
 /*********************/
 //Route::post('/register', 'HomeController@register');
 
@@ -172,13 +171,6 @@ Route::get('/privacy_policy', 'HomeController@privacy_policy');
 Route::get('/specified_commercial_transactions_law', 'HomeController@specified_commercial_transactions_law');
 Route::get('/thank_you_for_support', 'HomeController@thank_you_for_support');
 
-//サンプル1
-Route::get('/home/ProjectFriends', 'HomeController@p_friends');
-//サンプル2
-Route::get('/home/TakeuchiMasaki', 'HomeController@t_masaki');
-//サンプル3
-// Route::get('/2hj', 'HomeController@secondharvest');
-
 //自己紹介表示画面
 Route::post('/home/home_disp', 'HomeController@home_disp');
 //自己紹介登録入力画面
@@ -240,10 +232,8 @@ Route::get('/other/own_image_picture', 'ImageUploadController@own_image_picture'
 Route::get('/other/image_delete', 'ImageUploadController@image_delete');
 
 // P-0 投稿画面
-
 //投稿処理のコントローラー
 Route::get('/post', 'PostsController@post');
-
 
 /********************************************
  Scaffoldで作ったもの(2017/12/09)
@@ -330,3 +320,25 @@ Route::get('bitflyer/getHistorySupportFrom', function()
 
 Route::get('bitflyer/support/transfer/{id}', 'Bitflyer\BitflyerHistoryController@transfer');
 Route::get('bitflyer/support/payment/{id}', 'Bitflyer\BitflyerHistoryController@payment');
+
+Route::post('/welcome', function () {
+    \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
+    // Get the credit card details submitted by the form
+    $token = $_POST['stripeToken'];
+
+    // Create a charge: this will charge the user's card
+    try {
+        $charge = \Stripe\Charge::create(array(
+            "amount" => 1000, // 課金額はココで調整
+            "currency" => "jpy",
+            "description" => "Example charge",
+            "source" => $token
+        ));
+    } catch (\Stripe\Error\Card $e) {
+        // The card has been declined
+    }
+
+    // サンクスメール送る...
+
+    return view('/');
+});
