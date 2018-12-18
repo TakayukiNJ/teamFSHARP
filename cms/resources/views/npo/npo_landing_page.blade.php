@@ -1,32 +1,14 @@
 @extends('layouts.common_nav_lp')
-
 @include('layouts.head')
 @include('layouts.script')
 @include('layouts.nav_lp')
 @include('layouts.body_headers')
-
 @section('content')
 
 <!-- description area -->
 <!-- <div class="container tim-container"> -->
 <div id="description-areas">
-    <!-- <div class="row"> -->
-        <!-- <div class="col-md-5 col-sm-12"> -->
     <div class="nav-tabs-navigation">
-        <!--<div class="nav-tabs-wrapper">-->
-        <!--    <ul id="tabs" class="nav nav-tabs" role="tablist">-->
-        <!--        <li class="nav-item">-->
-        <!--            <a class="nav-link active" data-toggle="tab" href="#home" role="tab">ホーム</a>-->
-        <!--        </li>-->
-        <!--        <li class="nav-item">-->
-        <!--            <a class="nav-link" data-toggle="tab" href="#return" role="tab">運営側の声</a>-->
-        <!--        </li>-->
-        <!--        <li class="nav-item">-->
-        <!--            <a class="nav-link" data-toggle="tab" href="#fans" role="tab">ファンの声</a>-->
-                    <!-- <a class="nav-link" data-toggle="tab" href="#messages" role="tab">ファン</a> -->
-        <!--        </li>-->
-        <!--    </ul>-->
-        <!--</div>-->
     </div>
     <div id="my-tab-content" class="tab-content text-center section-white">
          <!--     *********    TEAM     *********      -->

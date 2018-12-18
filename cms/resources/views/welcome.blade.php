@@ -66,11 +66,12 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer no-border-footer">
-                                    <span class="text-muted  text-center">ご登録がお済みで無い方は <a href="#paper-kit">こちら</a> </span>
+                                    <span class="text-muted  text-center">ご登録がお済みで無い方は <a href="{{ url('/register') }}">こちら</a> </span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                        {{-- NPO登録をまだしていなかった場合 --}}
                     @elseif ((Auth::user()->npo) == "")
                     <a href="{{ url('/npo_registers/create') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
                     @else
@@ -119,82 +120,78 @@
         				    <div class="row">
                                 <div class="col-md-10 ml-auto mr-auto">
                 					<h4 class="title">社会課題の解決を目的とする事業に取り組むNPO（内閣府公式サイトに掲載されている特定非営利活動法人）向けに作っています。F♯（当サイト）を通じてボランティアやプロボノとして関わったり、寄付を行ったりすると、当サイトに名前（ニックネーム）を載せることができます。</h4>
-                					<!--<br>-->
-                					
-                					
-                					
-                					
                 					<div class="page-header section-dark" style="background-image: url('/img/farid-askerov.jpg')">
-                					<div class="content-center">
-                                		<div class="container">
-                                			<div class="title-brand">
-                                				<h1 class="presentation-title"></h1>
-                                				<!--<div class="type">F♯</div>-->
-                                			</div>
-                                			<h2 class="presentation-subtitle text-center">F♯で人材と資金、集めませんか？</h2>
-                                			
-                                            <div class="w3-panel w3-large">
-                                                <br>
-                                                @if (Auth::guest())
-                                                <!--<a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
-                                                <button type="button" class="btn-lg btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
-                                                    スタート
-                                                </button>
-                                                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="false">
-                                                    <div class="modal-dialog modal-register">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header no-border-header text-center">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                  <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                                <h3 class="modal-title text-center">ようこそ</h3>
-                                                                <p>まずログインしてください。</p>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form class="register-form" role="form" method="POST" action="{{ url('/login') }}">
-                                                                    {!! csrf_field() !!}
-                                                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                                                    <label for="email">E-Mailアドレス</label>
-                                                                        <div id="root">
-                                                                            <input id="email" type="email" class="form-control" name="email" v-model="email" value="{{ old('email') }}" required autofocus>
-                                                                            @if ($errors->has('email'))
+                                        <div class="content-center">
+                                            <div class="container">
+                                                <div class="title-brand">
+                                                    <h1 class="presentation-title"></h1>
+                                                    <!--<div class="type">F♯</div>-->
+                                                </div>
+                                                <h2 class="presentation-subtitle text-center">F♯で人材と資金、集めませんか？</h2>
+
+                                                <div class="w3-panel w3-large">
+                                                    <br>
+                                                    @if (Auth::guest())
+                                                    <!--<a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
+                                                    <button type="button" class="btn-lg btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
+                                                        スタート
+                                                    </button>
+                                                    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="false">
+                                                        <div class="modal-dialog modal-register">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header no-border-header text-center">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                      <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h3 class="modal-title text-center">ようこそ</h3>
+                                                                    <p>まずログインしてください。</p>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form class="register-form" role="form" method="POST" action="{{ url('/login') }}">
+                                                                        {!! csrf_field() !!}
+                                                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                                                        <label for="email">E-Mailアドレス</label>
+                                                                            <div id="root">
+                                                                                <input id="email" type="email" class="form-control" name="email" v-model="email" value="{{ old('email') }}" required autofocus>
+                                                                                @if ($errors->has('email'))
+                                                                                    <span class="help-block">
+                                                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                                                            <label for="password">パスワード</label>
+                                                                            <input id="password" type="password" class="form-control" name="password" required>
+                                                                            @if ($errors->has('password'))
                                                                                 <span class="help-block">
-                                                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                                                    <strong>{{ $errors->first('password') }}</strong>
                                                                                 </span>
                                                                             @endif
+                                                                            <label>
+                                                                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
+                                                                            </label>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                                                        <label for="password">パスワード</label>
-                                                                        <input id="password" type="password" class="form-control" name="password" required>
-                                                                        @if ($errors->has('password'))
-                                                                            <span class="help-block">
-                                                                                <strong>{{ $errors->first('password') }}</strong>
-                                                                            </span>
-                                                                        @endif
-                                                                        <label>
-                                                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
-                                                                    </div>     
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer no-border-footer">
-                                                                <span class="text-muted  text-center">ご登録がお済みで無い方は <a href="#paper-kit">こちら</a> </span>
+                                                                        <div class="form-group">
+                                                                            <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="modal-footer no-border-footer">
+                                                                    <span class="text-muted  text-center">ご登録がお済みで無い方は <a href="{{ url('/register') }}">こちら</a> </span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    {{-- NPO登録がなければ--}}
+                                                    @elseif ((Auth::user()->npo) == "")
+                                                    <a href="{{ url('/npo_registers/create') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                                                    @else
+                                                    <a href="{{ url('/npo') }}/{{ Auth::user()->npo }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                                                    @endif
                                                 </div>
-                                                @elseif ((Auth::user()->npo) == "")
-                                                <a href="{{ url('/npo_registers/create') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
-                                                @else
-                                                <a href="{{ url('/npo') }}/{{ Auth::user()->npo }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
-                                                @endif
                                             </div>
-                                		</div>
-                                	</div>
+                                        </div>
                                 	</div>
                 					
                 					
