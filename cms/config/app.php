@@ -241,6 +241,9 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
+    ], 'stripe' => [
+        'model' => App\User::class,
+        'secret' => env('sk_test_FoGhfwb6NnvDUnFHoeufcBss'),
     ],
 
 ];
