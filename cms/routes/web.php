@@ -340,5 +340,6 @@ Route::post('/welcome', function () {
 
     // サンクスメール送る...
 
-    return view('/thank_you_for_support');
+    //return view('/thank_you_for_support');
+    return back();
 });
