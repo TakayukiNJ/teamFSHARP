@@ -1,12 +1,9 @@
 @extends('layouts.welcome_common')
-
 @include('layouts.welcome_head')
 @include('layouts.welcome_script')
 @include('layouts.nav_lp')
 @include('layouts.welcome_script')
-
 @section('welcome_content')
-
 <body class="full-screen login">
     <div class="wrapper">
         <div class="page-header" style="background-image: url('/img/sections/bruno-abatti.jpg');">
@@ -16,11 +13,9 @@
                     <div class="col-md-4 col-sm-6 ml-auto mr-auto">
                         <div class="card card-register">
                             <h3 class="card-title">ようこそ</h3>
-                            
-                            
+
                             <form class="register-form" role="form" method="POST" action="{{ url('/login') }}">
                             {{ csrf_field() }}
-    
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email">E-Mailアドレス</label>
                                 <div id="root">
@@ -56,7 +51,6 @@
                             <!--<div class="forgot">-->
                             <!--    <a href="{{ url('/password/reset') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>-->
                             <!--</div>-->
-                            
                         </div>
                     </div>
                 </div>

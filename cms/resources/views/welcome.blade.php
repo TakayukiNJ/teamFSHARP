@@ -101,7 +101,7 @@
                                     data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
                                     data-amount="1000"
                                     data-name="F#"
-                                    data-description="Example<br> charge"
+                                    data-description="Example charge"
                                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                     data-locale="auto"
                                     data-currency="jpy"
