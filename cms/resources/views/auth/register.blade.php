@@ -4,7 +4,7 @@
 @include('layouts.nav_lp')
 @include('layouts.welcome_script')
 @section('welcome_content')
-<body class="full-screen register">
+    <body class="full-screen register">
     <div class="wrapper">
         <div class="page-header" style="background-image: url('../img/sections/soroush-karimi.jpg');">
             <div class="filter"></div>
@@ -84,16 +84,13 @@
                                 </div>
                                 {{-- パスワード確認 --}}
                                 <div class="form-group">
-                                    <input id="password-confirm" type="password" class="form-control" placeholder="パスワード確認"　name="password_confirmation" required>
+                                    <input id="password-confirm" type="password" class="form-control" placeholder="パスワード確認" name="password_confirmation" required>
                                 </div>
                                 {{-- 利用規約とプライバシーポリシー --}}
                                 <div class="form-group division">
                                     <input type="checkbox" name="terms-of-service" required>
                                     <strong><a href="{{ url('/terms') }}"> 利用規約 </a></strong>および<strong><a href="{{ url('/privacy_policy') }}"> プライバシーポリシー </a></strong>に同意する
                                 </div>
-                                {{--<div class="form-group">--}}
-                                    {{--<button type="submit" class="btn btn-primary">登録</button>--}}
-                                {{--</div>--}}
                                 <button type="submit" class="btn btn-block btn-primary btn-round">登録</button>
                             </form>
                             <div class="login">
@@ -108,5 +105,5 @@
             </div>
         </div>
     </div>
-</body>
+    </body>
 @endsection
