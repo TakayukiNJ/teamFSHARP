@@ -6,7 +6,7 @@
 @section('welcome_content')
 <body class="full-screen register">
     <div class="wrapper">
-        <div class="page-header" style="background-image: url('../assets/img/sections/soroush-karimi.jpg');">
+        <div class="page-header" style="background-image: url('../img/sections/soroush-karimi.jpg');">
             <div class="filter"></div>
             <div class="container">
                 <div class="row">
@@ -66,7 +66,7 @@
                                 </div>
                                 {{-- メールアドレス --}}
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <input id="email" type="email" class="form-control" placeholder="メールアドレス" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレス" value="{{ old('email') }}" required>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -76,7 +76,7 @@
                                 {{-- パスワード --}}
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <input id="password" type="password" class="form-control" placeholder="パスワード" name="password" required>
-                                        @if ($errors->has('password'))
+                                    @if ($errors->has('password'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                         </span>
@@ -94,7 +94,7 @@
                                 {{--<div class="form-group">--}}
                                     {{--<button type="submit" class="btn btn-primary">登録</button>--}}
                                 {{--</div>--}}
-                                <button class="btn btn-block btn-primary btn-round">登録</button>
+                                <button type="submit" class="btn btn-block btn-primary btn-round">登録</button>
                             </form>
                             <div class="login">
                                 <p>Already have an account? <a href="#0">Log in</a>.</p>
