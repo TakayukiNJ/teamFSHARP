@@ -6,7 +6,7 @@
 @section('welcome_content')
     <body class="full-screen register">
     <div class="wrapper">
-        <div class="page-header" style="background-image: url('../img/sections/soroush-karimi.jpg');">
+        <div class="page-header" style="background-image: url('../img/farid-askerov.jpg');">
             <div class="filter"></div>
             <div class="container">
                 <div class="row">
@@ -16,8 +16,8 @@
                                 <i class="fa fa-umbrella"></i>
                             </div>
                             <div class="description">
-                                <h3> We've got you covered </h3>
-                                <p>Larger, yet dramatically thinner. More powerful, but remarkably power efficient. Everything you need in a single case.</p>
+                                <h3> 人とお金の流れを変える </h3>
+                                <p>食費と宿泊費はプロジェクトオーナーが負担。<br>プロジェクトに対して、自分の資金調達の頑張り次第で、大きな事にもチャレンジできます。</p>
                             </div>
                         </div>
                         <div class="info info-horizontal">
@@ -25,8 +25,8 @@
                                 <i class="fa fa-map-signs"></i>
                             </div>
                             <div class="description">
-                                <h3> Clear Directions </h3>
-                                <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.</p>
+                                <h3> プロジェクトに参画 </h3>
+                                <p>世界中の解決しなければいけない課題に対して、真剣に取り組んでいる世界中のプロジェクトに、計画段階から関わることができます。</p>
                             </div>
                         </div>
                         <div class="info info-horizontal">
@@ -34,20 +34,16 @@
                                 <i class="fa fa-user-secret"></i>
                             </div>
                             <div class="description">
-                                <h3> We value your privacy </h3>
-                                <p>Completely synergize resource taxing relationships via premier niche markets.</p>
+                                <h3> 安心・安全に社会貢献 </h3>
+                                <p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている特定非営利活動法人のプロジェクトのみ記載しています。</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-5 col-12 mr-auto">
                         <div class="card card-register">
-                            {{--<h3 class="card-title text-center">Register</h3>--}}
-                            <div class="social">
-                                <button href="#paper-kit" class="btn btn-just-icon btn-facebook"><i class="fa fa-facebook"></i></button>
-                                <button href="#paper-kit" class="btn btn-just-icon btn-google"><i class="fa fa-google"></i></button>
-                                <button href="#paper-kit" class="btn btn-just-icon btn-twitter"><i class="fa fa-twitter"></i></button>
-                            </div>
-
+                            <a href="" class="btn btn-round btn-facebook">
+                                <i class="fa fa-facebook" aria-hidden="true"></i> Facebook で 登録
+                            </a>
                             <div class="division">
                                 <div class="line l"></div>
                                 <span>or</span>
@@ -57,7 +53,7 @@
                                 {{ csrf_field() }}
                                 {{-- ユーザー名 --}}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(ニックネーム)" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
                                     @if ($errors->has('name'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
