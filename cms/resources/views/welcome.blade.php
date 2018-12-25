@@ -91,31 +91,6 @@
                         
                         <div class="col-md-8 ml-auto mr-auto text-center">
                             <h2 class="title">【DHGS公式】<br></h2>
-
-
-
-                            <form action="/welcome" method="POST">
-                                {!! csrf_field() !!}
-                                <script
-                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                    data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
-                                    data-amount="1000"
-                                    data-name="F#"
-                                    data-description="Example charge"
-                                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                    data-locale="auto"
-                                    data-currency="jpy"
-
-                                    $.ajaxSetup({
-                                        headers: {
-                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                        }
-                                    })
-                                >
-                                </script>
-                            </form>
-
-
                             <h5 class="description">デジタルハリウッド大学大学院の2018年度学内コンペティション（インテリム・コンペティション）に選出された、NPOの人とお金の流れをテクノロジーで変えるWebサービスです。</h5>
                             </div>
                         <div class="project-pills">
@@ -219,11 +194,6 @@
                                         </div>
                                 	</div>
                 					
-                					
-                					
-                					
-                					
-                					
                 				</div>
                 			</div>
             				<!-- overview ここまで -->
@@ -238,20 +208,21 @@
                                         <div class="col-md-5">
                                             <div class="card-img-top">
                                                 <a href="https://facebook.com/nj.takayuki" target="_blank">
-                                                    <img class="img" src="{{ url('/') }}/../img/faces/nakajo.jpg" />
+                                                    <img class="img" src="{{ url('/') }}/../img/faces/nakajoFire.jpg" />
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="col-md-7">
                                             <div class="card-body text-left">
                                                 <h4 class="card-title">Nakajo Takayuki</h4>
-                                                <h6 class="card-category">Founder</h6>
+                                                <h6 class="card-category">Founder & Developer</h6>
                                                 <p class="card-description">
                                                 	デジタルハリウッド大学大学院の1年生。個人の価値を売買するサービス『VALU』で、購入者ランキング3位。NPOを通じて1年間アメリカに留学経験有
                                                 </p>
                                                 <div class="card-footer">
+                                                    <a href="https://facebook.com/nj.takayuki" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
                                                     <a href="https://twitter.com/TakayukiNakajo" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-twitter"></i></a>
-                                                    <a href="https://www.facebook.com/nj.takayuki" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                    <a href="https://m.youtube.com/channel/UCtEvLQ00OoOioktf5g5EgIQ" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-youtube"></i></a>
                                                     <a href="https://github.com/TakayukiNJ" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-github"></i></a>
                                                 </div>
                                             </div>
