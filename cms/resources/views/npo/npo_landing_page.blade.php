@@ -555,6 +555,27 @@
                                                     <p class="btn btn-success btn-round">準備中</p>
                                                     @endif
                                                 @endif
+
+                                                <form action="/welcome" method="POST">
+                                                    {!! csrf_field() !!}
+                                                    <script
+                                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                            data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                                                            data-amount="{{ $npo_info->support_amount }}"
+                                                            data-name="{{ $npo_info->title }}"
+                                                            data-description="Example charge"
+                                                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                                            data-locale="auto"
+                                                            data-currency="jpy"
+
+                                                            $.ajaxSetup({
+                                                            headers: {
+                                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                    }
+                                                    })
+                                                    >
+                                                    </script>
+                                                 </form>
                                             </div>
                                         </div>
                                     </div>
