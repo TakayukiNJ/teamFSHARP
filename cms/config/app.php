@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'F# NPOの資金不足を解決。NPO資金調達Webサービス',
+    'name' => 'F# 食費と宿泊費が無料で世界中のプロジェクトに関わることができます。',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://fsharp.me'),
 
 
     /*

@@ -19,7 +19,8 @@ class Npo_registerController extends Controller {
 	public function index()
 	{
 		$npo_registers = Npo_register::orderBy('proval', 'desc')->paginate(10);
-		
+// 		$npo_registers = Npo_register::orderBy('proval', 'desc');
+
 		return view('npo_registers.index', compact('npo_registers'));
 	}
 	/**
@@ -70,14 +71,14 @@ class Npo_registerController extends Controller {
         $npo_register->support_amount          = "0";
         $npo_register->proval                  = "0";
         
-        $npo_register->blue_card_title         = "私たちのミッション";
-        $npo_register->blue_card_body          = "自由にご記載ください。";
-        $npo_register->green_card_title        = "活動内容";
-        $npo_register->green_card_body         = "自由にご記載ください。";
-        $npo_register->yellow_card_title       = "ファンクラブの特典";
-        $npo_register->yellow_card_body        = "タイトルがファンクラブの特典の場合、期限のご記載もお願いします。(ファンクラブ特典は必須ではございません) ";
-        $npo_register->support_contents        = "現在設定なし";
-        $npo_register->support_contents_detail = "現在設定なし";
+        $npo_register->blue_card_title         = "プロジェクトの目的";
+        $npo_register->blue_card_body          = "ご自由にご記載ください。";
+        $npo_register->green_card_title        = "プロジェクト期間と詳細";
+        $npo_register->green_card_body         = "ご自由にご記載ください。";
+        $npo_register->yellow_card_title       = "寄付の使い道とリターン";
+        $npo_register->yellow_card_body        = "プロジェクト運営費、広告費（リターンは必須ではございません。） ";
+        $npo_register->support_contents        = "このページに名前を記載";
+        $npo_register->support_contents_detail = new Carbon(Carbon::now()->addYear(1));;
         
         $npo_register->published               = new Carbon(Carbon::now()->addWeek(1));
         
