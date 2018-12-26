@@ -29,7 +29,7 @@
                     <tbody>
                         @foreach($npo_registers as $npo_register)
                             
-                            @if((Auth::user()->name) == ($npo_register->manager))
+                            @if((Auth::user()->name) === ($npo_register->manager))
                             <tr>
                                 <td><h1>{{$npo_register->title}}</h1></td>
                                 <td><h1>{{$npo_register->subtitle}}</h1></td>

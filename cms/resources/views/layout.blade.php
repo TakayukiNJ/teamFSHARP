@@ -10,7 +10,7 @@
 
     <title>{{ config('app.name', 'FSHARP') }}</title>
 
-    <link rel="shortcut icon" href="favicon.ico" type="img/icon/favicon.ico"/>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="img/icon/favicon.ico"/>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/css/colorbox.css">
     <link rel="stylesheet" href="/css/range.css">
     <!--<link rel="stylesheet" href="/css/reset.css">-->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
