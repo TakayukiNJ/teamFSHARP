@@ -16,8 +16,8 @@
                         </div>
                     </div>
                     <div class="col-md-6  ml-auto">
-                        <h2 class="title">{!! nl2br(e(trans($npo_info->title))) !!}</h2>
                         <h5 class="description">{!! nl2br(e(trans($npo_info->subtitle))) !!}</h5>
+                        <h2 class="title">{!! nl2br(e(trans($npo_info->title))) !!}</h2>
                         <br>
                         <div>
                         <a href="#support" class="btn btn-danger">

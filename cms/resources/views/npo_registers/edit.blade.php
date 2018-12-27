@@ -16,7 +16,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                     <div class="form-group @if($errors->has('manager')) has-error @endif">
-                       <label for="manager-field">Owner(NPOサイト作成者)</label>
+                       <label for="manager-field">Owner(サイト作成者)</label>
                     <input type="text" id="manager-field" name="manager" class="form-control" value="{{ is_null(old("manager")) ? $npo_info->manager : old("manager") }}" readonly="readonly"/>
                        @if($errors->has("manager"))
                         <span class="help-block">{{ $errors->first("manager") }}</span>
@@ -24,14 +24,14 @@
                     </div>
 
                     <div class="form-group @if($errors->has('title')) has-error @endif">
-                       <label for="title-field">Title(タイトル)</label>
+                       <label for="title-field">団体の名前</label>
                     <input type="text" id="title-field" name="title" class="form-control" value="{{ is_null(old("title")) ? $npo_info->title : old("title") }}"/>
                        @if($errors->has("title"))
                         <span class="help-block">{{ $errors->first("title") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
-                       <label for="subtitle-field">Subtitle(小見出し)</label>
+                       <label for="subtitle-field">プロジェクト名</label>
                     <input type="text" id="subtitle-field" name="subtitle" class="form-control" value="{{ is_null(old("subtitle")) ? $npo_info->subtitle : old("subtitle") }}"/>
                        @if($errors->has("subtitle"))
                         <span class="help-block">{{ $errors->first("subtitle") }}</span>

@@ -15,25 +15,26 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     
                     <div class="form-group @if($errors->has('title')) has-error @endif">
-                       <label for="title-field">ページURL（https://fsharp.me/npo/〇〇〇〇の〇部分）</label>
-                    <input type="text" id="title-field" name="npo_name" class="form-control" value="{{ old("npo_name") }}"/>
-                       @if($errors->has("npo_name"))
-                        <span class="help-block">{{ $errors->first("npo_name") }}</span>
-                       @endif
-                    </div>
-                    
-                    <div class="form-group @if($errors->has('title')) has-error @endif">
-                       <label for="title-field">NPOの名前</label>
+                       <label for="title-field">団体の名前</label>
                     <input type="text" id="title-field" name="title" class="form-control" value="{{ old("title") }}"/>
                        @if($errors->has("title"))
                         <span class="help-block">{{ $errors->first("title") }}</span>
                        @endif
                     </div>
+                    
                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
-                       <label for="subtitle-field">タイトル(見出し部分)</label>
+                       <label for="subtitle-field">プロジェクト名</label>
                     <input type="text" id="subtitle-field" name="subtitle" class="form-control" value="{{ old("subtitle") }}"/>
                        @if($errors->has("subtitle"))
                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
+                       @endif
+                    </div>
+                    
+                    <div class="form-group @if($errors->has('title')) has-error @endif">
+                       <label for="title-field">ページURL（https://fsharp.me/npo/〇〇〇〇の〇部分）</label>
+                    <input type="text" id="title-field" name="npo_name" class="form-control" value="{{ old("npo_name") }}"/>
+                       @if($errors->has("npo_name"))
+                        <span class="help-block">{{ $errors->first("npo_name") }}</span>
                        @endif
                     </div>
                     
