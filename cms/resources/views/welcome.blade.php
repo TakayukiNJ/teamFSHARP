@@ -15,7 +15,7 @@
     				<h1 class="presentation-title"></h1>
     				<!--<div class="type">F♯</div>-->
     			</div>
-    			<h2 class="presentation-subtitle text-center">F♯で人材と資金、集めませんか？</h2>
+    			<h2 class="presentation-subtitle text-center">F♯でそのプロジェクトの人と資金、集めませんか？</h2>
     			
                 <div class="w3-panel w3-large">
                     <br>
