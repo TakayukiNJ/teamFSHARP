@@ -34,7 +34,8 @@
                        <label for="title-field">ページURL（https://fsharp.me/npo/〇〇〇〇の〇部分）</label>
                     <input type="text" id="title-field" name="npo_name" class="form-control" value="{{ old("npo_name") }}"/>
                        @if($errors->has("npo_name"))
-                        <span class="help-block">{{ $errors->first("npo_name") }}</span>
+                        <!--<span class="help-block">{{ $errors->first("npo_name") }}</span>-->
+                        <span class="help-block">このURLはすでに使われております。</span>
                        @endif
                     </div>
                     

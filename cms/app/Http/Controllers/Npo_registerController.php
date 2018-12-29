@@ -46,7 +46,8 @@ class Npo_registerController extends Controller {
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
-    
+        $npo_auth = Auth::user()->npo;
+        
 		$rules = [
 		    'npo_name' => 'required|unique:npo_registers,npo_name',
 		    'title' => 'required',
@@ -54,9 +55,15 @@ class Npo_registerController extends Controller {
 		$this -> validate($request, $rules);
 
 		$npo_register->npo_name                = $request->input("npo_name");
+        if("" == $npo_auth){
+            // $npo_auth = $npo_register;
+            DB::table('user')->insert([
+                'npo' => $npo_register
+            ]);
+        }
 		$npo_register->title                   = $request->input("title");
         $npo_register->subtitle                = $request->input("subtitle");
-        
+        // ここからmanagerまで必要？
         $npo_register->embed_youtube           = $request->input("embed_youtube");
         $npo_register->blue_card_title         = $request->input("blue_card_title");
         $npo_register->blue_card_body          = $request->input("blue_card_body");

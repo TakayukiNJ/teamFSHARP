@@ -4,20 +4,16 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="container">
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-plus"></i> 自己紹介 </h1>
+        <h1> 情報編集ページ（外部に無断で公開することはございません。） </h1>
     </div>
     <div class="row">
         <div class="col-md-12">
             <form name="changeform" method="POST">
-                    <div class="form-group">
-                        <label for="title-field">ID</label>
-                        <input type="text" id="title-field" name="id" class="form-control" value="{{ $id }}" readonly="readonly"/>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="title-field">USER</label>
-                        <input type="text" id="title-field" name="user" class="form-control" value="{{ $user }}" readonly="readonly"/>
-                    </div>
+                    <!--<div class="form-group">-->
+                    <!--    <label for="title-field">Email</label>-->
+                    <!--    <input type="text" id="title-field" name="user" class="form-control" value="{{ $user }}" readonly="readonly"/>-->
+                    <!--</div>-->
 
 
                     <div class="form-group @if($errors->has('user_name_sei_kanji')) has-error @endif">
@@ -97,6 +93,7 @@
                     <a class="btn btn-link pull-right" onClick="history.back()"><i class="glyphicon glyphicon-backward"></i> 戻る</a>
                 </div>
 {{ csrf_field() }}
+<BR>
 <BR>
 <BR>
 <BR>
