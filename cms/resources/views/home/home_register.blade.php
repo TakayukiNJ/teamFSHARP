@@ -15,7 +15,6 @@
                     <!--    <input type="text" id="title-field" name="user" class="form-control" value="{{ $user }}" readonly="readonly"/>-->
                     <!--</div>-->
 
-
                     <div class="form-group @if($errors->has('user_name_sei_kanji')) has-error @endif">
                         <label for="title-field">姓(漢字)</label>
                         <input type="text" id="user_name_sei_kanji-field" name="user_name_sei_kanji" class="form-control" style="width:40%" autocomplete="off" value="{{ $user_name_sei_kanji }}"/>
