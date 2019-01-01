@@ -52,9 +52,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }} </a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                        <a class="dropdown-item" href="{{ url('/npo') }}/{{ Auth::user()->npo }}"><i class="nc-icon nc-bank"></i>&nbsp; {{ Auth::user()->npo }}</a>
+                        <!--<a class="dropdown-item" href="npo_registers"><i class="nc-icon nc-bank"></i>&nbsp; {{ Auth::user()->npo }}</a>-->
                         <!--<a class="dropdown-item" href="{{ url('/home') }}"><i class="nc-icon nc-basket"></i>&nbsp; @lang('app.npo return edit')</a>-->
-						<a class="dropdown-item" href="{{ url('/npo') }}/{{ Auth::user()->npo }}/edit"><i class="nc-icon nc-money-coins"></i>&nbsp; @lang('app.npo detail edit')</a>
+						<a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; @lang('app.npo detail edit')</a>
                     
                     
                 @endif        		

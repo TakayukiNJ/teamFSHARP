@@ -94,9 +94,10 @@
                             </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <!-- ホーム画面 -->
-                                    <li><a href="{{ url('/npo') }}/{{ Auth::user()->npo }}" onClick="C01_run();return false;">@lang('app.npo page')</a></li>
+                                    <!--<li><a href="{{ url('/npo') }}/{{ Auth::user()->npo }}" onClick="C01_run();return false;">@lang('app.npo page')</a></li>-->
                                     <!--<li><a href="{{ url('/home') }}" onClick="C01_run();return false;">@lang('app.npo return edit')</a></li>-->
-                                    <li><a href="{{ url('/npo') }}/{{ Auth::user()->npo }}/edit" onClick="C01_run();return false;">@lang('app.npo detail edit')</a></li><!-- 将来、ここはチャットに変更 -->
+						            <li><a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; @lang('app.npo detail edit')</a></li>
+						            <li><a class="dropdown-item" href="{{ url('/npo_registers/create') }}">&nbsp; 新規作成</a></li>
                                     <!--<li><a href="{{ url('/connect/vision_sell_regist') }}" onClick="C01_run();return false;">@lang('app.return setting')</a></li><!-- 将来、ここはチャットに変更 -->
                                     <!-- 設定画面 -->
                                     <!--<li><a href="{{ url('/npo/setting') }}">@lang('app.npo setting')</a></li>-->
@@ -117,12 +118,12 @@
                             </li>
 
                             @else
-                            <li><a href="{{ url('/npo_registers/create') }}">NPOページを作成</a></li>
+                            <li><a href="{{ url('/npo_registers/create') }}">プロジェクトを作成</a></li>
                             @endif
 
                             <!-- ユーザー -->
                             <li class="dropdown">
-                                <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
                                     {{ Auth::user()->name }}<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">

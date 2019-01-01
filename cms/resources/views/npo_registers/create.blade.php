@@ -6,22 +6,28 @@
     @include('error')
 <div class="container">
     <div class="page-header">
-        <h1><i class="glyphicon glyphicon-edit"></i> NPOページ作成</h1>
+        @if ((Auth::user()->npo) == "")
+        <h1><i class="glyphicon glyphicon-edit"></i> プロジェクト作成ページ</h1>
+        @else
+        <h1><i class="glyphicon glyphicon-edit"></i> {{ Auth::user()->npo }}のプロジェクト追加ページ</h1>
+        @endif
     </div>
     <div class="row">
         <div class="col-md-12">
-
             <form action="{{ route('npo_registers.store') }}" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    
+                    @if ((Auth::user()->npo) == "")
                     <div class="form-group @if($errors->has('title')) has-error @endif">
-                       <label for="title-field">団体の名前</label>
-                    <input type="text" id="title-field" name="title" class="form-control" value="{{ old("title") }}"/>
-                       @if($errors->has("title"))
+                        <label for="title-field">団体名 ※作成後の変更不可</label>
+                        <input type="text" id="title-field" name="title" class="form-control" value="{{ old("title") }}"/>
+                        @if($errors->has("title"))
                         <span class="help-block">{{ $errors->first("title") }}</span>
-                       @endif
+                        @endif
                     </div>
-                    
+                    @else
+                    <input type="hidden" id="title-field" name="title" class="form-control" value="{{ Auth::user()->npo }}"/>
+                    @endif
+                        
                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
                        <label for="subtitle-field">プロジェクト名</label>
                     <input type="text" id="subtitle-field" name="subtitle" class="form-control" value="{{ old("subtitle") }}"/>
