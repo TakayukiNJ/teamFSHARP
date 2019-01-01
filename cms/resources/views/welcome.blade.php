@@ -56,7 +56,7 @@
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
                                 @if ($errors->has('name'))
-                                    <span class="help-block">
+                                    <span class="help-block division">
                                     <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
@@ -65,7 +65,7 @@
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレス" value="{{ old('email') }}" required>
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
+                                    <span class="help-block division">
                                     <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
@@ -74,13 +74,13 @@
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <input id="password" type="password" class="form-control" placeholder="パスワード" name="password" required>
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
+                                    <span class="help-block division">
                                     <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>
                             {{-- パスワード確認 --}}
-                            <div class="form-group">
+                            <div class="form-group division">
                                 <input id="password-confirm" type="password" class="form-control" placeholder="パスワード確認" name="password_confirmation" required>
                             </div>
                             {{-- 利用規約とプライバシーポリシー --}}
@@ -96,9 +96,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="demo-footer text-center">
-            <h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by F♯</h6>
         </div>
     </div>
     </div>

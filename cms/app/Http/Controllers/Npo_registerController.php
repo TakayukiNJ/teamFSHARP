@@ -18,8 +18,8 @@ class Npo_registerController extends Controller {
 
 	public function index()
 	{
-        $npo_auth = Auth::user()->npo;
-		$npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', "abc")->paginate(10);
+        $name_auth = Auth::user()->name;
+		$npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
 // 		$npo_registers = Npo_register::orderBy('proval', 'desc');
 
 		return view('npo_registers.index', compact('npo_registers'));
@@ -31,6 +31,8 @@ class Npo_registerController extends Controller {
 	 */
 	public function create()
 	{
+	    $npo_auth = Auth::user()->npo;
+	   // if("" )
 		return view('npo_registers/create');
 	}
 
