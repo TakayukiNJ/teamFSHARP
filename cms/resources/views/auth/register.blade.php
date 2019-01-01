@@ -4,7 +4,7 @@
 @include('layouts.nav_lp')
 @include('layouts.welcome_script')
 @section('welcome_content')
-    <body class="full-screen register">
+<body class="full-screen register">
     <div class="wrapper">
         <div class="page-header" style="background-image: url('../img/farid-askerov.jpg');">
             <div class="filter"></div>
@@ -101,5 +101,5 @@
             </div>
         </div>
     </div>
-    </body>
+</body>
 @endsection
