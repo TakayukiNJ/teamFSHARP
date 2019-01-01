@@ -25,8 +25,13 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home/home_own_timeline';
+    // protected $redirectTo = '/home/home_own_timeline';
 
+    public function showLoginForm()
+    {
+        session(['url.intended' => $_SERVER['HTTP_REFERER']]); // この行を追加
+        return view('auth.login');
+    }
     /**
      * Create a new controller instance.
      *
