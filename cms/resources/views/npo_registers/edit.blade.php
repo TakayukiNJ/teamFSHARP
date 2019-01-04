@@ -586,6 +586,22 @@
                         <span class="help-block">{{ $errors->first("support_amount") }}</span>
                        @endif
                     </div>
+                    <!-- 目標金額 -->
+                    <div class="form-group @if($errors->has('support_price')) has-error @endif">
+                       <label for="support_price-field">目標金額</label>
+                    <input type="text" id="support_price-field" name="support_price" class="form-control" value="{{ is_null(old("support_price")) ? $npo_info->support_price : old("support_price") }}"/>
+                       @if($errors->has("support_price"))
+                        <span class="help-block">{{ $errors->first("support_price") }}</span>
+                       @endif
+                    </div>
+                    <!-- 公開非公開 -->
+                    <div class="form-group @if($errors->has('proval')) has-error @endif">
+                       <label for="proval-field">公開設定</label>
+                    <input type="text" id="proval-field" name="proval" class="form-control" value="{{ is_null(old("proval")) ? $npo_info->proval : old("proval") }}"/>
+                       @if($errors->has("proval"))
+                        <span class="help-block">{{ $errors->first("proval") }}</span>
+                       @endif
+                    </div>
                    <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Save</button>
                     <a class="btn btn-link pull-right" href="{{ route('npo_registers.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>

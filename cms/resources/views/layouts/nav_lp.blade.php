@@ -55,7 +55,7 @@
                         <!--<a class="dropdown-item" href="npo_registers"><i class="nc-icon nc-bank"></i>&nbsp; {{ Auth::user()->npo }}</a>-->
                         <!--<a class="dropdown-item" href="{{ url('/home') }}"><i class="nc-icon nc-basket"></i>&nbsp; @lang('app.npo return edit')</a>-->
 						<a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; プロジェクト詳細編集</a>
-						<a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; プロジェクト新規作成</a>
+						<a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-ruler-pencil"></i>&nbsp; プロジェクト新規作成</a>
                     
                     
                 @endif        		
