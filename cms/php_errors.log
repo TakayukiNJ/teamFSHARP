@@ -8482,3 +8482,5 @@ Stack trace:
 [20-Jul-2018 15:51:54 Asia/Tokyo] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/ubuntu/workspace/cms/storage/framework/views/ab20b575137b6940cb9f32beb1e962edaa550215.php on line 561
 [26-Dec-2018 04:34:18 Asia/Tokyo] PHP Fatal error:  Class 'App\Https\Controllers\Controller' not found in /home/ubuntu/workspace/cms/app/Http/Controllers/Npo_registerController.php on line 13
 [01-Jan-2019 23:35:11 Asia/Tokyo] PHP Fatal error:  Constant expression contains invalid operations in /home/ubuntu/workspace/cms/app/Http/Controllers/Auth/RegisterController.php on line 31
+[03-Jan-2019 16:00:28 Asia/Tokyo] PHP Warning:  The use statement with non-compound name 'Stripe' has no effect in /home/ubuntu/workspace/cms/routes/web.php on line 15
+[03-Jan-2019 16:00:28 Asia/Tokyo] PHP Fatal error:  Cannot use Stripe as Stripe because the name is already in use in /home/ubuntu/workspace/cms/routes/web.php on line 15
