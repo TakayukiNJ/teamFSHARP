@@ -148,7 +148,7 @@
                                     </li>
                                     <!-- Developer's Window -->
                                     @if (isset($user))
-                                        @if (($user=='watanabe.kazuki@plum.plala.or.jp') or ($user=='nj.takayuki@gmail.com') or ($user='unitednum@gmail.com'))
+                                        @if (($user=='watanabe.kazuki@plum.plala.or.jp') or ($user=='nj.takayuki@gmail.com') or ($user=='unitednum@gmail.com'))
                                         <!--<li><a href="{{ url('/testviews') }}">developer's window</a></li>-->
                                         <!-- 送金・入金履歴 -->
                                         <li><a href="{!! url('/view/rireki/index.html?id='. Auth::user()->id. '&url='. Request::fullUrl(),[],true) !!}" target="_blank">送金・入金履歴</a></li>

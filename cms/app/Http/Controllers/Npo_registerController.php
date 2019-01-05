@@ -146,6 +146,25 @@ class Npo_registerController extends Controller {
         $npo_register->yellow_card_title = $request->input("yellow_card_title");
         $npo_register->yellow_card_body  = $request->input("yellow_card_body");
         
+        // 1~10までの処理を、本当はfor文で回したいけど、うまくいかない。
+        // for($i = 1; $i < 11; $i++){
+        //     $i_pos = $i."_pos";
+        //     $i_detail = $i."_detail";
+        //     $i_twitter = $i."_twitter";
+        //     $i_facebook = $i."_facebook";
+        //     $i_linkedin = $i."_linkedin";
+            // dd("member{$i}");
+            // $npo_register->member.$i      = $request->input("member{$i}");
+            // $npo_register->member.$i_pos      = $request->input("member{$i_pos}");
+            // dd($npo_register->member.$i_pos);
+            // $npo_register->member.$i_detail = $request->input("member{$i_detail}");
+            // $npo_register->member.$i_twitter  = $request->input("member{$i_twitter}");
+            // $npo_register->member.$i_facebook = $request->input("member{$i_facebook}");
+            // $npo_register->member.$i_linkedin  = $request->input("member{$i_linkedin}");
+            // if($i==3){
+            //     dd($npo_register->member.$i_pos);
+            // }
+        // }
         $npo_register->member1 = $request->input("member1");
         $npo_register->member1_pos = $request->input("member1_pos");
         $npo_register->member1_detail = $request->input("member1_detail");

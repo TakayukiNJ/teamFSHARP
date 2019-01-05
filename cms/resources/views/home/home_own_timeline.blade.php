@@ -17,10 +17,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
         <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
           <i class="fa fa-remove"></i>
         </a>
-        @if (!$image_id )
+        @if (!$image_id)
           <IMG id='own_image' src='/img/contents/user-default.png' style="width:150px">
         @else
-          <IMG id='own_image' src="{{ $image_id }}" style="width:150px">
+          <!--<IMG id='own_image' src="{ { $image_id } }" style="width:150px">-->
+          <IMG id='own_image' style="width:200px">
         @endif
           <!--<IMG id='own_image' src="{{ '' == $image_id  or '/img/contents/nike.jpeg' }}" style="width:150px">-->
           <!--<IMG id='own_image' src="{{ '' !== $image_id ? $image_id : '/img/contents/user-default.png' }}" style="width:150px">-->
@@ -285,6 +286,26 @@ function E04_1_run(val) {
     make_hidden('omikuji_id', val, 'changeform');
     window.document.changeform.submit();
 }
+$(document).ready(function() {
+	// 画像の再描画
+    var changeCheckModule = function() {
+		$.get("{{ url('other/own_image_picture') }}", {target : "HOME_REGIST"},
+			function(data){
+				// 画像データのパスが取得できれば表示する
+				if(data != "0") {
+					$('#own_image').attr('src', data);
+				}
+           	});
+        // 画像ボタンの押下可否判定
+        var own_image = $("img[id='own_image']").attr('src');
+        if (own_image) {
+    		$("input[id='image_delete_button']").show();
+        } else {
+    		$("input[id='image_delete_button']").hide();
+        }
+    };
+    setInterval(changeCheckModule, 1000);
+});
 </script>
 
 </div>

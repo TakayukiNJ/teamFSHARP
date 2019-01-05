@@ -321,7 +321,6 @@ Route::get('bitflyer/getHistorySupportFrom', function()
 Route::get('bitflyer/support/transfer/{id}', 'Bitflyer\BitflyerHistoryController@transfer');
 Route::get('bitflyer/support/payment/{id}', 'Bitflyer\BitflyerHistoryController@payment');
 
-
 Route::post('/welcome', function () {
     \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
     // Get the credit card details submitted by the form
@@ -329,8 +328,7 @@ Route::post('/welcome', function () {
  	
     // Create a charge: this will charge the user's card
     try {
-        
-        dd('card declined2');
+        dd('ここが通れば、ひとまず安心');
         $charge = \Stripe\Charge::create(array(
             "amount" => "1000", // 課金額はココで調整
             "currency" => "jpy",

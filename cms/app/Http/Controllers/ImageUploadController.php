@@ -48,7 +48,8 @@ class ImageUploadController extends Controller
         $selfValidate = false;
 
         $validator = Validator::make($request->all(),
-            ['file' => 'required|image|dimensions:min_width=120,min_height=120,max_width=400,max_height=400',]
+            ['file' => 'required|image|dimensions:min_width=120,min_height=120',]
+            // ['file' => 'required|image|dimensions:min_width=120,min_height=120,max_width=400,max_height=400',]
         );
         logger('a');
         if ($request->file) {
@@ -88,8 +89,13 @@ class ImageUploadController extends Controller
 
             $image = Image::make($request->file->getRealPath());
 
-            //画像リサイズ
-            $image->resize(300, null, function ($constraint) {
+
+
+
+
+
+            // 画像リサイズ
+            $image->resize(300, NULL, function ($constraint) {
                 $constraint->aspectRatio();
             });
 
@@ -108,7 +114,7 @@ class ImageUploadController extends Controller
             // 画像をデータベースに格納する
             $id = Auth::user()->id;
             $user = Auth::user()->email;
-
+            
             // 同じ画像は削除する
             $deleteRows = DB::table('image_data')->where('user_id', $user)->where('image_id', $openPublicFileName)->delete();
 
@@ -124,6 +130,9 @@ class ImageUploadController extends Controller
                     'delflg' => '0',
                 ]
             ];
+
+            // 元々存在している画像に対して、delflgを0->1にする。
+            DB::table('image_data')->where('user_id', $user)->update(['delflg' => 1]);
 
             // データベース登録処理
             $cli = DB::table('image_data')->insert($data_tbl);
