@@ -8484,3 +8484,14 @@ Stack trace:
 [01-Jan-2019 23:35:11 Asia/Tokyo] PHP Fatal error:  Constant expression contains invalid operations in /home/ubuntu/workspace/cms/app/Http/Controllers/Auth/RegisterController.php on line 31
 [03-Jan-2019 16:00:28 Asia/Tokyo] PHP Warning:  The use statement with non-compound name 'Stripe' has no effect in /home/ubuntu/workspace/cms/routes/web.php on line 15
 [03-Jan-2019 16:00:28 Asia/Tokyo] PHP Fatal error:  Cannot use Stripe as Stripe because the name is already in use in /home/ubuntu/workspace/cms/routes/web.php on line 15
+[05-Jan-2019 18:59:13 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/symfony/http-foundation/HeaderBag.php on line 125
+[05-Jan-2019 19:01:08 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Support/Str.php on line 72
+[05-Jan-2019 19:02:03 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Http/Request.php on line 696
+[05-Jan-2019 19:02:23 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Support/Str.php on line 71
+[05-Jan-2019 19:04:37 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/app/Http/Controllers/Npo_registerController.php on line 160
+[05-Jan-2019 19:05:47 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Http/Request.php on line 668
+[05-Jan-2019 19:05:47 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Http/Request.php on line 335
+[05-Jan-2019 19:06:25 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/app/Http/Controllers/Npo_registerController.php on line 161
+[05-Jan-2019 19:06:47 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Support/helpers.php on line 399
+[05-Jan-2019 19:38:33 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/symfony/http-foundation/HeaderBag.php on line 114
+[05-Jan-2019 20:45:36 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Support/Str.php on line 72
