@@ -98,7 +98,8 @@
                                     <!--<li><a href="{{ url('/home') }}" onClick="C01_run();return false;">@lang('app.npo return edit')</a></li>-->
 						            <li><a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; @lang('app.npo detail edit')</a></li>
 						            <li><a class="dropdown-item" href="{{ url('/npo_registers/create') }}">&nbsp; 新規作成</a></li>
-                                    <!--<li><a href="{{ url('/connect/vision_sell_regist') }}" onClick="C01_run();return false;">@lang('app.return setting')</a></li><!-- 将来、ここはチャットに変更 -->
+                                    <!--<li><a href="{{ url('/connect/vision_sell_regist') }}" onClick="C01_run();return false;">@lang('app.return setting')</a></li>-->
+                                    <!-- 将来、ここはチャットに変更 -->
                                     <!-- 設定画面 -->
                                     <!--<li><a href="{{ url('/npo/setting') }}">@lang('app.npo setting')</a></li>-->
                                     <!-- チャット画面 -->

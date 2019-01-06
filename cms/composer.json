@@ -7,11 +7,10 @@
     "require": {
         "php": ">=5.6.4",
         "intervention/image": "^2.4",
-        "laravel/cashier": "~7.0",
         "laravel/framework": "5.3.*",
         "laravel/socialite": "~2.0",
         "laravelcollective/html": "^5.3.0",
-        "stripe/stripe-php": "3.*"
+        "stripe/stripe-php": "^6.17"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "2.*@dev",
