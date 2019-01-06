@@ -328,7 +328,6 @@ Route::post('/welcome', function () {
  	
     // Create a charge: this will charge the user's card
     try {
-        dd('ここが通れば、ひとまず安心');
         $charge = \Stripe\Charge::create(array(
             "amount" => "1000", // 課金額はココで調整
             "currency" => "jpy",
