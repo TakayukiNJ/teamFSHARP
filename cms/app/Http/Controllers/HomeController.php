@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
         // ログイン不要で開きたいページはここに記入していく。
-        $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms', 'privacy_policy', 'specified_commercial_transactions_law', 'npo_landing_page']]);
+        $this->middleware('auth', ['except' => ['terms', 'privacy_policy', 'specified_commercial_transactions_law', 'npo_landing_page']]);
     }
 
     /**
@@ -122,6 +122,11 @@ class HomeController extends Controller
             session(['param_birthday_month' => $query->birthday_month]);
             session(['param_birthday_day' => $query->birthday_day]);
             session(['param_image_id' => $query->image_id]);
+            session(['param_bank_name' => $query->bank_name]);
+            session(['param_bank_branch' => $query->bank_branch]);
+            session(['param_bank_type_account' => $query->bank_type_account]);
+            session(['param_bank_account_number' => $query->bank_account_number]);
+            session(['param_bank_account_name' => $query->bank_account_name]);
             return view('home/home_register')
             ->with('id', $id)
             ->with('user', $user)
@@ -133,6 +138,11 @@ class HomeController extends Controller
             ->with('birthday_year', $query->birthday_year)
             ->with('birthday_month', $query->birthday_month)
             ->with('birthday_day', $query->birthday_day)
+            ->with('bank_name', $query->bank_name)
+            ->with('bank_branch', $query->bank_branch)
+            ->with('bank_type_account', $query->bank_type_account)
+            ->with('bank_account_number', $query->bank_account_number)
+            ->with('bank_account_name', $query->bank_account_name)
             ->with('count', $count);
         } else {
             logger('次のIF条件判定とおった');
@@ -145,6 +155,11 @@ class HomeController extends Controller
             session(['param_birthday_month' => '']);
             session(['param_birthday_day' => '']);
             session(['param_image_id' => '']);
+            session(['param_bank_name' => '']);
+            session(['param_bank_branch' => '']);
+            session(['param_bank_type_account' => '']);
+            session(['param_bank_account_number' => '']);
+            session(['param_bank_account_name' => '']);
             return view('home/home_register')
             ->with('id', $id)
             ->with('user', $user)
@@ -156,7 +171,12 @@ class HomeController extends Controller
             ->with('birthday_year', '')
             ->with('birthday_month', '')
             ->with('birthday_day', '')
-            ->with('count', $count);
+            ->with('bank_name', '')
+            ->with('bank_branch', '')
+            ->with('bank_type_account', '')
+            ->with('bank_account_number', '')
+            ->with('bank_account_name', '')
+            ->with('count', '');
         }
     }
     // 自己紹介登録確認画面
@@ -173,19 +193,29 @@ class HomeController extends Controller
         $birthday_year       = $request->input('birthday_year');
         $birthday_month      = $request->input('birthday_month');
         $birthday_day        = $request->input('birthday_day');
+        $bank_name           = $request->input('bank_name');
+        $bank_branch         = $request->input('bank_branch');
+        $bank_type_account   = $request->input('bank_type_account');
+        $bank_account_number = $request->input('bank_account_number');
+        $bank_account_name   = $request->input('bank_account_name');
 
         // personal_infoが登録されているかどうかを取得する
         $count = DB::table('personal_info')->where('user_id', $user)->count();
         
         $validator = Validator::make($request->all(),[
-            'user_name_sei_kanji' => 'required|string|between:1,16',
-            'user_name_sei_roma' => 'required|string|between:1,32',
-            'user_name_mei_kanji' => 'required|string|between:1,16',
-            'user_name_mei_roma' => 'required|string|between:1,32',
+            'user_name_sei_kanji' => 'string|between:1,16',
+            'user_name_sei_roma' => 'string|between:1,32',
+            'user_name_mei_kanji' => 'string|between:1,16',
+            'user_name_mei_roma' => 'string|between:1,32',
             'sex_type' => 'required|string|between:1,1',
-            'birthday_year' => 'required|string|between:4,4',
-            'birthday_month' => 'required|string|between:2,2',
-            'birthday_day' => 'required|string|between:2,2',
+            'birthday_year' => 'string|between:4,4',
+            'birthday_month' => 'string|between:1,2',
+            'birthday_day' => 'string|between:1,2',
+            'bank_name' => 'string|between:2,16',
+            'bank_branch' => 'string|between:2,16',
+            'bank_type_account' => 'string|between:1,1',
+            'bank_account_number' => 'string|between:7,10',
+            'bank_account_name' => 'string|between:2,64',
         ]);
         if ($validator->fails()){
             return view('home/home_register', compact('user'))
@@ -199,6 +229,11 @@ class HomeController extends Controller
             ->with('birthday_year', $birthday_year)
             ->with('birthday_month', $birthday_month)
             ->with('birthday_day', $birthday_day)
+            ->with('bank_name', $bank_name)
+            ->with('bank_branch', $bank_branch)
+            ->with('bank_type_account', $bank_type_account)
+            ->with('bank_account_number', $bank_account_number)
+            ->with('bank_account_name', $bank_account_name)
             ->with('count', $count)
             ->withErrors($validator);
         } else {
@@ -210,6 +245,11 @@ class HomeController extends Controller
             session(['param_birthday_year' => $birthday_year]);
             session(['param_birthday_month' => $birthday_month]);
             session(['param_birthday_day' => $birthday_day]);
+            session(['param_bank_name' => $bank_name]);
+            session(['param_bank_branch' => $bank_branch]);
+            session(['param_bank_type_account' => $bank_type_account]);
+            session(['param_bank_account_number' => $bank_account_number]);
+            session(['param_bank_account_name' => $bank_account_name]);
             
             return view('home/home_register_confirm')
             ->with('id', $id)
@@ -222,7 +262,13 @@ class HomeController extends Controller
             ->with('sex_type', $sex_type)
             ->with('birthday_year', $birthday_year)
             ->with('birthday_month', $birthday_month)
-            ->with('birthday_day', $birthday_day);
+            ->with('birthday_day', $birthday_day)
+            ->with('bank_name', $bank_name)
+            ->with('bank_branch', $bank_branch)
+            ->with('bank_type_account', $bank_type_account)
+            ->with('bank_account_number', $bank_account_number)
+            ->with('bank_account_name', $bank_account_name)
+            ;
         }
     }
     // 自己紹介登録実行画面
@@ -230,20 +276,24 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $user = Auth::user()->email;
-
         //$deleteRows = DB::table('personal_info')->where('user_id', $user)->delete();
         $data_tbl = [
-             'user_id' => $user,
-             'image_id' => session('image_id'),
-             'user_name_sei_kanji' => session('param_user_name_sei_kanji'),
-             'user_name_mei_kanji' => session('param_user_name_mei_kanji'),
-             'user_name_sei_roma' => session('param_user_name_sei_roma'),
-             'user_name_mei_roma' => session('param_user_name_mei_roma'),
-             'sex_type' => session('param_sex_type'),
-             'birthday_year' => session('param_birthday_year'),
-             'birthday_month' => session('param_birthday_month'),
-             'birthday_day' => session('param_birthday_day'),
-             'delflg' => '0'
+            'user_id' => $user,
+            'image_id' => session('image_id'),
+            'user_name_sei_kanji' => session('param_user_name_sei_kanji'),
+            'user_name_mei_kanji' => session('param_user_name_mei_kanji'),
+            'user_name_sei_roma' => session('param_user_name_sei_roma'),
+            'user_name_mei_roma' => session('param_user_name_mei_roma'),
+            'sex_type' => session('param_sex_type'),
+            'birthday_year' => session('param_birthday_year'),
+            'birthday_month' => session('param_birthday_month'),
+            'birthday_day' => session('param_birthday_day'),
+            'bank_name' => session('param_bank_name'),
+            'bank_branch' => session('param_bank_branch'),
+            'bank_type_account' => session('param_bank_type_account'),
+            'bank_account_number' => session('param_bank_account_number'),
+            'bank_account_name' => session('param_bank_account_name'),
+            'delflg' => '0'
             ];
         // personal_infoが登録されているかどうかを取得する
         $count = DB::table('personal_info')->where('user_id', $user)->count();
@@ -277,6 +327,11 @@ class HomeController extends Controller
         $birthday_year=$request->input('birthday_year');
         $birthday_month=$request->input('birthday_month');
         $birthday_day=$request->input('birthday_day');
+        $bank_name=$request->input('bank_name');
+        $bank_branch=$request->input('bank_branch');
+        $bank_type_account=$request->input('bank_type_account');
+        $bank_account_number=$request->input('bank_account_number');
+        $bank_account_name=$request->input('bank_account_name');
 
         session(['user_name_sei_kanji' => $user_name_sei_kanji]);
         session(['user_name_mei_kanji' => $user_name_mei_kanji]);
@@ -286,6 +341,11 @@ class HomeController extends Controller
         session(['birthday_year' => $birthday_year]);
         session(['birthday_month' => $birthday_month]);
         session(['birthday_day' => $birthday_day]);
+        session(['bank_name', $bank_name]);
+        session(['bank_branch', $bank_branch]);
+        session(['bank_type_account', $bank_type_account]);
+        session(['bank_account_number', $bank_account_number]);
+        session(['bank_account_name', $bank_account_name]);
         // 要変更ここまで(2018.1.5)
 
         $image_id = '';
@@ -316,6 +376,11 @@ class HomeController extends Controller
         ->with('birthday_year', $birthday_year)
         ->with('birthday_month', $birthday_month)
         ->with('birthday_day', $birthday_day)
+        ->with('bank_name', $bank_name)
+        ->with('bank_branch', $bank_branch)
+        ->with('bank_type_account', $bank_type_account)
+        ->with('bank_account_number', $bank_account_number)
+        ->with('bank_account_name', $bank_account_name)
         ;
         //2018.1.4追加ここまで
 
@@ -346,14 +411,19 @@ class HomeController extends Controller
         $query = DB::table('main_omikuji_data');
 
         // 用編集(データベースから取ってくる用に変更...)
-        $user_name_sei_kanji=$request->input('user_name_sei_kanji');
-        $user_name_mei_kanji=$request->input('user_name_mei_kanji');
-        $user_name_sei_roma=$request->input('user_name_sei_roma');
-        $user_name_mei_roma=$request->input('user_name_mei_roma');
-        $sex_type=$request->input('sex_type');
-        $birthday_year=$request->input('birthday_year');
-        $birthday_month=$request->input('birthday_month');
-        $birthday_day=$request->input('birthday_day');
+        $user_name_sei_kanji = $request->input('user_name_sei_kanji');
+        $user_name_mei_kanji = $request->input('user_name_mei_kanji');
+        $user_name_sei_roma  = $request->input('user_name_sei_roma');
+        $user_name_mei_roma  = $request->input('user_name_mei_roma');
+        $sex_type            = $request->input('sex_type');
+        $birthday_year       = $request->input('birthday_year');
+        $birthday_month      = $request->input('birthday_month');
+        $birthday_day        = $request->input('birthday_day');
+        $bank_name           = $request->input('bank_name');
+        $bank_branch         = $request->input('bank_branch');
+        $bank_type_account   = $request->input('bank_type_account');
+        $bank_account_number = $request->input('bank_account_number');
+        $bank_account_name   = $request->input('bank_account_name');
 
         session(['user_name_sei_kanji' => $user_name_sei_kanji]);
         session(['user_name_mei_kanji' => $user_name_mei_kanji]);
@@ -363,6 +433,11 @@ class HomeController extends Controller
         session(['birthday_year' => $birthday_year]);
         session(['birthday_month' => $birthday_month]);
         session(['birthday_day' => $birthday_day]);
+        session(['bank_name' => $bank_name]);
+        session(['bank_branch' => $bank_branch]);
+        session(['bank_type_account' => $bank_type_account]);
+        session(['bank_account_number' => $bank_account_number]);
+        session(['bank_account_name' => $bank_account_name]);
         // 要変更ここまで(2018.1.5)
 
         $image_id = '';
@@ -393,6 +468,11 @@ class HomeController extends Controller
         ->with('birthday_year', $birthday_year)
         ->with('birthday_month', $birthday_month)
         ->with('birthday_day', $birthday_day)
+        ->with('bank_name', $bank_name)
+        ->with('bank_branch', $bank_branch)
+        ->with('bank_type_account', $bank_type_account)
+        ->with('bank_account_number', $bank_account_number)
+        ->with('bank_account_name', $bank_account_name)
         ;
         //2018.1.4追加ここまで
 

@@ -696,10 +696,10 @@
                         <form class="contact">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Name（お名前）">
+                                    <input type="text" class="form-control" placeholder="Name（お名前）" value="{{!Auth::guest() ? Auth::user()->name : ''}}">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Email（メールアドレス）">
+                                    <input type="text" class="form-control" placeholder="Email（メールアドレス）" value="{{!Auth::guest() ? Auth::user()->email : ''}}">
                                 </div>
                             </div>
                             <br>

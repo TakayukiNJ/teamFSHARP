@@ -50,7 +50,15 @@
                     <p class="form-control-static">{{ $birthday_year }}／{{ $birthday_month }}／{{ $birthday_day }}</p>
                 </div>
                 <div class="form-group">
-                    <label for="vision_status">画像</label>
+                    <label for="vision_status">[受取人口座名]</label>
+                    <p class="form-control-static">{{ $bank_account_name }}</p>
+                </div>
+                <div class="form-group">
+                    <label for="vision_status">[銀行口座]</label>
+                    <p class="form-control-static">{{ $bank_name }}　{{ $bank_branch }}　{{ $bank_type_account }}　{{ $bank_account_number }}</p>
+                </div>
+                <div class="form-group">
+                    <label for="vision_status">[画像]</label>
                     <p class="form-control-static"><IMG id='own_image' src='{{ $image_id }}'></p>
                 </div>
             </form>

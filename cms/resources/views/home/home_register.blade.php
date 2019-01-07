@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="form-group @if($errors->has('sex_type')) has-error @endif">
-                        <label for="title-field">性別</label>
+                        <label for="title-field">性別</label><br>
     					@if ($sex_type == 2)
                         <input type="radio" id="sex_type_1" name="sex_type" value="1" style="width:40px;height:30px">男
                         &nbsp;&nbsp;&nbsp;&nbsp;
@@ -78,6 +78,55 @@
                         @endif
                         @if($errors->has("birthday_day"))
                            <span class="help-block">{{ $errors->first("birthday_day") }}</span>
+                        @endif
+                    </div>
+                    
+                    {{-- 銀行口座関係 --}}
+                    <div class="form-group @if($errors->has('bank_name')) has-error @endif @if($errors->has('bank_branch')) has-error @endif @if($errors->has('bank_type_account')) has-error @endif @if($errors->has('bank_account_number')) has-error @endif @if($errors->has('bank_account_name')) has-error @endif">
+                        <label for="title-field">銀行口座振込先</label><BR>
+                        <table>
+                        銀行名<input type="text" id="bank_name-field" name="bank_name" class="form-control" style="width:20%" autocomplete="off" value="{{ $bank_name }}" placeholder="例：三菱ＵＦＪ銀行" {{ !$bank_name ? '' : 'readonly="readonly"'}}/>
+                        支店名<input type="text" id="bank_branch-field" name="bank_branch" class="form-control" style="width:20%" autocomplete="off" value="{{ $bank_branch }}" placeholder="例：代々木支店" {{ !$bank_branch ? '' : 'readonly="readonly"'}}/>
+                        <p for="title-field">預金科目</p>
+    					@if ($bank_type_account == 9)
+                        <input type="radio" id="bank_type_account_1" name="bank_type_account" value="1" style="width:40px;height:30px">普通預金<br>
+                        <input type="radio" id="bank_type_account_2" name="bank_type_account" value="2" style="width:40px;height:30px">当座預金<br>
+                        <input type="radio" id="bank_type_account_4" name="bank_type_account" value="4" style="width:40px;height:30px">貯蓄預金<br>
+                        <input type="radio" id="bank_type_account_9" name="bank_type_account" value="9" style="width:40px;height:30px" CHECKED>その他<br>
+                        @elseif ($bank_type_account == 4)
+                        <input type="radio" id="bank_type_account_1" name="bank_type_account" value="1" style="width:40px;height:30px">普通預金<br>
+                        <input type="radio" id="bank_type_account_2" name="bank_type_account" value="2" style="width:40px;height:30px">当座預金<br>
+                        <input type="radio" id="bank_type_account_4" name="bank_type_account" value="4" style="width:40px;height:30px" CHECKED>貯蓄預金<br>
+                        <input type="radio" id="bank_type_account_9" name="bank_type_account" value="9" style="width:40px;height:30px">その他<br>
+                        @elseif ($bank_type_account == 2)
+                        <input type="radio" id="bank_type_account_1" name="bank_type_account" value="1" style="width:40px;height:30px">普通預金<br>
+                        <input type="radio" id="bank_type_account_2" name="bank_type_account" value="2" style="width:40px;height:30px" CHECKED>当座預金<br>
+                        <input type="radio" id="bank_type_account_4" name="bank_type_account" value="4" style="width:40px;height:30px">貯蓄預金<br>
+                        <input type="radio" id="bank_type_account_9" name="bank_type_account" value="9" style="width:40px;height:30px">その他<br>
+                        @else
+                        <input type="radio" id="bank_type_account_1" name="bank_type_account" value="1" style="width:40px;height:30px" CHECKED>普通預金<br>
+                        <input type="radio" id="bank_type_account_2" name="bank_type_account" value="2" style="width:40px;height:30px">当座預金<br>
+                        <input type="radio" id="bank_type_account_4" name="bank_type_account" value="4" style="width:40px;height:30px">貯蓄預金<br>
+                        <input type="radio" id="bank_type_account_9" name="bank_type_account" value="9" style="width:40px;height:30px">その他<br>
+                        @endif
+                        <br>
+                        口座番号<input type="text" id="bank_account_number-field" name="bank_account_number" class="form-control" style="width:20%" autocomplete="off" value="{{ $bank_account_number }}" placeholder="例：1234567" {{ !$bank_account_number ? '' : 'readonly="readonly"'}}/>
+                        受取人口座名<input type="text" id="bank_account_name-field" name="bank_account_name" class="form-control" style="width:30%" autocomplete="off" value="{{ $bank_account_name }}" placeholder="例：テ゛シ゛タルハリウツト゛（カ" {{ !$bank_account_name ? '' : 'readonly="readonly"'}}/>
+                        </table>
+                        @if($errors->has("bank_name"))
+                           <span class="help-block">{{ $errors->first("bank_name") }}</span>
+                        @endif
+                        @if($errors->has("bank_branch"))
+                           <span class="help-block">{{ $errors->first("bank_branch") }}</span>
+                        @endif
+                        @if($errors->has("bank_type_account"))
+                           <span class="help-block">{{ $errors->first("bank_type_account") }}</span>
+                        @endif
+                        @if($errors->has("bank_account_number"))
+                           <span class="help-block">{{ $errors->first("bank_account_number") }}</span>
+                        @endif
+                        @if($errors->has("bank_account_name"))
+                           <span class="help-block">{{ $errors->first("bank_account_name") }}</span>
                         @endif
                     </div>
 
