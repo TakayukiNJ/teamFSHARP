@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                     <label for="vision_status">[銀行口座]</label>
-                    <p class="form-control-static">{{ $bank_name }}　{{ $bank_branch }}　{{ $bank_type_account }}　{{ $bank_account_number }}</p>
+                    <p class="form-control-static">銀行名：{{ $bank_name }}、支店名：{{ $bank_branch }}、預金科目{{ $bank_type_account }}、口座番号{{ $bank_account_number }}</p>
                 </div>
                 <div class="form-group">
                     <label for="vision_status">[画像]</label>

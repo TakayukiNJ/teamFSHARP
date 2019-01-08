@@ -41,14 +41,14 @@
                     </div>
                     <div class="col-md-4 col-sm-5 col-12 mr-auto">
                         <div class="card card-register">
-                            <a href="" class="btn btn-round btn-facebook">
-                                <i class="fa fa-facebook" aria-hidden="true"></i> Facebook で 登録
-                            </a>
-                            <div class="division">
-                                <div class="line l"></div>
-                                <span>or</span>
-                                <div class="line r"></div>
-                            </div>
+                            <!--<a href="" class="btn btn-round btn-facebook">-->
+                            <!--    <i class="fa fa-facebook" aria-hidden="true"></i> Facebook で 登録-->
+                            <!--</a>-->
+                            <!--<div class="division">-->
+                            <!--    <div class="line l"></div>-->
+                                <!--<span>登録</span>-->
+                            <!--    <div class="line r"></div>-->
+                            <!--</div>-->
                             <form class="register-form" role="form" method="POST" action="{{ url('/register') }}">
                                 {{ csrf_field() }}
                                 {{-- ユーザー名 --}}
@@ -96,10 +96,8 @@
                     </div>
                 </div>
             </div>
-            <div class="demo-footer text-center">
-                <h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by F♯</h6>
-            </div>
         </div>
     </div>
 </body>
 @endsection
+@include('layouts.footer')
