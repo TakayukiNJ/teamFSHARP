@@ -52,9 +52,10 @@ class Npo_registerController extends Controller {
         $npo_auth = Auth::user()->npo;
         
 		$rules = [
-		    'npo_name' => 'required|unique:npo_registers,npo_name',
+		    'npo_name' => 'required|string|unique:npo_registers,npo_name',
 		    'title' => 'required',
 		];
+		
 		$this -> validate($request, $rules);
 
 		$npo_register->npo_name                = $request->input("npo_name"); // URL
@@ -132,9 +133,21 @@ class Npo_registerController extends Controller {
 		$rules = [
 		  //  'npo_name' => 'required|unique:npo_registers,npo_name',
 		    'title' => 'required | min:1 | max:55',
+		    'member1' => 'unique:users,name',
 		];
+// 		\Validator::make($npo_register, [
+//             'member1' => [
+//                 'required',
+//                 Rule::unique('users'),
+//             ],
+//         ]);
+		
+// 		dd($this -> validate($request, $rules));
+// 		$rurus = [
+// 		];
+// 		dd($this -> validate($request, $rules));
 		$this -> validate($request, $rules);
-        
+		
 		$npo_register->title = $request->input("title");
         $npo_register->subtitle = $request->input("subtitle");
         
@@ -165,12 +178,22 @@ class Npo_registerController extends Controller {
             //     dd($npo_register->member.$i_pos);
             // }
         // }
-        $npo_register->member1 = $request->input("member1");
-        $npo_register->member1_pos = $request->input("member1_pos");
-        $npo_register->member1_detail = $request->input("member1_detail");
-        $npo_register->member1_twitter = $request->input("member1_twitter");
-        $npo_register->member1_facebook = $request->input("member1_facebook");
-        $npo_register->member1_linkedin = $request->input("member1_linkedin");
+        $currentUserInfo = \DB::table('users')->where('name', $request->input("member1"))->first();
+        if($currentUserInfo){
+            if($currentUserInfo->name == $request->input("member1")){
+                $npo_register->member1 = $request->input("member1");
+                $npo_register->member1_pos = $request->input("member1_pos");
+                $npo_register->member1_detail = $request->input("member1_detail");
+                $npo_register->member1_twitter = $request->input("member1_twitter");
+                $npo_register->member1_facebook = $request->input("member1_facebook");
+                $npo_register->member1_linkedin = $request->input("member1_linkedin");
+                dd("a");
+            }
+        }
+        
+        back();
+        dd($currentUserInfo);
+        dd("stop");
         
         $npo_register->member2 = $request->input("member2");
         $npo_register->member2_pos = $request->input("member2_pos");
@@ -289,13 +312,28 @@ class Npo_registerController extends Controller {
     
     public function landing(string $npo_name)
     {
+        $id = Auth::user()->id;
+        $user = Auth::user()->email;
+        
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
-    	$currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
-		//連想配列に入れtBladeテンプレートに渡しています。
-    	$data['npo_info'] = $currentNpoInfo;
-    // 	$data->support_contents_detail->format('Ymd');
-                      
-    	return view('npo.npo_landing_page', $data);
+    	$currentNpoInfo      = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+    	// NPOメンバーが画像を保存していれば、はめていく。
+        for($i = 1; $i < 11; $i++){
+            $member              = "member".$i;
+            $personal_info       = "personal_info".$i;
+            $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
+            if($currentUserInfo){
+            	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
+        	}else{
+        	    $currentPersonalInfo = "";
+        	}
+        	
+        	//連想配列に入れtBladeテンプレートに渡しています。
+        	$data[$personal_info] = $currentPersonalInfo;
+        }
+        $data['npo_info']      = $currentNpoInfo;
+        
+        return view('npo.npo_landing_page', $data);
     }
     
     public function editing(string $npo_name)
@@ -303,7 +341,7 @@ class Npo_registerController extends Controller {
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
-    	
+    // 	dd("a");
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
 		//連想配列に入れtBladeテンプレートに渡しています。

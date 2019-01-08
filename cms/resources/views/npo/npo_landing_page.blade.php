@@ -248,7 +248,7 @@
         <div class="cd-section section-white" id="teams">
             <div class="container">
                 <div class="space-top"></div>
-                <h2 class="title">チームメンバー</h2>
+                <h2 class="title">メンバー</h2>
                 <div class="row">
                     @if (( $npo_info->member1 ) != "")
                     {{-- 一人目 --}}
@@ -259,8 +259,8 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member1_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member1_pic }}"/>
+                                            @if($personal_info1)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info1->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
                                             @endif
@@ -301,11 +301,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member2_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member2_pic }}"/>
+                                            @if($personal_info2)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info2->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif
                                         </a>
                                     </div>
                                 </div>
@@ -344,11 +344,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member3_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member3_pic }}"/>
+                                            @if($personal_info3)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info3->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif 
                                         </a>
                                     </div>
                                 </div>
@@ -387,11 +387,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member4_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member4_pic }}"/>
+                                            @if($personal_info4)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info4->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif
                                         </a>
                                     </div>
                                 </div>
@@ -430,11 +430,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member5_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member5_pic }}"/>
+                                            @if($personal_info5)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info5->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif
                                         </a>
                                     </div>
                                 </div>
@@ -473,11 +473,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member6_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member6_pic }}"/>
+                                            @if($personal_info6)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info6->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif
                                         </a>
                                     </div>
                                 </div>
@@ -516,11 +516,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member7_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member7_pic }}"/>
+                                            @if($personal_info7)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info7->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif
                                         </a>
                                     </div>
                                 </div>
@@ -559,11 +559,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member8_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member8_pic }}"/>
+                                            @if($personal_info8)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info8->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif
                                         </a>
                                     </div>
                                 </div>
@@ -602,11 +602,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member9_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member9_pic }}"/>
+                                            @if($personal_info9)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info9->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif
                                         </a>
                                     </div>
                                 </div>
@@ -645,11 +645,11 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if(($npo_info->member10_pic) != "")
-                                            <img class="img" src="{{ url('/') }}/../img/faces/{{ $npo_info->member10_pic }}"/>
+                                            @if($personal_info10)
+                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info10->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif    
+                                            @endif
                                         </a>
                                     </div>
                                 </div>
