@@ -133,19 +133,8 @@ class Npo_registerController extends Controller {
 		$rules = [
 		  //  'npo_name' => 'required|unique:npo_registers,npo_name',
 		    'title' => 'required | min:1 | max:55',
-		  //  'member1' => 'unique:users,name',
 		];
-// 		\Validator::make($npo_register, [
-//             'member1' => [
-//                 'required',
-//                 Rule::unique('users'),
-//             ],
-//         ]);
 		
-// 		dd($this -> validate($request, $rules));
-// 		$rurus = [
-// 		];
-// 		dd($this -> validate($request, $rules));
 		$this -> validate($request, $rules);
 		
 		$npo_register->title = $request->input("title");
@@ -277,4 +266,30 @@ class Npo_registerController extends Controller {
         return view('npo_registers.edit', $data);
     }
     
+    public function payment(string $npo_name) {
+        // dd("$npo_name");
+// 		$npo_register = Npo_register::findOrFail($npo_name);
+        
+        \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
+        // Get the credit card details submitted by the form
+        $token = $_POST['stripeToken'];
+     	dd($token);
+        
+        // Create a charge: this will charge the user's card
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount" => "2000", // 課金額はココで調整
+                "currency" => "jpy",
+                "description" => "Example charge",
+                "source" => $token
+            ));
+        } catch (\Stripe\Error\Card $e) {
+            dd('card declined');
+        }
+    
+        // サンクスメール送る...
+    
+        return view('/thank_you_for_support');
+        // return back();
+    }   
 }

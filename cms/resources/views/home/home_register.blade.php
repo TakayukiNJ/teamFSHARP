@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="container">
     <div class="page-header">
-        <h1> 情報編集ページ（外部に無断で公開することはございません。） </h1>
+        <h1> 個人情報編集ページ </h1>
     </div>
     <div class="row">
         <div class="col-md-12">

@@ -18,7 +18,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     @if ((Auth::user()->npo) == "")
                     <div class="form-group @if($errors->has('title')) has-error @endif">
-                        <label for="title-field">団体名 ※作成後の変更不可</label>
+                        <label for="title-field">団体名 ※右上のユーザー名の左に表示されます。</label>
                         <input type="text" id="title-field" name="title" class="form-control" value="{{ old("title") }}"/>
                         @if($errors->has("title"))
                         <span class="help-block">{{ $errors->first("title") }}</span>

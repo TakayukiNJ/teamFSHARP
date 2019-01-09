@@ -26,8 +26,8 @@
                         </a>
                         </div>
                         <br>
-                        <h6>目標金額：0円</h6>
-                        <h6>現在：0円 ／ 寄付数：0</h6>
+                        <h6>目標金額：{{$npo_info->support_price}}円</h6>
+                        <h6>現在：{{$npo_info->buyer}}円 ／ 寄付数：{{$npo_info->follower}}</h6>
                         <br>
                         <div class="progress">
                             <div class="progress-bar progress-bar-success" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>

@@ -14,7 +14,7 @@
             <form action="{{ route('npo_registers.update', $npo_info->id) }}" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+                    {{--
                     <div class="form-group @if($errors->has('manager')) has-error @endif">
                        <label for="manager-field">Owner(サイト作成者)</label>
                     <input type="text" id="manager-field" name="manager" class="form-control" value="{{ is_null(old("manager")) ? $npo_info->manager : old("manager") }}" readonly="readonly"/>
@@ -22,7 +22,7 @@
                         <span class="help-block">{{ $errors->first("manager") }}</span>
                        @endif
                     </div>
-
+                    --}}
                     <div class="form-group @if($errors->has('title')) has-error @endif">
                        <label for="title-field">団体の名前</label>
                     <input type="text" id="title-field" name="title" class="form-control" value="{{ is_null(old("title")) ? $npo_info->title : old("title") }}"/>
