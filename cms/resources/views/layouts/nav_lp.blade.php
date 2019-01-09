@@ -41,9 +41,7 @@
 				<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }}</a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                    
-                @else 
-                    
+                @else
                 <li class="nav-item">
                     <a class="nav-link" href="https://goo.gl/YZLao1">@lang('app.ask my page')</a>
                     <!-- <a class="btn btn-round btn-danger" href="#paper-kit">掲載・相談する</a> -->
@@ -56,8 +54,6 @@
                         <!--<a class="dropdown-item" href="{{ url('/home') }}"><i class="nc-icon nc-basket"></i>&nbsp; @lang('app.npo return edit')</a>-->
 						<a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; プロジェクト詳細編集</a>
 						<a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-ruler-pencil"></i>&nbsp; プロジェクト新規作成</a>
-                    
-                    
                 @endif        		
                         <a class="dropdown-item" href="{{ url('home/home_own_timeline') }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
                         <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();

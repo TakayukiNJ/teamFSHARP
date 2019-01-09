@@ -254,9 +254,10 @@ Route::post('/npo_register/create', 'Npo_registerController@create');
 // Route::post('/npo_register/edit_npopage/{npo_name}', function(Npo_name $npo_name);
 Route::post('/npo_register/{npo_name}/edit', 'Npo_registerController@edit');
 //フォルダ名をURLに反映(2018.01.04仲条追加項目)
-Route::get('npo/{npo_name}','Npo_registerController@landing');
-Route::get('npo/{npo_name}/edit','Npo_registerController@editing');
-
+Route::get('/npo/{npo_name}','Npo_registerController@landing');
+Route::get('/npo/{npo_name}/edit','Npo_registerController@editing');
+Route::post('/npo/{npo_name}/payment','Npo_registerController@payment');
+// Route::post('welcome','Npo_registerController@payment');
 
 // スタブ機能
 Route::post('/testviews', 'TestViewController@index');
@@ -320,26 +321,3 @@ Route::get('bitflyer/getHistorySupportFrom', function()
 
 Route::get('bitflyer/support/transfer/{id}', 'Bitflyer\BitflyerHistoryController@transfer');
 Route::get('bitflyer/support/payment/{id}', 'Bitflyer\BitflyerHistoryController@payment');
-
-Route::post('/welcome', function () {
-    \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
-    // Get the credit card details submitted by the form
-    $token = $_POST['stripeToken'];
- 	
-    // Create a charge: this will charge the user's card
-    try {
-        $charge = \Stripe\Charge::create(array(
-            "amount" => "1000", // 課金額はココで調整
-            "currency" => "jpy",
-            "description" => "Example charge",
-            "source" => $token
-        ));
-    } catch (\Stripe\Error\Card $e) {
-        dd('card declined');
-    }
-
-    // サンクスメール送る...
-
-    return view('/thank_you_for_support');
-    // return back();
-});
