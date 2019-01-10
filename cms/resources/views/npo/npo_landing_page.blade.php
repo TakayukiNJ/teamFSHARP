@@ -37,7 +37,7 @@
                             </p>
                             @endif
                         </div>
-                    </div>
+                    </div>{{ auth()->check() }}
 
                     <div class="col-md-7 ml-auto" id="support">
                         <div class="tab-content text-center" >

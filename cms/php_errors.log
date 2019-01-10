@@ -8495,3 +8495,4 @@ Stack trace:
 [05-Jan-2019 19:06:47 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Support/helpers.php on line 399
 [05-Jan-2019 19:38:33 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/symfony/http-foundation/HeaderBag.php on line 114
 [05-Jan-2019 20:45:36 Asia/Tokyo] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/ubuntu/workspace/cms/vendor/laravel/framework/src/Illuminate/Support/Str.php on line 72
+[10-Jan-2019 22:44:17 Asia/Tokyo] PHP Fatal error:  Cannot use Illuminate\Support\Facades\Auth as Auth because the name is already in use in /home/ubuntu/workspace/cms/app/Http/Controllers/Npo_registerController.php on line 12
