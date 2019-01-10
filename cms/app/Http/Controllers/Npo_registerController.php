@@ -229,8 +229,8 @@ class Npo_registerController extends Controller {
     
     public function landing(string $npo_name)
     {
-        $id = Auth::user()->id;
-        $user = Auth::user()->email;
+        // $id = Auth::user()->id;
+        // $user = Auth::user()->email;
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
     	$currentNpoInfo      = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
@@ -267,29 +267,32 @@ class Npo_registerController extends Controller {
     }
     
     public function payment(string $npo_name) {
-        // dd("$npo_name");
-// 		$npo_register = Npo_register::findOrFail($npo_name);
+        $this->middleware('auth');
         
+        $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+		$name_auth = Auth::user()->name;
+		
         \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
-     	dd($token);
-        
+    
+    //  	dd($currentNpoInfo);
+    //  	dd($request);
         // Create a charge: this will charge the user's card
         try {
             $charge = \Stripe\Charge::create(array(
-                "amount" => "2000", // 課金額はココで調整
-                "currency" => "jpy",
-                "description" => "Example charge",
-                "source" => $token
+                "amount"      => $currentNpoInfo->support_amount, // 課金額はココで調整
+                "currency"    => "jpy",
+                "description" => $currentNpoInfo->title,
+                "source"      => $token
             ));
         } catch (\Stripe\Error\Card $e) {
-            dd('card declined');
+            return view('/errors/503');
         }
-    
+        // $data['npo_info'] = $currentNpoInfo;
+        // return view('npo.npo_landing_page', $data);
         // サンクスメール送る...
-    
-        return view('/thank_you_for_support');
-        // return back();
+        // return view('/thank_you_for_support');
+        return back();
     }   
 }

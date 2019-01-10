@@ -69,12 +69,36 @@
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
                                                 @else
+                                                    <form action="/npo/{{$npo_info->npo_name}}/payment" method="POST">
+                                                        {!! csrf_field() !!}
+                                                        <script
+                                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                            data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                                                            data-amount="{{ $npo_info->support_amount }}"
+                                                            data-name="{{ $npo_info->title }}"
+                                                            data-email="{{Auth::user()->email}}"
+                                                            data-description="寄付後にユーザー名と画像が自動記載"
+                                                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                                            data-locale="auto"
+                                                            data-currency="jpy"
+                                                            $.ajaxSetup({
+                                                            headers: {
+                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                            }
+                                                        })
+                                                        >
+                                                        </script>
+                                                     </form>
+                                                    
+                                                    {{--
                                                     @if (( $npo_info->code2 ) != "")
                                                     <a href="https://paymo.life/shops/4c67fab166/{{ $npo_info->npo_name }}" target="_blank" class="btn btn-danger btn-round">日本円決済</a>
                                                     <a href="{{ $npo_info->code2 }}" class="btn btn-danger btn-round">ビットコイン決済</a>
                                                     @else
                                                     <p class="btn btn-success btn-round">プロジェクト準備中</p>
                                                     @endif
+                                                     --}}
+                                                     
                                                 @endif
                                                 {{--
                                                 <style type="text/css">
@@ -85,26 +109,6 @@
                                                 }
                                                 </style>
                                                 --}}
-                                                <form action="/npo/{{$npo_info->npo_name}}/payment" method="POST">
-                                                    {!! csrf_field() !!}
-                                                    <script
-                                                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                        data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
-                                                        data-amount="{{ $npo_info->support_amount }}"
-                                                        data-name="{{ $npo_info->title }}"
-                                                        data-email="{{Auth::user()->email}}"
-                                                        data-description="寄付後にユーザー名と画像が自動記載"
-                                                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                                        data-locale="auto"
-                                                        data-currency="jpy"
-                                                        $.ajaxSetup({
-                                                        headers: {
-                                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                                        }
-                                                    })
-                                                    >
-                                                    </script>
-                                                 </form>
                                             </div>
                                         </div>
                                     </div>
