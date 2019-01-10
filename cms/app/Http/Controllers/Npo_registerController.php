@@ -170,6 +170,7 @@ class Npo_registerController extends Controller {
                     $npo_register->$member_linkedin = $request->input($member_linkedin);
                 }
             }else{
+                // メンバーがいなかったら、登録させない。
                 \Validator::make(
                     [$member => $request[$member]],
                     [$member => 'mimes']
@@ -231,11 +232,23 @@ class Npo_registerController extends Controller {
     
     public function landing(string $npo_name)
     {
-        // $id = Auth::user()->id;
-        // $user = Auth::user()->email;
+        $id = Auth::user()->id;
+        $user = Auth::user()->email;
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
-    	$currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+    	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+    	$currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
+    // 	dd($currentPremierData[1]['status']);
+    // 	$a = var_export(array_column($currentPremierData, 'status'));
+    	$buyer_count = 0;
+    	$currency_amount = 0;
+    	for($array_count=0; $array_count<count($currentPremierData); $array_count++){
+           $buyer_count++;
+           $currency_amount = $currency_amount + $currentPremierData[$array_count]->status;
+        }
+        $data['buyer_data'] = $buyer_count;
+        $data['currency_data'] = $currency_amount;
+        
     	// NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
             $member              = "member".$i;
@@ -251,6 +264,7 @@ class Npo_registerController extends Controller {
         	$data[$personal_info] = $currentPersonalInfo;
         }
         $data['npo_info'] = $currentNpoInfo;
+        // dd($data);
         
         return view('npo.npo_landing_page', $data);
     }
@@ -291,11 +305,10 @@ class Npo_registerController extends Controller {
 		$name_auth = Auth::user()->name;
 		
         \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
+        
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
-    
-    //  	dd($currentNpoInfo);
-    //  	dd($request);
+        
         // Create a charge: this will charge the user's card
         try {
             $charge = \Stripe\Charge::create(array(
@@ -307,23 +320,11 @@ class Npo_registerController extends Controller {
         } catch (\Stripe\Error\Card $e) {
             return view('/errors/503');
         }
-        $currentNpoInfo->buyer++;
         
-        // $premiers = \DB::table('premier_data');
-        // $premiers->user_id   = Auth::user()->email;
-        // $premiers->vision_id = $currentNpoInfo->npo_name;
-        // $premiers->premier_id = 1; // premier_id… 通常の寄付なら1、企業からの寄付なら2、企業からのプレミア寄付なら3
-        // title … なんて名前のプロジェクトに対して寄付したのか ($npo_info->title) これは使わないかな〜。
-        // image_id … personal_infoのimage_id
-        // status … いくら寄付したのか… {{ $npo_info->support_amount }}
+        $currentNpoInfo->buyer++;
+        $data['npo_info'] = $currentNpoInfo;
         $currentPersonalInfo = \DB::table('personal_info')->where('user_id', Auth::user()->email)->first();
-        // 	dd($currentPersonalInfo);
-        // $premiers->item_number = $request->item_number;
-        // $premiers->item_amount = $request->item_amount;
-        // $premiers->published = $request->published;
-        // $premiers->save();   //「/」ルートにリダイレクト 
-        // $data['premier_data'] = $premiers;
-        // dd($currentNpoInfo->npo_name);
+        
         \DB::table('premier_data')->insert(
             [
             'user_id'     => Auth::user()->email,             // 誰が寄付したのかemailで管理
@@ -338,16 +339,8 @@ class Npo_registerController extends Controller {
             'updated_at'  => new Carbon(Carbon::now())       // 寄付した時刻
             ]
         );
-        // dd($premiers);
-//         $premierDataInfo = \DB::table('premier_data');
-// 		$premierDataInfo->status = $currentNpoInfo->support_amount;
-		
-        $data['npo_info'] = $currentNpoInfo;
-        
-        // $data['npo_info'] = $currentNpoInfo;
-        // return view('npo.npo_landing_page', $data);
         // サンクスメール送る...
         // return view('/thank_you_for_support');
-        return back();
-    }   
+        return back($data);
+    }
 }
