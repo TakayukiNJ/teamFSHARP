@@ -150,20 +150,22 @@ class Npo_registerController extends Controller {
         
         // メンバーには、サイトに登録済みの「ユーザー名」を入れてください。
         for($i = 1; $i < 11; $i++){
-            $member          = "member".$i;
-            $member_pos      = $member."_pos";
-            $member_detail   = $member."_detail";
-            $member_twitter  = $member."_twitter";
-            $member_facebook = $member."_facebook";
-            $member_linkedin = $member."_linkedin";
-            $currentUserInfo = \DB::table('users')->where('name', $request->input($member))->first();
+            $member           = "member".$i;
+            $member_pos       = $member."_pos";
+            $member_detail    = $member."_detail";
+            $member_edit_auth = $member."_auth"; // 権限を付けたいだけに変数を作成
+            $member_twitter   = $member."_twitter";
+            $member_facebook  = $member."_facebook";
+            $member_linkedin  = $member."_linkedin";
+            $currentUserInfo  = \DB::table('users')->where('name', $request->input($member))->first();
             // dd($currentUserInfo);
             if($currentUserInfo){
                 if($currentUserInfo->name == $request->input($member)){
                     $npo_register->$member          = $request->input($member);
                     $npo_register->$member_pos      = $request->input($member_pos);
                     $npo_register->$member_detail   = $request->input($member_detail);
-                    $npo_register->$member_twitter  = $request->input($member_twitter);
+                    $member_edit_auth               = $request->input($member_twitter);
+                    $npo_register->$member_twitter  = $npo_register->$member.$member_edit_auth;
                     $npo_register->$member_facebook = $request->input($member_facebook);
                     $npo_register->$member_linkedin = $request->input($member_linkedin);
                 }
@@ -233,7 +235,7 @@ class Npo_registerController extends Controller {
         // $user = Auth::user()->email;
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
-    	$currentNpoInfo      = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+    	$currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
     	// NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
             $member              = "member".$i;
@@ -248,7 +250,7 @@ class Npo_registerController extends Controller {
         	//連想配列に入れtBladeテンプレートに渡しています。
         	$data[$personal_info] = $currentPersonalInfo;
         }
-        $data['npo_info']      = $currentNpoInfo;
+        $data['npo_info'] = $currentNpoInfo;
         
         return view('npo.npo_landing_page', $data);
     }
@@ -258,12 +260,28 @@ class Npo_registerController extends Controller {
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
+        $this->middleware('auth:api');
+        
     // 	dd("a");
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
 		//連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
-        return view('npo_registers.edit', $data);
+        
+        if($name_auth === $currentNpoInfo->manager){
+            return view('npo_registers.edit', $data);
+        }
+        // member1~10の_twitterカラムに権限があれば見れる処理
+        for($i = 1; $i < 11; $i++){
+            // "member".$i."_twitter"がAuth::user()->nameに1が付いていたら、権限を持たす
+            $member_auth = $name_auth."1";
+            $check_auth  = "member".$i."_twitter";
+            if($member_auth === $currentNpoInfo->$check_auth){
+                return view('npo_registers.edit', $data);
+            }
+        }
+        // これ以外だったら、errorを返す。
+        return view('/errors/503');
     }
     
     public function payment(string $npo_name) {
@@ -289,6 +307,43 @@ class Npo_registerController extends Controller {
         } catch (\Stripe\Error\Card $e) {
             return view('/errors/503');
         }
+        $currentNpoInfo->buyer++;
+        
+        // $premiers = \DB::table('premier_data');
+        // $premiers->user_id   = Auth::user()->email;
+        // $premiers->vision_id = $currentNpoInfo->npo_name;
+        // $premiers->premier_id = 1; // premier_id… 通常の寄付なら1、企業からの寄付なら2、企業からのプレミア寄付なら3
+        // title … なんて名前のプロジェクトに対して寄付したのか ($npo_info->title) これは使わないかな〜。
+        // image_id … personal_infoのimage_id
+        // status … いくら寄付したのか… {{ $npo_info->support_amount }}
+        $currentPersonalInfo = \DB::table('personal_info')->where('user_id', Auth::user()->email)->first();
+        // 	dd($currentPersonalInfo);
+        // $premiers->item_number = $request->item_number;
+        // $premiers->item_amount = $request->item_amount;
+        // $premiers->published = $request->published;
+        // $premiers->save();   //「/」ルートにリダイレクト 
+        // $data['premier_data'] = $premiers;
+        // dd($currentNpoInfo->npo_name);
+        \DB::table('premier_data')->insert(
+            [
+            'user_id'     => Auth::user()->email,             // 誰が寄付したのかemailで管理
+            'vision_id'   => $currentNpoInfo->npo_name,       // どのプロジェクトに寄付したのか
+            'premier_id'  => 1,                               // 通常の寄付なら1、企業からの寄付なら2、企業からのプレミア寄付なら3
+            'title'       => $currentNpoInfo->title,          // これは使わないかな。
+            'status'      => $currentNpoInfo->support_amount, // いくら寄付したのか
+            'published'   => new Carbon(Carbon::now()),       // これも使わなそうだけど一応
+            'description' => $currentNpoInfo->subtitle,       // 寄付した時刻
+            'delflg'      => 0,                                // 1だったら非表示
+            'created_at'  => new Carbon(Carbon::now()),       // 寄付した時刻
+            'updated_at'  => new Carbon(Carbon::now())       // 寄付した時刻
+            ]
+        );
+        // dd($premiers);
+//         $premierDataInfo = \DB::table('premier_data');
+// 		$premierDataInfo->status = $currentNpoInfo->support_amount;
+		
+        $data['npo_info'] = $currentNpoInfo;
+        
         // $data['npo_info'] = $currentNpoInfo;
         // return view('npo.npo_landing_page', $data);
         // サンクスメール送る...
