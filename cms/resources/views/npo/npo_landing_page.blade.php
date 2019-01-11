@@ -2,11 +2,101 @@
 @include('layouts.head')
 @include('layouts.script')
 @include('layouts.nav_lp')
-@include('layouts.body_headers')
 @section('content')
     {{-- description area --}}
     {{-- <div class="container tim-container"> --}}
     <div id="description-areas">
+        {{--     *********    HEADERS     *********      --}}
+        <div class="cd-section" id="headers">
+            <!-- <div class="page-header" style="background-image: linear-gradient(red, yellow, green);"> -->
+            <div class="page-header" style="background-image: url('https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=');">
+                <div class="filter"></div>
+                <div class="content-center">
+                    <div class="container">
+                        <div class="row">
+                            @if (( $npo_info->embed_youtube ) != "")
+                            <div class="col-md-5">
+                                <div class="iframe-container">
+                                    <iframe src="https://www.youtube.com/embed/{{ $npo_info->embed_youtube }}?modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen height="250"></iframe>
+                                    <!--<iframe src="https://www.youtube.com/embed/xdgqBFFQXKY?modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen height="250"></iframe>-->
+                                </div>
+                            </div>
+                            <div class="col-md-6 ml-auto">
+                            @else
+                            <div class="col-md-12 ml-auto">
+                            @endif
+                                <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}</h2>
+                                <h5 class="description">{!! nl2br(e(trans($npo_info->title))) !!}</h5>
+                                <br>
+                                @if(( $npo_info->support_price ) != 0)
+                                <div>
+                                    <a href="#support" class="btn btn-danger">
+                                        支援する
+                                    </a>
+                                </div>
+                                <br>
+                                <h6>目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）</h6>
+                                <h6>現在：{{$currency_data}}円 ／ 寄付数：{{$buyer_data}}</h6>
+                                <br>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{$parcentage}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+                                    </div>
+                                </div>
+                                <br>
+                                <!--<div class="progress">-->
+                                <!--    <div class="progress-bar progress-bar-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
+                                <!--</div>-->
+                                <!--<br/>-->
+                                <!--<div class="progress">-->
+                                <!--    <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>-->
+                                <!--</div>-->
+                                <!--<br/>-->
+                                <!--<div class="progress">-->
+                                <!--    <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>-->
+                                <!--    <div class="progress-bar progress-bar-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>-->
+                                <!--    <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>-->
+                                <!--</div>-->
+                                <!--<br>-->
+                                @endif
+                                
+                                <a href="https://twitter.com/intent/tweet?text={!! $npo_info->subtitle !!} {!! $npo_info->title !!}の支援のために。ひとりでも多くの方に広めてください♪%20-%20FSHARP%20%20https://fsharp.me/npo/{{ $npo_info->npo_name }}" class="btn btn-round btn-twitter">
+                                    <!--<i class="twitter-share-button" data-href="https://fsharp.me/npo/{{ $npo_info->npo_name }}" aria-hidden="true" data-text="{{ $npo_info->subtitle }} {{ $npo_info->title }}の支援のために。ひとりでも多くの方に広めてください♪%20-%20F#%20%20https://fsharp.me/npo/{{ $npo_info->npo_name }}" data-show-count="true" data-dnt="true"></i>Tweet-->
+                                    <i class="fa fa-twitter" aria-hidden="true"></i> Tweet 
+                                </a>
+                                <!--<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook">-->
+                                    
+                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me/npo/{{ $npo_info->npo_name }}%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook" data-layout="button_count">
+                                    <i class="fb-share-button" data-href="https://fsharp.me/npo/{{ $npo_info->npo_name }}" data-layout="button_count" data-size="small" data-mobile-iframe="true" aria-hidden="true"></i>
+                                <!-- シェアボタンこみ -->
+                                <!--<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook">-->
+                                <!--    <i class="fb-like" data-href="https://fsharp/npo/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></i>-->
+                                </a>
+                                
+                                
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                
+                                
+                                
+                                <script>(function(d, s, id) {
+                                  var js, fjs = d.getElementsByTagName(s)[0];
+                                  if (d.getElementById(id)) return;
+                                  js = d.createElement(s); js.id = id;
+                                  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1545608625538119&autoLogAppEvents=1';
+                                  fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));</script>
+                                
+                                <!--<a class="fb-xfbml-parse-ignore">-->
+                                
+                                
+                                <!--<a href="" class="btn btn-round btn-facebook">-->
+                                <!--    <i class="fa fa-facebook" aria-hidden="true"></i> Share &middot; 1-->
+                                <!--</a>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{--     *********    PRICING     *********      --}}
         <div class="pricing-5 section-gray" id="pricing">
             <div class="container">
@@ -25,15 +115,16 @@
                         </div>
                         <br/>
                         <div class="tab-content text-center" >
-                            <p>
-                                F♯のWebサービスは、全て仮想通貨でNPOに支援（寄付）を行います。支援には2種類あります。<br>
-                                【コイン】個人や法人（学生、社会人、株式会社、一般社団法人、NPO法人など）は、自由にコインを購入することができます。
-                                コインと引き換えに、特典を使用することができます。また、コインを持っているだけで支援をしている証明になったり、何かリターンや優待を得ることができる場合もございますので、そちらもお楽しみください。<br>
-                                【アドバンスト】NPOのオリジナル仮想通貨（トークン）をご購入できます。自由にブロックチェーン上で、NPOの価値を売買することが可能です。
+                            
+                            <p>hogehoge
+                            <!--    F♯のWebサービスは、全て仮想通貨でNPOに支援（寄付）を行います。支援には2種類あります。<br>-->
+                            <!--    【コイン】個人や法人（学生、社会人、株式会社、一般社団法人、NPO法人など）は、自由にコインを購入することができます。-->
+                            <!--    コインと引き換えに、特典を使用することができます。また、コインを持っているだけで支援をしている証明になったり、何かリターンや優待を得ることができる場合もございますので、そちらもお楽しみください。<br>-->
+                            <!--    【アドバンスト】NPOのオリジナル仮想通貨（トークン）をご購入できます。自由にブロックチェーン上で、NPOの価値を売買することが可能です。-->
                             </p>
                             @if (( $npo_info->code1 ) == "")
                             <p class="description text-gray">
-                                【アドバンスト】独自のNPOトークンで運用したい場合は、別途ご相談ください。
+                                <!--【アドバンスト】独自のNPOトークンで運用したい場合は、別途ご相談ください。-->
                             </p>
                             @endif
                         </div>
@@ -74,10 +165,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
-                                                            data-amount="{{ $npo_info->support_amount }}"
+                                                            data-amount="{{ $npo_info->support_amount*1.036 }}"
                                                             data-name="{{ $npo_info->title }}"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="寄付後にユーザー名と画像が自動記載"
+                                                            data-description="クレジット手数料：3.6%"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -86,10 +177,12 @@
                                                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                                             }
                                                         })
+                                                        
                                                         >
                                                         </script>
                                                      </form>
-                                                    
+                                                    {{-- data-description="寄付後にユーザー名と画像が自動記載"--}}
+                                                            
                                                     {{--
                                                     @if (( $npo_info->code2 ) != "")
                                                     <a href="https://paymo.life/shops/4c67fab166/{{ $npo_info->npo_name }}" target="_blank" class="btn btn-danger btn-round">日本円決済</a>
@@ -131,13 +224,14 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
-                                                <h6 class="card-category text-success">ビットコインをお持ちでない方</h6>
-                                                <h3 class="card-title">開設 ¥0</h3>
-                                                <div>
-                                                    {{-- 現在BitFlyer新規募集停止 --}}
-                                                    {{--<a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>--}}
-                                                    <a href="https://zaif.jp/?ac=ha8meb0fu4 " target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>
-                                                </div>
+                                                <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                                    <!--            <h6 class="card-category text-success">ビットコインをお持ちでない方</h6>-->
+                                    <!--            <h3 class="card-title">開設 ¥0</h3>-->
+                                    <!--            <div>-->
+                                    <!--                {{-- 現在BitFlyer新規募集停止 --}}-->
+                                    <!--                {{--<a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>--}}-->
+                                    <!--                <a href="https://zaif.jp/?ac=ha8meb0fu4 " target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
+                                    <!--            </div>-->
                                             </div>
                                         </div>
                                     </div>
