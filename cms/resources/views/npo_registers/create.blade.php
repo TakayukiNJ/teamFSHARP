@@ -36,15 +36,14 @@
                        @endif
                     </div>
                     
-                    <div class="form-group @if($errors->has('title')) has-error @endif">
-                       <label for="title-field">ページURL（https://fsharp.me/npo/〇〇〇〇の〇部分）</label>
-                    <input type="text" id="title-field" name="npo_name" class="form-control" value="{{ old("npo_name") }}"/>
-                       @if($errors->has("npo_name"))
-                        <!--<span class="help-block">{{ $errors->first("npo_name") }}</span>-->
-                        <span class="help-block">このURLはすでに使われております。</span>
+                    <!-- 目標金額 -->
+                    <div class="form-group @if($errors->has('support_price')) has-error @endif">
+                       <label for="support_price-field">目標金額</label>
+                    <input type="text" id="support_price-field" name="support_price" class="form-control" value="{{ old("support_price") }}"/>
+                       @if($errors->has("support_price"))
+                        <span class="help-block">目標金額は必須です。</span>
                        @endif
                     </div>
-                    
                     <!--<div class="form-group @if($errors->has('facebook')) has-error @endif">-->
                     <!--   <label for="facebook-field">Facebook</label>-->
                     <!--<input type="text" id="facebook-field" name="facebook" class="form-control" value="{{ old("facebook") }}"/>-->

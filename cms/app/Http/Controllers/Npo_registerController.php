@@ -20,9 +20,8 @@ class Npo_registerController extends Controller {
 	{
         $name_auth = Auth::user()->name;
 		$npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
-// 		$npo_registers = Npo_register::orderBy('proval', 'desc');
 
-		return view('npo_registers.index', compact('npo_registers'));
+		return view('npo_registers.index', compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -32,7 +31,6 @@ class Npo_registerController extends Controller {
 	public function create()
 	{
 	    $npo_auth = Auth::user()->npo;
-	   // if("" )
 		return view('npo_registers/create');
 	}
 
@@ -52,13 +50,12 @@ class Npo_registerController extends Controller {
         $npo_auth = Auth::user()->npo;
         
 		$rules = [
-		    'npo_name' => 'required|string|unique:npo_registers,npo_name',
 		    'title' => 'required',
 		];
 		
 		$this -> validate($request, $rules);
 
-		$npo_register->npo_name                = $request->input("npo_name"); // URL
+		$npo_register->npo_name                = ""; // URL
 		$npo_register->title                   = $request->input("title"); // NPOの名前
 		// NPOの名前をヘッダーに表示
 		if("" == $npo_auth){
@@ -69,18 +66,21 @@ class Npo_registerController extends Controller {
         }
         $npo_register->subtitle                = $request->input("subtitle"); // プロジェクトの名前
         // ここからmanagerまで必要？
-        $npo_register->embed_youtube           = $request->input("embed_youtube");
-        $npo_register->blue_card_title         = $request->input("blue_card_title");
-        $npo_register->blue_card_body          = $request->input("blue_card_body");
-        $npo_register->green_card_title        = $request->input("green_card_title");
-        $npo_register->green_card_body         = $request->input("green_card_body");
-        $npo_register->yellow_card_title       = $request->input("yellow_card_title");
-        $npo_register->yellow_card_body        = $request->input("yellow_card_body");
-        $npo_register->manager                 = $name_auth;
-        $npo_register->member1                 = $name_auth;
-        $npo_register->support_contents        = $request->input("support_contents");
-        $npo_register->support_contents_detail = $request->input("support_contents_detail");
-        $npo_register->support_amount          = "0";
+        // $npo_register->embed_youtube           = $request->input("embed_youtube");
+        // $npo_register->blue_card_title         = $request->input("blue_card_title");
+        // $npo_register->blue_card_body          = $request->input("blue_card_body");
+        // $npo_register->green_card_title        = $request->input("green_card_title");
+        // $npo_register->green_card_body         = $request->input("green_card_body");
+        // $npo_register->yellow_card_title       = $request->input("yellow_card_title");
+        // $npo_register->yellow_card_body        = $request->input("yellow_card_body");
+        // $npo_register->manager                 = $name_auth;
+        // $npo_register->member1                 = $name_auth;
+        // $npo_register->support_contents        = $request->input("support_contents");
+        // $npo_register->support_contents_detail = $request->input("support_contents_detail");
+        $npo_register->support_price           = $request->input("support_price"); // 目標金額
+        $npo_register->support_amount          = "10000";
+        $npo_register->support_amount_gold     = "100000";
+        $npo_register->support_amount_pratinum = "1000000";
         $npo_register->proval                  = "0";
         
         $npo_register->blue_card_title         = "プロジェクトの目的";
@@ -92,7 +92,7 @@ class Npo_registerController extends Controller {
         $npo_register->support_contents        = "このページに名前を記載";
         $npo_register->support_contents_detail = new Carbon(Carbon::now()->addYear(1));;
         
-        $npo_register->published               = new Carbon(Carbon::now()->addWeek(1));
+        // $npo_register->published               = new Carbon(Carbon::now()->addWeek(1));
         
 		$npo_register->save();
 
@@ -108,8 +108,33 @@ class Npo_registerController extends Controller {
 	public function show($npo_name)
 	{
 		$npo_register = Npo_register::find($npo_name);
-
-		return view('npo_registers.show', compact('npo_register'));
+		
+		$id_auth   = Auth::user()->id;
+        $name_auth = Auth::user()->name;
+        $user_auth = Auth::user()->email;
+        $this->middleware('auth:api');
+        
+		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
+        $currentNpoInfo = \DB::table('npo_registers')->where('id', $npo_name)->first();
+        
+        // dd($npo_name); // idを返している。
+		//連想配列に入れtBladeテンプレートに渡しています。
+        $data['npo_info'] = $currentNpoInfo;
+        
+        if($name_auth === $currentNpoInfo->manager){
+    		return view('npo_registers.show', compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+        }
+        // member1~10の_twitterカラムに権限があれば見れる処理
+        for($i = 1; $i < 11; $i++){
+            // "member".$i."_twitter"がAuth::user()->nameに1が付いていたら、権限を持たす
+            $member_auth = $name_auth."1";
+            $check_auth  = "member".$i."_twitter";
+            if($member_auth === $currentNpoInfo->$check_auth){
+                return view('npo_registers.edit', $data);
+            }
+        }
+        // これ以外だったら、errorを返す。
+        return view('/errors/503');
 	}
 
 	/**
@@ -131,16 +156,21 @@ class Npo_registerController extends Controller {
 		$npo_register = Npo_register::findOrFail($npo_name);
 		
 		$rules = [
-		  //  'npo_name' => 'required|unique:npo_registers,npo_name',
+		  //  'npo_name' => 'required|string|unique:npo_registers,npo_name',
+		    'npo_name' => 'unique:npo_registers,npo_name',
 		    'title' => 'required | min:1 | max:55',
 		];
 		
 		$this -> validate($request, $rules);
 		
-		$npo_register->title = $request->input("title");
-        $npo_register->subtitle = $request->input("subtitle");
-        
-        $npo_register->embed_youtube = $request->input("embed_youtube");
+		$npo_register->npo_name          = $request->input("npo_name"); // URL
+// 		dd($npo_register->npo_name);
+		if($npo_register->npo_name){
+		    $npo_register->published = new Carbon(Carbon::now());
+		}
+		$npo_register->title             = $request->input("title");
+        // $npo_register->subtitle          = $request->input("subtitle");
+        $npo_register->embed_youtube     = $request->input("embed_youtube");
         $npo_register->blue_card_title   = $request->input("blue_card_title");
         $npo_register->blue_card_body    = $request->input("blue_card_body");
         $npo_register->green_card_title  = $request->input("green_card_title");
@@ -168,13 +198,13 @@ class Npo_registerController extends Controller {
                     $npo_register->$member_twitter  = $npo_register->$member.$member_edit_auth;
                     $npo_register->$member_facebook = $request->input($member_facebook);
                     $npo_register->$member_linkedin = $request->input($member_linkedin);
+                }else{
+                    // メンバーがいなかったら、登録させない。
+                    \Validator::make(
+                        [$member => $request[$member]],
+                        [$member => 'mimes']
+                    )->validate();
                 }
-            }else{
-                // メンバーがいなかったら、登録させない。
-                \Validator::make(
-                    [$member => $request[$member]],
-                    [$member => 'mimes']
-                )->validate();
             }
         }
         
@@ -182,9 +212,9 @@ class Npo_registerController extends Controller {
         $npo_register->support_contents = $request->input("support_contents");
         $npo_register->support_contents_detail = $request->input("support_contents_detail");
         $npo_register->support_amount = $request->input("support_amount"); // 寄付金額
-        if ($npo_register->support_amount == $npo_register['support_amount']) {
-            $npo_register->proval = 0;
-        }
+        // if ($npo_register->support_amount == $npo_register['support_amount']) {
+        //     $npo_register->proval = 0;
+        // }
         $npo_register->support_price = $request->input("support_price"); // 目標金額
         
         // $npo_register->support_purpose_gold = $request->input("support_purpose_gold");
@@ -207,8 +237,26 @@ class Npo_registerController extends Controller {
         
         // $npo_register->body = $request->input("body");
         $npo_register->updated_at = new Carbon(Carbon::now());
-        // $npo_register->proval = $request->input("proval");
-		
+        $npo_register->proval = $request->input("proval");
+        
+        if($npo_register->proval > 0){
+            if($npo_register->support_price == 0){
+            
+                dd("a");// メンバーがいなかったら、登録させない。
+                \Validator::make(
+                    ['support_price' => $request['support_price']],
+                    ['support_price' => 'mimes']
+                )->validate();
+            }else if($npo_register->npo_name == ""){
+                dd("b");
+                \Validator::make(
+                    ['npo_name' => $request['npo_name']],
+                    ['npo_name' => 'mimes']
+                )->validate();
+            }
+            dd("c")
+        }
+// 		dd($npo_register);
 		$npo_register->save();
 		// return view('npo.npo_landing_page', compact('npo_register'));
 
@@ -238,16 +286,36 @@ class Npo_registerController extends Controller {
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
     	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
     	$currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
-    // 	dd($currentPremierData[1]['status']);
-    // 	$a = var_export(array_column($currentPremierData, 'status'));
-    	$buyer_count = 0;
-    	$currency_amount = 0;
+        // 何人がいくら寄付したのか表示
+    	$buyer_count = 0;                     // 寄付した人は何人か
+    	$currency_amount                 = 0; // 現在いくらか
+    	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
+    	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
+    	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
     	for($array_count=0; $array_count<count($currentPremierData); $array_count++){
-           $buyer_count++;
-           $currency_amount = $currency_amount + $currentPremierData[$array_count]->status;
+            $buyer_count++;
+            $currency_origin = $currentPremierData[$array_count]->status;
+            $currency_amount += $currency_origin;
+            if(1 == $currentPremierData[$array_count]->premier_id){
+                $currency_amount_personal += $currency_origin;
+            }else if(2 == $currentPremierData[$array_count]->premier_id){
+                $currency_amount_company  += $currency_origin;
+                dd("a");
+            }else if(3 == $currentPremierData[$array_count]->premier_id){
+                $currency_amount_company_premier += $currency_origin;
+            }
         }
-        $data['buyer_data'] = $buyer_count;
-        $data['currency_data'] = $currency_amount;
+        if(0 != $buyer_count){
+            $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
+            $parcentage = floor($par); // 切捨て整数化
+            $data['parcentage']    = $parcentage;
+            $data['buyer_data']    = $buyer_count;
+            $data['currency_data'] = $currency_amount;
+            $data['currency_data_personal'] = $currency_amount_personal;
+            $data['currency_data_company'] = $currency_amount_company;
+            $data['currency_data_company_premier'] = $currency_amount_company_premier;
+        }
+        // dd($par);
         
     	// NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
@@ -269,6 +337,7 @@ class Npo_registerController extends Controller {
         return view('npo.npo_landing_page', $data);
     }
     
+    // 公開をしている時（下のも同時に編集する必要あり）
     public function editing(string $npo_name)
     {
 		$id_auth   = Auth::user()->id;
@@ -276,7 +345,6 @@ class Npo_registerController extends Controller {
         $user_auth = Auth::user()->email;
         $this->middleware('auth:api');
         
-    // 	dd("a");
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
 		//連想配列に入れtBladeテンプレートに渡しています。
@@ -297,6 +365,42 @@ class Npo_registerController extends Controller {
         // これ以外だったら、errorを返す。
         return view('/errors/503');
     }
+    
+    // 公開をしていない時（上のも同時に編集する必要あり）
+    // npo_registers/{$id}/edit で開く。まだ公開していない時に使用
+    public function edit(string $npo_name)
+    {
+		$npo_register = Npo_register::find($npo_name);
+		$id_auth   = Auth::user()->id;
+        $name_auth = Auth::user()->name;
+        $user_auth = Auth::user()->email;
+        $this->middleware('auth:api');
+        
+		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
+        $currentNpoInfo = \DB::table('npo_registers')->where('id', $npo_name)->first();
+		//連想配列に入れtBladeテンプレートに渡しています。
+        $data['npo_info'] = $currentNpoInfo;
+        
+        if($name_auth === $currentNpoInfo->manager){
+            return view('npo_registers.edit', $data);
+        }
+        // member1~10の_twitterカラムに権限があれば見れる処理
+        for($i = 1; $i < 11; $i++){
+            // "member".$i."_twitter"がAuth::user()->nameに1が付いていたら、権限を持たす
+            $member_auth = $name_auth."1";
+            $check_auth  = "member".$i."_twitter";
+            if($member_auth === $currentNpoInfo->$check_auth){
+                return view('npo_registers.edit', $data);
+            }
+        }
+        // これ以外だったら、errorを返す。
+        return view('/errors/503');
+    }
+    
+    
+    
+    
+    
     
     public function payment(string $npo_name) {
         $this->middleware('auth');
