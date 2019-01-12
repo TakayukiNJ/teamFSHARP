@@ -191,7 +191,7 @@
                         <span class="help-block">{{ $errors->first("support_contents_detail") }}</span>
                        @endif
                     </div>
-                    <!-- 特典利用期限 -->
+                    <!-- 寄付金額 -->
                     <div class="form-group @if($errors->has('support_amount')) has-error @endif">
                        <label for="support_amount-field">値段（例:3000）</label>
                     <input type="text" id="support_amount-field" name="support_amount" class="form-control" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}"/>
@@ -209,10 +209,10 @@
                     </div>
                     <!-- URL -->
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
-                       <label for="title-field">ページURL（https://fsharp.me/npo/〇〇〇〇の〇部分）*変更不可</label>
+                       <label for="npo_name-field">ページURL（https://fsharp.me/npo/〇〇〇〇の〇部分）*変更不可</label>
                     <input type="text" id="npo_name-field" name="npo_name" class="form-control" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}"/>
                        @if($errors->has("npo_name"))
-                        <span class="help-block">このURLはすでに使われております。</span>
+                        <span class="help-block">この{{ $errors->first("npo_name") }}(URL)はすでに使われております。</span>
                        @endif
                     </div>
                     <!-- 公開非公開 -->

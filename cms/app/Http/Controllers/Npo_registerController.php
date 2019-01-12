@@ -154,20 +154,32 @@ class Npo_registerController extends Controller {
 	public function update(Request $request, $npo_name)
 	{
 		$npo_register = Npo_register::findOrFail($npo_name);
+ 		
+		$npo_register->npo_name      = $request->input("npo_name"); // URL
+        $npo_register->support_price = $request->input("support_price"); // 目標金額
+		$npo_register->proval = $request->input("proval"); // 1だったら公開
+		if($npo_register->proval < 1){
+    		$rules = [
+                'title'                   => 'required | min:1 | max:55',
+    		    'support_contents_detail' => 'date | after:tomorrow',
+                'support_price'           => 'digits_between:5,8',
+    	        'npo_name'                => 'alpha_dash',
+    		];
+		}else{
+		    $rules = [
+                'title'                   => 'required | min:1 | max:55',
+    		    'support_contents_detail' => 'date | after:tomorrow',
+    	        'support_price'           => 'required | digits_between:5,8',
+    	        'npo_name'                => 'required | alpha_dash',
+    	    ];
+    	}
+        $this -> validate($request, $rules);
 		
-		$rules = [
-		  //  'npo_name' => 'required|string|unique:npo_registers,npo_name',
-		    'npo_name' => 'unique:npo_registers,npo_name',
-		    'title' => 'required | min:1 | max:55',
-		];
-		
-		$this -> validate($request, $rules);
-		
-		$npo_register->npo_name          = $request->input("npo_name"); // URL
-// 		dd($npo_register->npo_name);
 		if($npo_register->npo_name){
 		    $npo_register->published = new Carbon(Carbon::now());
 		}
+		
+		
 		$npo_register->title             = $request->input("title");
         // $npo_register->subtitle          = $request->input("subtitle");
         $npo_register->embed_youtube     = $request->input("embed_youtube");
@@ -207,15 +219,15 @@ class Npo_registerController extends Controller {
                 }
             }
         }
-        
-        $npo_register->support_purpose = $request->input("support_purpose");
-        $npo_register->support_contents = $request->input("support_contents");
-        $npo_register->support_contents_detail = $request->input("support_contents_detail");
+        // スポンサー設定
+        $npo_register->support_purpose = $request->input("support_purpose"); // 資金の使い道
+        $npo_register->support_contents = $request->input("support_contents"); // 購入者への特典(リターン)
+        $npo_register->support_contents_detail = $request->input("support_contents_detail"); // 特典有効期限
         $npo_register->support_amount = $request->input("support_amount"); // 寄付金額
         // if ($npo_register->support_amount == $npo_register['support_amount']) {
         //     $npo_register->proval = 0;
         // }
-        $npo_register->support_price = $request->input("support_price"); // 目標金額
+        // $npo_register->support_price = $request->input("support_price"); // 目標金額
         
         // $npo_register->support_purpose_gold = $request->input("support_purpose_gold");
         // $npo_register->support_contents_gold = $request->input("support_contents_gold");
@@ -237,26 +249,36 @@ class Npo_registerController extends Controller {
         
         // $npo_register->body = $request->input("body");
         $npo_register->updated_at = new Carbon(Carbon::now());
-        $npo_register->proval = $request->input("proval");
+        // $npo_register->proval = $request->input("proval");
         
-        if($npo_register->proval > 0){
-            if($npo_register->support_price == 0){
-            
-                dd("a");// メンバーがいなかったら、登録させない。
-                \Validator::make(
-                    ['support_price' => $request['support_price']],
-                    ['support_price' => 'mimes']
-                )->validate();
-            }else if($npo_register->npo_name == ""){
-                dd("b");
-                \Validator::make(
-                    ['npo_name' => $request['npo_name']],
-                    ['npo_name' => 'mimes']
-                )->validate();
-            }
-            dd("c")
-        }
-// 		dd($npo_register);
+        // if($npo_register->proval > 0){
+        //     if($npo_register->support_price == 0){
+        //         \Validator::make(
+        //             ['support_price' => $request['support_price']],
+        //             ['support_price' => 'mimes']
+        //         )->validate();
+        //         dd("a");// メンバーがいなかったら、登録させない。
+        //         // \Validator::make(
+        //         //     ['support_price' => $request['support_price']],
+        //         //     ['support_price' => 'mimes']
+        //         // )->validate();
+        //     }
+        //     if($npo_register->npo_name == ""){
+        //         // \Validator::make(
+        //         //     ['support_price' => $request['support_price']],
+        //         //     ['support_price' => 'mimes']
+        //         // )->validate();
+        //         \Validator::make(
+        //             ['npo_name' => $request['npo_name']],
+        //             ['npo_name' => 'mimes']
+        //         )->validate();
+                
+        //         // \Validator::make(
+        //         //     ['npo_name' => $request['npo_name']],
+        //         //     ['npo_name' => 'mimes']
+        //         // )->validate();
+        //     }
+        // }
 		$npo_register->save();
 		// return view('npo.npo_landing_page', compact('npo_register'));
 
