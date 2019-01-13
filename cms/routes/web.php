@@ -320,3 +320,25 @@ Route::get('bitflyer/getHistorySupportFrom', function()
 
 Route::get('bitflyer/support/transfer/{id}', 'Bitflyer\BitflyerHistoryController@transfer');
 Route::get('bitflyer/support/payment/{id}', 'Bitflyer\BitflyerHistoryController@payment');
+
+ /*********************/
+// A02 パスワード変更画面
+// RequireController.php
+// ReplayController.php
+// ResetCOntroller.php
+/*********************/
+// パスワード変更問い合わせ
+Route::post('/passwordchange/require/inquiry', 'PasswordChange\RequireController@inquiry');
+Route::get('/passwordchange/require/inquiry', 'PasswordChange\RequireController@inquiry');
+Route::post('/passwordchange/require/search', 'PasswordChange\RequireController@search');
+Route::post('/passwordchange/require/searchComplete', 'PasswordChange\RequireController@searchComplete');
+Route::post('/passwordchange/require/notfound', 'PasswordChange\RequireController@notfound');
+ // パスワード変更メール
+Route::post('/passwordchange/replaymail/send/{mailaddress}', 'PasswordChange\ReplayController@forgetPasswordMailSend');
+Route::get('/passwordchange/replaymail/compare/{password}', 'PasswordChange\ReplayController@comparePassword');
+ // パスワードリセット
+Route::post('/passwordchange/reset/register', 'PasswordChange\ResetController@register');
+Route::get('/passwordchange/reset/register', 'PasswordChange\ResetController@register');
+Route::post('/passwordchange/reset/confirm', 'PasswordChange\ResetController@confirm');
+Route::post('/passwordchange/reset/process', 'PasswordChange\ResetController@process');
+Route::post('/passwordchange/reset/complete', 'PasswordChange\ResetController@complete');
