@@ -357,8 +357,8 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info1->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info1->image_id}}"/>
+                                            @if($personal_info1)
+                                                <img class="img" src="{{ url('/') }}/../{{ !$personal_info1->image_id ? 'img/placeholder.jpg' : 'images/'.$personal_info1->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
                                             @endif

@@ -320,35 +320,7 @@ Route::get('bitflyer/getHistorySupportFrom', function()
 
 Route::get('bitflyer/support/transfer/{id}', 'Bitflyer\BitflyerHistoryController@transfer');
 Route::get('bitflyer/support/payment/{id}', 'Bitflyer\BitflyerHistoryController@payment');
-
-<<<<<<< HEAD
  /*********************/
-=======
-Route::post('/welcome', function () {
-    \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
-    // Get the credit card details submitted by the form
-    $token = $_POST['stripeToken'];
- 	
-    // Create a charge: this will charge the user's card
-    try {
-        $charge = \Stripe\Charge::create(array(
-            "amount" => "1000", // 課金額はココで調整
-            "currency" => "jpy",
-            "description" => "Example charge",
-            "source" => $token
-        ));
-    } catch (\Stripe\Error\Card $e) {
-        dd('card declined');
-    }
-
-    // サンクスメール送る...
-
-    return view('/thank_you_for_support');
-    // return back();
-});
-
-/*********************/
->>>>>>> develop/20190120-lhormace-2
 // A02 パスワード変更画面
 // RequireController.php
 // ReplayController.php
@@ -360,25 +332,12 @@ Route::get('/passwordchange/require/inquiry', 'PasswordChange\RequireController@
 Route::post('/passwordchange/require/search', 'PasswordChange\RequireController@search');
 Route::post('/passwordchange/require/searchComplete', 'PasswordChange\RequireController@searchComplete');
 Route::post('/passwordchange/require/notfound', 'PasswordChange\RequireController@notfound');
-<<<<<<< HEAD
  // パスワード変更メール
 Route::post('/passwordchange/replaymail/send/{mailaddress}', 'PasswordChange\ReplayController@forgetPasswordMailSend');
 Route::get('/passwordchange/replaymail/compare/{password}', 'PasswordChange\ReplayController@comparePassword');
  // パスワードリセット
-=======
-
-// パスワード変更メール
-Route::post('/passwordchange/replaymail/send/{mailaddress}', 'PasswordChange\ReplayController@forgetPasswordMailSend');
-Route::get('/passwordchange/replaymail/compare/{password}', 'PasswordChange\ReplayController@comparePassword');
-
-// パスワードリセット
->>>>>>> develop/20190120-lhormace-2
 Route::post('/passwordchange/reset/register', 'PasswordChange\ResetController@register');
 Route::get('/passwordchange/reset/register', 'PasswordChange\ResetController@register');
 Route::post('/passwordchange/reset/confirm', 'PasswordChange\ResetController@confirm');
 Route::post('/passwordchange/reset/process', 'PasswordChange\ResetController@process');
-<<<<<<< HEAD
 Route::post('/passwordchange/reset/complete', 'PasswordChange\ResetController@complete');
-=======
-Route::post('/passwordchange/reset/complete', 'PasswordChange\ResetController@complete');
->>>>>>> develop/20190120-lhormace-2

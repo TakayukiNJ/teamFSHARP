@@ -322,7 +322,7 @@ class Npo_registerController extends Controller {
                 $currency_amount_personal += $currency_origin;
             }else if(2 == $currentPremierData[$array_count]->premier_id){
                 $currency_amount_company  += $currency_origin;
-                dd("a");
+                // dd("a");
             }else if(3 == $currentPremierData[$array_count]->premier_id){
                 $currency_amount_company_premier += $currency_origin;
             }
@@ -343,17 +343,23 @@ class Npo_registerController extends Controller {
             $member              = "member".$i;
             $personal_info       = "personal_info".$i;
             $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
+        	$currentPersonalInfo = "";
             if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
-        	}else{
-        	    $currentPersonalInfo = "";
         	}
         // 	dd($currentPersonalInfo->image_id);
         	//連想配列に入れtBladeテンプレートに渡しています。
         	$data[$personal_info] = $currentPersonalInfo;
         }
+        
         $data['npo_info'] = $currentNpoInfo;
         // dd($data);
+        
+        
+        
+        
+        
+        
         
         return view('npo.npo_landing_page', $data);
     }
