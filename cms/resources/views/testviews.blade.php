@@ -7,6 +7,11 @@
  <head>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
+var a02_1;
+var a02_2;
+var a02_3;
+var a02_4;
+var a02_5;
 var a90;
 var c01;
 var c02;
@@ -40,6 +45,87 @@ var h03_2;
 var h03_3;
 var zz1;
 var zz2;
+/* パスワード変更問い合わせ(入力画面) */
+function A02_1_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/require/inquiry";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワード変更問い合わせ(検索中) */
+function A02_2_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/require/search";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワード変更問い合わせ(検索成功：メール送信) */
+function A02_3_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/require/searchComplete";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワード変更問い合わせ(未登録) */
+function A02_4_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/require/notfound";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワード変更メール(送信) */
+function A02_5_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/replaymail/send/drgk2017@gmail.com";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワード変更メール(チェック) */
+function A02_6_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/replaymail/compare/testpassword";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワードリセット(登録画面) */
+function A02_7_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/reset/register";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワードリセット(確認画面) */
+function A02_8_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/reset/confirm";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワードリセット(処理中) */
+function A02_9_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/reset/process";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+/* パスワードリセット(完了) */
+function A02_10_run() {
+    window.open("", "STUB");
+    window.document.show_stub.action = "passwordchange/reset/complete";
+    window.document.show_stub.target = "STUB";
+    window.document.show_stub.method = "POST";
+    window.document.show_stub.submit();
+}
+
 /* 自己紹介画面表示 */
 function A90_run() {
     window.open("", "STUB");
@@ -305,6 +391,26 @@ function ZZ2_run() {
     window.document.show_stub.submit();
 }
 function clear() {
+    a02_1=0;
+    $('#A02_1').empty();
+    a02_2=0;
+    $('#A02_2').empty();
+    a02_3=0;
+    $('#A02_3').empty();
+    a02_4=0;
+    $('#A02_4').empty();
+    a02_5=0;
+    $('#A02_5').empty();
+    a02_6=0;
+    $('#A02_6').empty();
+    a02_7=0;
+    $('#A02_7').empty();
+    a02_8=0;
+    $('#A02_8').empty();
+    a02_9=0;
+    $('#A02_9').empty();
+    a02_10=0;
+    $('#A02_10').empty();
 	a90=0;
     $('#A90').empty();
     c01=0;
@@ -374,6 +480,116 @@ function clear() {
 }
 $(document).ready(function() {
 	clear();
+/* A02_1.パスワード変更問い合わせ(入力画面) */
+    $('#A02_1_front').click(function() {
+        if(a02_1 == '0') {
+            clear();
+            $('#A02_1').append("<input type=\"button\" value=\"起動\" onClick=\"A02_1_run()\"><BR>");
+            a02_1='1';
+        } else {
+            $('#A02_1').empty();
+            a02_1='0';
+        }
+    });
+/* A02_2.パスワード変更問い合わせ(検索中) */
+    $('#A02_2_front').click(function() {
+        if(a02_2 == '0') {
+            clear();
+            $('#A02_2').append("<input type=\"button\" value=\"起動\" onClick=\"A02_2_run()\"><BR>");
+            a02_2='1';
+        } else {
+            $('#A02_2').empty();
+            a02_2='0';
+        }
+    });
+/* A02_3.パスワード変更問い合わせ(検索成功：メール送信) */
+    $('#A02_3_front').click(function() {
+        if(a02_3 == '0') {
+            clear();
+            $('#A02_3').append("<input type=\"button\" value=\"起動\" onClick=\"A02_3_run()\"><BR>");
+            a02_3='1';
+        } else {
+            $('#A02_3').empty();
+            a02_3='0';
+        }
+    });
+/* A02_4.パスワード変更問い合わせ(未登録) */
+    $('#A02_4_front').click(function() {
+        if(a02_4 == '0') {
+            clear();
+            $('#A02_4').append("<input type=\"button\" value=\"起動\" onClick=\"A02_4_run()\"><BR>");
+            a02_4='1';
+        } else {
+            $('#A02_4').empty();
+            a02_4='0';
+        }
+    });
+/* A02_5.パスワード変更メール(送信) */
+    $('#A02_5_front').click(function() {
+        if(a02_5 == '0') {
+            clear();
+            $('#A02_5').append("<input type=\"button\" value=\"起動\" onClick=\"A02_5_run()\"><BR>");
+            a02_5='1';
+        } else {
+            $('#A02_5').empty();
+            a02_5='0';
+        }
+    });
+/* A02_6.パスワード変更メール(送信) */
+    $('#A02_6_front').click(function() {
+        if(a02_6 == '0') {
+            clear();
+            $('#A02_6').append("<input type=\"button\" value=\"起動\" onClick=\"A02_6_run()\"><BR>");
+            a02_6='1';
+        } else {
+            $('#A02_6').empty();
+            a02_6='0';
+        }
+    });
+/* A02_7.パスワードリセット(登録画面) */
+    $('#A02_7_front').click(function() {
+        if(a02_7 == '0') {
+            clear();
+            $('#A02_7').append("<input type=\"button\" value=\"起動\" onClick=\"A02_7_run()\"><BR>");
+            a02_7='1';
+        } else {
+            $('#A02_7').empty();
+            a02_7='0';
+        }
+    });
+/* A02_8.パスワードリセット(確認画面) */
+    $('#A02_8_front').click(function() {
+        if(a02_8 == '0') {
+            clear();
+            $('#A02_8').append("<input type=\"button\" value=\"起動\" onClick=\"A02_8_run()\"><BR>");
+            a02_8='1';
+        } else {
+            $('#A02_8').empty();
+            a02_8='0';
+        }
+    });
+/* A02_9.パスワードリセット(処理中) */
+    $('#A02_9_front').click(function() {
+        if(a02_9 == '0') {
+            clear();
+            $('#A02_9').append("<input type=\"button\" value=\"起動\" onClick=\"A02_9_run()\"><BR>");
+            a02_9='1';
+        } else {
+            $('#A02_9').empty();
+            a02_9='0';
+        }
+    });
+/* A02_10.パスワードリセット(処理中) */
+    $('#A02_10_front').click(function() {
+        if(a02_10 == '0') {
+            clear();
+            $('#A02_10').append("<input type=\"button\" value=\"起動\" onClick=\"A02_10_run()\"><BR>");
+            a02_10='1';
+        } else {
+            $('#A02_10').empty();
+            a02_10='0';
+        }
+    });
 /* A90.[管理機能]ログイン管理機能 */
     $('#A90_front').click(function() {
         if(a90 == '0') {
@@ -854,6 +1070,16 @@ $(document).ready(function() {
 <div id="A00">A-0.ログイン機能</div>
 <div id="A01">ログイン機能　※Laravel</div>
 <div id="A02">パスワード変更画面　※Laravel</div>
+<div id="A02_1_front"><li><a href="#">パスワード変更問い合わせ(入力画面)</a></li></div><div id="A02_1"></div>
+<div id="A02_2_front"><li><a href="#">パスワード変更問い合わせ(検索中)</a></li></div><div id="A02_2"></div>
+<div id="A02_3_front"><li><a href="#">パスワード変更問い合わせ(検索成功：メール送信)</a></li></div><div id="A02_3"></div>
+<div id="A02_4_front"><li><a href="#">パスワード変更問い合わせ(未登録)</a></li></div><div id="A02_4"></div>
+<div id="A02_5_front"><li><a href="#">パスワード変更メール(送信)</a></li></div><div id="A02_5"></div>
+<div id="A02_6_front"><li><a href="#">パスワード変更メール(チェック)</a></li></div><div id="A02_6"></div>
+<div id="A02_7_front"><li><a href="#">パスワードリセット(登録画面)</a></li></div><div id="A02_7"></div>
+<div id="A02_8_front"><li><a href="#">パスワードリセット(確認画面)</a></li></div><div id="A02_8"></div>
+<div id="A02_9_front"><li><a href="#">パスワードリセット(処理中)</a></li></div><div id="A02_9"></div>
+<div id="A02_10_front"><li><a href="#">パスワードリセット(完了)</a></li></div><div id="A02_10"></div>
 <div id="A03">  ログインエラー画面　※Laravel</div>
 <div id="A04">  ログアウト画面　※Laravel</div>
 <div id="A90_front"><li><a href="#">[管理機能]ログイン管理機能</a></li></div><div id="A90"></div>
@@ -926,9 +1152,6 @@ $(document).ready(function() {
 </tr></table>
  <div>
  </div>
-<!-- CSRF -->
-{{ csrf_field() }}
-<!--/ CSRF -->
 </form>
 </body>
 </html>
