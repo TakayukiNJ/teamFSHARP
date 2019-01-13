@@ -3,7 +3,7 @@
 @include('layouts.script')
 @include('layouts.nav_lp')
 @section('content')
-    {{-- description area --}}
+    {{-- description area --}}{{-- auth()->check() --}}
     {{-- <div class="container tim-container"> --}}
     <div id="description-areas">
         {{--     *********    HEADERS     *********      --}}
@@ -128,7 +128,7 @@
                             </p>
                             @endif
                         </div>
-                    </div>{{ auth()->check() }}
+                    </div>
 
                     <div class="col-md-7 ml-auto" id="support">
                         <div class="tab-content text-center" >
@@ -165,10 +165,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
-                                                            data-amount="{{ $npo_info->support_amount*1.036 }}"
+                                                            data-amount="{{ $npo_info->support_amount*1.036+216 }}"
                                                             data-name="{{ $npo_info->title }}"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="クレジット手数料：3.6%"
+                                                            data-description="クレジット手数料：*3.6%+216円"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -357,7 +357,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info1)
+                                            @if($personal_info1->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info1->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -399,7 +399,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info2)
+                                            @if($personal_info2->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info2->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -442,7 +442,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info3)
+                                            @if($personal_info3->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info3->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -485,7 +485,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info4)
+                                            @if($personal_info4->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info4->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -528,7 +528,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info5)
+                                            @if($personal_info5->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info5->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -571,7 +571,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info6)
+                                            @if($personal_info6->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info6->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -614,7 +614,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info7)
+                                            @if($personal_info7->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info7->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -657,7 +657,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info8)
+                                            @if($personal_info8->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info8->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -700,7 +700,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info9)
+                                            @if($personal_info9->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info9->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -743,7 +743,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info10)
+                                            @if($personal_info10->image_id)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info10->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
