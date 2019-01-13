@@ -48,9 +48,9 @@
                             </div>
                             
                             </form>
-                            <!--<div class="forgot">-->
-                            <!--    <a href="{{ url('/password/reset') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>-->
-                            <!--</div>-->
+                            <div class="forgot">
+                                <a href="{{ url('passwordchange/require/inquiry') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>
+                            </div>
                         </div>
                     </div>
                 </div>
