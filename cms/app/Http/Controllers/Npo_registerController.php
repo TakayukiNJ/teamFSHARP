@@ -44,17 +44,18 @@ class Npo_registerController extends Controller {
 	{
 		$npo_register = new Npo_register();
 		
+	    $rules = [
+            'title'         => 'required | min:1 | max:55',
+	        'support_price' => 'digits_between:5,8',
+	    ];
+    	
+        $this -> validate($request, $rules);
+		
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
         $npo_auth = Auth::user()->npo;
         
-		$rules = [
-		    'title' => 'required',
-		];
-		
-		$this -> validate($request, $rules);
-
 		$npo_register->npo_name                = ""; // URL
 		$npo_register->title                   = $request->input("title"); // NPOの名前
 		// NPOの名前をヘッダーに表示
@@ -65,24 +66,10 @@ class Npo_registerController extends Controller {
             ]);
         }
         $npo_register->subtitle                = $request->input("subtitle"); // プロジェクトの名前
-        // ここからmanagerまで必要？
-        // $npo_register->embed_youtube           = $request->input("embed_youtube");
-        // $npo_register->blue_card_title         = $request->input("blue_card_title");
-        // $npo_register->blue_card_body          = $request->input("blue_card_body");
-        // $npo_register->green_card_title        = $request->input("green_card_title");
-        // $npo_register->green_card_body         = $request->input("green_card_body");
-        // $npo_register->yellow_card_title       = $request->input("yellow_card_title");
-        // $npo_register->yellow_card_body        = $request->input("yellow_card_body");
-        // $npo_register->manager                 = $name_auth;
-        // $npo_register->member1                 = $name_auth;
-        // $npo_register->support_contents        = $request->input("support_contents");
-        // $npo_register->support_contents_detail = $request->input("support_contents_detail");
-        $npo_register->support_price           = $request->input("support_price"); // 目標金額
-        $npo_register->support_amount          = "10000";
-        $npo_register->support_amount_gold     = "100000";
-        $npo_register->support_amount_pratinum = "1000000";
-        $npo_register->proval                  = "0";
         
+        $npo_register->manager                 = $name_auth;
+        $npo_register->member1                 = $name_auth;
+        $npo_register->member1_twitter         = $name_auth."1";
         $npo_register->blue_card_title         = "プロジェクトの目的";
         $npo_register->blue_card_body          = "ご自由にご記載ください。";
         $npo_register->green_card_title        = "プロジェクト期間と詳細";
@@ -91,10 +78,15 @@ class Npo_registerController extends Controller {
         $npo_register->yellow_card_body        = "プロジェクト運営費、広告費（リターンは必須ではございません。） ";
         $npo_register->support_contents        = "このページに名前を記載";
         $npo_register->support_contents_detail = new Carbon(Carbon::now()->addYear(1));;
+        $npo_register->support_price           = $request->input("support_price"); // 目標金額
+        $npo_register->support_amount          = "3000"; // 個人寄付額
+        $npo_register->support_amount_gold     = "10"; // 法人寄付額
+        $npo_register->support_price_gold      = "100000"; // 法人寄付額
+        $npo_register->support_amount_pratinum = "1";       // 法人(プレミアム)寄付者上限数
+        $npo_register->support_price_pratinum  = "1000000"; // 法人(プレミアム)寄付額
+        $npo_register->proval                  = "0";
         
-        // $npo_register->published               = new Carbon(Carbon::now()->addWeek(1));
-        
-		$npo_register->save();
+        $npo_register->save();
 
 		return redirect()->route('npo_registers.index')->with('message', 'Item created successfully.');
 	}
@@ -155,6 +147,8 @@ class Npo_registerController extends Controller {
 	{
 		$npo_register = Npo_register::findOrFail($npo_name);
  		
+//  		dd($request->support_amount);
+ 		
 		$npo_register->npo_name      = $request->input("npo_name"); // URL
         $npo_register->support_price = $request->input("support_price"); // 目標金額
 		$npo_register->proval = $request->input("proval"); // 1だったら公開
@@ -163,12 +157,18 @@ class Npo_registerController extends Controller {
                 'title'                   => 'required | min:1 | max:55',
     		    'support_contents_detail' => 'date | after:tomorrow',
                 'support_price'           => 'digits_between:5,8',
-    	        'npo_name'                => 'alpha_dash',
+                'support_amount'          => 'required | digits_between:4,6', // 個人寄付の金額
+                // 'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
+                // 'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
+                'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
+    	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
+                'npo_name'                => 'alpha_dash',
     		];
 		}else{
 		    $rules = [
                 'title'                   => 'required | min:1 | max:55',
     		    'support_contents_detail' => 'date | after:tomorrow',
+    		    'support_amount'          => 'digits_between:3,6',
     	        'support_price'           => 'required | digits_between:5,8',
     	        'npo_name'                => 'required | alpha_dash',
     	    ];
@@ -195,7 +195,7 @@ class Npo_registerController extends Controller {
             $member           = "member".$i;
             $member_pos       = $member."_pos";
             $member_detail    = $member."_detail";
-            $member_edit_auth = $member."_auth"; // 権限を付けたいだけに変数を作成
+            $member_edit_auth = $member."_auth"; // 権限を付けたいだけに変数を作成（名前+1）
             $member_twitter   = $member."_twitter";
             $member_facebook  = $member."_facebook";
             $member_linkedin  = $member."_linkedin";
@@ -327,7 +327,7 @@ class Npo_registerController extends Controller {
                 $currency_amount_company_premier += $currency_origin;
             }
         }
-        if(0 != $buyer_count){
+        // if(0 != $buyer_count){
             $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
             $parcentage = floor($par); // 切捨て整数化
             $data['parcentage']    = $parcentage;
@@ -336,8 +336,7 @@ class Npo_registerController extends Controller {
             $data['currency_data_personal'] = $currency_amount_personal;
             $data['currency_data_company'] = $currency_amount_company;
             $data['currency_data_company_premier'] = $currency_amount_company_premier;
-        }
-        // dd($par);
+        // }
         
     	// NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
@@ -349,7 +348,7 @@ class Npo_registerController extends Controller {
         	}else{
         	    $currentPersonalInfo = "";
         	}
-        	
+        // 	dd($currentPersonalInfo->image_id);
         	//連想配列に入れtBladeテンプレートに渡しています。
         	$data[$personal_info] = $currentPersonalInfo;
         }
@@ -419,13 +418,10 @@ class Npo_registerController extends Controller {
         return view('/errors/503');
     }
     
-    
-    
-    
-    
-    
-    public function payment(string $npo_name) {
+    public function payment(Request $request, string $npo_name) {
         $this->middleware('auth');
+        
+        dd($request);
         
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
 		$name_auth = Auth::user()->name;
@@ -451,6 +447,7 @@ class Npo_registerController extends Controller {
         $data['npo_info'] = $currentNpoInfo;
         $currentPersonalInfo = \DB::table('personal_info')->where('user_id', Auth::user()->email)->first();
         
+        // user_idとvision_idで判別
         \DB::table('premier_data')->insert(
             [
             'user_id'     => Auth::user()->email,             // 誰が寄付したのかemailで管理
@@ -460,6 +457,7 @@ class Npo_registerController extends Controller {
             'status'      => $currentNpoInfo->support_amount, // いくら寄付したのか
             'published'   => new Carbon(Carbon::now()),       // これも使わなそうだけど一応
             'description' => $currentNpoInfo->subtitle,       // 寄付した時刻
+            'delflg'      => 0,                                // 1だったら非表示
             'delflg'      => 0,                                // 1だったら非表示
             'created_at'  => new Carbon(Carbon::now()),       // 寄付した時刻
             'updated_at'  => new Carbon(Carbon::now())       // 寄付した時刻
