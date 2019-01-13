@@ -342,4 +342,4 @@ Route::post('/welcome', function () {
 
     return view('/thank_you_for_support');
     // return back();
-});
+　});
