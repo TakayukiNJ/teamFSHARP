@@ -17,7 +17,7 @@
                             </div>
                             <div class="description">
                                 <h3> 人とお金の流れを変える </h3>
-                                <p>食費と宿泊費はプロジェクトオーナーが負担。<br>プロジェクトに対して、自分の資金調達の頑張り次第で、大きな事にもチャレンジできます。</p>
+                                <p>寄付をするとユーザー名が記載されます。集まった寄付金は全額担当者にお渡しします。振込時に手数料が<strong>3.6%</strong>と<strong>216</strong>円(税込)のみかかります。</p>
                             </div>
                         </div>
                         <div class="info info-horizontal">
@@ -25,8 +25,8 @@
                                 <i class="fa fa-map-signs"></i>
                             </div>
                             <div class="description">
-                                <h3> プロジェクトに参画 </h3>
-                                <p>世界中の解決しなければいけない課題に対して、真剣に取り組んでいる世界中のプロジェクトに、計画段階から関わることができます。</p>
+                                <h3> プロジェクトに参画・公開 </h3>
+                                <p>世界中の解決すべき課題に真剣に取り組むプロジェクトに関わることができます。また、自分でプロジェクトを作って簡単に公開ができます。</p>
                             </div>
                         </div>
                         <div class="info info-horizontal">
@@ -34,28 +34,30 @@
                                 <i class="fa fa-user-secret"></i>
                             </div>
                             <div class="description">
-                                <h3> 安心・安全に社会貢献 </h3>
-                                <p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている特定非営利活動法人のプロジェクトのみ記載しています。</p>
+                                <h3> <strong>NPO版 ふるさと納税</strong> </h3>
+                                <p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている認定NPO法人に、仮に毎月<strong>1,000</strong>円の寄付をした場合、最大<strong>5,000</strong>円が確定申告で税務署から戻ってきます。</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-5 col-12 mr-auto">
                         <div class="card card-register">
-                            <!--<a href="" class="btn btn-round btn-facebook">-->
-                            <!--    <i class="fa fa-facebook" aria-hidden="true"></i> Facebook で 登録-->
-                            <!--</a>-->
-                            <!--<div class="division">-->
-                            <!--    <div class="line l"></div>-->
-                                <!--<span>登録</span>-->
-                            <!--    <div class="line r"></div>-->
-                            <!--</div>-->
+                            {{--
+                            <a href="" class="btn btn-round btn-facebook">
+                                <i class="fa fa-facebook" aria-hidden="true"></i> Facebook で 登録
+                            </a>
+                            <div class="division">
+                                <div class="line l"></div>
+                                <span>or</span>
+                                <div class="line r"></div>
+                            </div>
+                            --}}
                             <form class="register-form" role="form" method="POST" action="{{ url('/register') }}">
                                 {{ csrf_field() }}
                                 {{-- ユーザー名 --}}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
                                     @if ($errors->has('name'))
-                                        <span class="help-block">
+                                        <span class="help-block division">
                                         <strong>{{ $errors->first('name') }}</strong>
                                         </span>
                                     @endif
@@ -64,7 +66,7 @@
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレス" value="{{ old('email') }}" required>
                                     @if ($errors->has('email'))
-                                        <span class="help-block">
+                                        <span class="help-block division">
                                         <strong>{{ $errors->first('email') }}</strong>
                                         </span>
                                     @endif
@@ -73,13 +75,13 @@
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <input id="password" type="password" class="form-control" placeholder="パスワード" name="password" required>
                                     @if ($errors->has('password'))
-                                        <span class="help-block">
+                                        <span class="help-block division">
                                         <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                                 {{-- パスワード確認 --}}
-                                <div class="form-group">
+                                <div class="form-group division">
                                     <input id="password-confirm" type="password" class="form-control" placeholder="パスワード確認" name="password_confirmation" required>
                                 </div>
                                 {{-- 利用規約とプライバシーポリシー --}}

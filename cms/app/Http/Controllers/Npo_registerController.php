@@ -328,14 +328,14 @@ class Npo_registerController extends Controller {
             }
         }
         // if(0 != $buyer_count){
-            $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
-            $parcentage = floor($par); // 切捨て整数化
-            $data['parcentage']    = $parcentage;
-            $data['buyer_data']    = $buyer_count;
-            $data['currency_data'] = $currency_amount;
-            $data['currency_data_personal'] = $currency_amount_personal;
-            $data['currency_data_company'] = $currency_amount_company;
-            $data['currency_data_company_premier'] = $currency_amount_company_premier;
+        $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
+        $parcentage = floor($par); // 切捨て整数化
+        $data['parcentage']    = $parcentage;
+        $data['buyer_data']    = $buyer_count;
+        $data['currency_data'] = $currency_amount;
+        $data['currency_data_personal'] = $currency_amount_personal;
+        $data['currency_data_company'] = $currency_amount_company;
+        $data['currency_data_company_premier'] = $currency_amount_company_premier;
         // }
         
     	// NPOメンバーが画像を保存していれば、はめていく。
@@ -347,19 +347,11 @@ class Npo_registerController extends Controller {
             if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
         	}
-        // 	dd($currentPersonalInfo->image_id);
         	//連想配列に入れtBladeテンプレートに渡しています。
         	$data[$personal_info] = $currentPersonalInfo;
         }
         
         $data['npo_info'] = $currentNpoInfo;
-        // dd($data);
-        
-        
-        
-        
-        
-        
         
         return view('npo.npo_landing_page', $data);
     }
@@ -427,10 +419,10 @@ class Npo_registerController extends Controller {
     public function payment(Request $request, string $npo_name) {
         $this->middleware('auth');
         
-        dd($request);
+        $user_request_email = $request->stripeEmail;
         
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
-		$name_auth = Auth::user()->name;
+		//$name_auth = Auth::user()->name;
 		
         \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
         
@@ -438,9 +430,32 @@ class Npo_registerController extends Controller {
         $token = $_POST['stripeToken'];
         
         // Create a charge: this will charge the user's card
+        // try {
+        //     $charge = \Stripe\Charge::create(array(
+        //         "amount"      => $currentNpoInfo->support_amount*1.036+216, // 課金額はココで調整
+        //         "currency"    => "jpy",
+        //         "description" => $currentNpoInfo->title,
+        //         "source"      => $token
+        //     ));
+        // } catch (\Stripe\Error\Card $e) {
+        //     return view('/errors/503');
+        // }
+        
+        $currentNpoInfo->buyer++;
+        $data['npo_info'] = $currentNpoInfo;
+        // dd($data['npo_info']);
+        $currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
+        for($i=0; $i<count($currentPremierData); $i++){
+           if($user_request_email == $currentPremierData[$i]->user_id){
+               $continueDonateFlg = 1;
+           }
+        }
+        // user_idとvision_idで判別
+        
+        // Create a charge: this will charge the user's card
         try {
             $charge = \Stripe\Charge::create(array(
-                "amount"      => $currentNpoInfo->support_amount, // 課金額はココで調整
+                "amount"      => $currentNpoInfo->support_amount*1.036+216, // 課金額はココで調整
                 "currency"    => "jpy",
                 "description" => $currentNpoInfo->title,
                 "source"      => $token
@@ -448,25 +463,19 @@ class Npo_registerController extends Controller {
         } catch (\Stripe\Error\Card $e) {
             return view('/errors/503');
         }
-        
-        $currentNpoInfo->buyer++;
-        $data['npo_info'] = $currentNpoInfo;
-        $currentPersonalInfo = \DB::table('personal_info')->where('user_id', Auth::user()->email)->first();
-        
-        // user_idとvision_idで判別
         \DB::table('premier_data')->insert(
             [
-            'user_id'     => Auth::user()->email,             // 誰が寄付したのかemailで管理
-            'vision_id'   => $currentNpoInfo->npo_name,       // どのプロジェクトに寄付したのか
+            'user_id'     => $user_request_email,             // 誰が寄付したのかemailで管理
+            'vision_id'   => $npo_name,                       // どのプロジェクトに寄付したのかURLで管理
             'premier_id'  => 1,                               // 通常の寄付なら1、企業からの寄付なら2、企業からのプレミア寄付なら3
             'title'       => $currentNpoInfo->title,          // これは使わないかな。
             'status'      => $currentNpoInfo->support_amount, // いくら寄付したのか
             'published'   => new Carbon(Carbon::now()),       // これも使わなそうだけど一応
             'description' => $currentNpoInfo->subtitle,       // 寄付した時刻
-            'delflg'      => 0,                                // 1だったら非表示
-            'delflg'      => 0,                                // 1だったら非表示
+            'participants'=> 1,                               // 購入回数
+            'delflg'      => 0,                               // 1だったら非表示
             'created_at'  => new Carbon(Carbon::now()),       // 寄付した時刻
-            'updated_at'  => new Carbon(Carbon::now())       // 寄付した時刻
+            'updated_at'  => new Carbon(Carbon::now())        // 寄付した時刻
             ]
         );
         // サンクスメール送る...
