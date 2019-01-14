@@ -112,7 +112,6 @@ class HomeController extends Controller
         $count = DB::table('personal_info')->where('user_id', $user)->count();
 
         if ($count <> 0) {
-            logger('最初のIF条件判定とおった');
             session(['param_user_name_sei_kanji' => $query->user_name_sei_kanji]);
             session(['param_user_name_mei_kanji' => $query->user_name_mei_kanji]);
             session(['param_user_name_sei_roma' => $query->user_name_sei_roma]);
@@ -254,7 +253,7 @@ class HomeController extends Controller
             return view('home/home_register_confirm')
             ->with('id', $id)
             ->with('user', $user)
-            ->with('image_id', asset('/images'). '/'. session('image_id'))
+            ->with('image_id', asset('/images'). '/'. session('param_image_id'))
             ->with('user_name_sei_kanji', $user_name_sei_kanji)
             ->with('user_name_mei_kanji', $user_name_mei_kanji)
             ->with('user_name_sei_roma', $user_name_sei_roma)
@@ -279,7 +278,7 @@ class HomeController extends Controller
         //$deleteRows = DB::table('personal_info')->where('user_id', $user)->delete();
         $data_tbl = [
             'user_id' => $user,
-            'image_id' => session('image_id'),
+            'image_id' => session('param_image_id'),
             'user_name_sei_kanji' => session('param_user_name_sei_kanji'),
             'user_name_mei_kanji' => session('param_user_name_mei_kanji'),
             'user_name_sei_roma' => session('param_user_name_sei_roma'),

@@ -107,7 +107,7 @@ class ImageUploadController extends Controller
             $data_tbl = [
                 [   'user_id' => $user,
                     'image_id' => $openPublicFileName,
-                    'image_data' => $img,
+                    'image_data' => 'null',
                     'delflg' => '0',
                 ]
             ];
@@ -119,14 +119,8 @@ class ImageUploadController extends Controller
             $cli = DB::table('image_data')->insert($data_tbl);
 
             /***** 呼び出し元に応じてアップロードした画像の紐づけを行う *****/
-            if (session('mode') == self::MODE_HOME_REGIST) {
-                // 画像ファイルを更新する
-                $cli = DB::table('personal_info')->where('user_id', $user)->update(['image_id' => $openPublicFileName]);
-
-            } elseif (session('mode') == self::MODE_VISION_SELL_REGIST) {
-                session(['image_id' => $openPublicFileName]);
-
-            }
+            $cli = DB::table('personal_info')->where('user_id', $user)->update(['image_id' => $openPublicFileName]);
+            session(['param_image_id' => $openPublicFileName]);
 
             // アップロードしたファイルは削除する
             Storage::delete($localFileName);
