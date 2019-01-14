@@ -168,7 +168,7 @@
                                                             data-amount="{{ $npo_info->support_amount*1.036+216 }}"
                                                             data-name="{{ $npo_info->title }}"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="クレジット手数料：*3.6%+216円"
+                                                            data-description="手数料：寄付金額×3.6%+216円"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
