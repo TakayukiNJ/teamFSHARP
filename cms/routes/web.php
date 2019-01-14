@@ -320,6 +320,7 @@ Route::get('bitflyer/getHistorySupportFrom', function()
 
 Route::get('bitflyer/support/transfer/{id}', 'Bitflyer\BitflyerHistoryController@transfer');
 Route::get('bitflyer/support/payment/{id}', 'Bitflyer\BitflyerHistoryController@payment');
+
  /*********************/
 // A02 パスワード変更画面
 // RequireController.php
