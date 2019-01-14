@@ -444,6 +444,7 @@ class Npo_registerController extends Controller {
         $currentNpoInfo->buyer++;
         $data['npo_info'] = $currentNpoInfo;
         // dd($data['npo_info']);
+        $continueDonateFlg = ""; // これが1だった場合、アップデートする。
         $currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
         for($i=0; $i<count($currentPremierData); $i++){
            if($user_request_email == $currentPremierData[$i]->user_id){
