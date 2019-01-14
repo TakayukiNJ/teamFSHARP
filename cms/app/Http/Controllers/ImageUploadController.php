@@ -51,11 +51,8 @@ class ImageUploadController extends Controller
             ['file' => 'required|image|dimensions:min_width=120,min_height=120',]
             // ['file' => 'required|image|dimensions:min_width=120,min_height=120,max_width=400,max_height=400',]
         );
-        logger('a');
         if ($request->file) {
-        logger('b');
             if (file_exists($request->file->getRealPath())) {
-        logger('c');
                 $mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $request->file->getRealPath());
                 switch (strtolower($mime)) {
                     case 'image/png':
@@ -74,25 +71,17 @@ class ImageUploadController extends Controller
             }
         }
 
-        logger('d');
         if ($validator->fails() || $selfValidate){
-        logger('e');
             session(['success' => '']);
             $user = User::find(auth()->id());
             return view('image_uploader', compact('user'))->withErrors($validator);
         } else {
-        logger('f');
 
             $openPublicFileName = $request->file->getClientOriginalName();
 
             $openPublicFileName = time()."@".$openPublicFileName;
 
             $image = Image::make($request->file->getRealPath());
-
-
-
-
-
 
             // 画像リサイズ
             $image->resize(300, NULL, function ($constraint) {
@@ -102,14 +91,6 @@ class ImageUploadController extends Controller
             // 公開用のファイルを保存
             $image->save(public_path() . '/images/' . $openPublicFileName);
             $path = '/images/' . $openPublicFileName;
-
-            logger('filename['. $openPublicFileName. ']');
-            logger('path['. $path. ']');
-            logger('base_path()['. base_path(). ']');
-            logger('public_path()['. public_path(). ']');
-            logger('storage_path()['. storage_path(). ']');
-            logger('url()['. url('/images'). ']');
-            logger('asset()['. asset('/images'). ']');
 
             // 画像をデータベースに格納する
             $id = Auth::user()->id;
@@ -126,7 +107,7 @@ class ImageUploadController extends Controller
             $data_tbl = [
                 [   'user_id' => $user,
                     'image_id' => $openPublicFileName,
-                    'image_data' => $img,
+                    'image_data' => 'null',
                     'delflg' => '0',
                 ]
             ];
@@ -138,14 +119,8 @@ class ImageUploadController extends Controller
             $cli = DB::table('image_data')->insert($data_tbl);
 
             /***** 呼び出し元に応じてアップロードした画像の紐づけを行う *****/
-            if (session('mode') == self::MODE_HOME_REGIST) {
-                // 画像ファイルを更新する
-                $cli = DB::table('personal_info')->where('user_id', $user)->update(['image_id' => $openPublicFileName]);
-
-            } elseif (session('mode') == self::MODE_VISION_SELL_REGIST) {
-                session(['image_id' => $openPublicFileName]);
-
-            }
+            $cli = DB::table('personal_info')->where('user_id', $user)->update(['image_id' => $openPublicFileName]);
+            session(['param_image_id' => $openPublicFileName]);
 
             // アップロードしたファイルは削除する
             Storage::delete($localFileName);
@@ -162,7 +137,6 @@ class ImageUploadController extends Controller
         $id = Auth::user()->id;
         $user = Auth::user()->email;
 
-        logger('target['. $request->target . ']');
         if ($request->target == 'HOME_REGIST') {
             $personal_info_count = DB::table('personal_info')
             ->where('user_id', $user)
@@ -175,15 +149,11 @@ class ImageUploadController extends Controller
                 $image_id = '';
                 $image_data = '';
                 foreach ($query as $data) {
-                    logger('image_id['. $data->image_id . ']');
                     $image_id = $data->image_id;
-                    logger('image_data['. $data->image_data . ']');
                     $image_data = $data->image_data;
                 }
 
                 // データの登録用に画像のパスを保存
-                logger('image_id['. $image_id . ']');
-                session(['image_id' => $image_id]);
                 $ret = "";
                 if (!empty($image_id)) {
                     $ret = asset('/images'). '/'. $image_id;
@@ -203,7 +173,6 @@ class ImageUploadController extends Controller
                 ->header('Content-Type', 'text/plain');
             }
         } else if ($request->target == 'VISION_SELL_REGIST') {
-            logger('session(image_id)['. session('image_id') . ']');
             if (!empty(session('image_id'))) {
                 $ret = asset('/images'). '/'. session('image_id');
             } else {
@@ -221,7 +190,6 @@ class ImageUploadController extends Controller
         $id = Auth::user()->id;
         $user = Auth::user()->email;
 
-        logger('target['. $request->target . ']');
         if ($request->target == 'HOME_REGIST') {
             // HOME 画面
             $personal_info_count = DB::table('personal_info')
@@ -230,7 +198,6 @@ class ImageUploadController extends Controller
             if ($personal_info_count <> 0) {
                 /* image_dataテーブルから削除 */
                 $image_id = DB::table('personal_info')->where('user_id', $user)->first();
-                logger('image_id['. $image_id->image_id. ']');
                 $deleteRows = DB::table('image_data')->where('user_id', $user)->where('image_id', $image_id->image_id)->delete();
                 
                 /* personal_infoテーブルから削除 */
