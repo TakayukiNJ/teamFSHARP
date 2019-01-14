@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="container">
     <div class="page-header">
-        <h1> 情報編集ページ（外部に無断で公開することはございません。） </h1>
+        <h1> 個人情報編集ページ </h1>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -80,10 +80,15 @@
                            <span class="help-block">{{ $errors->first("birthday_day") }}</span>
                         @endif
                     </div>
-                    
+                    <div class="form-group">
+                    	<label for="title-feled">画像イメージ</label>
+	                	<IMG id='own_image'>
+		                <INPUT TYPE="button" id="image_upload_button" class="btn btn-primary" value="　画像登録　" onClick="ZZ1_run('HOME_REGIST')" >
+		                <INPUT TYPE="button" id="image_delete_button" class="btn btn-primary" style="display:none" value="　画像消す　" onClick="ZZ2_run()" >
+                    </div>
                     {{-- 銀行口座関係 --}}
                     <div class="form-group @if($errors->has('bank_name')) has-error @endif @if($errors->has('bank_branch')) has-error @endif @if($errors->has('bank_type_account')) has-error @endif @if($errors->has('bank_account_number')) has-error @endif @if($errors->has('bank_account_name')) has-error @endif">
-                        <label for="title-field">銀行口座振込先</label><BR>
+                        <label for="title-field">銀行口座振込先（プロジェクトの振込先）※設定後、変更不可</label><BR>
                         <table>
                         銀行名<input type="text" id="bank_name-field" name="bank_name" class="form-control" style="width:20%" autocomplete="off" value="{{ $bank_name }}" placeholder="例：三菱ＵＦＪ銀行" {{ !$bank_name ? '' : 'readonly="readonly"'}}/>
                         支店名<input type="text" id="bank_branch-field" name="bank_branch" class="form-control" style="width:20%" autocomplete="off" value="{{ $bank_branch }}" placeholder="例：代々木支店" {{ !$bank_branch ? '' : 'readonly="readonly"'}}/>
@@ -128,13 +133,6 @@
                         @if($errors->has("bank_account_name"))
                            <span class="help-block">{{ $errors->first("bank_account_name") }}</span>
                         @endif
-                    </div>
-
-                    <div class="form-group">
-                    	<label for="title-feled">画像イメージ</label>
-	                	<IMG id='own_image'>
-		                <INPUT TYPE="button" id="image_upload_button" class="btn btn-primary" value="　画像登録　" onClick="ZZ1_run('HOME_REGIST')" >
-		                <INPUT TYPE="button" id="image_delete_button" class="btn btn-primary" style="display:none" value="　画像消す　" onClick="ZZ2_run()" >
                     </div>
                 <div class="well well-sm">
                     <button type="button" class="btn btn-primary" onClick="C03_run()">　確　認　</button>

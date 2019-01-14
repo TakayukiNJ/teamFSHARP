@@ -84,7 +84,7 @@ class ImageUploadController extends Controller
             $image = Image::make($request->file->getRealPath());
 
             // 画像リサイズ
-            $image->resize(300, NULL, function ($constraint) {
+            $image->resize(200, NULL, function ($constraint) {
                 $constraint->aspectRatio();
             });
 
