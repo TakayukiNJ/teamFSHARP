@@ -36,7 +36,7 @@
                                 </div>
                                 <br>
                                 <h6>目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）</h6>
-                                <h6>現在：{{$currency_data}}円 ／ 寄付数：{{$buyer_data}}</h6>
+                                <h6>現在：{{$currency_data}}円 ／ 寄付者数：{{$buyer_data}}</h6>
                                 <br>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{$parcentage}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
@@ -145,17 +145,6 @@
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
                                                     <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
-                                                    {{--<li>※ご購入は、クレジットカードかビットコイン決済です。</li>--}}
-                                                    {{--@if (Auth::guest())--}}
-                                                    {{--<li><a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a></li>--}}
-                                                    {{--@else--}}
-                                                    {{--    @if (( $npo_info->code2 ) != "")--}}
-                                                    {{--    <li><a href="{{ $npo_info->code2 }}" target="_blank" class="btn btn-danger btn-round">日本円で支援する</a></li>--}}
-                                                    {{--    <li><a href="https://paymo.life/shops/4c67fab166/n0bisuke_dev10" class="btn btn-danger btn-round">ビットコインで支援する</a></li>--}}
-                                                    {{--    @else--}}
-                                                    {{--    <li><p class="btn btn-success btn-round">準備中</p></li>--}}
-                                                    {{--    @endif--}}
-                                                    {{--@endif--}}
                                                 </ul>
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
@@ -177,7 +166,6 @@
                                                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                                             }
                                                         })
-                                                        
                                                         >
                                                         </script>
                                                      </form>
