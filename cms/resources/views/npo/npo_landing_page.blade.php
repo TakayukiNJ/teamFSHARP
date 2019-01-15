@@ -36,7 +36,7 @@
                                 </div>
                                 <br>
                                 <h6>目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）</h6>
-                                <h6>現在：{{$currency_data}}円 ／ 寄付者数：{{$buyer_data}}</h6>
+                                <h6>現在：{{$currency_data}}円 ／ 寄付数：{{$npo_info->buyer}}</h6>
                                 <br>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{$parcentage}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
@@ -118,11 +118,10 @@
                             
                             <p>寄付をするとユーザー名が記載されます。</p>
                             <p>集まった寄付金は全額担当者にお渡しします。</p>
-                            @if(( $npo_info->code1 ) == "")
                             <p class="description text-gray">
+                                決済時に、運営(振込)手数料258円とクレジットカード手数料3.6%がかかります。
                                 <!--仮に毎月1,000円の寄付を認定NPO法人に寄付をした場合、最大5,000円の税制控除を受けられます。-->
                             </p>
-                            @endif
                         </div>
                     </div>
 
@@ -152,10 +151,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
-                                                            data-amount="{{ ($npo_info->support_amount+216)*1.036 }}"
+                                                            data-amount="{{ ($npo_info->support_amount+258)*1.036 }}"
                                                             data-name="{{ $npo_info->title }}"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="合計額：(寄付金額+216)×3.6%"
+                                                            data-description="合計額：(寄付金額+258)×3.6%"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -169,56 +168,39 @@
                                                      </form>
                                                     {{-- data-description="寄付後にユーザー名と画像が自動記載"--}}
                                                 @endif
-                                                {{--
+                                                
                                                 <style type="text/css">
                                                 button.stripe-button-el,
                                                 button.stripe-button-el>span {
-                                                  background-color: #c50067 !important;
+                                                  background-color: #F57763 !important;
                                                   background-image: none;
                                                 }
                                                 </style>
-                                                --}}
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                    {{--よう編集！！--}}
-                                    {{--<div class="col-md-6">--}}
-                                    {{--    <div class="card card-pricing" data-color="orange">--}}
-                                    {{--        <div class="card-body">--}}
-                                    {{--            <h6 class="card-category text-success">{{ $npo_info->title }}の欲しいものリスト</h6>--}}
-                                    {{--            <h3 class="card-title">欲しいものリスト</h3>--}}
-                                    {{--            <ul>--}}
-                                    {{--                <li>絵本 <b>100冊</b></li>--}}
-                                    {{--                <li>パソコン <b>10個</b></li>--}}
-                                    {{--                <li>スマートフォン <b>10個</b></li>--}}
-                                    {{--                <li>家庭用冷蔵庫 <b>1個</b></li>--}}
-                                    {{--            </ul>--}}
-                                    {{--            <a href="https://wallet.indiesquare.me/" class="btn btn-neutral btn-round">支援する</a>--}}
-                                    {{--        </div>--}}
-                                    {{--    </div>--}}
-                                    {{--</div>--}}
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
                                                 <h6 class="card-category text-success">支援者リスト</h6>
                                                 <h3 class="card-title">現在{{$buyer_data}}人が支援</h3>
                                                 <ul>
-                                                    @for ($i = 1; $i < 2; $i++)
-                                                        <?php $a = $donater1 ?>
-                                                        <li>{{$a}}</li>
-                                                    @endfor
+                                                    @if(count($donater)>1)
+                                                        @for ($i = 1; $i < count($donater); $i++)
+                                                            @if($donater[$i])
+                                                                <li>{{$donater[$i]}}さん</li>
+                                                            @endif
+                                                        @endfor
+                                                    @else
+                                                        <li>まだ寄付者はいません。</li>
+                                                        <li>　</li>
+                                                        <li>　</li>
+                                                    @endif
                                                 </ul>
-                                    <!--            <h6 class="card-category text-success">ビットコインをお持ちでない方</h6>-->
-                                    <!--            <h3 class="card-title">開設 ¥0</h3>-->
-                                    <!--            <div>-->
-                                    <!--                {{-- 現在BitFlyer新規募集停止 --}}-->
-                                    <!--                {{--<a href="https://bitflyer.jp?bf=hqazqhpu" target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>--}}-->
-                                    <!--                <a href="https://zaif.jp/?ac=ha8meb0fu4 " target="_blank"><img src="https://bitflyer.jp/Images/Affiliate/affi_06_300x250.gif" alt="bitFlyer ビットコインを始めるなら安心・安全な取引所で"></a>-->
-                                    <!--            </div>-->
                                             </div>
                                         </div>
                                     </div>
-                                    {{--よう編集！！--}}
                                 </div>
                             </div>
 
@@ -228,47 +210,93 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing">
                                             <div class="card-body">
-                                                @if (( $npo_info->code1 ) == "")
-                                                <h6 class="card-category text-danger">F#の運営を支援する</h6>
-                                                <h1 class="card-title">¥100</h1>
+                                                <h6 class="card-category text-danger">法人（団体・チーム）として支援する</h6>
+                                                <h1 class="card-title">¥{{$npo_info->support_price_gold}}</h1>
                                                 <ul>
-                                                    <li>F#の仮想通貨(トークン)です。</li>
-                                                    <li><b>ブロックチェーンで管理しています。</b></li>
-                                                    <li>XCP上で<b>売買取引</b>も可能です。</li>
-                                                    <li>※価格は今後、上下する可能性あり</li>
+                                                    <li>現在<b>{{$currency_data_company}}</b>法人が支援中です。</li>
+                                                    <li>最大<b>{{$npo_info->support_amount_gold}}</b>法人まで支援可能。</li>
+                                                    <li>ユーザー名ではなく団体名が公開。</li>
+                                                    @if($npo_info->support_contents_gold)
+                                                        <li>リターン：<b>{{$npo_info->support_contents_gold}}</b></li>
+                                                    @endif
                                                 </ul>
-                                                <a class="indiesquare-tip-button btn btn-danger btn-round" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me">
-                                                    F#のトークンをもらう
-                                                </a>
-                                                @else
-                                                <h6 class="card-category text-danger">{{ $npo_info->title }}の運営を支援する</h6>
-                                                <h1 class="card-title">¥100</h1>
-                                                <ul>
-                                                    <li>{{ $npo_info->title }}の仮想通貨(トークン)です。</li>
-                                                    <li><b>ブロックチェーンで管理しています。</b></li>
-                                                    <li>XCP上で<b>売買取引</b>も可能です。</li>
-                                                    <li>※価格は今後、上下する可能性あり</li>
-                                                </ul>
-                                                <a class="indiesquare-tip-button btn btn-danger btn-round" href="//widget.indiesquare.me/tip/{{ $npo_info->code1 }}" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me">
-                                                    {{ $npo_info->title }}のトークンをもらう
-                                                </a>
+                                                @if($npo_info->support_contents_gold)
+                                                    <a class="indiesquare-tip-button btn btn-danger btn-round" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me">
+                                                        内容の詳細はこちら
+                                                    </a>
                                                 @endif
-                                                {{-- <a href="//widget.indiesquare.me/tip/abc690e1a12d9e88" class="btn btn-warning btn-round"></a> --}}
+                                                @if (Auth::guest())
+                                                <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
+                                                @else
+                                                    <form action="/npo/{{$npo_info->npo_name}}/payment_company" method="POST">
+                                                        {!! csrf_field() !!}
+                                                        <script
+                                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                            data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                                                            data-amount="{{ ($npo_info->support_price_gold+258)*1.036 }}"
+                                                            data-name="{{ $npo_info->title }}の法人寄付"
+                                                            data-email="{{Auth::user()->email}}"
+                                                            data-description="合計額：(寄付金額+258)×3.6%"
+                                                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                                            data-locale="auto"
+                                                            data-currency="jpy"
+                                                            $.ajaxSetup({
+                                                            headers: {
+                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                            }
+                                                        })
+                                                        >
+                                                        </script>
+                                                     </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
-                                                <h6 class="card-category text-success">F#トークン購入のためにXCPの購入が必要です。</h6>
-                                                <h1 class="card-title">¥0</h1>
+                                                <h6 class="card-category text-success">プラチナ法人として支援する</h6>
+                                                <h1 class="card-title">¥{{$npo_info->support_price_pratinum}}</h1>
                                                 <ul>
-                                                    <li><b>1.</b> トークンが買えるアプリを<a href="https://wallet.indiesquare.me/">入手</a></li>
-                                                    <li><b>2.</b> ビットコインを入金します。</li>
-                                                    <li><b>3.</b> XCP(カウンターパーティ)で検索</li>
-                                                    <li><b>4.</b> BTCをXCPに変える取引開始</li>
+                                                    <li>現在<b>{{$currency_data_company_premier}}</b>法人が支援中です。</li>
+                                                    <li>最大<b>{{$npo_info->support_amount_pratinum}}</b>法人まで支援可能。</li>
+                                                    <li>ユーザー名ではなく団体名が公開。</li>
+                                                    @if($npo_info->support_contents_pratinum)
+                                                        <li>リターン：<b>{{$npo_info->support_contents_pratinum}}</b></li>
+                                                    @endif
                                                 </ul>
-                                                <a href="https://wallet.indiesquare.me/" class="btn btn-neutral btn-round">ダウンロード(無料)</a>
+                                                @if($npo_info->support_contents_pratinum)
+                                                    <a href="{{$npo_info->support_contents_pratinum}}" class="btn btn-neutral btn-round">
+                                                        内容の詳細はこちら
+                                                    </a>
+                                                @endif
+                                                @if (Auth::guest())
+                                                <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
+                                                @elseif(Auth::user()->npo == "")
+                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-danger btn-round">団体登録</a>
+                                                @else
+                                                
+                                                    <form action="/npo/{{$npo_info->npo_name}}/payment_company_pratinum" method="POST">
+                                                        {!! csrf_field() !!}
+                                                        <script
+                                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                            data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                                                            data-amount="{{ ($npo_info->support_price_pratinum+258)*1.036 }}"
+                                                            data-name="{{ $npo_info->title }}の法人プラチナ寄付"
+                                                            data-email="{{Auth::user()->email}}"
+                                                            data-description="合計額：(寄付金額+258)×3.6%"
+                                                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                                            data-locale="auto"
+                                                            data-currency="jpy"
+                                                            $.ajaxSetup({
+                                                            headers: {
+                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                                            }
+                                                        })
+                                                        >
+                                                        </script>
+                                                     </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
