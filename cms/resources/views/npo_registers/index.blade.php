@@ -55,11 +55,13 @@
                                         <a class="btn btn-xs btn-primary" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}"><h1><i class="glyphicon glyphicon-eye-open"></i> プレビュー</h1></a>
                                         <a class="btn btn-xs btn-warning" href="{{ url('/npo') }}/{{ $npo_register->npo_name }}/edit"><h1><i class="glyphicon glyphicon-edit"></i> 編集</h1></a>
                                     @endif
+                                    @if(($npo_register->published) == "")
                                     <form action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger"><h1><i class="glyphicon glyphicon-trash"></i> 削除/Delete</h1></button>
+                                        <button type="submit" class="btn btn-xs btn-danger"><h1><i class="glyphicon glyphicon-trash"></i> 削除</h1></button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                             @endif

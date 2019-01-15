@@ -55,6 +55,7 @@ class Npo_registerController extends Controller {
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
         $npo_auth  = Auth::user()->npo;
+        $edit_auth = $name_auth."1";
         
 		$npo_register->npo_name                = ""; // URL
 		$npo_register->title                   = $request->input("title"); // NPOの名前
@@ -69,15 +70,16 @@ class Npo_registerController extends Controller {
         
         $npo_register->manager                 = $name_auth;
         $npo_register->member1                 = $name_auth;
-        $npo_register->member1_twitter         = $name_auth."1";
+        $npo_register->member1_twitter         = $edit_auth;
         $npo_register->blue_card_title         = "プロジェクトの目的";
         $npo_register->blue_card_body          = "ご自由にご記載ください。";
         $npo_register->green_card_title        = "プロジェクト期間と詳細";
         $npo_register->green_card_body         = "ご自由にご記載ください。";
         $npo_register->yellow_card_title       = "寄付の使い道とリターン";
         $npo_register->yellow_card_body        = "プロジェクト運営費、広告費（リターンは必須ではございません。） ";
+        $npo_register->support_purpose         = "プロジェクト運営費";
         $npo_register->support_contents        = "このページに名前を記載";
-        $npo_register->support_contents_detail = new Carbon(Carbon::now()->addYear(1));;
+        // $npo_register->support_contents_detail = new Carbon(Carbon::now()->addYear(1));
         $npo_register->support_price           = $request->input("support_price"); // 目標金額
         $npo_register->support_amount          = "3000"; // 個人寄付額
         $npo_register->support_amount_gold     = "10"; // 法人寄付額
@@ -85,6 +87,8 @@ class Npo_registerController extends Controller {
         $npo_register->support_amount_pratinum = "1";       // 法人(プレミアム)寄付者上限数
         $npo_register->support_price_pratinum  = "1000000"; // 法人(プレミアム)寄付額
         $npo_register->proval                  = "0";
+        $npo_register->created_at              = new Carbon(Carbon::now());
+        $npo_register->updated_at              = new Carbon(Carbon::now());
         
         $npo_register->save();
 
@@ -304,26 +308,33 @@ class Npo_registerController extends Controller {
     {
         $id = Auth::user()->id;
         $user = Auth::user()->email;
-        
+        // dd($data);
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
     	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
     	$currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
-        // 何人がいくら寄付したのか表示
+    // 	dd($currentPremierData );
+        // $data['premier_datas'] = $currentPremierData; // これのuser_idは、団体には教えないと。アドレスだから。
+        // 何人がいくら寄付したのか、誰が寄付したのか表示
     	$buyer_count = 0;                     // 寄付した人は何人か
     	$currency_amount                 = 0; // 現在いくらか
     	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
+    	$donater_count                   = 0;
     	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
     	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
     	for($array_count=0; $array_count<count($currentPremierData); $array_count++){
-            $buyer_count++;
+            $buyer_count++; // 人数
             $currency_origin = $currentPremierData[$array_count]->status;
-            $currency_amount += $currency_origin;
-            if(1 == $currentPremierData[$array_count]->premier_id){
+            $currency_amount += $currency_origin; // 金額
+            if(1 == $currentPremierData[$array_count]->premier_id){ // 個人
                 $currency_amount_personal += $currency_origin;
-            }else if(2 == $currentPremierData[$array_count]->premier_id){
+                $donater_count++;
+                $donater_email = $currentPremierData[$array_count]->user_id;
+                $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
+                $donater_name  = $donater_info->name;
+                $data['donater'.$donater_count] = $donater_name;
+            }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
                 $currency_amount_company  += $currency_origin;
-                // dd("a");
-            }else if(3 == $currentPremierData[$array_count]->premier_id){
+            }else if(3 == $currentPremierData[$array_count]->premier_id){ // 法人
                 $currency_amount_company_premier += $currency_origin;
             }
         }
@@ -337,6 +348,7 @@ class Npo_registerController extends Controller {
         $data['currency_data_company'] = $currency_amount_company;
         $data['currency_data_company_premier'] = $currency_amount_company_premier;
         // }
+        // dd($data);
         
     	// NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
@@ -426,25 +438,26 @@ class Npo_registerController extends Controller {
 		
         \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
         
+        $currentPremierData = \DB::table('premier_data')
+            ->where('user_id', $user_request_email)
+            ->where('vision_id', $npo_name)
+            ->where('premier_id', 1)
+            ->first();
+        
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
         
         // Create a charge: this will charge the user's card
         try {
             $charge = \Stripe\Charge::create(array(
-                "amount"      => $currentNpoInfo->support_amount*1.036+216, // 課金額はココで調整
+                "amount"      => ($currentNpoInfo->support_amount+216)*1.036, // 課金額はココで調整
                 "currency"    => "jpy",
-                "description" => $currentNpoInfo->title,
+                "description" => $npo_name,
                 "source"      => $token
             ));
         } catch (\Stripe\Error\Card $e) {
             return view('/errors/503');
         }
-        $currentPremierData = \DB::table('premier_data')
-            ->where('user_id', $user_request_email)
-            ->where('vision_id', $npo_name)
-            ->where('premier_id', 1)
-            ->first();
         // user_idとvision_idとpremier_idで判別
         
         // Create a charge: this will charge the user's card
@@ -467,8 +480,7 @@ class Npo_registerController extends Controller {
                     'status'      => $currentPremierData->status + $currentNpoInfo->support_amount,
                     'participants'=> $currentPremierData->status + 1,
                     'updated_at'  => new Carbon(Carbon::now())
-                ]
-            );
+                ]);
         }else{
             \DB::table('premier_data')->insert(
                 [
