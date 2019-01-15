@@ -162,10 +162,12 @@ class Npo_registerController extends Controller {
     		    'support_contents_detail' => 'date | after:tomorrow',
                 'support_price'           => 'digits_between:5,8',
                 'support_amount'          => 'required | digits_between:4,6', // 個人寄付の金額
-                // 'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
-                // 'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
+                'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
+                'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
+                'support_contents_detail_gold' => 'active_url',
                 'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
     	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
+                'support_contents_detail_pratinum' => 'active_url',
                 'npo_name'                => 'alpha_dash',
     		];
 		}else{
@@ -174,7 +176,13 @@ class Npo_registerController extends Controller {
     		    'support_contents_detail' => 'date | after:tomorrow',
     		    'support_amount'          => 'digits_between:3,6',
     	        'support_price'           => 'required | digits_between:5,8',
-    	        'npo_name'                => 'required | alpha_dash',
+    	        'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
+                'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
+                'support_contents_detail_gold' => 'active_url',
+                'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
+    	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
+                'support_contents_detail_pratinum' => 'active_url',
+                'npo_name'                => 'required | alpha_dash',
     	    ];
     	}
         $this -> validate($request, $rules);
@@ -231,13 +239,13 @@ class Npo_registerController extends Controller {
         // if ($npo_register->support_amount == $npo_register['support_amount']) {
         //     $npo_register->proval = 0;
         // }
-        // $npo_register->support_price = $request->input("support_price"); // 目標金額
+        $npo_register->support_price = $request->input("support_price"); // 目標金額
         
         // $npo_register->support_purpose_gold = $request->input("support_purpose_gold");
-        // $npo_register->support_contents_gold = $request->input("support_contents_gold");
-        // $npo_register->support_contents_detail_gold = $request->input("support_contents_detail_gold");
-        // $npo_register->support_amount_gold = $request->input("support_amount_gold");
-        // $npo_register->support_price_gold = $request->input("support_price_gold");
+        $npo_register->support_contents_gold = $request->input("support_contents_gold");
+        $npo_register->support_contents_detail_gold = $request->input("support_contents_detail_gold");
+        $npo_register->support_amount_gold = $request->input("support_amount_gold");
+        $npo_register->support_price_gold = $request->input("support_price_gold"); //法人寄付の値段*公開後変更不可
         
         // $npo_register->support_purpose_crypto = $request->input("support_purpose_crypto");
         // $npo_register->support_contents_crypto = $request->input("support_contents_crypto");
@@ -246,43 +254,15 @@ class Npo_registerController extends Controller {
         // $npo_register->support_price_crypto = $request->input("support_price_crypto");
         
         // $npo_register->support_purpose_pratinum = $request->input("support_purpose_pratinum");
-        // $npo_register->support_contents_pratinum = $request->input("support_contents_pratinum");
-        // $npo_register->support_contents_detail_pratinum = $request->input("support_contents_detail_pratinum");
-        // $npo_register->support_amount_pratinum = $request->input("support_amount_pratinum");
-        // $npo_register->support_price_pratinum = $request->input("support_price_pratinum");
+        $npo_register->support_contents_pratinum = $request->input("support_contents_pratinum"); //プラチナ寄付リターンの内容
+        $npo_register->support_contents_detail_pratinum = $request->input("support_contents_detail_pratinum"); //プラチナ寄付リターンの詳細URL（無しでも可能）
+        $npo_register->support_amount_pratinum = $request->input("support_amount_pratinum"); //プラチナ寄付の募集数
+        $npo_register->support_price_pratinum = $request->input("support_price_pratinum"); //法人寄付の値段(プラチナ寄付)*公開後変更不可
         
         // $npo_register->body = $request->input("body");
         $npo_register->updated_at = new Carbon(Carbon::now());
         // $npo_register->proval = $request->input("proval");
-        
-        // if($npo_register->proval > 0){
-        //     if($npo_register->support_price == 0){
-        //         \Validator::make(
-        //             ['support_price' => $request['support_price']],
-        //             ['support_price' => 'mimes']
-        //         )->validate();
-        //         dd("a");// メンバーがいなかったら、登録させない。
-        //         // \Validator::make(
-        //         //     ['support_price' => $request['support_price']],
-        //         //     ['support_price' => 'mimes']
-        //         // )->validate();
-        //     }
-        //     if($npo_register->npo_name == ""){
-        //         // \Validator::make(
-        //         //     ['support_price' => $request['support_price']],
-        //         //     ['support_price' => 'mimes']
-        //         // )->validate();
-        //         \Validator::make(
-        //             ['npo_name' => $request['npo_name']],
-        //             ['npo_name' => 'mimes']
-        //         )->validate();
-                
-        //         // \Validator::make(
-        //         //     ['npo_name' => $request['npo_name']],
-        //         //     ['npo_name' => 'mimes']
-        //         // )->validate();
-        //     }
-        // }
+
 		$npo_register->save();
 		// return view('npo.npo_landing_page', compact('npo_register'));
 
@@ -315,6 +295,7 @@ class Npo_registerController extends Controller {
     // 	dd($currentPremierData );
         // $data['premier_datas'] = $currentPremierData; // これのuser_idは、団体には教えないと。アドレスだから。
         // 何人がいくら寄付したのか、誰が寄付したのか表示
+        $data['donater'] = array(0=>"Donater");
     	$buyer_count = 0;                     // 寄付した人は何人か
     	$currency_amount                 = 0; // 現在いくらか
     	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
@@ -331,7 +312,8 @@ class Npo_registerController extends Controller {
                 $donater_email = $currentPremierData[$array_count]->user_id;
                 $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
                 $donater_name  = $donater_info->name;
-                $data['donater'.$donater_count] = $donater_name;
+                $data['donater'] += array($donater_count=>$donater_name);
+                // $data['donater'.$donater_count] = $donater_name;
             }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
                 $currency_amount_company  += $currency_origin;
             }else if(3 == $currentPremierData[$array_count]->premier_id){ // 法人
@@ -340,7 +322,7 @@ class Npo_registerController extends Controller {
         }
         // if(0 != $buyer_count){
         $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
-        $parcentage = floor($par); // 切捨て整数化
+        $parcentage = round($par,2); // 切捨て整数化
         $data['parcentage']    = $parcentage;
         $data['buyer_data']    = $buyer_count;
         $data['currency_data'] = $currency_amount;
@@ -430,47 +412,12 @@ class Npo_registerController extends Controller {
     
     public function payment(Request $request, string $npo_name) {
         $this->middleware('auth');
-        
         $user_request_email = $request->stripeEmail;
         
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
 		//$name_auth = Auth::user()->name;
 		
-        \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
-        
-        $currentPremierData = \DB::table('premier_data')
-            ->where('user_id', $user_request_email)
-            ->where('vision_id', $npo_name)
-            ->where('premier_id', 1)
-            ->first();
-        
-        // Get the credit card details submitted by the form
-        $token = $_POST['stripeToken'];
-        
-        // Create a charge: this will charge the user's card
-        try {
-            $charge = \Stripe\Charge::create(array(
-                "amount"      => ($currentNpoInfo->support_amount+216)*1.036, // 課金額はココで調整
-                "currency"    => "jpy",
-                "description" => $npo_name,
-                "source"      => $token
-            ));
-        } catch (\Stripe\Error\Card $e) {
-            return view('/errors/503');
-        }
         // user_idとvision_idとpremier_idで判別
-        
-        // Create a charge: this will charge the user's card
-        // try {
-        //     $charge = \Stripe\Charge::create(array(
-        //         "amount"      => $currentNpoInfo->support_amount*1.036+216, // 課金額はココで調整
-        //         "currency"    => "jpy",
-        //         "description" => $currentNpoInfo->title,
-        //         "source"      => $token
-        //     ));
-        // } catch (\Stripe\Error\Card $e) {
-        //     return view('/errors/503');
-        // }
         if($currentPremierData != null){
             \DB::table('premier_data')
                 ->where('user_id', $user_request_email)
@@ -502,6 +449,29 @@ class Npo_registerController extends Controller {
             'follower' => $currentNpoInfo->follower + $currentNpoInfo->support_amount, // いくら寄付したかの合計
             'buyer'    => $currentNpoInfo->buyer + 1 // 購入した数
         ]);
+        
+        \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
+        
+        $currentPremierData = \DB::table('premier_data')
+            ->where('user_id', $user_request_email)
+            ->where('vision_id', $npo_name)
+            ->where('premier_id', 1)
+            ->first();
+        // dd($post_data);
+        // Get the credit card details submitted by the form
+        $token = $_POST['stripeToken'];
+        // Create a charge: this will charge the user's card
+        $the_price = floor(($currentNpoInfo->support_amount+216)*1.036);
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount"      => $the_price, // 課金額はココで調整
+                "currency"    => "jpy",
+                "description" => $npo_name,
+                "source"      => $token
+            ));
+        } catch (\Stripe\Error\Card $e) {
+            return view('/errors/503');
+        }
         // サンクスメール送る...
         // return view('/thank_you_for_support');
         return back();
