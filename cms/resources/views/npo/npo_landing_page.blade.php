@@ -116,15 +116,11 @@
                         <br/>
                         <div class="tab-content text-center" >
                             
-                            <p>hogehoge
-                            <!--    F♯のWebサービスは、全て仮想通貨でNPOに支援（寄付）を行います。支援には2種類あります。<br>-->
-                            <!--    【コイン】個人や法人（学生、社会人、株式会社、一般社団法人、NPO法人など）は、自由にコインを購入することができます。-->
-                            <!--    コインと引き換えに、特典を使用することができます。また、コインを持っているだけで支援をしている証明になったり、何かリターンや優待を得ることができる場合もございますので、そちらもお楽しみください。<br>-->
-                            <!--    【アドバンスト】NPOのオリジナル仮想通貨（トークン）をご購入できます。自由にブロックチェーン上で、NPOの価値を売買することが可能です。-->
-                            </p>
-                            @if (( $npo_info->code1 ) == "")
+                            <p>寄付をするとユーザー名が記載されます。</p>
+                            <p>集まった寄付金は全額担当者にお渡しします。</p>
+                            @if(( $npo_info->code1 ) == "")
                             <p class="description text-gray">
-                                <!--【アドバンスト】独自のNPOトークンで運用したい場合は、別途ご相談ください。-->
+                                <!--仮に毎月1,000円の寄付を認定NPO法人に寄付をした場合、最大5,000円の税制控除を受けられます。-->
                             </p>
                             @endif
                         </div>
@@ -144,7 +140,9 @@
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
+                                                    @if($npo_info->support_contents_detail)
                                                     <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
+                                                    @endif
                                                 </ul>
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
@@ -154,10 +152,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
-                                                            data-amount="{{ $npo_info->support_amount*1.036+216 }}"
+                                                            data-amount="{{ ($npo_info->support_amount+216)*1.036 }}"
                                                             data-name="{{ $npo_info->title }}"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="手数料：寄付金額×3.6%+216円"
+                                                            data-description="合計額：(寄付金額+216)×3.6%"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -170,16 +168,6 @@
                                                         </script>
                                                      </form>
                                                     {{-- data-description="寄付後にユーザー名と画像が自動記載"--}}
-                                                            
-                                                    {{--
-                                                    @if (( $npo_info->code2 ) != "")
-                                                    <a href="https://paymo.life/shops/4c67fab166/{{ $npo_info->npo_name }}" target="_blank" class="btn btn-danger btn-round">日本円決済</a>
-                                                    <a href="{{ $npo_info->code2 }}" class="btn btn-danger btn-round">ビットコイン決済</a>
-                                                    @else
-                                                    <p class="btn btn-success btn-round">プロジェクト準備中</p>
-                                                    @endif
-                                                     --}}
-                                                     
                                                 @endif
                                                 {{--
                                                 <style type="text/css">
@@ -198,7 +186,7 @@
                                     {{--    <div class="card card-pricing" data-color="orange">--}}
                                     {{--        <div class="card-body">--}}
                                     {{--            <h6 class="card-category text-success">{{ $npo_info->title }}の欲しいものリスト</h6>--}}
-                                                {{--<h3 class="card-title">欲しいものリスト</h3>--}}
+                                    {{--            <h3 class="card-title">欲しいものリスト</h3>--}}
                                     {{--            <ul>--}}
                                     {{--                <li>絵本 <b>100冊</b></li>--}}
                                     {{--                <li>パソコン <b>10個</b></li>--}}
@@ -212,7 +200,14 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
-                                                <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                                                <h6 class="card-category text-success">支援者リスト</h6>
+                                                <h3 class="card-title">現在{{$buyer_data}}人が支援</h3>
+                                                <ul>
+                                                    @for ($i = 1; $i < 2; $i++)
+                                                        <?php $a = $donater1 ?>
+                                                        <li>{{$a}}</li>
+                                                    @endfor
+                                                </ul>
                                     <!--            <h6 class="card-category text-success">ビットコインをお持ちでない方</h6>-->
                                     <!--            <h3 class="card-title">開設 ¥0</h3>-->
                                     <!--            <div>-->
@@ -258,13 +253,10 @@
                                                     {{ $npo_info->title }}のトークンをもらう
                                                 </a>
                                                 @endif
-                                                {{-- <a href="//widget.indiesquare.me/tip/abc690e1a12d9e88" class="btn btn-warning btn-round">
-                                                    
-                                                </a> --}}
+                                                {{-- <a href="//widget.indiesquare.me/tip/abc690e1a12d9e88" class="btn btn-warning btn-round"></a> --}}
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
@@ -361,17 +353,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member1_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member1_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member1_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member1_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member1_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member1_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member1_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -403,17 +384,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member2_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member2_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member2_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter">{{ $npo_info->member2_twitter }}</i></a>
-                                            @endif
-                                            @if (( $npo_info->member2_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member2_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook">{{ $npo_info->member2_facebook }}</i></a><br>
-                                            @endif
-                                            @if (( $npo_info->member2_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member2_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin">{{ $npo_info->member2_linkedin }}</i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -446,17 +416,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member3_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member3_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member3_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member3_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member3_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member3_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member3_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -489,17 +448,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member4_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member4_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member4_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member4_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member4_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member4_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member4_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -532,17 +480,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member5_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member5_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member5_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member5_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member5_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member5_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member5_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -575,17 +512,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member6_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member6_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member6_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member6_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member6_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member6_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member6_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -618,17 +544,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member7_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member7_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member7_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member7_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member7_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member7_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member7_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -661,17 +576,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member8_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member8_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member8_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member8_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member8_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member8_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member8_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -704,17 +608,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member9_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member9_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member9_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member9_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member9_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member9_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member9_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -747,17 +640,6 @@
                                         <p class="card-description">
                                             {{ $npo_info->member10_detail }}
                                         </p>
-                                        <div class="card-footer pull-left">
-                                            @if (( $npo_info->member10_twitter ) != "")
-                                            <a href="https://twitter.com/{{ $npo_info->member10_twitter }}" target="_blank" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member10_facebook ) != "")
-                                            <a href="https://www.facebook.com/{{ $npo_info->member10_facebook }}" target="_blank" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
-                                            @endif
-                                            @if (( $npo_info->member10_linkedin ) != "")
-                                            <a href="https://www.linkedin.com/in/{{ $npo_info->member10_linkedin }}" target="_blank" class="btn btn-just-icon btn-link btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -767,46 +649,44 @@
                 </div>
             </div>
         </div>
-
     </div>
-    
-        <div class="section section-gray">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}に関してお問い合わせ</h2>
-                    </div>
+    <div class="section section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}に関してお問い合わせ</h2>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 ml-auto mr-auto text-center">
-                        <form class="contact">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Name（お名前）" value="{{!Auth::guest() ? Auth::user()->name : ''}}">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" placeholder="Email（メールアドレス）" value="{{!Auth::guest() ? Auth::user()->email : ''}}">
-                                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                    <form class="contact">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Name（お名前）" value="{{!Auth::guest() ? Auth::user()->name : ''}}">
                             </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" placeholder="Subject（タイトル）" value="{!! nl2br(e(trans($npo_info->subtitle))) !!}に関して">
-                                </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Email（メールアドレス）" value="{{!Auth::guest() ? Auth::user()->email : ''}}">
                             </div>
-                            <br>
-                            <textarea class="form-control" placeholder="Message（お問い合わせ内容）" rows="7" ></textarea>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-6 ml-auto mr-auto">
-                                    <button class="btn btn-primary btn-block btn-round">Send </button>
-                                </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" placeholder="Subject（タイトル）" value="{!! nl2br(e(trans($npo_info->subtitle))) !!}に関して">
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <br>
+                        <textarea class="form-control" placeholder="Message（お問い合わせ内容）" rows="7" ></textarea>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6 ml-auto mr-auto">
+                                <button class="btn btn-primary btn-block btn-round">Send </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 </div>
 @endsection
 @include('layouts.footer')
