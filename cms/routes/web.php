@@ -159,8 +159,8 @@ Route::post('/connect/sell_detail_modify_complete', 'VisionDealController@sell_d
 // HomeController.php
 /*********************/
 // ログイン後初期画面は、自分のホーム画面
-Route::get('/home', 'HomeController@index');
-Route::post('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@home_own_timeline');
+Route::post('/home', 'HomeController@home_own_timeline');
 
 Route::get('/home/register', 'HomeController@register');
 
@@ -253,11 +253,11 @@ Route::resource("npo_registers","Npo_registerController");
 Route::post('/npo_register/create', 'Npo_registerController@create');
 Route::post('/npo_register/{npo_name}/edit', 'Npo_registerController@edit');
 //フォルダ名をURLに反映(2018.01.04仲条追加項目)
-Route::get('/npo/{npo_name}','Npo_registerController@landing');
-Route::get('/npo/{npo_name}/edit','Npo_registerController@editing');
-Route::post('/npo/{npo_name}/payment','Npo_registerController@payment');
-Route::post('/npo/{npo_name}/payment_company','Npo_registerController@payment_company');
-Route::post('/npo/{npo_name}/payment_company_pratinum','Npo_registerController@payment_company_pratinum');
+Route::get('/{npo_name}','Npo_registerController@landing');
+Route::get('/{npo_name}/edit','Npo_registerController@editing');
+Route::post('/{npo_name}/payment','Npo_registerController@payment');
+Route::post('/{npo_name}/payment_company','Npo_registerController@payment_company');
+Route::post('/{npo_name}/payment_company_pratinum','Npo_registerController@payment_company_pratinum');
 // Route::post('welcome','Npo_registerController@payment');
 
 // スタブ機能

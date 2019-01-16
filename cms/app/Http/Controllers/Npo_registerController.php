@@ -103,22 +103,89 @@ class Npo_registerController extends Controller {
 	 */
 	public function show($npo_name)
 	{
-		$npo_register = Npo_register::find($npo_name);
-		
+		$currentNpoInfo = Npo_register::find($npo_name);
+    	$currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
+        // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
+        // 何人がいくら寄付したのか、誰が寄付したのか表示
+        $data['donater']          = array(0=>"Donater");
+        $data['donater_gold']     = array(0=>"Company");
+        $data['donater_pratinum'] = array(0=>"Company(pratinum)");
+    	$buyer_count                     = 0; // 寄付した人・団体の数字
+    	$currency_amount                 = 0; // 現在いくらか
+    	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
+    	$donater_count                   = 0; // 寄付した人は何人か
+    	$company_count_gold              = 0; // 寄付した人は何人か(企業)
+    	$company_count_pratinum          = 0; // 寄付した人は何人か(プラチナ企業)
+    	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
+    	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
+    	for($array_count=0; $array_count<count($currentPremierData); $array_count++){
+            $buyer_count++; // 人数
+            $currency_origin = $currentPremierData[$array_count]->status;
+            $currency_amount += $currency_origin; // 金額
+            if(1 == $currentPremierData[$array_count]->premier_id){ // 個人
+                $currency_amount_personal += $currency_origin;
+                $donater_count++;
+                $donater_email = $currentPremierData[$array_count]->user_define;
+                $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
+                $donater_name  = $donater_info->name;
+                $data['donater'] += array($donater_count=>$donater_name);
+                // $data['donater'.$donater_count] = $donater_name;
+            }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
+                $currency_amount_company += $currency_origin;
+                $company_count_gold++;
+                $donater_npo = $currentPremierData[$array_count]->user_define;
+                // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
+                // $donater_name  = $donater_info->name;
+                $data['donater_gold'] += array($company_count_gold=>$donater_npo);
+            }else if(3 == $currentPremierData[$array_count]->premier_id){ // 法人
+                $currency_amount_company_premier += $currency_origin;
+                $company_count_pratinum++;
+                $donater_npo = $currentPremierData[$array_count]->user_define;
+                // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
+                // $donater_name  = $donater_info->name;
+                $data['donater_pratinum'] += array($company_count_pratinum=>$donater_npo);
+            }
+        }
+        if($currentNpoInfo->support_price){
+            $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
+            $parcentage = round($par,2); // 切捨て整数化
+            $data['parcentage']             = $parcentage;
+        }
+        $data['buyer_data']             = $buyer_count;
+        $data['donater_count']          = $donater_count;
+        $data['company_count_gold']     = $company_count_gold;
+        $data['company_count_pratinum'] = $company_count_pratinum;
+        $data['currency_data']          = $currency_amount;
+        $data['currency_data_personal'] = $currency_amount_personal;
+        $data['currency_data_company']  = $currency_amount_company; // 企業寄付の合計
+        $data['currency_data_company_premier'] = $currency_amount_company_premier; // 企業寄付(プラチナ)の合計
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
         $this->middleware('auth:api');
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
-        $currentNpoInfo = \DB::table('npo_registers')->where('id', $npo_name)->first();
+        // $currentNpoInfo = \DB::table('npo_registers')->where('id', $npo_name)->first();
+        
+        // NPOメンバーが画像を保存していれば、はめていく。
+        for($i = 1; $i < 11; $i++){
+            $member              = "member".$i;
+            $personal_info       = "personal_info".$i;
+            $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
+        	$currentPersonalInfo = "";
+            if($currentUserInfo){
+            	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
+        	}
+        	//連想配列に入れtBladeテンプレートに渡しています。
+        	$data[$personal_info] = $currentPersonalInfo;
+        }
         
         // dd($npo_name); // idを返している。
 		//連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
         
         if($name_auth === $currentNpoInfo->manager){
-    		return view('npo_registers.show', compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+    		return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
         }
         // member1~10の_twitterカラムに権限があれば見れる処理
         for($i = 1; $i < 11; $i++){
@@ -126,7 +193,8 @@ class Npo_registerController extends Controller {
             $member_auth = $name_auth."1";
             $check_auth  = "member".$i."_twitter";
             if($member_auth === $currentNpoInfo->$check_auth){
-                return view('npo_registers.edit', $data);
+                return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+                // return view('npo_registers.edit', $data);
             }
         }
         // これ以外だったら、errorを返す。
@@ -139,7 +207,87 @@ class Npo_registerController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-
+    // トップページ
+    public function landing(string $npo_name)
+    {
+        // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
+    	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+    	$currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
+        // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
+        // 何人がいくら寄付したのか、誰が寄付したのか表示
+        $data['donater']          = array(0=>"Donater");
+        $data['donater_gold']     = array(0=>"Company");
+        $data['donater_pratinum'] = array(0=>"Company(pratinum)");
+    	$buyer_count                     = 0; // 寄付した人・団体の数字
+    	$currency_amount                 = 0; // 現在いくらか
+    	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
+    	$donater_count                   = 0; // 寄付した人は何人か
+    	$company_count_gold              = 0; // 寄付した人は何人か(企業)
+    	$company_count_pratinum          = 0; // 寄付した人は何人か(プラチナ企業)
+    	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
+    	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
+    	for($array_count=0; $array_count<count($currentPremierData); $array_count++){
+            $buyer_count++; // 人数
+            $currency_origin = $currentPremierData[$array_count]->status;
+            $currency_amount += $currency_origin; // 金額
+            if(1 == $currentPremierData[$array_count]->premier_id){ // 個人
+                $currency_amount_personal += $currency_origin;
+                $donater_count++;
+                $donater_email = $currentPremierData[$array_count]->user_define;
+                $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
+                $donater_name  = $donater_info->name;
+                $data['donater'] += array($donater_count=>$donater_name);
+                // $data['donater'.$donater_count] = $donater_name;
+            }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
+                $currency_amount_company += $currency_origin;
+                $company_count_gold++;
+                $donater_npo = $currentPremierData[$array_count]->user_define;
+                // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
+                // $donater_name  = $donater_info->name;
+                $data['donater_gold'] += array($company_count_gold=>$donater_npo);
+            }else if(3 == $currentPremierData[$array_count]->premier_id){ // 法人
+                $currency_amount_company_premier += $currency_origin;
+                $company_count_pratinum++;
+                $donater_npo = $currentPremierData[$array_count]->user_define;
+                // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
+                // $donater_name  = $donater_info->name;
+                $data['donater_pratinum'] += array($company_count_pratinum=>$donater_npo);
+            }
+        }
+        // if(0 != $buyer_count){
+        $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
+        $parcentage = round($par,2); // 切捨て整数化
+        $data['parcentage']             = $parcentage;
+        $data['buyer_data']             = $buyer_count;
+        $data['donater_count']          = $donater_count;
+        $data['company_count_gold']     = $company_count_gold;
+        $data['company_count_pratinum'] = $company_count_pratinum;
+        $data['currency_data']          = $currency_amount;
+        $data['currency_data_personal'] = $currency_amount_personal;
+        $data['currency_data_company']  = $currency_amount_company; // 企業寄付の合計
+        $data['currency_data_company_premier'] = $currency_amount_company_premier; // 企業寄付(プラチナ)の合計
+        // }
+        
+    	// NPOメンバーが画像を保存していれば、はめていく。
+        for($i = 1; $i < 11; $i++){
+            $member              = "member".$i;
+            $personal_info       = "personal_info".$i;
+            $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
+        	$currentPersonalInfo = "";
+            if($currentUserInfo){
+            	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
+        	}
+        	//連想配列に入れtBladeテンプレートに渡しています。
+        	$data[$personal_info] = $currentPersonalInfo;
+        }
+        
+        $data['npo_info'] = $currentNpoInfo;
+        if($currentNpoInfo->proval == 0){
+    	    return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+    	}
+        return view('npo.npo_landing_page', $data);
+    }
+    
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -294,6 +442,8 @@ class Npo_registerController extends Controller {
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+// 		$currentNpoInfo  = Npo_register::find($npo_name);
+    	
 		//連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
         
@@ -317,14 +467,15 @@ class Npo_registerController extends Controller {
     // npo_registers/{$id}/edit で開く。まだ公開していない時に使用
     public function edit(string $npo_name)
     {
-		$npo_register = Npo_register::find($npo_name);
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
         $this->middleware('auth:api');
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
-        $currentNpoInfo = \DB::table('npo_registers')->where('id', $npo_name)->first();
+        // $currentNpoInfo = \DB::table('npo_registers')->where('id', $npo_name)->first();
+		$currentNpoInfo  = Npo_register::find($npo_name);
+    	
 		//連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
         
@@ -342,85 +493,6 @@ class Npo_registerController extends Controller {
         }
         // これ以外だったら、errorを返す。
         return view('/errors/503');
-    }
-    
-    // トップページ
-    public function landing(string $npo_name)
-    {
-        // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
-    	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
-    	$currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
-        // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
-        // 何人がいくら寄付したのか、誰が寄付したのか表示
-        $data['donater']          = array(0=>"Donater");
-        $data['donater_gold']     = array(0=>"Company");
-        $data['donater_pratinum'] = array(0=>"Company(pratinum)");
-    	$buyer_count                     = 0; // 寄付した人・団体の数字
-    	$currency_amount                 = 0; // 現在いくらか
-    	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
-    	$donater_count                   = 0; // 寄付した人は何人か
-    	$company_count_gold              = 0; // 寄付した人は何人か(企業)
-    	$company_count_pratinum          = 0; // 寄付した人は何人か(プラチナ企業)
-    	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
-    	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
-    	for($array_count=0; $array_count<count($currentPremierData); $array_count++){
-            $buyer_count++; // 人数
-            $currency_origin = $currentPremierData[$array_count]->status;
-            $currency_amount += $currency_origin; // 金額
-            if(1 == $currentPremierData[$array_count]->premier_id){ // 個人
-                $currency_amount_personal += $currency_origin;
-                $donater_count++;
-                $donater_email = $currentPremierData[$array_count]->user_define;
-                $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
-                $donater_name  = $donater_info->name;
-                $data['donater'] += array($donater_count=>$donater_name);
-                // $data['donater'.$donater_count] = $donater_name;
-            }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
-                $currency_amount_company += $currency_origin;
-                $company_count_gold++;
-                $donater_npo = $currentPremierData[$array_count]->user_define;
-                // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
-                // $donater_name  = $donater_info->name;
-                $data['donater_gold'] += array($company_count_gold=>$donater_npo);
-            }else if(3 == $currentPremierData[$array_count]->premier_id){ // 法人
-                $currency_amount_company_premier += $currency_origin;
-                $company_count_pratinum++;
-                $donater_npo = $currentPremierData[$array_count]->user_define;
-                // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
-                // $donater_name  = $donater_info->name;
-                $data['donater_pratinum'] += array($company_count_pratinum=>$donater_npo);
-            }
-        }
-        // if(0 != $buyer_count){
-        $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
-        $parcentage = round($par,2); // 切捨て整数化
-        $data['parcentage']             = $parcentage;
-        $data['buyer_data']             = $buyer_count;
-        $data['donater_count']          = $donater_count;
-        $data['company_count_gold']     = $company_count_gold;
-        $data['company_count_pratinum'] = $company_count_pratinum;
-        $data['currency_data']          = $currency_amount;
-        $data['currency_data_personal'] = $currency_amount_personal;
-        $data['currency_data_company']  = $currency_amount_company; // 企業寄付の合計
-        $data['currency_data_company_premier'] = $currency_amount_company_premier; // 企業寄付(プラチナ)の合計
-        // }
-        
-    	// NPOメンバーが画像を保存していれば、はめていく。
-        for($i = 1; $i < 11; $i++){
-            $member              = "member".$i;
-            $personal_info       = "personal_info".$i;
-            $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
-        	$currentPersonalInfo = "";
-            if($currentUserInfo){
-            	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
-        	}
-        	//連想配列に入れtBladeテンプレートに渡しています。
-        	$data[$personal_info] = $currentPersonalInfo;
-        }
-        
-        $data['npo_info'] = $currentNpoInfo;
-        
-        return view('npo.npo_landing_page', $data);
     }
     
     // Stripeの支払い。３パターンあり（1パターン目）
@@ -445,6 +517,10 @@ class Npo_registerController extends Controller {
         // Create a charge: this will charge the user's card
         $the_price = floor(($currentNpoInfo->support_amount+258)*1.036);
         try {
+            $customer = \Stripe\Customer::create(array(
+                'email' => $user_request_email
+                
+            ));
             $charge = \Stripe\Charge::create(array(
                 "amount"      => $the_price, // 課金額はココで調整
                 "currency"    => "jpy",

@@ -88,7 +88,7 @@
                                 {{-- 利用規約とプライバシーポリシー --}}
                                 <div class="form-group division">
                                     <input type="checkbox" name="terms-of-service" required>
-                                    <strong><a href="{{ url('/terms') }}"> 利用規約 </a></strong>および<strong><a href="{{ url('/privacy_policy') }}"> プライバシーポリシー </a></strong>に同意する
+                                    <strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 </a></strong>および<strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー </a></strong>に同意する
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary btn-round">登録</button>
                             </form>
@@ -311,7 +311,7 @@
                                                 <h4 class="card-title">Nakajo Takayuki</h4>
                                                 <h6 class="card-category">Founder & Developer</h6>
                                                 <p class="card-description">
-                                                	デジタルハリウッド大学大学院の1年生。<a href="https://digital-life-shift.peatix.com/" target="_blank">Digital Life Shift</a>の発起人。他にも、大学院でプログラミング講師をしたり、これからの難民支援を考えるハッカソンを主催
+                                                	デジタルハリウッド大学大学院の1年生。<br>大学院やプログラミングスクールで講師をしていたり、これからの難民課題を考えるハッカソンを主催したりしています。
                                                 </p>
                                                 <div class="card-footer">
                                                     <a href="https://facebook.com/nj.takayuki" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -412,7 +412,7 @@
                 						<div class="col-md-4">
                 							<div class="card card-blog">
                 								<div class="card-image">
-                									<a href="https://fsharp.me/npo/nipponshotenkai">
+                									<a href="https://fsharp.me/nipponshotenkai">
                 										<img class="img img-raised" src="{{ url('/') }}/../img/npologo/nihonShotenkaiLogo.png" />
                 									</a>
                 								</div>
@@ -421,7 +421,7 @@
                 									    Decent Work And Economic Growth
                 									</h6>
                 									<h5 class="card-title">
-                										<a href="https://fsharp.me/npo/nipponshotenkai">NPO法人日本商店会</a>
+                										<a href="https://fsharp.me/nipponshotenkai">NPO法人日本商店会</a>
                 									</h5>
                 									<p class="card-description">
                 										日本商店会を通じて日本を元気にする<br>
@@ -434,7 +434,7 @@
                                                     <hr>
                                                     <div class="card-footer">
                                                         <div class="author">
-                    	                                    <a href="https://fsharp.me/npo/nipponshotenkai">
+                    	                                    <a href="https://fsharp.me/nipponshotenkai">
                     	                                       <!--<img src="{{ url('/') }}/../img/faces/kazu.jpg" alt="..." class="avatar img-raised">-->
                     	                                       <span>支援者0人</span>
                     	                                    </a>
@@ -450,7 +450,7 @@
                 						<div class="col-md-4">
                 							<div class="card card-blog">
                 								<div class="card-image">
-                									<a href="https://fsharp.me/npo/helper-c">
+                									<a href="https://fsharp.me/helper-c">
                 										<img class="img img-raised" src="{{ url('/') }}/../img/npologo/helpercallLogo.jpg" />
                 									</a>
                 								</div>
@@ -459,7 +459,7 @@
                 										Good Health And Well-being
                 									</h6>
                 									<h5 class="card-title">
-                										<a href="https://fsharp.me/npo/helper-c">NPO法人ヘルパーコール</a>
+                										<a href="https://fsharp.me/helper-c">NPO法人ヘルパーコール</a>
                 									</h5>
                 									<p class="card-description">
                 										今後、益々高齢化社会が進むなか、高齢者の方々が、生き活き楽しく過ごしていただけるようなサービス提供を目指し、ご利用者やご家族、また職員・スタッフの全員が、前を向いて元気よく歩いていけるよう、運営してまいります。
@@ -467,7 +467,7 @@
                                                     <hr>
                                                     <div class="card-footer">
                                                         <div class="author">
-                    	                                    <a href="https://fsharp.me/npo/helper-c">
+                    	                                    <a href="https://fsharp.me/helper-c">
                     	                                       <span>支援者0人</span>
                     	                                    </a>
                     	                                </div>
@@ -482,7 +482,7 @@
                 						<div class="col-md-4">
                 							<div class="card card-blog">
                 								<div class="card-image">
-                									<a href="https://fsharp.me/npo/DHUMediaArt">
+                									<a href="https://fsharp.me/DHUMediaArt">
                 										<img class="img img-raised" src="{{ url('/') }}/../img/npologo/OchyaiYoichi.jpg" />
                 									</a>
                 								</div>
@@ -492,7 +492,7 @@
                 										Partnerships For The Goals
                 									</h6>
                 									<h5 class="card-title">
-                										<a href="https://fsharp.me/npo/DHUMediaArt">落合陽一メディアアート㍻展＠デジハリ</a>
+                										<a href="https://fsharp.me/DHUMediaArt">落合陽一メディアアート㍻展＠デジハリ</a>
                 									</h5>
                 									<p class="card-description">
                 									    2017年からデジタルハリウッド大学で開催されている落合陽一先生の授業の最終成果物を展示する展示会です。2018年の展示会の名前は、㍻展です。	
@@ -500,7 +500,7 @@
                                                     <hr>
                                                     <div class="card-footer">
                                                         <div class="author">
-                    	                                    <a href="https://fsharp.me/npo/DHUMediaArt">
+                    	                                    <a href="https://fsharp.me/DHUMediaArt">
                     	                                       <!--<img src="{{ url('/') }}/../img/faces/n0bisukeRice.jpg" alt="..." class="avatar img-raised">-->
                     	                                       <span>支援者3人</span>
                     	                                    </a>
