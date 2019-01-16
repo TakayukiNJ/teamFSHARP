@@ -110,7 +110,7 @@
                         ?>
                         @if($npo_info->$member_check != "")
                         <div class="form-group @if($errors->has('{{$member}}')) has-error @endif">
-                           <label for="{{$member}}-field">メンバーの名前{{$i}}人目</label>
+                           <label for="{{$member}}-field">【メンバーの名前{{$i}}人目】</label>
                         <input type="text" id="{{$member}}-field" name="{{$member}}" class="form-control" value="{{ is_null(old("$member")) ? $npo_info->$member : old("$member") }}"/>
                            @if($errors->has($member))
                             <span class="help-block">{{ $errors->first("$member") }}aaaaaa</span>
@@ -132,15 +132,25 @@
                                  <span class="help-block">{{ $errors->first($member_detail) }}</span>
                               @endif
                            </div>
-                           
+                           {{-- 編集権限 --}}
+                           @if($npo_info->$member != $npo_info->manager)
+                           <div class="form-group @if($errors->has('$member_twitter')) has-error @endif">
+                                <label for="{{$member_twitter}}-field">{{$npo_info->$member}}さんの編集権限</label><br>
+            					@if ($npo_info->$member_twitter == $npo_info->$member)
+                                <input type="radio" id="{{$member_twitter}}-field_1" name="{{$member_twitter}}" value="{{$npo_info->$member}}1" style="width:40px;height:30px">編集権限有り
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="{{$member_twitter}}-field_0" name="{{$member_twitter}}" value="{{$npo_info->$member}}" style="width:40px;height:30px" CHECKED>編集権限なし
+                                @else
+                                <input type="radio" id="{{$member_twitter}}-field_1" name="{{$member_twitter}}" value="{{$npo_info->$member}}1" style="width:40px;height:30px" CHECKED>編集権限有り
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="radio" id="{{$member_twitter}}-field_0" name="{{$member_twitter}}" value="{{$npo_info->$member}}" style="width:40px;height:30px">編集権限なし
+                                @endif
+                                @if($errors->has("$member_twitter"))
+                                <span class="help-block">{{ $errors->first("$member_twitter") }}</span>
+                                @endif
+                            </div>
+                            @endif
                            {{--
-                           <!--<div class="form-group @if($errors->has('member1_detail')) has-error @endif">-->
-                           <!--   <label for="member1_detail-field">{{$i}}のメンバーの詳細</label>-->
-                           <!--<input type="text" id="member1_detail-field" name="member1_detail" class="form-control" value="{{ is_null(old("member1_detail")) ? $npo_info->member1_detail : old("member1_detail") }}"/>-->
-                           <!--   @if($errors->has("member1_detail"))-->
-                           <!--    <span class="help-block">{{ $errors->first("member1_detail") }}</span>-->
-                           <!--   @endif-->
-                           <!--</div>-->
                            <div class="form-group @if($errors->has('member1_twitter')) has-error @endif">
                               <label for="member1_twitter-field">{{$i}}のメンバーのTwitter（twitter.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
                            <input type="text" id="member1_twitter-field" name="member1_twitter" class="form-control" value="{{ is_null(old("member1_twitter")) ? $npo_info->member1_twitter : old("member1_twitter") }}"/>
@@ -148,20 +158,20 @@
                                <span class="help-block">{{ $errors->first("member1_twitter") }}</span>
                               @endif
                            </div>
-                           <div class="form-group @if($errors->has('member1_facebook')) has-error @endif">
-                              <label for="member1_facebook-field">{{$i}}のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                           <input type="text" id="member1_facebook-field" name="member1_facebook" class="form-control" value="{{ is_null(old("member1_facebook")) ? $npo_info->member1_facebook : old("member1_facebook") }}"/>
-                              @if($errors->has("member1_facebook"))
-                               <span class="help-block">{{ $errors->first("member1_facebook") }}</span>
-                              @endif
-                           </div>
-                           <div class="form-group @if($errors->has('member1_linkedin')) has-error @endif">
-                              <label for="member1_linkedin-field">①のメンバーのlinkedinのURL（linkedin.com/in/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>
-                           <input type="text" id="member1_linkedin-field" name="member1_linkedin" class="form-control" value="{{ is_null(old("member1_linkedin")) ? $npo_info->member1_linkedin : old("member1_linkedin") }}"/>
-                              @if($errors->has("member1_linkedin"))
-                               <span class="help-block">{{ $errors->first("member1_linkedin") }}</span>
-                              @endif
-                           </div>
+                           <!--<div class="form-group @if($errors->has('member1_facebook')) has-error @endif">-->
+                           <!--   <label for="member1_facebook-field">{{$i}}のメンバーのFacebook（facebook.com/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>-->
+                           <!--<input type="text" id="member1_facebook-field" name="member1_facebook" class="form-control" value="{{ is_null(old("member1_facebook")) ? $npo_info->member1_facebook : old("member1_facebook") }}"/>-->
+                           <!--   @if($errors->has("member1_facebook"))-->
+                           <!--    <span class="help-block">{{ $errors->first("member1_facebook") }}</span>-->
+                           <!--   @endif-->
+                           <!--</div>-->
+                           <!--<div class="form-group @if($errors->has('member1_linkedin')) has-error @endif">-->
+                           <!--   <label for="member1_linkedin-field">①のメンバーのlinkedinのURL（linkedin.com/in/〇〇〇〇〇〇〇〇〇/の〇の部分を記入）</label>-->
+                           <!--<input type="text" id="member1_linkedin-field" name="member1_linkedin" class="form-control" value="{{ is_null(old("member1_linkedin")) ? $npo_info->member1_linkedin : old("member1_linkedin") }}"/>-->
+                           <!--   @if($errors->has("member1_linkedin"))-->
+                           <!--    <span class="help-block">{{ $errors->first("member1_linkedin") }}</span>-->
+                           <!--   @endif-->
+                           <!--</div>-->
                            --}}
                         @endif
                     @endfor
@@ -279,7 +289,7 @@
                     </div>
                     <!-- URL -->
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
-                       <label for="npo_name-field">ページURL（https://fsharp.me/npo/〇〇〇〇の〇部分）*設定後変更不可</label>
+                       <label for="npo_name-field">ページURL（https://fsharp.me/〇〇〇〇の〇部分）*設定後変更不可</label>
                     <input type="text" id="npo_name-field" name="npo_name" class="form-control" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
                        @if($errors->has("npo_name"))
                         <span class="help-block">この{{ $errors->first("npo_name") }}(URL)はすでに使われております。</span>
@@ -287,11 +297,19 @@
                     </div>
                     <!-- 公開非公開 -->
                     <div class="form-group @if($errors->has('proval')) has-error @endif">
-                       <label for="proval-field">公開設定（資金を集める）</label>
-                    <input type="text" id="proval-field" name="proval" class="form-control" value="{{ is_null(old("proval")) ? $npo_info->proval : old("proval") }}"/>
-                       @if($errors->has("proval"))
+                        <label for="title-field">公開・未公開</label><br>
+    					@if ($npo_info->proval == 0)
+                        <input type="radio" id="proval-field_1" name="proval" value="1" style="width:40px;height:30px">公開
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="proval-field_0" name="proval" value="0" style="width:40px;height:30px" CHECKED>未公開
+                        @else
+                        <input type="radio" id="proval-field_1" name="proval" value="1" style="width:40px;height:30px" CHECKED>公開
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="proval-field_0" name="proval" value="0" style="width:40px;height:30px">未公開
+                        @endif
+                        @if($errors->has("proval"))
                         <span class="help-block">{{ $errors->first("proval") }}</span>
-                       @endif
+                        @endif
                     </div>
                    <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Save</button>

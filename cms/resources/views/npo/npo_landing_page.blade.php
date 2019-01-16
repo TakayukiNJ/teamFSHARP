@@ -59,17 +59,17 @@
                                 <!--<br>-->
                                 @endif
                                 
-                                <a href="https://twitter.com/intent/tweet?text={!! $npo_info->subtitle !!} {!! $npo_info->title !!}の支援のために。ひとりでも多くの方に広めてください♪%20-%20FSHARP%20%20https://fsharp.me/npo/{{ $npo_info->npo_name }}" class="btn btn-round btn-twitter">
-                                    <!--<i class="twitter-share-button" data-href="https://fsharp.me/npo/{{ $npo_info->npo_name }}" aria-hidden="true" data-text="{{ $npo_info->subtitle }} {{ $npo_info->title }}の支援のために。ひとりでも多くの方に広めてください♪%20-%20F#%20%20https://fsharp.me/npo/{{ $npo_info->npo_name }}" data-show-count="true" data-dnt="true"></i>Tweet-->
+                                <a href="https://twitter.com/intent/tweet?text={!! $npo_info->subtitle !!} {!! $npo_info->title !!}の支援のために。ひとりでも多くの方に広めてください♪%20-%20FSHARP%20%20https://fsharp.me/{{ $npo_info->npo_name }}" class="btn btn-round btn-twitter">
+                                    <!--<i class="twitter-share-button" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" aria-hidden="true" data-text="{{ $npo_info->subtitle }} {{ $npo_info->title }}の支援のために。ひとりでも多くの方に広めてください♪%20-%20F#%20%20https://fsharp.me/{{ $npo_info->npo_name }}" data-show-count="true" data-dnt="true"></i>Tweet-->
                                     <i class="fa fa-twitter" aria-hidden="true"></i> Tweet 
                                 </a>
                                 <!--<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook">-->
                                     
-                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me/npo/{{ $npo_info->npo_name }}%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook" data-layout="button_count">
-                                    <i class="fb-share-button" data-href="https://fsharp.me/npo/{{ $npo_info->npo_name }}" data-layout="button_count" data-size="small" data-mobile-iframe="true" aria-hidden="true"></i>
+                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me/{{ $npo_info->npo_name }}%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook" data-layout="button_count">
+                                    <i class="fb-share-button" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-size="small" data-mobile-iframe="true" aria-hidden="true"></i>
                                 <!-- シェアボタンこみ -->
                                 <!--<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook">-->
-                                <!--    <i class="fb-like" data-href="https://fsharp/npo/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></i>-->
+                                <!--    <i class="fb-like" data-href="https://fsharp/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></i>-->
                                 </a>
                                 
                                 
@@ -146,7 +146,7 @@
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
                                                 @else
-                                                    <form action="/npo/{{$npo_info->npo_name}}/payment" method="POST">
+                                                    <form action="/{{$npo_info->npo_name}}/payment" method="POST">
                                                         {!! csrf_field() !!}
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -246,7 +246,7 @@
                                                 @elseif(Auth::user()->npo == "")
                                                 <a href="{{ url('/npo_registers/create') }}" class="btn btn-danger btn-round">まずは団体登録</a>
                                                 @elseif($company_count_gold < $npo_info->support_amount_gold)
-                                                    <form action="/npo/{{$npo_info->npo_name}}/payment_company" method="POST">
+                                                    <form action="/{{$npo_info->npo_name}}/payment_company" method="POST">
                                                         {!! csrf_field() !!}
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -306,7 +306,7 @@
                                                 <a href="{{ url('/npo_registers/create') }}" class="btn btn-neutral btn-round">まずは団体登録</a>
                                                 @elseif($company_count_pratinum < $npo_info->support_amount_pratinum)
                                                 
-                                                    <form action="/npo/{{$npo_info->npo_name}}/payment_company_pratinum" method="POST">
+                                                    <form action="/{{$npo_info->npo_name}}/payment_company_pratinum" method="POST">
                                                         {!! csrf_field() !!}
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"

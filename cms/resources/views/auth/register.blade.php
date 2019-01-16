@@ -87,7 +87,7 @@
                                 {{-- 利用規約とプライバシーポリシー --}}
                                 <div class="form-group division">
                                     <input type="checkbox" name="terms-of-service" required>
-                                    <strong><a href="{{ url('/terms') }}"> 利用規約 </a></strong>および<strong><a href="{{ url('/privacy_policy') }}"> プライバシーポリシー </a></strong>に同意する
+                                    <strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 </a></strong>および<strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー </a></strong>に同意する
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary btn-round">登録</button>
                             </form>
