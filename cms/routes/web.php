@@ -256,6 +256,8 @@ Route::post('/npo_register/{npo_name}/edit', 'Npo_registerController@edit');
 Route::get('/npo/{npo_name}','Npo_registerController@landing');
 Route::get('/npo/{npo_name}/edit','Npo_registerController@editing');
 Route::post('/npo/{npo_name}/payment','Npo_registerController@payment');
+Route::post('/npo/{npo_name}/payment_company','Npo_registerController@payment_company');
+Route::post('/npo/{npo_name}/payment_company_pratinum','Npo_registerController@payment_company_pratinum');
 // Route::post('welcome','Npo_registerController@payment');
 
 // スタブ機能

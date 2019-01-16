@@ -115,8 +115,8 @@
                         </div>
                         <br/>
                         <div class="tab-content text-center" >
-                            
-                            <p>寄付をするとユーザー名が記載されます。</p>
+                            <p>現在の寄付者と法人の合計数：<b>{{$buyer_data}}</b></p>
+                            <p>寄付するとユーザー名・法人名が記載されます。</p>
                             <p>集まった寄付金は全額担当者にお渡しします。</p>
                             <p class="description text-gray">
                                 決済時に、運営(振込)手数料258円とクレジットカード手数料3.6%がかかります。
@@ -184,14 +184,18 @@
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
                                                 <h6 class="card-category text-success">支援者リスト</h6>
-                                                <h3 class="card-title">現在{{$buyer_data}}人が支援</h3>
+                                                <h3 class="card-title">現在の寄付者：<b>{{$donater_count}}人</b></h3>
                                                 <ul>
                                                     @if(count($donater)>1)
+                                                        <li>
                                                         @for ($i = 1; $i < count($donater); $i++)
-                                                            @if($donater[$i])
-                                                                <li>{{$donater[$i]}}さん</li>
+                                                            @if($i == 1)
+                                                                {{$donater[$i]}}さん
+                                                            @else
+                                                                、{{$donater[$i]}}さん
                                                             @endif
                                                         @endfor
+                                                        </li>
                                                     @else
                                                         <li>まだ寄付者はいません。</li>
                                                         <li>　</li>
@@ -213,11 +217,23 @@
                                                 <h6 class="card-category text-danger">法人（団体・チーム）として支援する</h6>
                                                 <h1 class="card-title">¥{{$npo_info->support_price_gold}}</h1>
                                                 <ul>
-                                                    <li>現在<b>{{$currency_data_company}}</b>法人が支援中です。</li>
+                                                    <li>現在<b>{{$company_count_gold}}</b>法人が支援中です。</li>
                                                     <li>最大<b>{{$npo_info->support_amount_gold}}</b>法人まで支援可能。</li>
-                                                    <li>ユーザー名ではなく団体名が公開。</li>
                                                     @if($npo_info->support_contents_gold)
                                                         <li>リターン：<b>{{$npo_info->support_contents_gold}}</b></li>
+                                                    @endif
+                                                    @if(count($donater_gold)>1)
+                                                        <li>支援法人名：
+                                                        @for ($i = 1; $i < count($donater_gold); $i++)
+                                                            @if($i == 1)
+                                                                {{$donater_gold[$i]}}
+                                                            @else
+                                                                、{{$donater_gold[$i]}}
+                                                            @endif
+                                                        @endfor
+                                                        </li>
+                                                    @else
+                                                    <li>支援した法人名をこちらに掲載。</li>
                                                     @endif
                                                 </ul>
                                                 @if($npo_info->support_contents_gold)
@@ -227,7 +243,9 @@
                                                 @endif
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
-                                                @else
+                                                @elseif(Auth::user()->npo == "")
+                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-danger btn-round">まずは団体登録</a>
+                                                @elseif($company_count_gold < $npo_info->support_amount_gold)
                                                     <form action="/npo/{{$npo_info->npo_name}}/payment_company" method="POST">
                                                         {!! csrf_field() !!}
                                                         <script
@@ -258,11 +276,23 @@
                                                 <h6 class="card-category text-success">プラチナ法人として支援する</h6>
                                                 <h1 class="card-title">¥{{$npo_info->support_price_pratinum}}</h1>
                                                 <ul>
-                                                    <li>現在<b>{{$currency_data_company_premier}}</b>法人が支援中です。</li>
+                                                    <li>現在<b>{{$company_count_pratinum}}</b>法人が支援中です。</li>
                                                     <li>最大<b>{{$npo_info->support_amount_pratinum}}</b>法人まで支援可能。</li>
-                                                    <li>ユーザー名ではなく団体名が公開。</li>
                                                     @if($npo_info->support_contents_pratinum)
                                                         <li>リターン：<b>{{$npo_info->support_contents_pratinum}}</b></li>
+                                                    @endif
+                                                    @if(count($donater_pratinum)>1)
+                                                        <li>支援法人名：
+                                                        @for ($i = 1; $i < count($donater_pratinum); $i++)
+                                                            @if($i == 1)
+                                                                {{$donater_pratinum[$i]}}
+                                                            @else
+                                                                、{{$donater_pratinum[$i]}}
+                                                            @endif
+                                                        @endfor
+                                                        </li>
+                                                    @else
+                                                    <li>支援した法人名をこちらに掲載。</li>
                                                     @endif
                                                 </ul>
                                                 @if($npo_info->support_contents_pratinum)
@@ -271,10 +301,10 @@
                                                     </a>
                                                 @endif
                                                 @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
+                                                <a href="{{ url('/login') }}" class="btn btn-neutral btn-round">ログイン</a>
                                                 @elseif(Auth::user()->npo == "")
-                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-danger btn-round">団体登録</a>
-                                                @else
+                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-neutral btn-round">まずは団体登録</a>
+                                                @elseif($company_count_pratinum < $npo_info->support_amount_pratinum)
                                                 
                                                     <form action="/npo/{{$npo_info->npo_name}}/payment_company_pratinum" method="POST">
                                                         {!! csrf_field() !!}

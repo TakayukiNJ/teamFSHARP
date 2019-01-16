@@ -17,7 +17,7 @@
                             </div>
                             <div class="description">
                                 <h3> 人とお金の流れを変える </h3>
-                                <p>寄付をするとユーザー名が記載されます。集まった寄付金は全額担当者にお渡しします。振込時に手数料が<strong>3.6%</strong>と<strong>216</strong>円(税込)のみかかります。</p>
+                                <p>寄付をすると、ユーザー名（もしくは法人名）がそのページに記載されます。集めた寄付金は全額担当者にお渡しします。その代わり、決済時に<strong>258</strong>円(税込)と<strong>3.6%</strong>の手数料のみかかります。</p>
                             </div>
                         </div>
                         <div class="info info-horizontal">

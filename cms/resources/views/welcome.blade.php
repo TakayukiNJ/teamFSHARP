@@ -109,7 +109,7 @@
     				<h1 class="presentation-title"></h1>
     				<!--<div class="type">F♯</div>-->
     			</div>
-    			<h2 class="presentation-subtitle text-center">F♯でそのプロジェクトの人と資金、集めませんか？</h2>
+    			<h2 class="presentation-subtitle text-center">F♯でそのプロジェクトの資金、集めませんか？</h2>
     			
                 <div class="w3-panel w3-large">
                     <br>
@@ -165,11 +165,11 @@
                             </div>
                         </div>
                     </div>
-                        {{-- NPO登録をまだしていなかった場合 --}}
+                    {{-- NPO登録をまだしていなかった場合 --}}
                     @elseif ((Auth::user()->npo) == "")
-                    <a href="{{ url('/npo_registers/create') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                    <a href="{{ url('//home/home_own_timeline') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
                     @else
-                    <a href="{{ url('/npo') }}/{{ Auth::user()->npo }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                    <a href="{{ url('/npo_registers') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
                     @endif
                 </div>
     		</div>
@@ -185,26 +185,6 @@
                         
                         <div class="col-md-8 ml-auto mr-auto text-center">
                             <h2 class="title">【DHGS公式】<br></h2>
-                    <form action="/welcome" method="POST">
-                        {!! csrf_field() !!}
-                        <script
-                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
-                            data-amount="1000"
-                            data-name="F#"
-                            data-description="Example charge"
-                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                            data-locale="auto"
-                            data-currency="jpy"
-
-                            $.ajaxSetup({
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                }
-                            })
-                        >
-                        </script>
-                    </form>
                             <h5 class="description">デジタルハリウッド大学大学院の2018年度学内コンペティション（インテリム・コンペティション）に選出された、NPOの人とお金の流れをテクノロジーで変えるWebサービスです。</h5>
                             </div>
                         <div class="project-pills">
@@ -233,7 +213,7 @@
             				<!-- overview ここから -->
         				    <div class="row">
                                 <div class="col-md-10 ml-auto mr-auto">
-                					<h4 class="title">社会課題の解決を目的とする事業に取り組むNPO（内閣府公式サイトに掲載されている特定非営利活動法人）向けに作っています。F♯（当サイト）を通じてボランティアやプロボノとして関わったり、寄付を行ったりすると、当サイトに名前（ニックネーム）を載せることができます。</h4>
+                					<h4 class="title">NPO法人（内閣府公式サイトに掲載されている特定非営利活動法人）や社会課題の解決を目的とする団体のプロジェクトに、チームメンバーとして関わったり、そのプロジェクトに寄付を行ったりすると、当サイトにユーザー名や自分の団体名を証として掲載することができます。</h4>
                 					<div class="page-header section-dark" style="background-image: url('/img/farid-askerov.jpg')">
                                         <div class="content-center">
                                             <div class="container">
@@ -241,7 +221,7 @@
                                                     <h1 class="presentation-title"></h1>
                                                     <!--<div class="type">F♯</div>-->
                                                 </div>
-                                                <h2 class="presentation-subtitle text-center">F♯で人材と資金、集めませんか？</h2>
+                                                <h2 class="presentation-subtitle text-center">F♯でそのプロジェクトの資金、集めませんか？</h2>
 
                                                 <div class="w3-panel w3-large">
                                                     <br>
@@ -299,9 +279,9 @@
                                                     </div>
                                                     {{-- NPO登録がなければ--}}
                                                     @elseif ((Auth::user()->npo) == "")
-                                                    <a href="{{ url('/npo_registers/create') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                                                    <a href="{{ url('//home/home_own_timeline') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
                                                     @else
-                                                    <a href="{{ url('/npo') }}/{{ Auth::user()->npo }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                                                    <a href="{{ url('/npo_registers') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -331,7 +311,7 @@
                                                 <h4 class="card-title">Nakajo Takayuki</h4>
                                                 <h6 class="card-category">Founder & Developer</h6>
                                                 <p class="card-description">
-                                                	デジタルハリウッド大学大学院の1年生。個人の価値を売買するサービス『VALU』で、購入者ランキング3位。NPOを通じて1年間アメリカに留学経験有
+                                                	デジタルハリウッド大学大学院の1年生。<a href="https://digital-life-shift.peatix.com/" target="_blank">Digital Life Shift</a>の発起人。他にも、大学院でプログラミング講師をしたり、これからの難民支援を考えるハッカソンを主催
                                                 </p>
                                                 <div class="card-footer">
                                                     <a href="https://facebook.com/nj.takayuki" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
@@ -344,6 +324,7 @@
                                     </div>
             					</div>
             				</div>
+            				{{--
             				<!-- カズさん -->
             				<!--<div class="col-md-6">-->
             				<!--	<div class="card card-profile card-plain">-->
@@ -420,6 +401,7 @@
                 <!--                    </div>-->
             				<!--	</div>-->
             				<!--</div>-->
+            				--}}
             			<!-- team member ここまで -->
             			</div>
             			<div class="row tab-pane" id="pick-up" role="tabpanel">
