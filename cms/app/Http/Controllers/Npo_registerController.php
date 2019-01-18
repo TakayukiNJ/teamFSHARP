@@ -9,8 +9,10 @@ use Carbon\Carbon;
 use App\Npo_register;
 use App;
 use Illuminate\Http\Request;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class Npo_registerController extends Controller {
+    
 	public function __construct()
     {
         $this->middleware('auth', ['except' => ['landing', 'pieces']]);
@@ -210,6 +212,9 @@ class Npo_registerController extends Controller {
     // トップページ
     public function landing(string $npo_name)
     {
+        // 本番環境の時にここと、paymentの3パターンを変える
+        $stripe_key = "pk_test_tfM2BWAFRlYSPO939BW5jIj5";
+        $data['stripe_key'] = $stripe_key;
         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
     	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
     	$currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
@@ -218,6 +223,7 @@ class Npo_registerController extends Controller {
         $data['donater']          = array(0=>"Donater");
         $data['donater_gold']     = array(0=>"Company");
         $data['donater_pratinum'] = array(0=>"Company(pratinum)");
+        $mail_message = "";
     	$buyer_count                     = 0; // 寄付した人・団体の数字
     	$currency_amount                 = 0; // 現在いくらか
     	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
@@ -257,6 +263,7 @@ class Npo_registerController extends Controller {
         // if(0 != $buyer_count){
         $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
         $parcentage = round($par,2); // 切捨て整数化
+        $data['mail_message'] = $mail_message;
         $data['parcentage']             = $parcentage;
         $data['buyer_data']             = $buyer_count;
         $data['donater_count']          = $donater_count;
@@ -355,7 +362,6 @@ class Npo_registerController extends Controller {
 		if($npo_register->npo_name){
 		    $npo_register->published = new Carbon(Carbon::now());
 		}
-		
 		
 		$npo_register->title             = $request->input("title"); // npo name
         $npo_register->subtitle          = $request->input("subtitle"); //project name
@@ -737,6 +743,27 @@ class Npo_registerController extends Controller {
         
         // この後にサンクスメール送りたい...
         // return view('/thank_you_for_support');
+        return back();
+    }
+    
+    public function send_mail(Request $request, string $npo_name) {
+            
+        // $npo_register->subtitle = $request->input("subtitle"); // プロジェクトの名前
+        // return view('/thank_you_for_support');
+        $name = $request->name;
+        $email = $request->email;
+        $title = $request->title;
+        $message = $request->message;
+        mb_language("Japanese");
+        mb_internal_encoding("UTF-8");
+        if(mb_send_mail($email, $title, $message)){
+            mb_send_mail($email, $title, $message);
+            $mail_message = "alart(メールの送信に成功しました)";
+        } else {
+            dd("alart(メールの送信に失敗しました)");
+        };
+        // dd($request);
+        // $dat['mail_message'] = $mail_message;
         return back();
     }
 }

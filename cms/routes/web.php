@@ -258,6 +258,7 @@ Route::get('/{npo_name}/edit','Npo_registerController@editing');
 Route::post('/{npo_name}/payment','Npo_registerController@payment');
 Route::post('/{npo_name}/payment_company','Npo_registerController@payment_company');
 Route::post('/{npo_name}/payment_company_pratinum','Npo_registerController@payment_company_pratinum');
+Route::post('/{npo_name}/send_mail','Npo_registerController@send_mail');
 // Route::post('welcome','Npo_registerController@payment');
 
 // スタブ機能
@@ -344,3 +345,7 @@ Route::get('/passwordchange/reset/register', 'PasswordChange\ResetController@reg
 Route::post('/passwordchange/reset/confirm', 'PasswordChange\ResetController@confirm');
 Route::post('/passwordchange/reset/process', 'PasswordChange\ResetController@process');
 Route::post('/passwordchange/reset/complete', 'PasswordChange\ResetController@complete');
+
+Route::get('/contact/form', 'ContactController@form')->name('contact');
+Route::post('/contact', 'ContactController@send')->name('contact.send');
+Route::get('/contact/result', 'ContactController@result')->name('contact.result');
