@@ -64,7 +64,7 @@
                 <a class="btn btn-just-icon btn-round btn-twitter" href="https://twitter.com/IbRducocvvsX0bC">
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
-                <a class="btn btn-just-icon btn-round btn-github" href="https://github.com/TakayukiNJ/tamFSHARP">
+                <a class="btn btn-just-icon btn-round btn-github" href="https://github.com/TakayukiNJ/teamFSHARP">
                     <i class="fa fa-github" aria-hidden="true"></i>
                 </a>
             </div>
@@ -118,7 +118,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('npo/teamFSHARP') }}">
+                                <a href="{{ url('/teamFSHARP') }}">
                                     About Us
                                 </a>
                             </li>
@@ -129,17 +129,17 @@
                     <div class="links">
                         <ul class="uppercase-links stacked-links">
                             <li>
-                                <a href="{{ url('/npo/teamFSHARP#my-tab-content') }}">
+                                <a href="{{ url('/teamFSHARP#my-tab-content') }}">
                                     Origin
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/npo/teamFSHARP#teams') }}">
+                                <a href="{{ url('/teamFSHARP#teams') }}">
                                     F♯ members
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/npo/teamFSHARP#pricing') }}">
+                                <a href="{{ url('/teamFSHARP#pricing') }}">
                                     Support
                                 </a>
                             </li>

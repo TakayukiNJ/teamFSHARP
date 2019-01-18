@@ -426,7 +426,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info2->image_id)
+                                            @if($personal_info2)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info2->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -458,7 +458,7 @@
                                 <div class="col-md-5">
                                     <div class="card-img-top">
                                         <a href="#pablo">
-                                            @if($personal_info3->image_id)
+                                            @if($personal_info3)
                                             <img class="img" src="{{ url('/') }}/../images/{{$personal_info3->image_id}}"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
@@ -704,43 +704,6 @@
                         </div>
                     </div>
                     @endif
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section section-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}に関してお問い合わせ</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto text-center">
-                    <form class="contact">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Name（お名前）" value="{{!Auth::guest() ? Auth::user()->name : ''}}">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Email（メールアドレス）" value="{{!Auth::guest() ? Auth::user()->email : ''}}">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Subject（タイトル）" value="{!! nl2br(e(trans($npo_info->subtitle))) !!}に関して">
-                            </div>
-                        </div>
-                        <br>
-                        <textarea class="form-control" placeholder="Message（お問い合わせ内容）" rows="7" ></textarea>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-6 ml-auto mr-auto">
-                                <button class="btn btn-primary btn-block btn-round">Send </button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
