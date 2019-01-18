@@ -347,5 +347,5 @@ Route::post('/passwordchange/reset/process', 'PasswordChange\ResetController@pro
 Route::post('/passwordchange/reset/complete', 'PasswordChange\ResetController@complete');
 
 Route::get('/contact/form', 'ContactController@form')->name('contact');
-Route::post('/contact', 'ContactController@send')->name('contact.send');
+Route::post('/contact/form', 'ContactController@send')->name('contact.send');
 Route::get('/contact/result', 'ContactController@result')->name('contact.result');

@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'g181tg2061@dhw.ac.jp'),
-        'name' => env('MAIL_FROM_NAME', 'F♯'),
+        'name' => env('MAIL_FROM_NAME', 'F♯（デジタルハリウッド大学院）'),
     ],
 
     /*

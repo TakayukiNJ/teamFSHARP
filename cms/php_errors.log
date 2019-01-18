@@ -1,0 +1,2 @@
+[18-Jan-2019 19:57:47 Asia/Tokyo] PHP Fatal error:  Declaration of App\Mail\Contact::send(App\Mail\Request $request) must be compatible with Illuminate\Contracts\Mail\Mailable::send(Illuminate\Contracts\Mail\Mailer $mailer) in /home/ubuntu/workspace/cms/app/Mail/Contact.php on line 13
+[18-Jan-2019 19:58:02 Asia/Tokyo] PHP Fatal error:  Declaration of App\Mail\Contact::send(App\Mail\Request $request) must be compatible with Illuminate\Contracts\Mail\Mailable::send(Illuminate\Contracts\Mail\Mailer $mailer) in /home/ubuntu/workspace/cms/app/Mail/Contact.php on line 13
