@@ -304,8 +304,9 @@ class Npo_registerController extends Controller {
 		$npo_register->npo_name      = $request->input("npo_name"); // URL
         $npo_register->support_price = $request->input("support_price"); // 目標金額
 		$npo_register->proval = $request->input("proval"); // 1だったら公開
-		if($npo_register->proval < 1){
-    		$rules = [
+    	// 公開時のバリデーション
+    	if($npo_register->published){
+		    $rules = [
                 'title'                   => 'required | min:1 | max:55',
     		    'support_contents_detail' => 'date | after:tomorrow',
                 'support_price'           => 'digits_between:5,8',
@@ -319,20 +320,36 @@ class Npo_registerController extends Controller {
                 'npo_name'                => 'alpha_dash',
     		];
 		}else{
-		    $rules = [
-                'title'                   => 'required | min:1 | max:55',
-    		    'support_contents_detail' => 'date | after:tomorrow',
-    		    'support_amount'          => 'digits_between:3,6',
-    	        'support_price'           => 'required | digits_between:5,8',
-    	        'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
-                'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
-                'support_contents_detail_gold' => 'active_url',
-                'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
-    	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
-                'support_contents_detail_pratinum' => 'active_url',
-                'npo_name'                => 'required | alpha_dash',
-    	    ];
-    	}
+    		if($npo_register->proval < 1){
+        		$rules = [
+                    'title'                   => 'required | min:1 | max:55',
+        		    'support_contents_detail' => 'date | after:tomorrow',
+                    'support_price'           => 'digits_between:5,8',
+                    'support_amount'          => 'required | digits_between:4,6', // 個人寄付の金額
+                    'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
+                    'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
+                    'support_contents_detail_gold' => 'active_url',
+                    'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
+        	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
+                    'support_contents_detail_pratinum' => 'active_url',
+                    'npo_name'                => 'unique:npo_registers|alpha_dash',
+        		];
+    		}else{
+    		    $rules = [
+                    'title'                   => 'required | min:1 | max:55',
+        		    'support_contents_detail' => 'date | after:tomorrow',
+        		    'support_amount'          => 'digits_between:3,6',
+        	        'support_price'           => 'required | digits_between:5,8',
+        	        'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
+                    'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
+                    'support_contents_detail_gold' => 'active_url',
+                    'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
+        	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
+                    'support_contents_detail_pratinum' => 'active_url',
+                    'npo_name'                => 'unique:npo_registers|required | alpha_dash',
+        	    ];
+        	}
+		}
         $this -> validate($request, $rules);
 		
 		if($npo_register->npo_name){
@@ -340,8 +357,8 @@ class Npo_registerController extends Controller {
 		}
 		
 		
-		$npo_register->title             = $request->input("title");
-        // $npo_register->subtitle          = $request->input("subtitle");
+		$npo_register->title             = $request->input("title"); // npo name
+        $npo_register->subtitle          = $request->input("subtitle"); //project name
         $npo_register->embed_youtube     = $request->input("embed_youtube");
         $npo_register->blue_card_title   = $request->input("blue_card_title");
         $npo_register->blue_card_body    = $request->input("blue_card_body");

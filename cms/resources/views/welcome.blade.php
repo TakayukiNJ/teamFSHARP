@@ -301,7 +301,7 @@
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="card-img-top">
-                                                <a href="https://facebook.com/nj.takayuki" target="_blank">
+                                                <a href="https://www.facebook.com/Nakajo-Takayuki-350160542428670/" target="_blank">
                                                     <img class="img" src="{{ url('/') }}/../img/faces/nakajoFire.jpg" />
                                                 </a>
                                             </div>
@@ -314,7 +314,7 @@
                                                 	デジタルハリウッド大学大学院の1年生。<br>大学院やプログラミングスクールで講師をしていたり、これからの難民課題を考えるハッカソンを主催したりしています。
                                                 </p>
                                                 <div class="card-footer">
-                                                    <a href="https://facebook.com/nj.takayuki" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
+                                                    <a href="https://www.facebook.com/Nakajo-Takayuki-350160542428670/" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-facebook"></i></a>
                                                     <a href="https://twitter.com/TakayukiNakajo" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-twitter"></i></a>
                                                     <a href="https://m.youtube.com/channel/UCtEvLQ00OoOioktf5g5EgIQ" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-youtube"></i></a>
                                                     <a href="https://github.com/TakayukiNJ" class="btn btn-just-icon btn-link btn-neutral" target="_blank"><i class="fa fa-github"></i></a>
@@ -408,110 +408,110 @@
             				<!-- pick up ここから -->
         				    <div class="row">
                                 <div class="col-md-10 ml-auto mr-auto">
-                					<div class="row">
-                						<div class="col-md-4">
-                							<div class="card card-blog">
-                								<div class="card-image">
-                									<a href="https://fsharp.me/nipponshotenkai">
-                										<img class="img img-raised" src="{{ url('/') }}/../img/npologo/nihonShotenkaiLogo.png" />
-                									</a>
-                								</div>
-                								<div class="card-body">
-                									<h6 class="card-category text-danger">
-                									    Decent Work And Economic Growth
-                									</h6>
-                									<h5 class="card-title">
-                										<a href="https://fsharp.me/nipponshotenkai">NPO法人日本商店会</a>
-                									</h5>
-                									<p class="card-description">
-                										日本商店会を通じて日本を元気にする<br>
-                                                        【ミッション】<br>
-                                                        ・会員に貢献する<br>
-                                                        ・地域に貢献する<br>
-                                                        ・日本に貢献する<br>
-                                                        ・世界に貢献する<br>
-                									</p>
-                                                    <hr>
-                                                    <div class="card-footer">
-                                                        <div class="author">
-                    	                                    <a href="https://fsharp.me/nipponshotenkai">
+                					<div class="row">coming soon ...
+                						<!--<div class="col-md-4">-->
+                						<!--	<div class="card card-blog">-->
+                						<!--		<div class="card-image">-->
+                						<!--			<a href="https://fsharp.me/nipponshotenkai">-->
+                						<!--				<img class="img img-raised" src="{{ url('/') }}/../img/npologo/nihonShotenkaiLogo.png" />-->
+                						<!--			</a>-->
+                						<!--		</div>-->
+                						<!--		<div class="card-body">-->
+                						<!--			<h6 class="card-category text-danger">-->
+                						<!--			    Decent Work And Economic Growth-->
+                						<!--			</h6>-->
+                						<!--			<h5 class="card-title">-->
+                						<!--				<a href="https://fsharp.me/nipponshotenkai">NPO法人日本商店会</a>-->
+                						<!--			</h5>-->
+                						<!--			<p class="card-description">-->
+                						<!--				日本商店会を通じて日本を元気にする<br>-->
+                      <!--                                  【ミッション】<br>-->
+                      <!--                                  ・会員に貢献する<br>-->
+                      <!--                                  ・地域に貢献する<br>-->
+                      <!--                                  ・日本に貢献する<br>-->
+                      <!--                                  ・世界に貢献する<br>-->
+                						<!--			</p>-->
+                      <!--                              <hr>-->
+                      <!--                              <div class="card-footer">-->
+                      <!--                                  <div class="author">-->
+                    	 <!--                                   <a href="https://fsharp.me/nipponshotenkai">-->
                     	                                       <!--<img src="{{ url('/') }}/../img/faces/kazu.jpg" alt="..." class="avatar img-raised">-->
-                    	                                       <span>支援者0人</span>
-                    	                                    </a>
-                    	                                </div>
-                                                        <div class="stats">
-                     	                                    50,000円
-                     	                                </div>
-                    	                            </div>
-                								</div>
-                							</div>
-                						</div>
+                    	 <!--                                      <span>支援者0人</span>-->
+                    	 <!--                                   </a>-->
+                    	 <!--                               </div>-->
+                      <!--                                  <div class="stats">-->
+                     	<!--                                    50,000円-->
+                     	<!--                                </div>-->
+                    	 <!--                           </div>-->
+                						<!--		</div>-->
+                						<!--	</div>-->
+                						<!--</div>-->
             
-                						<div class="col-md-4">
-                							<div class="card card-blog">
-                								<div class="card-image">
-                									<a href="https://fsharp.me/helper-c">
-                										<img class="img img-raised" src="{{ url('/') }}/../img/npologo/helpercallLogo.jpg" />
-                									</a>
-                								</div>
-                								<div class="card-body">
-                									<h6 class="card-category text-success">
-                										Good Health And Well-being
-                									</h6>
-                									<h5 class="card-title">
-                										<a href="https://fsharp.me/helper-c">NPO法人ヘルパーコール</a>
-                									</h5>
-                									<p class="card-description">
-                										今後、益々高齢化社会が進むなか、高齢者の方々が、生き活き楽しく過ごしていただけるようなサービス提供を目指し、ご利用者やご家族、また職員・スタッフの全員が、前を向いて元気よく歩いていけるよう、運営してまいります。
-                									</p>
-                                                    <hr>
-                                                    <div class="card-footer">
-                                                        <div class="author">
-                    	                                    <a href="https://fsharp.me/helper-c">
-                    	                                       <span>支援者0人</span>
-                    	                                    </a>
-                    	                                </div>
-                                                        <div class="stats">
-                     	                                    100,000円
-                     	                                </div>
-                    	                            </div>
-                								</div>
-                							</div>
-                						</div>
+                						<!--<div class="col-md-4">-->
+                						<!--	<div class="card card-blog">-->
+                						<!--		<div class="card-image">-->
+                						<!--			<a href="https://fsharp.me/helper-c">-->
+                						<!--				<img class="img img-raised" src="{{ url('/') }}/../img/npologo/helpercallLogo.jpg" />-->
+                						<!--			</a>-->
+                						<!--		</div>-->
+                						<!--		<div class="card-body">-->
+                						<!--			<h6 class="card-category text-success">-->
+                						<!--				Good Health And Well-being-->
+                						<!--			</h6>-->
+                						<!--			<h5 class="card-title">-->
+                						<!--				<a href="https://fsharp.me/helper-c">NPO法人ヘルパーコール</a>-->
+                						<!--			</h5>-->
+                						<!--			<p class="card-description">-->
+                						<!--				今後、益々高齢化社会が進むなか、高齢者の方々が、生き活き楽しく過ごしていただけるようなサービス提供を目指し、ご利用者やご家族、また職員・スタッフの全員が、前を向いて元気よく歩いていけるよう、運営してまいります。-->
+                						<!--			</p>-->
+                      <!--                              <hr>-->
+                      <!--                              <div class="card-footer">-->
+                      <!--                                  <div class="author">-->
+                    	 <!--                                   <a href="https://fsharp.me/helper-c">-->
+                    	 <!--                                      <span>支援者0人</span>-->
+                    	 <!--                                   </a>-->
+                    	 <!--                               </div>-->
+                      <!--                                  <div class="stats">-->
+                     	<!--                                    100,000円-->
+                     	<!--                                </div>-->
+                    	 <!--                           </div>-->
+                						<!--		</div>-->
+                						<!--	</div>-->
+                						<!--</div>-->
             
-                						<div class="col-md-4">
-                							<div class="card card-blog">
-                								<div class="card-image">
-                									<a href="https://fsharp.me/DHUMediaArt">
-                										<img class="img img-raised" src="{{ url('/') }}/../img/npologo/OchyaiYoichi.jpg" />
-                									</a>
-                								</div>
+                						<!--<div class="col-md-4">-->
+                						<!--	<div class="card card-blog">-->
+                						<!--		<div class="card-image">-->
+                						<!--			<a href="https://fsharp.me/DHUMediaArt">-->
+                						<!--				<img class="img img-raised" src="{{ url('/') }}/../img/npologo/OchyaiYoichi.jpg" />-->
+                						<!--			</a>-->
+                						<!--		</div>-->
             
-                								<div class="card-body">
-                									<h6 class="card-category text-muted">
-                										Partnerships For The Goals
-                									</h6>
-                									<h5 class="card-title">
-                										<a href="https://fsharp.me/DHUMediaArt">落合陽一メディアアート㍻展＠デジハリ</a>
-                									</h5>
-                									<p class="card-description">
-                									    2017年からデジタルハリウッド大学で開催されている落合陽一先生の授業の最終成果物を展示する展示会です。2018年の展示会の名前は、㍻展です。	
-                									</p>
-                                                    <hr>
-                                                    <div class="card-footer">
-                                                        <div class="author">
-                    	                                    <a href="https://fsharp.me/DHUMediaArt">
+                						<!--		<div class="card-body">-->
+                						<!--			<h6 class="card-category text-muted">-->
+                						<!--				Partnerships For The Goals-->
+                						<!--			</h6>-->
+                						<!--			<h5 class="card-title">-->
+                						<!--				<a href="https://fsharp.me/DHUMediaArt">落合陽一メディアアート㍻展＠デジハリ</a>-->
+                						<!--			</h5>-->
+                						<!--			<p class="card-description">-->
+                						<!--			    2017年からデジタルハリウッド大学で開催されている落合陽一先生の授業の最終成果物を展示する展示会です。2018年の展示会の名前は、㍻展です。	-->
+                						<!--			</p>-->
+                      <!--                              <hr>-->
+                      <!--                              <div class="card-footer">-->
+                      <!--                                  <div class="author">-->
+                    	 <!--                                   <a href="https://fsharp.me/DHUMediaArt">-->
                     	                                       <!--<img src="{{ url('/') }}/../img/faces/n0bisukeRice.jpg" alt="..." class="avatar img-raised">-->
-                    	                                       <span>支援者3人</span>
-                    	                                    </a>
-                    	                                </div>
-                                                        <div class="stats">
-                     	                                    9,800円
-                     	                                </div>
-                    	                            </div>
-                								</div>
-                							</div>
-                						</div>
+                    	 <!--                                      <span>支援者3人</span>-->
+                    	 <!--                                   </a>-->
+                    	 <!--                               </div>-->
+                      <!--                                  <div class="stats">-->
+                     	<!--                                    9,800円-->
+                     	<!--                                </div>-->
+                    	 <!--                           </div>-->
+                						<!--		</div>-->
+                						<!--	</div>-->
+                						<!--</div>-->
                 					</div>
                 				</div>
                 			</div>

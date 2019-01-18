@@ -55,7 +55,7 @@
                                 {{ csrf_field() }}
                                 {{-- ユーザー名 --}}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名" value="{{ old('name') }}" required autofocus>
                                     @if ($errors->has('name'))
                                         <span class="help-block division">
                                         <strong>{{ $errors->first('name') }}</strong>
