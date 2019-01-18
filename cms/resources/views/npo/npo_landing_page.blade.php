@@ -59,7 +59,7 @@
                                 <!--<br>-->
                                 @endif
                                 
-                                <a href="https://twitter.com/intent/tweet?text={!! $npo_info->subtitle !!} {!! $npo_info->title !!}の支援のために。ひとりでも多くの方に広めてください♪%20-%20FSHARP%20%20https://fsharp.me/{{ $npo_info->npo_name }}" class="btn btn-round btn-twitter">
+                                <a href="https://twitter.com/intent/tweet?text={!! $npo_info->title !!} {!! $npo_info->subtitle !!}の支援のために。ひとりでも多くの方に広めてください♪%20-%20FSHARP%20%20https://fsharp.me/{{ $npo_info->npo_name }}" class="btn btn-round btn-twitter">
                                     <!--<i class="twitter-share-button" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" aria-hidden="true" data-text="{{ $npo_info->subtitle }} {{ $npo_info->title }}の支援のために。ひとりでも多くの方に広めてください♪%20-%20F#%20%20https://fsharp.me/{{ $npo_info->npo_name }}" data-show-count="true" data-dnt="true"></i>Tweet-->
                                     <i class="fa fa-twitter" aria-hidden="true"></i> Tweet 
                                 </a>
@@ -134,7 +134,7 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing">
                                             <div class="card-body">
-                                                <h6 class="card-category text-danger">{{ $npo_info->title }}を支援</h6>
+                                                <h6 class="card-category text-danger">{{ $npo_info->subtitle }}を支援</h6>
                                                 <h1 class="card-title">{{ $npo_info->support_amount }}円</h1>
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
@@ -150,7 +150,7 @@
                                                         {!! csrf_field() !!}
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                            data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                                                            data-key="{{$stripe_key}}"
                                                             data-amount="{{ ($npo_info->support_amount+258)*1.036 }}"
                                                             data-name="{{ $npo_info->title }}"
                                                             data-email="{{Auth::user()->email}}"
@@ -250,7 +250,7 @@
                                                         {!! csrf_field() !!}
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                            data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                                                            data-key="{{$stripe_key}}"
                                                             data-amount="{{ ($npo_info->support_price_gold+258)*1.036 }}"
                                                             data-name="{{ $npo_info->title }}の法人寄付"
                                                             data-email="{{Auth::user()->email}}"
@@ -310,7 +310,7 @@
                                                         {!! csrf_field() !!}
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                            data-key="pk_test_tfM2BWAFRlYSPO939BW5jIj5"
+                                                            data-key="{{$stripe_key}}"
                                                             data-amount="{{ ($npo_info->support_price_pratinum+258)*1.036 }}"
                                                             data-name="{{ $npo_info->title }}の法人プラチナ寄付"
                                                             data-email="{{Auth::user()->email}}"
@@ -708,6 +708,48 @@
             </div>
         </div>
     </div>
+    @if($mail_message == "")
+    <div class="section section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}に関してお問い合わせ</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                    <form action="/{{$npo_info->npo_name}}/send_mail" method="POST" class="contact">
+                        {!! csrf_field() !!}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" name="name" class="form-control" placeholder="Name（お名前）" value="{{!Auth::guest() ? Auth::user()->name : ''}}">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="email" class="form-control" placeholder="Email（メールアドレス）" value="{{!Auth::guest() ? Auth::user()->email : ''}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" name="title" class="form-control" placeholder="Subject（タイトル）" value="{!! nl2br(e(trans($npo_info->subtitle))) !!}に関して">
+                            </div>
+                        </div>
+                        <br>
+                        <textarea class="form-control" name="message" placeholder="Message（お問い合わせ内容）" rows="7" ></textarea>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6 ml-auto mr-auto">
+                                <button type="submit" class="btn btn-primary btn-block btn-round">Send </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @else
+        {{$mail_message}}
+    @endif
 </div>
 @endsection
 @include('layouts.footer')
