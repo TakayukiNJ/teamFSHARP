@@ -29,8 +29,9 @@ class ContactController extends Controller
         ];
      
         $data = $request->only('name', 'email', 'message');
+        // dd(Contact($data));
         Mail::to($to)->send(new Contact($data));
-     
+        // Mail::raw('Test Mail', function($message) { $message->to('nj.takayuki@gmail.com')->subject('testnull');
         return redirect()->route('contact.result');
     }
     
