@@ -306,8 +306,6 @@ class Npo_registerController extends Controller {
 	{
 		$npo_register = Npo_register::findOrFail($npo_name);
  		
-//  		dd($request->support_amount);
- 		
 		$npo_register->npo_name      = $request->input("npo_name"); // URL
         $npo_register->support_price = $request->input("support_price"); // 目標金額
 		$npo_register->proval = $request->input("proval"); // 1だったら公開
