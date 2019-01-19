@@ -15,9 +15,6 @@ use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-//Load Composer's autoloader
-require '../../vendor/autoload.php';
-
 class ResetController extends Controller {
 
     /**

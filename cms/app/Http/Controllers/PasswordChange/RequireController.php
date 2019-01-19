@@ -14,8 +14,6 @@ use Illuminate\Database\Query\Builder;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Storage;
-//Load Composer's autoloader
-require '../../vendor/autoload.php';
 
 class RequireController extends Controller {
 
