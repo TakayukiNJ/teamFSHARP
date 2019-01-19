@@ -14,8 +14,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-//Load Composer's autoloader
-require '../../vendor/autoload.php';
 
 class ReplayController extends Controller {
 
