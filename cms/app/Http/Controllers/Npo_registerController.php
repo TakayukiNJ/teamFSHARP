@@ -213,7 +213,7 @@ class Npo_registerController extends Controller {
     public function landing(string $npo_name)
     {
         // 本番環境の時にここと、paymentの3パターンを変える
-        $stripe_key = "pk_test_tfM2BWAFRlYSPO939BW5jIj5";
+        $stripe_key = "pk_live_o2owoGp6GtjjLhtOIovYsJkX";
         $data['stripe_key'] = $stripe_key;
         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
     	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
@@ -533,12 +533,12 @@ class Npo_registerController extends Controller {
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
         
         // ストライプ側の処理
-        \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
+        \Stripe\Stripe::setApiKey("sk_live_HJcupJve6kARF5r69lkUyrpJ");
         
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
         // Create a charge: this will charge the user's card
-        $the_price = floor(($currentNpoInfo->support_amount+258)*1.036);
+        $the_price = floor(($currentNpoInfo->support_amount+258)*1.046);
         try {
             $customer = \Stripe\Customer::create(array(
                 'email' => $user_request_email
@@ -614,12 +614,12 @@ class Npo_registerController extends Controller {
 		}
 		
 		// ストライプ側の処理
-		\Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
+		\Stripe\Stripe::setApiKey("sk_live_HJcupJve6kARF5r69lkUyrpJ");
         
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
         // Create a charge: this will charge the user's card
-        $the_price = floor(($currentNpoInfo->support_price_gold+258)*1.036);
+        $the_price = floor(($currentNpoInfo->support_price_gold+258)*1.046);
         try {
             $charge = \Stripe\Charge::create(array(
                 "amount"      => $the_price, // 課金額はココで調整
@@ -690,12 +690,12 @@ class Npo_registerController extends Controller {
 		}
 		
 		// ストライプ側の処理
-		\Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
+		\Stripe\Stripe::setApiKey("sk_live_HJcupJve6kARF5r69lkUyrpJ");
         
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
         // Create a charge: this will charge the user's card
-        $the_price = floor(($currentNpoInfo->support_price_pratinum+258)*1.036);
+        $the_price = floor(($currentNpoInfo->support_price_pratinum+258)*1.046);
         try {
             $charge = \Stripe\Charge::create(array(
                 "amount"      => $the_price, // 課金額はココで調整
