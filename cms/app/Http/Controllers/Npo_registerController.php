@@ -213,7 +213,7 @@ class Npo_registerController extends Controller {
     public function landing(string $npo_name)
     {
         // 本番環境の時にここと、paymentの3パターンを変える
-        $stripe_key = "pk_live_o2owoGp6GtjjLhtOIovYsJkX";
+        $stripe_key = "pk_test_tfM2BWAFRlYSPO939BW5jIj5";
         $data['stripe_key'] = $stripe_key;
         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
     	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
@@ -533,7 +533,7 @@ class Npo_registerController extends Controller {
         $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
         
         // ストライプ側の処理
-        \Stripe\Stripe::setApiKey("sk_live_HJcupJve6kARF5r69lkUyrpJ");
+        \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
         
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
@@ -614,7 +614,7 @@ class Npo_registerController extends Controller {
 		}
 		
 		// ストライプ側の処理
-		\Stripe\Stripe::setApiKey("sk_live_HJcupJve6kARF5r69lkUyrpJ");
+		\Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
         
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
@@ -690,7 +690,7 @@ class Npo_registerController extends Controller {
 		}
 		
 		// ストライプ側の処理
-		\Stripe\Stripe::setApiKey("sk_live_HJcupJve6kARF5r69lkUyrpJ");
+		\Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
         
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
