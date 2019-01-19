@@ -119,7 +119,7 @@
                             <p>寄付するとユーザー名・法人名が記載されます。</p>
                             <p>集まった寄付金は全額担当者にお渡しします。</p>
                             <p class="description text-gray">
-                                決済時に、運営(振込)手数料258円とクレジットカード手数料3.6%がかかります。
+                                決済時に、運営(振込)手数料258円とクレジットカード手数料4.6%がかかります。
                                 <!--仮に毎月1,000円の寄付を認定NPO法人に寄付をした場合、最大5,000円の税制控除を受けられます。-->
                             </p>
                         </div>
@@ -151,10 +151,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="{{$stripe_key}}"
-                                                            data-amount="{{ ($npo_info->support_amount+258)*1.036 }}"
+                                                            data-amount="{{ ($npo_info->support_amount+258)*1.046 }}"
                                                             data-name="{{ $npo_info->title }}"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="合計額：(寄付金額+258)×3.6%"
+                                                            data-description="合計額：(寄付金額+258)×4.6%"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -251,10 +251,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="{{$stripe_key}}"
-                                                            data-amount="{{ ($npo_info->support_price_gold+258)*1.036 }}"
+                                                            data-amount="{{ ($npo_info->support_price_gold+258)*1.046 }}"
                                                             data-name="{{ $npo_info->title }}の法人寄付"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="合計額：(寄付金額+258)×3.6%"
+                                                            data-description="合計額：(寄付金額+258)×4.6%"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -311,10 +311,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="{{$stripe_key}}"
-                                                            data-amount="{{ ($npo_info->support_price_pratinum+258)*1.036 }}"
+                                                            data-amount="{{ ($npo_info->support_price_pratinum+258)*1.046 }}"
                                                             data-name="{{ $npo_info->title }}の法人プラチナ寄付"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="合計額：(寄付金額+258)×3.6%"
+                                                            data-description="合計額：(寄付金額+258)×4.6%"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -708,6 +708,7 @@
             </div>
         </div>
     </div>
+    {{--
     @if($mail_message == "")
     <div class="section section-gray">
         <div class="container">
@@ -750,6 +751,7 @@
     @else
         {{$mail_message}}
     @endif
+    --}}<br>
 </div>
 @endsection
 @include('layouts.footer')

@@ -18,7 +18,7 @@
                             </div>
                             <div class="description">
                                 <h3> 人とお金の流れを変える </h3>
-                                <p>寄付をすると、ユーザー名（もしくは法人名）がそのページに記載されます。集めた寄付金は全額担当者にお渡しします。その代わり、決済時に<strong>258</strong>円(税込)と<strong>3.6%</strong>の手数料のみかかります。</p>
+                                <p>寄付をすると、ユーザー名（もしくは法人名）がそのページに記載されます。集めた寄付金は全額担当者にお渡しします。その代わり、決済時に<strong>258</strong>円(税込)と<strong>4.6%</strong>の手数料がかかります。</p>
                             </div>
                         </div>
                         <div class="info info-horizontal">
@@ -190,10 +190,10 @@
                         <div class="project-pills">
                             <ul class="nav nav-pills nav-pills-danger">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="pill" href="#overview" role="tab">Overview</a>
+                                    <a class="nav-link" data-toggle="pill" href="#overview" role="tab">Overview</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="pill" href="#developers" role="tab">Developer</a>
+                                    <a class="nav-link active" data-toggle="pill" href="#developers" role="tab">Developer</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link"  data-toggle="pill" href="#pick-up" role="tab">Pick Up</a>
@@ -213,7 +213,7 @@
             				<!-- overview ここから -->
         				    <div class="row">
                                 <div class="col-md-10 ml-auto mr-auto">
-                					<h4 class="title">NPO法人（内閣府公式サイトに掲載されている特定非営利活動法人）や社会課題の解決を目的とする団体のプロジェクトに、チームメンバーとして関わったり、そのプロジェクトに寄付を行ったりすると、当サイトにユーザー名や自分の団体名を証として掲載することができます。</h4>
+                					<!--<h4 class="title">NPO法人（内閣府公式サイトに掲載されている特定非営利活動法人）や社会課題の解決を目的とする団体のプロジェクトに、チームメンバーとして関わったり、そのプロジェクトに寄付を行ったりすると、当サイトにユーザー名や自分の団体名を証として掲載することができます。</h4>-->
                 					<div class="page-header section-dark" style="background-image: url('/img/farid-askerov.jpg')">
                                         <div class="content-center">
                                             <div class="container">
