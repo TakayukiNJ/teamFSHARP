@@ -1,5 +1,5 @@
 @section('footer')
-
+{{--
 <!--     *********    メッセージ     *********      -->
 <!--<div class="cd-section section-white" id="contact-us">-->
 <!--    <div class="contactus-1 section-image" style="background-image: url('{{ url('/') }}/../img/sections/soroush-karimi.jpg')">-->
@@ -52,7 +52,7 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-
+--}}
 <div class="container">
     <div class="row">
         <div class="col-md-2 text-center col-sm-3 col-12 ml-auto mr-auto">
@@ -79,28 +79,52 @@
                                     Home
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ url('/npo_registers') }}">
-                                    Registers
+                            @if (Auth::guest())
+                            <li class="nav-item">
+                                <a href="{{ url('/login') }}">
+                                    Login
                                 </a>
                             </li>
-                <!--            <li>-->
-                <!--                <a href="#paper-kit">-->
-                <!--                    Blog-->
-                <!--                </a>-->
-                <!--            </li>-->
-                <!--            <li>-->
-                <!--                <a href="#paper-kit">-->
-                <!--                    Live Support-->
-                <!--                </a>-->
-                <!--            </li>-->
-                <!--            <li>-->
-                <!--                <a href="#paper-kit">-->
-                <!--                    Money Back-->
-                <!--                </a>-->
-                <!--            </li>-->
+                            <li class="nav-item">
+                                <a href="{{ url('/register') }}">
+                                    Register
+                                </a>
+                            </li>
+                            @else
+                            <li>
+                                <a href="{{ url('/npo_registers') }}">
+                                    My Projects
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/home/home_own_timeline') }}">
+                                    New Projects
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/home/home_own_timeline') }}">
+                                    Pick Ups
+                                </a>
+                            </li>
+                            @endif
+                            {{--
+                            <!--            <li>-->
+                            <!--                <a href="#paper-kit">-->
+                            <!--                    Blog-->
+                            <!--                </a>-->
+                            <!--            </li>-->
+                            <!--            <li>-->
+                            <!--                <a href="#paper-kit">-->
+                            <!--                    Live Support-->
+                            <!--                </a>-->
+                            <!--            </li>-->
+                            <!--            <li>-->
+                            <!--                <a href="#paper-kit">-->
+                            <!--                    Money Back-->
+                            <!--                </a>-->
+                            <!--            </li>-->
+                            --}}
                         </ul>
-
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3 col-6">
@@ -129,6 +153,11 @@
                     <div class="links">
                         <ul class="uppercase-links stacked-links">
                             <li>
+                                <a href="{{ url('/teamFSHARP#pricing') }}">
+                                    Support F♯
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ url('/teamFSHARP#my-tab-content') }}">
                                     Origin
                                 </a>
@@ -138,27 +167,21 @@
                                     F♯ members
                                 </a>
                             </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-6">
+                    <div class="links">
+                        <ul class="stacked-links">
                             <li>
-                                <a href="{{ url('/teamFSHARP#pricing') }}">
-                                    Support
-                                </a>
+                                <h4>{{\DB::table('npo_registers')->where('proval', '1')->count()}}<br /> <small>Projects</small></h4>
+                            </li>
+                            <li>
+                                <h4>{{\DB::table('premier_data')->count()}}<br /> <small>Supporters</small></h4>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <!--<div class="col-md-3 col-sm-3 col-6">-->
-                <!--    <div class="links">-->
-                <!--        <ul class="stacked-links">-->
-                <!--            <li>-->
-                <!--                <h4>3<br /> <small>NPOs</small></h4>-->
-                <!--            </li>-->
-                <!--            <li>-->
-                <!--                <h4>20<br /> <small>Users</small></h4>-->
-                <!--            </li>-->
-
-                <!--        </ul>-->
-                <!--    </div>-->
-                <!--</div>-->
             </div>
             <hr />
             <div class="copyright">
