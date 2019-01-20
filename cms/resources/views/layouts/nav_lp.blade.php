@@ -15,11 +15,12 @@
     <div class="collapse navbar-collapse">
         
         <ul class="navbar-nav ml-auto">
-
-            <!--<form class="form-inline" action="{{ url('/npo_registers') }}">-->
-            <!--    <input class="form-control mr-sm-2 no-border" type="text" placeholder="Search" name="search">-->
-            <!--    <button type="submit" class="btn btn-primary btn-just-icon btn-round"><i class="nc-icon nc-zoom-split"></i></button>-->
-            <!--</form>-->
+            {{--
+            <form class="form-inline" action="{{ url('/npo_registers') }}">
+                <input class="form-control mr-sm-2 no-border" type="text" placeholder="Search" name="search">
+                <button type="submit" class="btn btn-primary btn-just-icon btn-round"><i class="nc-icon nc-zoom-split"></i></button>
+            </form>
+            --}}
             
             @if (Auth::guest())
             <li class="nav-item">
@@ -35,27 +36,26 @@
             @else
                 @if ((Auth::user()->npo) == "")
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/npo_registers/create') }}">@lang('app.produceMyPage')</a>
+                    {{--<a class="nav-link" href="{{ url('/npo_registers/create') }}">@lang('app.produceMyPage')</a>--}}
+                    <a class="nav-link" href="{{ url('/npo_registers/create') }}">お問い合わせ</a>
                 </li>
 						
 				<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }}</a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+						<a class="dropdown-item" href="{{ url('/npo_registers/create') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; 団体登録</a>
                 @else
                 <li class="nav-item">
                     <a class="nav-link" href="https://goo.gl/YZLao1">@lang('app.ask my page')</a>
-                    <!-- <a class="btn btn-round btn-danger" href="#paper-kit">掲載・相談する</a> -->
                 </li>
                     
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }} </a>
                     <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                        <!--<a class="dropdown-item" href="npo_registers"><i class="nc-icon nc-bank"></i>&nbsp; {{ Auth::user()->npo }}</a>-->
-                        <!--<a class="dropdown-item" href="{{ url('/home') }}"><i class="nc-icon nc-basket"></i>&nbsp; @lang('app.npo return edit')</a>-->
-						<a class="dropdown-item" href="{{ url('/npo_registers/create') }}"><i class="nc-icon nc-ruler-pencil"></i>&nbsp; 新規制作</a>
-						<a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; プロジェクト一覧</a>
+                        <a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
                 @endif        		
                         <a class="dropdown-item" href="{{ url('home/home_own_timeline') }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
+                        <a class="dropdown-item" href="{{ url('home/home_register') }}"><i class="nc-icon nc-ruler-pencil"></i>&nbsp; @lang('app.mypage edit')</a>
                         <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();"><i class="nc-icon nc-spaceship"></i>&nbsp; @lang('app.logout')</a>
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

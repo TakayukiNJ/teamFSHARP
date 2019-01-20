@@ -17,7 +17,7 @@
                             </div>
                             <div class="description">
                                 <h3> 人とお金の流れを変える </h3>
-                                <p>寄付をすると、ユーザー名（もしくは法人名）がそのページに記載されます。集めた寄付金は全額担当者にお渡しします。その代わり、決済時に<strong>258</strong>円(税込)と<strong>3.6%</strong>の手数料のみかかります。</p>
+                                <p>寄付をすると、ユーザー名（もしくは法人名）がそのページに記載されます。集まった寄付金は<strong>全額担当者にお渡しします</strong>。決済時のみ<strong>258</strong>円(税込)と<strong>4.6%</strong>の手数料がかかります。</p>
                             </div>
                         </div>
                         <div class="info info-horizontal">
@@ -85,9 +85,14 @@
                                     <input id="password-confirm" type="password" class="form-control" placeholder="パスワード確認" name="password_confirmation" required>
                                 </div>
                                 {{-- 利用規約とプライバシーポリシー --}}
-                                <div class="form-group division">
-                                    <input type="checkbox" name="terms-of-service" required>
-                                    <strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 </a></strong>および<strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー </a></strong>に同意する
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" required>
+                                        <span class="form-check-sign">
+                                            <strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 および</a></strong><strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー に同意する(チェックを入れる)</a></strong>
+                                            
+                                        </span>
+                                    </label>
                                 </div>
                                 <button type="submit" class="btn btn-block btn-primary btn-round">登録</button>
                             </form>
