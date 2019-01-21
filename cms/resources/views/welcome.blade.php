@@ -12,7 +12,7 @@
     				<h1 class="presentation-title"></h1>
     				<!--<div class="type">F♯</div>-->
     			</div>
-    			<h2 class="presentation-subtitle text-center">F♯でそのプロジェクトの資金、集めませんか？</h2>
+    			<h2 class="presentation-subtitle text-center">社会課題をもっと身近に。NPOと繋がりませんか？</h2>
     			
                 <div class="w3-panel w3-large">
                     <br>
@@ -36,7 +36,7 @@
                                         {{ csrf_field() }}
                                         {{-- ユーザー名 --}}
                                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                            <label for="name">ユーザー名</label>
+                                            <label for="name">ユーザー名(半角英数)</label>
                                             <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
                                             @if ($errors->has('name'))
                                                 <span class="help-block division">
@@ -82,7 +82,7 @@
                                         <button type="submit" class="btn btn-block btn-primary btn-round">登録</button>
                                     </form>
                                     <div class="modal-footer no-border-footer">
-                                        <p>すでにご登録済みの方は <a href="#0">こちら</a></p>
+                                        <p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -161,40 +161,44 @@
                     <h5 class="description">登録されたプロジェクトの中から3つ選出</h5>
                     <br><br>
                 </div>
+                {{--
+                Muted Text グレー
+                Primary Text 水色
+                Success Text グリーン
+                Info Text 青
+                Warning Text 黄色
+                Danger Text レッド
+                --}}
                 <div class="col-md-10 ml-auto mr-auto">
 					<div class="row">
 						<div class="col-md-4">
 							<div class="card card-blog">
 								<div class="card-image">
-									<a href="https://fsharp.me/nipponshotenkai">
-										<img class="img img-raised" src="{{ url('/') }}/../img/farid-askerov.jpg" />
-									</a>
+									<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_10_ja_2.png" />
 								</div>
 								<div class="card-body">
 									<h6 class="card-category text-danger">
-									    Decent Work And Economic Growth
+									    Reduced Inequalities
 									</h6>
 									<h5 class="card-title">
-										<a href="https://fsharp.me/nipponshotenkai">NPO法人日本商店会</a>
+										<a href="/{{ $npo_info1->npo_name }}">{{ $npo_info1->title }}</a>
 									</h5>
 									<p class="card-description">
-										日本商店会を通じて日本を元気にする<br>
-                                        【ミッション】<br>
-                                        ・会員に貢献する<br>
-                                        ・地域に貢献する<br>
-                                        ・日本に貢献する<br>
-                                        ・世界に貢献する<br>
+										{{ $npo_info1->subtitle }}<br>
+										現在合計：{{ $npo_info1->follower }}円<br>
+										支援額：{{ $npo_info1->support_amount }}円<br>
+                                        目標金額：{{ $npo_info1->support_price }}円<br>
+										@if($npo_info1->support_contents != 'このページに名前を記載')
+    										リターン：{{ $npo_info1->support_contents }}<br>
+										@endif
 									</p>
                                     <hr>
                                     <div class="card-footer">
                                         <div class="author">
-    	                                    <a href="https://fsharp.me/nipponshotenkai">
-    	                                       <img src="{{ url('/') }}/../img/faces/kazu.jpg" alt="..." class="avatar img-raised">
-    	                                       <span>支援者0人</span>
-    	                                    </a>
+	                                       <span>{{ $npo_info1->manager }}</span>
     	                                </div>
                                         <div class="stats">
-     	                                    50,000円
+     	                                    現在寄付数：{{ $npo_info1->buyer }}
      	                                </div>
     	                            </div>
 								</div>
@@ -204,29 +208,33 @@
 						<div class="col-md-4">
 							<div class="card card-blog">
 								<div class="card-image">
-									<a href="https://fsharp.me/helper-c">
-										<img class="img img-raised" src="{{ url('/') }}/../img/sections/david-marcu.jpg" />
-									</a>
+									<!--<a href="https://fsharp.me/helper-c">-->
+										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_03_ja.png" />
+									<!--</a>-->
 								</div>
 								<div class="card-body">
 									<h6 class="card-category text-success">
 										Good Health And Well-being
 									</h6>
 									<h5 class="card-title">
-										<a href="https://fsharp.me/helper-c">NPO法人ヘルパーコール</a>
+										<a href="/{{ $npo_info2->npo_name }}">{{ $npo_info2->title }}</a>
 									</h5>
 									<p class="card-description">
-										今後、益々高齢化社会が進むなか、高齢者の方々が、生き活き楽しく過ごしていただけるようなサービス提供を目指し、ご利用者やご家族、また職員・スタッフの全員が、前を向いて元気よく歩いていけるよう、運営してまいります。
+										{{ $npo_info2->subtitle }}<br>
+										現在合計：{{ $npo_info2->follower }}円<br>
+										支援額：{{ $npo_info2->support_amount }}円<br>
+                                        目標金額：{{ $npo_info2->support_price }}円<br>
+										@if($npo_info2->support_contents != 'このページに名前を記載')
+    										リターン：{{ $npo_info2->support_contents }}<br>
+										@endif
 									</p>
                                     <hr>
                                     <div class="card-footer">
                                         <div class="author">
-    	                                    <a href="https://fsharp.me/helper-c">
-    	                                       <span>支援者0人</span>
-    	                                    </a>
+	                                       <span>{{ $npo_info2->manager }}</span>
     	                                </div>
                                         <div class="stats">
-     	                                    100,000円
+     	                                    現在寄付数：{{ $npo_info2->buyer }}
      	                                </div>
     	                            </div>
 								</div>
@@ -237,30 +245,33 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="https://fsharp.me/DHUMediaArt">
-										<img class="img img-raised" src="{{ url('/') }}/../img/sections/takahiro-sakamoto.jpg" />
+										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_11_ja.png" />
 									</a>
 								</div>
 
 								<div class="card-body">
-									<h6 class="card-category text-muted">
-										Partnerships For The Goals
+									<h6 class="card-category text-warning">
+										Sustainable Cities And Communities
 									</h6>
 									<h5 class="card-title">
-										<a href="https://fsharp.me/DHUMediaArt">落合陽一メディアアート㍻展＠デジハリ</a>
+										<a href="/{{ $npo_info3->npo_name }}">{{ $npo_info3->title }}</a>
 									</h5>
 									<p class="card-description">
-									    2017年からデジタルハリウッド大学で開催されている落合陽一先生の授業の最終成果物を展示する展示会です。2018年の展示会の名前は、㍻展です。	
+										{{ $npo_info3->subtitle }}<br>
+										現在合計：{{ $npo_info3->follower }}円<br>
+										支援額：{{ $npo_info3->support_amount }}円<br>
+                                        目標金額：{{ $npo_info3->support_price }}円<br>
+										@if($npo_info3->support_contents != 'このページに名前を記載')
+    										リターン：{{ $npo_info3->support_contents }}<br>
+										@endif
 									</p>
                                     <hr>
                                     <div class="card-footer">
                                         <div class="author">
-    	                                    <a href="https://fsharp.me/DHUMediaArt">
-    	                                       <img src="{{ url('/') }}/../img/faces/n0bisukeRice.jpg" alt="..." class="avatar img-raised">
-    	                                       <span>支援者3人</span>
-    	                                    </a>
+	                                       <span>{{ $npo_info3->manager }}</span>
     	                                </div>
                                         <div class="stats">
-     	                                    9,800円
+     	                                    現在寄付数：{{ $npo_info3->buyer }}
      	                                </div>
     	                            </div>
 								</div>
@@ -275,14 +286,12 @@
                                     <div class="container">
                                         <div class="title-brand">
                                             <h1 class="presentation-title"></h1>
-                                            <!--<div class="type">F♯</div>-->
                                         </div>
-                                        <h2 class="presentation-subtitle text-center">F♯でそのプロジェクトの資金、集めませんか？</h2>
+                                        <h2 class="presentation-subtitle text-center">社会課題をもっと身近に。NPOと繋がりませんか？</h2>
 
                                         <div class="w3-panel w3-large">
                                             <br>
                                             @if (Auth::guest())
-                                            <!--<a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
                                             <button type="button" class="btn-lg btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
                                                 スタート
                                             </button>
@@ -301,7 +310,7 @@
                                                                 {{ csrf_field() }}
                                                                 {{-- ユーザー名 --}}
                                                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                                                    <label for="name">ユーザー名</label>
+                                                                    <label for="name">ユーザー名(半角英数)</label>
                                                                     <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
                                                                     @if ($errors->has('name'))
                                                                         <span class="help-block division">
@@ -347,7 +356,7 @@
                                                                 <button type="submit" class="btn btn-block btn-primary btn-round">登録</button>
                                                             </form>
                                                             <div class="modal-footer no-border-footer">
-                                                                <p>すでにご登録済みの方は <a href="#0">こちら</a></p>
+                                                                <p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>
                                                             </div>
                                                         </div>
                                                     </div>

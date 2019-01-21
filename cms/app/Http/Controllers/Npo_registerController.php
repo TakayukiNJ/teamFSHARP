@@ -382,13 +382,14 @@ class Npo_registerController extends Controller {
             $member_linkedin  = $member."_linkedin";
             $currentUserInfo  = \DB::table('users')->where('name', $request->input($member))->first();
             // dd($currentUserInfo);
+            // 一旦なしで。後々は、メールアドレスでメッセージを送って承認の流れでバリデーションかけたい。(2019年1月21日)
             if($currentUserInfo){
                 if($currentUserInfo->name == $request->input($member)){
                     $npo_register->$member          = $request->input($member);
                     $npo_register->$member_pos      = $request->input($member_pos);
                     $npo_register->$member_detail   = $request->input($member_detail);
                     $member_edit_auth               = $request->input($member_twitter);
-                    $npo_register->$member_twitter  = $npo_register->$member.$member_edit_auth;
+                    $npo_register->$member_twitter  = $member_edit_auth;
                     $npo_register->$member_facebook = $request->input($member_facebook);
                     $npo_register->$member_linkedin = $request->input($member_linkedin);
                 }else{
@@ -434,8 +435,7 @@ class Npo_registerController extends Controller {
 
 		$npo_register->save();
 		// return view('npo.npo_landing_page', compact('npo_register'));
-
-		return redirect()->route('npo_registers.index')->with('message', 'Item updated successfully.');
+        return redirect()->route('npo_registers.show', compact('npo_register'))->with('message', 'Item updated successfully.');
 	}
 
 	/**
