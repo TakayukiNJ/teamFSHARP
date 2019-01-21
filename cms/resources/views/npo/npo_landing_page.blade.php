@@ -236,10 +236,11 @@
                                                     <li>支援した法人名をこちらに掲載。</li>
                                                     @endif
                                                 </ul>
-                                                @if($npo_info->support_contents_gold)
-                                                    <a class="indiesquare-tip-button btn btn-danger btn-round" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me">
+                                                @if($npo_info->support_contents_detail_gold)
+                                                    <a class="btn btn-success btn-round" href="{{$npo_info->support_contents_detail_gold}}" target="_blank">
                                                         内容の詳細はこちら
                                                     </a>
+                                                    <br><br>
                                                 @endif
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
@@ -295,10 +296,10 @@
                                                     <li>支援した法人名をこちらに掲載。</li>
                                                     @endif
                                                 </ul>
-                                                @if($npo_info->support_contents_pratinum)
-                                                    <a href="{{$npo_info->support_contents_pratinum}}" class="btn btn-neutral btn-round">
+                                                @if($npo_info->support_contents_detail_pratinum)
+                                                    <a href="{{$npo_info->support_contents_detail_pratinum}}" class="btn btn-neutral btn-round">
                                                         内容の詳細はこちら
-                                                    </a>
+                                                    </a><br>
                                                 @endif
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-neutral btn-round">ログイン</a>
@@ -714,7 +715,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}に関してお問い合わせ</h2>
+                    <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}に関するお問い合わせ</h2>
                 </div>
             </div>
             <div class="row">

@@ -28,9 +28,11 @@ class BooksController extends Controller
     public function welcome(Request $request){
         //$books = Book::orderBy('created_at', 'asc')->paginate(3);
         //$books = Book::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
-        
+        $data['npo_info1']  = \DB::table('npo_registers')->where('npo_name', 'miraidraft2019')->first();
+        $data['npo_info2']  = \DB::table('npo_registers')->where('npo_name', 'JDMA_indonesia_support')->first();
+        $data['npo_info3']  = \DB::table('npo_registers')->where('npo_name', 'Kawakamimura_PianoConcert')->first();
         //$this->middleware('guest', ['except' => 'logout']);
-        return view('welcome');
+        return view('welcome', $data);
         
     }
     

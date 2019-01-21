@@ -58,13 +58,15 @@
         <div class="col-md-2 text-center col-sm-3 col-12 ml-auto mr-auto">
             <h4>F#</h4>
             <div class="social-area">
-                <a class="btn btn-just-icon btn-round btn-facebook" href="https://www.facebook.com/nj.takayuki">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a class="btn btn-just-icon btn-round btn-twitter" href="https://twitter.com/IbRducocvvsX0bC">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a class="btn btn-just-icon btn-round btn-github" href="https://github.com/TakayukiNJ/teamFSHARP">
+                {{--
+                <!--<a class="btn btn-just-icon btn-round btn-facebook" href="https://www.facebook.com/nj.takayuki" target="_blank">-->
+                <!--    <i class="fa fa-facebook" aria-hidden="true"></i>-->
+                <!--</a>-->
+                <!--<a class="btn btn-just-icon btn-round btn-twitter" href="https://twitter.com/IbRducocvvsX0bC" target="_blank">-->
+                <!--    <i class="fa fa-twitter" aria-hidden="true"></i>-->
+                <!--</a>-->
+                --}}
+                <a class="btn btn-just-icon btn-round btn-github" href="https://github.com/TakayukiNJ/teamFSHARP" target="_blank">
                     <i class="fa fa-github" aria-hidden="true"></i>
                 </a>
             </div>
@@ -111,16 +113,6 @@
                             <!--            <li>-->
                             <!--                <a href="#paper-kit">-->
                             <!--                    Blog-->
-                            <!--                </a>-->
-                            <!--            </li>-->
-                            <!--            <li>-->
-                            <!--                <a href="#paper-kit">-->
-                            <!--                    Live Support-->
-                            <!--                </a>-->
-                            <!--            </li>-->
-                            <!--            <li>-->
-                            <!--                <a href="#paper-kit">-->
-                            <!--                    Money Back-->
                             <!--                </a>-->
                             <!--            </li>-->
                             --}}
@@ -190,12 +182,6 @@
                 </div>
                 <div class="links pull-right">
                     <ul>
-                        <!--<li>-->
-                        <!--    <a href="#paper-kit">-->
-                        <!--        Company Policy-->
-                        <!--    </a>-->
-                        <!--</li>-->
-                        <!--|-->
                         <li>
                             <a href="{{ url('/specified_commercial_transactions_law') }}">
                                 Specified Commercial Transactions Law

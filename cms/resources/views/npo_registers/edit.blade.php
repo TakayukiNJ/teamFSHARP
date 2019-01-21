@@ -236,11 +236,11 @@
                        @endif
                     </div>
                     <!-- リターン詳細 -->
-                    <div class="form-group @if($errors->has('support_contents_detail_pratinum')) has-error @endif">
-                       <label for="support_contents_detail_pratinum-field">法人寄付リターンの詳細リンク（URLを入力。無しでも可能）</label>
-                    <input type="text" id="support_contents_detail_pratinum-field" name="support_contents_detail_pratinum" class="form-control" value="{{ is_null(old("support_contents_detail_pratinum")) ? $npo_info->support_contents_detail_pratinum : old("support_contents_detail_pratinum") }}"/>
-                       @if($errors->has("support_contents_detail_pratinum"))
-                        <span class="help-block">{{ $errors->first("support_contents_detail_pratinum") }}</span>
+                    <div class="form-group @if($errors->has('support_contents_detail_gold')) has-error @endif">
+                       <label for="support_contents_detail_gold-field">法人寄付リターンの詳細リンク（URLを入力。無しでも可能）</label>
+                    <input type="text" id="support_contents_detail_gold-field" name="support_contents_detail_gold" class="form-control" value="{{ is_null(old("support_contents_detail_gold")) ? $npo_info->support_contents_detail_gold : old("support_contents_detail_gold") }}"/>
+                       @if($errors->has("support_contents_detail_gold"))
+                        <span class="help-block">{{ $errors->first("support_contents_detail_gold") }}</span>
                        @endif
                     </div>
                     
