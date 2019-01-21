@@ -289,8 +289,27 @@ class Npo_registerController extends Controller {
         }
         
         $data['npo_info'] = $currentNpoInfo;
-        if($currentNpoInfo->proval == 0){
-    	    return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+        if($currentNpoInfo->proval < 1){
+            // 未公開だった時の処理 
+            if(Auth::user()){
+                $name_auth = Auth::user()->name;
+            }else{
+                return view('/errors/503');
+            }
+            if($name_auth === $currentNpoInfo->manager){
+        		return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+            }
+            // member1~10の_twitterカラムに権限があれば見れる処理
+            for($i = 1; $i < 11; $i++){
+                // "member".$i."_twitter"がAuth::user()->nameに1が付いていたら、権限を持たす
+                $member_auth = $name_auth."1";
+                $check_auth  = "member".$i."_twitter";
+                if($member_auth === $currentNpoInfo->$check_auth){
+                    return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+                    // return view('npo_registers.edit', $data);
+                }
+            }
+            return view('/errors/503');
     	}
         return view('npo.npo_landing_page', $data);
     }

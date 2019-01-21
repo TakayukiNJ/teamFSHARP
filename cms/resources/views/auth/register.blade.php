@@ -90,7 +90,6 @@
                                         <input class="form-check-input" type="checkbox" required>
                                         <span class="form-check-sign">
                                             <strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 および</a></strong><strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー に同意する(チェックを入れる)</a></strong>
-                                            
                                         </span>
                                     </label>
                                 </div>

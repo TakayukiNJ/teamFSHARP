@@ -260,6 +260,12 @@ Route::post('/{npo_name}/payment_company','Npo_registerController@payment_compan
 Route::post('/{npo_name}/payment_company_pratinum','Npo_registerController@payment_company_pratinum');
 Route::post('/{npo_name}/send_mail','Npo_registerController@send_mail');
 // Route::post('welcome','Npo_registerController@payment');
+Route::get('/npo/{npo_name}','Npo_registerController@landing');
+Route::get('/npo/{npo_name}/edit','Npo_registerController@editing');
+Route::post('/npo/{npo_name}/payment','Npo_registerController@payment');
+Route::post('/npo/{npo_name}/payment_company','Npo_registerController@payment_company');
+Route::post('/npo/{npo_name}/payment_company_pratinum','Npo_registerController@payment_company_pratinum');
+Route::post('/npo/{npo_name}/send_mail','Npo_registerController@send_mail');
 
 // スタブ機能
 Route::post('/testviews', 'TestViewController@index');

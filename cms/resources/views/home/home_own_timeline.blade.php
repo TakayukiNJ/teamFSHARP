@@ -57,30 +57,33 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <div class="w3-row-padding">
     <div class="w3-third w3-container w3-margin-bottom">
       <a href="{{ url('/JDMA_indonesia_support') }}">
-      <img src="{{ url('/') }}/../img/npologo/jdma_indonasia.jpg" alt="JDMA" style="width:100%" class="w3-hover-opacity">
+      <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-15.jpg" alt="JDMA" style="width:100%" class="w3-hover-opacity">
       </a>
       <div class="w3-container w3-white">
         <p><b>インドネシア災害復興支援</b></p>
         <p>特定非営利活動法人JDMA</p>
       </div>
     </div>
-    <!--<div class="w3-third w3-container w3-margin-bottom">-->
-    <!--  <a href="{{ url('/npo/nipponshotenkai') }}">-->
-    <!--  <img src="{{ url('/') }}/../img/npologo/nihonShotenkaiLogo.png" alt="日本商店会" style="width:100%" class="w3-hover-opacity">-->
-    <!--  </a>-->
-    <!--  <div class="w3-container w3-white">-->
-    <!--    <p><b>共に学び共に成長し共に勝つ</b></p>-->
-    <!--    <p>NPO法人日本商店会</p>-->
-    <!--  </div>-->
-    <!--</div>-->
-  <!--  <div class="w3-third w3-container w3-margin-bottom">-->
-  <!--    <a href="{{ url('/npo/piecesTest') }}">-->
-  <!--    <img src="{{ url('/') }}/../img/contents/pieces.jpg" alt="NPO" style="width:100%" class="w3-hover-opacity" onClick="alert('Coming soon')">-->
-  <!--    </a>-->
-  <!--    <div class="w3-container w3-white">-->
-  <!--      <p><b>PIECES</b></p>-->
-  <!--    </div>-->
-  <!--  </div>-->
+    
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a href="{{ url('/Kawakamimura_PianoConcert') }}">
+      <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-11.jpg" alt="佐久生活文化推進機構" style="width:100%" class="w3-hover-opacity">
+      </a>
+      <div class="w3-container w3-white">
+        <p><b>川上村ピアノコンサート〜佐久から可能性を創出〜</b></p>
+        <p>NPO法人佐久生活文化推進機構</p>
+      </div>
+    </div>
+    
+    <div class="w3-third w3-container w3-margin-bottom">
+      <a href="{{ url('/miraidraft2019') }}">
+      <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-10.jpg" alt="ワールドビジョン ジャパン" style="width:100%" class="w3-hover-opacity">
+      </a>
+      <div class="w3-container w3-white">
+        <p><b>未来ドラフト2019</b></p>
+        <p>特定非営利活動法人　ワールド・ビジョン・ジャパン</p>
+      </div>
+    </div>
   <!--  <div class="w3-third w3-container w3-margin-bottom">-->
   <!--    <img src="{{ url('/') }}/../img/contents/p_friends.jpg" alt="NPO" style="width:100%" class="w3-hover-opacity" onClick="alert('Coming soon')">-->
   <!--    <div class="w3-container w3-white">-->
