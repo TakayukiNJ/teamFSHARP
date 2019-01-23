@@ -22,7 +22,6 @@ class Npo_registerController extends Controller {
 	{
         $name_auth = Auth::user()->name;
 		$npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
-
 		return view('npo_registers.index', compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	/**

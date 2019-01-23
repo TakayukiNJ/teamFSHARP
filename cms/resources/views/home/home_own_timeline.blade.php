@@ -52,45 +52,103 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <!-- First Photo Grid-->
   <div class="w3-container w3-padding-large">
     <!--<h4 id="portfolio"><b>HISTORY (購入履歴)</b></h3>-->
-    <h4 id="portfolio"><b>PICKUP おすすめ</b></h4>
+    <h4 id="portfolio"><b>NEW 新着</b></h4>
   </div>
+  
   <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a href="{{ url('/JDMA_indonesia_support') }}">
-      <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-15.jpg" alt="JDMA" style="width:100%" class="w3-hover-opacity">
-      </a>
-      <div class="w3-container w3-white">
-        <p><b>インドネシア災害復興支援</b></p>
-        <p>特定非営利活動法人JDMA</p>
+  @for($i = 0; $i < count($npo_info); $i++)
+      <div class="w3-third w3-container w3-margin-bottom">
+        <div class="w3-container w3-white">
+          <br>
+          <p><b><a href="/{{ $npo_info[$i]->npo_name }}">{{ $npo_info[$i]->subtitle }}</a></b></p>
+          <p>{{ $npo_info[$i]->title }}
+          <a class="btn btn-xs btn-primary" href="/{{ $npo_info[$i]->npo_name }}">GO!</a></p>
+        </div>
       </div>
-    </div>
+  @endfor
+  </div>
+
+  
+  
+  <!--<div class="w3-row-padding">-->
+  <!--  <div class="w3-third w3-container w3-margin-bottom">-->
+  <!--    <a href="{{ url('/JDMA_indonesia_support') }}">-->
+  <!--    <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-15.jpg" alt="JDMA" style="width:100%" class="w3-hover-opacity">-->
+  <!--    </a>-->
+  <!--    <div class="w3-container w3-white">-->
+  <!--      <p><b>インドネシア災害復興支援</b></p>-->
+  <!--      <p>特定非営利活動法人JDMA</p>-->
+  <!--    </div>-->
+  <!--  </div>-->
     
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a href="{{ url('/Kawakamimura_PianoConcert') }}">
-      <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-11.jpg" alt="佐久生活文化推進機構" style="width:100%" class="w3-hover-opacity">
-      </a>
-      <div class="w3-container w3-white">
-        <p><b>川上村ピアノコンサート〜佐久から可能性を創出〜</b></p>
-        <p>NPO法人佐久生活文化推進機構</p>
-      </div>
-    </div>
+  <!--  <div class="w3-third w3-container w3-margin-bottom">-->
+  <!--    <a href="{{ url('/Kawakamimura_PianoConcert') }}">-->
+  <!--    <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-11.jpg" alt="佐久生活文化推進機構" style="width:100%" class="w3-hover-opacity">-->
+  <!--    </a>-->
+  <!--    <div class="w3-container w3-white">-->
+  <!--      <p><b>川上村ピアノコンサート〜佐久から可能性を創出〜</b></p>-->
+  <!--      <p>NPO法人佐久生活文化推進機構</p>-->
+  <!--    </div>-->
+  <!--  </div>-->
     
-    <div class="w3-third w3-container w3-margin-bottom">
-      <a href="{{ url('/miraidraft2019') }}">
-      <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-10.jpg" alt="ワールドビジョン ジャパン" style="width:100%" class="w3-hover-opacity">
-      </a>
-      <div class="w3-container w3-white">
-        <p><b>未来ドラフト2019</b></p>
-        <p>特定非営利活動法人　ワールド・ビジョン・ジャパン</p>
-      </div>
-    </div>
+  <!--  <div class="w3-third w3-container w3-margin-bottom">-->
+  <!--    <a href="{{ url('/miraidraft2019') }}">-->
+  <!--    <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-10.jpg" alt="ワールドビジョン ジャパン" style="width:100%" class="w3-hover-opacity">-->
+  <!--    </a>-->
+  <!--    <div class="w3-container w3-white">-->
+  <!--      <p><b>未来ドラフト2019</b></p>-->
+  <!--      <p>特定非営利活動法人　ワールド・ビジョン・ジャパン</p>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <!--  <div class="w3-third w3-container w3-margin-bottom">-->
   <!--    <img src="{{ url('/') }}/../img/contents/p_friends.jpg" alt="NPO" style="width:100%" class="w3-hover-opacity" onClick="alert('Coming soon')">-->
   <!--    <div class="w3-container w3-white">-->
   <!--      <p><b>プロジェクトフレンズ</b></p>-->
   <!--      </div>-->
   <!--  </div>-->
-  </div>
+  <!--</div>-->
+  
+  <!--<div class="w3-container w3-padding-large">-->
+    <!--<h4 id="portfolio"><b>HISTORY (購入履歴)</b></h3>-->
+  <!--  <h4 id="portfolio"><b>PICKUP おすすめ</b></h4>-->
+  <!--</div>-->
+  <!--<div class="w3-row-padding">-->
+  <!--  <div class="w3-third w3-container w3-margin-bottom">-->
+  <!--    <a href="{{ url('/JDMA_indonesia_support') }}">-->
+  <!--    <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-15.jpg" alt="JDMA" style="width:100%" class="w3-hover-opacity">-->
+  <!--    </a>-->
+  <!--    <div class="w3-container w3-white">-->
+  <!--      <p><b>インドネシア災害復興支援</b></p>-->
+  <!--      <p>特定非営利活動法人JDMA</p>-->
+  <!--    </div>-->
+  <!--  </div>-->
+    
+  <!--  <div class="w3-third w3-container w3-margin-bottom">-->
+  <!--    <a href="{{ url('/Kawakamimura_PianoConcert') }}">-->
+  <!--    <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-11.jpg" alt="佐久生活文化推進機構" style="width:100%" class="w3-hover-opacity">-->
+  <!--    </a>-->
+  <!--    <div class="w3-container w3-white">-->
+  <!--      <p><b>川上村ピアノコンサート〜佐久から可能性を創出〜</b></p>-->
+  <!--      <p>NPO法人佐久生活文化推進機構</p>-->
+  <!--    </div>-->
+  <!--  </div>-->
+    
+  <!--  <div class="w3-third w3-container w3-margin-bottom">-->
+  <!--    <a href="{{ url('/miraidraft2019') }}">-->
+  <!--    <img src="http://www.undp.org/content/dam/undp/sdg/covers/sdg-cover-10.jpg" alt="ワールドビジョン ジャパン" style="width:100%" class="w3-hover-opacity">-->
+  <!--    </a>-->
+  <!--    <div class="w3-container w3-white">-->
+  <!--      <p><b>未来ドラフト2019</b></p>-->
+  <!--      <p>特定非営利活動法人　ワールド・ビジョン・ジャパン</p>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--  <div class="w3-third w3-container w3-margin-bottom">-->
+  <!--    <img src="{{ url('/') }}/../img/contents/p_friends.jpg" alt="NPO" style="width:100%" class="w3-hover-opacity" onClick="alert('Coming soon')">-->
+  <!--    <div class="w3-container w3-white">-->
+  <!--      <p><b>プロジェクトフレンズ</b></p>-->
+  <!--      </div>-->
+  <!--  </div>-->
+  <!--</div>-->
   
   <!-- Second Photo Grid-->
   <!--<div class="w3-row-padding">-->
@@ -126,9 +184,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <!--  </div>-->
   <!--</div>-->
   <!-- Contact Section -->
-  <div class="w3-container w3-padding-large">
-    <!--<h4 id="about"><b>About Me (自己紹介)</b></h4>-->
-    <!--<p>ご登録、誠にありがとうございます。<br>F♯は、<strong>デジタルハリウッド大学大学院の2018年度学内コンペティション（インテリム・コンペティション）に選出されたWebサービスです。</strong></p>-->
+  <!--<div class="w3-container w3-padding-large">-->
+  <!--  <h4 id="about"><b>About Me (自己紹介)</b></h4>-->
+    
+  <!--  <p>ご登録、誠にありがとうございます。<br>F♯は、<strong>デジタルハリウッド大学大学院の2018年度学内コンペティション（インテリム・コンペティション）に選出されたWebサービスです。</strong></p>-->
     <!--<h4 id="about"><b>USAGE (使い方)</b></h4>-->
     <!--<p>応援したいNPOやコミュニティを選んで、コインを購入することによって支援や寄附をすることができます。</p>-->
     <!--<p>NPOの支援・寄附した場合、お名前（ユーザーネーム）がサイトに公開され、NPO側にはメールアドレスもお伝えいたします。(購入履歴は、今後ご活用できる仕組みを作成中です。)</p>-->
@@ -141,8 +200,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <!--<p>公開されたご自身のホームページとしてだけでもご活用いただけますし、資金調達も始めることができます。（審査期間：約1週間）</p>-->
     <!--<p>その他、何かご不明点がございましたら、<a href="https://docs.google.com/forms/d/e/1FAIpQLSfM5FkFx27lREs-yMsY11P9dmx8ZQCkDVlPXL2Ch-AOoiz1vA/viewform?c=0&w=1">お気軽にご相談ください。</a></p>-->
     <!--<p>オリジナルトークン(ICO)ではなく、</p>-->
-    <hr>
-  </div>
+  <!--  <hr>-->
+  <!--</div>-->
   
   
   <!--<div class="w3-container w3-padding-large w3-grey">-->
