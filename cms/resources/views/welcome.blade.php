@@ -74,8 +74,7 @@
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" required>
                                                 <span class="form-check-sign">
-                                                    <strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 </a>および</strong><strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー </a></strong>に同意する（チェックを入れる）
-                                                    
+                                                    本サイトの<strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 </a>および</strong><strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー </a></strong>に同意する（チェックを入れる）
                                                 </span>
                                             </label>
                                         </div>
@@ -174,7 +173,9 @@
 						<div class="col-md-4">
 							<div class="card card-blog">
 								<div class="card-image">
-									<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_10_ja_2.png" />
+									<a href="/{{ $npo_info1->npo_name }}">
+    									<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_10_ja_2.png" />
+	                                </a>
 								</div>
 								<div class="card-body">
 									<h6 class="card-category text-danger">
@@ -208,13 +209,13 @@
 						<div class="col-md-4">
 							<div class="card card-blog">
 								<div class="card-image">
-									<!--<a href="https://fsharp.me/helper-c">-->
-										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_03_ja.png" />
-									<!--</a>-->
+									<a href="/{{ $npo_info2->npo_name }}">
+										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_15_ja.png" />
+									</a>
 								</div>
 								<div class="card-body">
 									<h6 class="card-category text-success">
-										Good Health And Well-being
+										Life on Land
 									</h6>
 									<h5 class="card-title">
 										<a href="/{{ $npo_info2->npo_name }}">{{ $npo_info2->title }}</a>
@@ -244,7 +245,7 @@
 						<div class="col-md-4">
 							<div class="card card-blog">
 								<div class="card-image">
-									<a href="https://fsharp.me/DHUMediaArt">
+									<a href="/{{ $npo_info3->npo_name }}">
 										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_11_ja.png" />
 									</a>
 								</div>
@@ -348,7 +349,7 @@
                                                                     <label class="form-check-label">
                                                                         <input class="form-check-input" type="checkbox" required>
                                                                         <span class="form-check-sign">
-                                                                            <strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 </a>および</strong><strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー </a></strong>に同意する（チェックを入れる）
+                                                                            本サイトの<strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 </a>および</strong><strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー </a></strong>に同意する（チェックを入れる）
                                                                             
                                                                         </span>
                                                                     </label>

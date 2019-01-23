@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Npo_register;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Validator;
@@ -314,9 +315,14 @@ class HomeController extends Controller
     // ホーム画面自分のタイムライン
     public function home_own_timeline(Request $request)
     {
-        $id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $id   = Auth::user()->id;
         $user = Auth::user()->email;
-
+        
+        $data['npo_info'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
+// 		$data['npo_info'] = Npo_register::orderBy('published', 'desc')->where('proval', 1)->paginate(3);
+// 		return view('npo_registers.index', compact('npo_registers'))->with('message', 'Item created successfully.');
+        // dd($data['npo_info']);
         // 用編集(データベースから取ってくる用に変更...)
         $user_name_sei_kanji=$request->input('user_name_sei_kanji');
         $user_name_mei_kanji=$request->input('user_name_mei_kanji');
@@ -362,7 +368,7 @@ class HomeController extends Controller
             $image_id = '/img/contents/user-default.png';
         }
 
-        return view('home/home_own_timeline')
+        return view('home/home_own_timeline', $data)
         ->with('id', $id)
         ->with('user', $user)
         //2018.1.4追加ここから
@@ -383,7 +389,7 @@ class HomeController extends Controller
         ;
         //2018.1.4追加ここまで
 
-        return view('npo_landing_page', $data);
+        // return view('npo_landing_page', $data);
 
     }
 
