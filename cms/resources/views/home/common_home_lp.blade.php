@@ -2,11 +2,12 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
-  @yield('head')
+  @yield('head_profile')
   @yield('script')
 </head>
 
-@yield('nav_lp')
+
+@yield('nav_home')
   @yield('headers')
   @yield('content')
 </body>
@@ -23,5 +24,5 @@
   gtag('js', new Date());
   gtag('config', 'UA-113255449-1');
 </script>
-
+  
 </html>
