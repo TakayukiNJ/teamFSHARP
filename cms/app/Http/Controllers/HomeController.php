@@ -315,28 +315,49 @@ class HomeController extends Controller
     // ホーム画面自分のタイムライン
     public function home_own_timeline(Request $request)
     {
-        $name = Auth::user()->name;
-        $id   = Auth::user()->id;
-        $user = Auth::user()->email;
+        $name     = Auth::user()->name;
+        $id       = Auth::user()->id;
+        $email    = Auth::user()->email;
+        $auth_npo = Auth::user()->npo;
         
-        $data['npo_info'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
+        // 新着情報を取得
+        $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
+		// 寄付した団体を取得（個人）
+		$premierData_personal = \DB::table('premier_data')->where('user_define', $email)->orderBy('updated_at', 'desc')->get();
+		$data['premierData_personal'] = $premierData_personal;
+		if($premierData_personal){
+		    for($i = 0; $i < count($premierData_personal); $i++){
+    		    $premierData_email = $premierData_personal[$i]->vision_id;
+    		    $data['npo_info_personal'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_email)->first();
+    		    //  = $premierData_personal[$i];
+    		}
+		}
+		// 寄付した団体を取得（企業）
+		$premierData_enterprise = \DB::table('premier_data')->where('user_define', $auth_npo)->orderBy('updated_at', 'desc')->get();
+		$data['premierData_enterprise'] = $premierData_enterprise;
+		if($premierData_enterprise){
+		    for($i = 0; $i < count($premierData_enterprise); $i++){
+    		    $premierData_npo = $premierData_enterprise[$i]->vision_id;
+    		    $data['npo_info_enterprise'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_npo)->first();
+    		}
+		}
 // 		$data['npo_info'] = Npo_register::orderBy('published', 'desc')->where('proval', 1)->paginate(3);
 // 		return view('npo_registers.index', compact('npo_registers'))->with('message', 'Item created successfully.');
-        // dd($data['npo_info']);
+        // dd($data);
         // 用編集(データベースから取ってくる用に変更...)
-        $user_name_sei_kanji=$request->input('user_name_sei_kanji');
-        $user_name_mei_kanji=$request->input('user_name_mei_kanji');
-        $user_name_sei_roma=$request->input('user_name_sei_roma');
-        $user_name_mei_roma=$request->input('user_name_mei_roma');
-        $sex_type=$request->input('sex_type');
-        $birthday_year=$request->input('birthday_year');
-        $birthday_month=$request->input('birthday_month');
-        $birthday_day=$request->input('birthday_day');
-        $bank_name=$request->input('bank_name');
-        $bank_branch=$request->input('bank_branch');
-        $bank_type_account=$request->input('bank_type_account');
-        $bank_account_number=$request->input('bank_account_number');
-        $bank_account_name=$request->input('bank_account_name');
+        $user_name_sei_kanji = $request->input('user_name_sei_kanji');
+        $user_name_mei_kanji = $request->input('user_name_mei_kanji');
+        $user_name_sei_roma  = $request->input('user_name_sei_roma');
+        $user_name_mei_roma  = $request->input('user_name_mei_roma');
+        $sex_type            = $request->input('sex_type');
+        $birthday_year       = $request->input('birthday_year');
+        $birthday_month      = $request->input('birthday_month');
+        $birthday_day        = $request->input('birthday_day');
+        $bank_name           = $request->input('bank_name');
+        $bank_branch         = $request->input('bank_branch');
+        $bank_type_account   = $request->input('bank_type_account');
+        $bank_account_number = $request->input('bank_account_number');
+        $bank_account_name   = $request->input('bank_account_name');
 
         session(['user_name_sei_kanji' => $user_name_sei_kanji]);
         session(['user_name_mei_kanji' => $user_name_mei_kanji]);
@@ -356,11 +377,8 @@ class HomeController extends Controller
         $image_id = '';
         $image    = '';
 
-        $image = DB::table('image_data')
-        ->where('user_id', $user)->first(); // firstは一個だけ取得  getは全て取得
-
-        // dd($query->image_id);
-
+        $image = DB::table('image_data')->where('user_id', $email)->first();
+        
         if($image){
             $image_id = $image->image_id; // $imageの中のimage_idを取得
             $image_id = asset('/images'). '/'. $image_id;
@@ -370,7 +388,7 @@ class HomeController extends Controller
 
         return view('home/home_own_timeline', $data)
         ->with('id', $id)
-        ->with('user', $user)
+        ->with('user', $email)
         //2018.1.4追加ここから
         ->with('image_id', $image_id)
         ->with('user_name_sei_kanji', $user_name_sei_kanji)

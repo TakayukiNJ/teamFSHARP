@@ -1,157 +1,91 @@
-@extends('home.common_home_lp')
-@include('home.head_profile')
-@include('home.nav_home')
-@include('layouts.script')
+@extends('layouts.app')
 @section('content')
-<div class="wrapper">
-    <div class="page-header page-header-small" style="background-image: url('{{ url('/') }}/../img/sections/joshua-earles.jpg');">
-        <div class="filter"></div>
-    </div>
-    <div class="profile-content section">
-        <div class="container">
-            <div class="row">
-                <div class="profile-picture">
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <div class="fileinput-new img-no-padding">
-                            @if (!$image_id)
-                              <!--<IMG id='own_image' src='/img/contents/user-default.png' style="width:150px">-->
-                            @else
-                              <!--<IMG id='own_image' style="width:200px">-->
-                            @endif
-                            <img src="{{ url('/') }}/../img/placeholder.jpg" alt="...">
-                        </div>
-                        <div class="name">
-                            <h4 class="title text-center">{{ Auth::user()->name }}<br /><small>{{ Auth::user()->email }}</small></h4>
-                        </div>
-                  </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto text-center">
-                    <!--<p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>-->
-                    <!--<br />-->
-                    <a href="{{ url('/home/home_register') }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> 設定</a>
-                </div>
-            </div>
-            <br/>
-            <div class="nav-tabs-navigation">
-                <div class="nav-tabs-wrapper">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#new" role="tab">新着</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">サポート</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">プロジェクト</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Tab panes -->
-            <div class="tab-content">
-                
-                <div class="tab-pane text-center" id="myProjects" role="tabpanel">
-                    @if(Auth::user()->npo)
-                    <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">管理ページへ</a>
-                    @else
-                    <h3 class="text-muted">まずは団体登録！</h3>
-                    <br>
-                    <a href="{{ url('/npo_registers') }}" class="btn btn-warning btn-round">プロジェクト作成</a>
-                    @endif
-                </div>
-                <div class="tab-pane" id="supporting" role="tabpanel">
-                    <div class="row">
-                        <div class="col-md-6 ml-auto mr-auto">
-                            <ul class="list-unstyled follows">
-                                @if($npo_info_enterprise)
-                                    <h4 class="text-muted text-center">【法人サポート履歴】</h4>
-                                    <br>
-                                    @for($i = 0; $i < count($npo_info_enterprise); $i++)
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-md-2 col-3">
-                                                    {{$i + 1}}
-                                                    <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
-                                                </div>
-                                                <div class="col-md-7 col-4">
-                                                    <h6><a href="/{{ $npo_info_enterprise[$i]->npo_name }}">{{ $npo_info_enterprise[$i]->subtitle }}</a><br><small>{{ $npo_info_enterprise[$i]->title }}</small></h6></h6>
-                                                </div>
-                                                <div class="col-md-3 col-2">
-                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_enterprise[$i]->npo_name }}">GO!</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <hr>
-                                    @endfor
-                                    <br>
-                                @endif
-                                @if($npo_info_personal)
-                                    <h4 class="text-muted text-center">【個人サポート履歴】</h4>
-                                    <br>
-                                    @for($i = 0; $i < count($npo_info_personal); $i++)
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-md-2 col-3">
-                                                    {{$i + 1}}
-                                                    <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
-                                                </div>
-                                                <div class="col-md-7 col-4">
-                                                    <h6><a href="/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br><small>{{ $npo_info_personal[$i]->title }}</small></h6></h6>
-                                                </div>
-                                                <div class="col-md-3 col-2">
-                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_personal[$i]->npo_name }}">GO!</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <hr>
-                                    @endfor
-                                @elseif(!$npo_info_enterprise)
-                                    <p class="text-muted">まだどこにも寄付していないようです！</p>
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane active" id="new" role="tabpanel">
-                    <div class="row">
-                        <div class="col-md-6 ml-auto mr-auto">
-                            <ul class="list-unstyled follows">
-                                @for($i = 0; $i < count($npo_info_proval); $i++)
-                                <li>
-                                    <div class="row">
-                                        <div class="col-md-2 col-3">
-                                            {{$i + 1}}
-                                            <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
-                                        </div>
-                                        <div class="col-md-7 col-4">
-                                            <h6><a href="/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a><br><small>{{ $npo_info_proval[$i]->title }}</small></h6></h6>
-                                        </div>
-                                        <div class="col-md-3 col-2">
-                                            <a class="btn btn-xs btn-primary" href="/{{ $npo_info_proval[$i]->npo_name }}">GO!</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <hr />
-                                @endfor
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>    
-
-
-
-
-
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+<div class="w3-light-grey w3-content" style="max-width:1600px">
+    
+    <!-- モバイル対応 -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    
+    <!-- 左側 -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+      <div class="w3-container">
+        <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+          <i class="fa fa-remove"></i>
+        </a>
+        @if (!$image_id)
+          <IMG id='own_image' src='/img/contents/user-default.png' style="width:150px">
+        @else
+          <!--<IMG id='own_image' src="{ { $image_id } }" style="width:150px">-->
+          <IMG id='own_image' style="width:200px">
+        @endif
+          <!--<IMG id='own_image' src="{{ '' == $image_id  or '/img/contents/nike.jpeg' }}" style="width:150px">-->
+          <!--<IMG id='own_image' src="{{ '' !== $image_id ? $image_id : '/img/contents/user-default.png' }}" style="width:150px">-->
+          <!--<IMG id='own_image' src="{{ $image_id }}" style="width:150px">-->
+        <br>
+      	<!--<INPUT TYPE="button" id="image_upload_button" value="　画像登録　" onClick="ZZ1_run('HOME_REGIST')" >-->
+      	  <h4><b>{{ Auth::user()->name }}</b></h4>
+        <p class="w3-text-grey">{{ $user }}</p>
+      </div>
+      <div class="w3-bar-block">
+        <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a>
+        <a href="#new" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>NEW</a>
+        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a>
+      </div>
+      {{--
+      <!--<div class="w3-panel w3-large">-->
+      <!--  <a href="https://fb.me/LiCleOrg" target="_blank"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>-->
+      <!--  <a href="https://twitter.com/TakayukiNakajo" target="_blank"><i class="fa fa-twitter" style="font-size:36px"></i></a>-->
+      <!--  <a href="https://www.instagram.com/nj.takayuki" target="_blank"><i class="fa fa-instagram" style="font-size:36px"></i></a>-->
+      <!--  <a href="goo.gl/2fgfE" target="_blank"><i class="fa fa-youtube-play" style="font-size:36px"></i></a>-->
+      <!--  <a href="https://www.linkedin.com/in/%E9%AB%98%E5%B9%B8-%E4%BB%B2%E6%9D%A1-68513984/" target="_blank"><i class="fa fa-linkedin-square" style="font-size:36px"></i></a>-->
+      <!--  <a href="https://vote.fe-ver.jp/communities/90" target="_blank"><i class="fa fa-globe" style="font-size:36px"></i></a>-->
+      <!--</div>-->
+      --}}
+    </nav>
+    
 <div class="w3-main" style="margin-left:300px">
   
+  {{-- First Photo Grid --}}
+  <div class="w3-container w3-padding-large">
+    <!--<h4 id="portfolio"><b>HISTORY (購入履歴)</b></h3>-->
+    <h4 id="portfolio"><b>NEW 新着</b></h4>
+  </div>
   
+  <div class="w3-row-padding">
+  @for($i = 0; $i < count($npo_info_proval); $i++)
+      <div class="w3-third w3-container w3-margin-bottom">
+        <div class="w3-container w3-white">
+          <br>
+          <p><b><a href="/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a></b></p>
+          <p>{{ $npo_info_proval[$i]->title }}
+          <a class="btn btn-xs btn-primary" href="/{{ $npo_info_proval[$i]->npo_name }}">GO!</a></p>
+        </div>
+      </div>
+  @endfor
+  </div>
+  
+  {{-- Second Photo Grid--}}
+  <div class="w3-container w3-padding-large">
+    <!--<h4 id="portfolio"><b>HISTORY (購入履歴)</b></h3>-->
+    <h4 id="new"><b>NEW 新着</b></h4>
+  </div>
+  
+  <div class="w3-row-padding">
+  @for($i = 0; $i < count($npo_info_proval); $i++)
+      <div class="w3-third w3-container w3-margin-bottom">
+        <div class="w3-container w3-white">
+          <br>
+          <p><b><a href="/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a></b></p>
+          <p>{{ $npo_info_proval[$i]->title }}
+          <a class="btn btn-xs btn-primary" href="/{{ $npo_info_proval[$i]->npo_name }}">GO!</a></p>
+        </div>
+      </div>
+  @endfor
   </div>
 
   
@@ -460,4 +394,3 @@ $(document).ready(function() {
 <!-- End page content -->
 </div>
 @endsection
-@include('layouts.footer')
