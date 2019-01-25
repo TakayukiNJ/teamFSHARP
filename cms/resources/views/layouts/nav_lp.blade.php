@@ -48,7 +48,7 @@
         						<a class="dropdown-item" href="{{ url('/npo_registers/create') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; 団体登録</a>
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="https://goo.gl/YZLao1">@lang('app.ask my page')</a>
+                            <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">@lang('app.ask my page')</a>
                         </li>
                             
                         <li class="nav-item dropdown">

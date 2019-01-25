@@ -177,6 +177,8 @@ Route::post('/home/home_disp', 'HomeController@home_disp');
 Route::post('/home/home_register', 'HomeController@home_register');
 Route::get('/home/home_register', 'HomeController@home_register');
 //自己紹介登録確認画面
+// Route::get('/home/home_register_update', 'HomeController@home_register_update');
+Route::post('/home/home_register_update', 'HomeController@home_register_update');
 Route::post('/home/home_register_confirm', 'HomeController@home_register_confirm');
 //自己紹介登録処理
 Route::post('/home/home_register_process', 'HomeController@home_register_process');
@@ -194,6 +196,7 @@ Route::post('/home/home_edit_complete', 'HomeController@home_edit_complete');
 //ホーム画面自分のタイムライン
 Route::post('/home/home_own_timeline', 'HomeController@home_own_timeline');
 Route::get('/home/home_own_timeline', 'HomeController@home_own_timeline');
+
 
 Route::post('/home/{name}', 'HomeController@home_own');
 Route::get('/home/{name}', 'HomeController@home_own');
