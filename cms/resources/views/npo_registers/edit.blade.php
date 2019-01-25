@@ -287,7 +287,7 @@
                         <span class="help-block">公開する場合、目標金額は必須です。（10,000円以上）</span>
                        @endif
                     </div>
-                    <!-- URL -->
+                    <!-- FsharpのURL -->
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
                        <label for="npo_name-field">ページURL（https://fsharp.me/〇〇〇〇の〇部分）*設定後変更不可</label>
                     <input type="text" id="npo_name-field" name="npo_name" class="form-control" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>

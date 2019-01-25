@@ -10,6 +10,7 @@ use App\Npo_register;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -111,78 +112,178 @@ class HomeController extends Controller
 
         // personal_infoが登録されているかどうかを取得する
         $count = DB::table('personal_info')->where('user_id', $user)->count();
-
+        
         if ($count <> 0) {
-            session(['param_user_name_sei_kanji' => $query->user_name_sei_kanji]);
-            session(['param_user_name_mei_kanji' => $query->user_name_mei_kanji]);
-            session(['param_user_name_sei_roma' => $query->user_name_sei_roma]);
-            session(['param_user_name_mei_roma' => $query->user_name_mei_roma]);
-            session(['param_sex_type' => $query->sex_type]);
-            session(['param_birthday_year' => $query->birthday_year]);
-            session(['param_birthday_month' => $query->birthday_month]);
-            session(['param_birthday_day' => $query->birthday_day]);
-            session(['param_image_id' => $query->image_id]);
-            session(['param_bank_name' => $query->bank_name]);
-            session(['param_bank_branch' => $query->bank_branch]);
-            session(['param_bank_type_account' => $query->bank_type_account]);
-            session(['param_bank_account_number' => $query->bank_account_number]);
-            session(['param_bank_account_name' => $query->bank_account_name]);
+            // session(['param_user_name_sei_kanji' => $query->user_name_sei_kanji]);
+            // session(['param_user_name_mei_kanji' => $query->user_name_mei_kanji]);
+            // session(['param_user_name_sei_kana' => $query->user_name_sei_kana]);
+            // session(['param_user_name_mei_kana' => $query->user_name_mei_kana]);
+            // session(['param_company_name' => $query->company_name]);
+            // session(['param_company_profile_title' => $query->company_profile_title]);
+            // session(['param_description' => $query->description]);
+            // session(['param_post_up' => $query->post_up]);
+            // session(['param_address_1' => $query->address_1]);
+            // session(['param_home_tel' => $query->home_tel]);
+            // session(['param_image_id' => $query->image_id]);
+            // session(['param_bank_name' => $query->bank_name]);
+            // session(['param_bank_branch' => $query->bank_branch]);
+            // session(['param_bank_type_account' => $query->bank_type_account]);
+            // session(['param_bank_account_number' => $query->bank_account_number]);
+            // session(['param_bank_account_name' => $query->bank_account_name]);
             return view('home/home_register')
             ->with('id', $id)
             ->with('user', $user)
             ->with('user_name_sei_kanji', $query->user_name_sei_kanji)
             ->with('user_name_mei_kanji', $query->user_name_mei_kanji)
-            ->with('user_name_sei_roma', $query->user_name_sei_roma)
-            ->with('user_name_mei_roma', $query->user_name_mei_roma)
-            ->with('sex_type', $query->sex_type)
-            ->with('birthday_year', $query->birthday_year)
-            ->with('birthday_month', $query->birthday_month)
-            ->with('birthday_day', $query->birthday_day)
+            ->with('user_name_sei_kana', $query->user_name_sei_kana)
+            ->with('user_name_mei_kana', $query->user_name_mei_kana)
+            ->with('company_name', $query->company_name)
+            ->with('company_profile_title', $query->company_profile_title)
+            ->with('description', $query->description)
+            ->with('post_up', $query->post_up)
+            ->with('address_1', $query->address_1)
+            ->with('home_tel', $query->home_tel)
+            ->with('image_id', $query->image_id)
             ->with('bank_name', $query->bank_name)
             ->with('bank_branch', $query->bank_branch)
             ->with('bank_type_account', $query->bank_type_account)
             ->with('bank_account_number', $query->bank_account_number)
             ->with('bank_account_name', $query->bank_account_name)
-            ->with('count', $count);
+            ->with('count', $count)
+            ->with('message', '以下詳細の編集(個人か法人を選択)');
         } else {
-            logger('次のIF条件判定とおった');
-            session(['param_user_name_sei_kanji' => '']);
-            session(['param_user_name_mei_kanji' => '']);
-            session(['param_user_name_sei_roma' => '']);
-            session(['param_user_name_mei_roma' => '']);
-            session(['param_sex_type' => '']);
-            session(['param_birthday_year' => '']);
-            session(['param_birthday_month' => '']);
-            session(['param_birthday_day' => '']);
-            session(['param_image_id' => '']);
-            session(['param_bank_name' => '']);
-            session(['param_bank_branch' => '']);
-            session(['param_bank_type_account' => '']);
-            session(['param_bank_account_number' => '']);
-            session(['param_bank_account_name' => '']);
+            // logger('次のIF条件判定とおった');
+            // session(['param_user_name_sei_kanji' => '']);
+            // session(['param_user_name_mei_kanji' => '']);
+            // session(['param_user_name_sei_roma' => '']);
+            // session(['param_user_name_mei_roma' => '']);
+            // session(['param_sex_type' => '']);
+            // session(['param_birthday_year' => '']);
+            // session(['param_birthday_month' => '']);
+            // session(['param_birthday_day' => '']);
+            // session(['param_image_id' => '']);
+            // session(['param_bank_name' => '']);
+            // session(['param_bank_branch' => '']);
+            // session(['param_bank_type_account' => '']);
+            // session(['param_bank_account_number' => '']);
+            // session(['param_bank_account_name' => '']);
             return view('home/home_register')
             ->with('id', $id)
             ->with('user', $user)
             ->with('user_name_sei_kanji', '')
             ->with('user_name_mei_kanji', '')
-            ->with('user_name_sei_roma', '')
-            ->with('user_name_mei_roma', '')
-            ->with('sex_type', '')
-            ->with('birthday_year', '')
-            ->with('birthday_month', '')
-            ->with('birthday_day', '')
+            ->with('user_name_sei_kana', '')
+            ->with('user_name_mei_kana', '')
+            ->with('company_name', '')
+            ->with('company_profile_title', '')
+            ->with('description', '')
+            ->with('post_up', '')
+            ->with('address_1', '')
+            ->with('home_tel', '')
+            ->with('image_id', '')
             ->with('bank_name', '')
             ->with('bank_branch', '')
             ->with('bank_type_account', '')
             ->with('bank_account_number', '')
             ->with('bank_account_name', '')
-            ->with('count', '');
+            ->with('count', '')
+            ->with('message', '以下詳細の編集(個人か法人を選択)');
         }
+    }
+    // 自己紹介登録をリニューアル(2019年1月25日)
+    public function home_register_update(Request $request)
+    {
+        $rules = [
+	        'post_up' => 'integer',
+	        'home_tel' => 'integer',
+            'bank_account_number' => 'digits:7',
+	    ];
+        $this -> validate($request, $rules);
+		
+		$id_auth   = Auth::user()->id;
+        $name_auth = Auth::user()->name;
+        $user_auth = Auth::user()->email;
+        $npo_auth  = Auth::user()->npo;
+        $this->middleware('auth');
+        
+        $user_name_sei_kanji   = $request->input('user_name_sei_kanji');
+        $user_name_mei_kanji   = $request->input('user_name_mei_kanji');
+        $user_name_sei_kana    = $request->input('user_name_sei_kana');
+        $user_name_mei_kana    = $request->input('user_name_mei_kana');
+        $company_name          = $request->input('company_name');
+        $company_profile_title = $request->input('company_profile_title');
+        $description           = $request->input('description');
+        $post_up               = $request->input('post_up');
+        $address_1             = $request->input('address_1');
+        $home_tel              = $request->input('home_tel');
+        $bank_name             = $request->input('bank_name');
+        $bank_branch           = $request->input('bank_branch');
+        $bank_type_account     = $request->input('bank_type_account');
+        $bank_account_number   = $request->input('bank_account_number');
+        $bank_account_name     = $request->input('bank_account_name');
+        $now                   = new Carbon(Carbon::now());
+        
+        // NPOの名前をヘッダーに表示
+		if(!$npo_auth){
+            Auth::user()->where('id', $id_auth)->update([
+                'npo' => $company_name
+            ]);
+        }
+        
+        // 個人情報データを取ってくる
+        $currentPersonalInfo = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        if($currentPersonalInfo != null){
+            // データがすでにあったら更新
+            \DB::table('personal_info')->where('user_id', $user_auth)->update([
+                'user_name_sei_kanji'   => $user_name_sei_kanji,
+                'user_name_mei_kanji'   => $user_name_mei_kanji,
+                'user_name_sei_kana'    => $user_name_sei_kana,
+                'user_name_mei_kana'    => $user_name_mei_kana,
+                'company_name'          => $company_name,
+                'company_profile_title' => $company_profile_title,
+                'description'           => $description,
+                'post_up'               => $post_up,
+                'address_1'             => $address_1,
+                'home_tel'              => $home_tel,
+                'bank_name'             => $bank_name,
+                'bank_branch'           => $bank_branch,
+                'bank_type_account'     => $bank_type_account,
+                'bank_account_number'   => $bank_account_number,
+                'bank_account_name'     => $bank_account_name,
+                'delflg'                => 0,
+                'updated_at'            => $now
+            ]);
+		}else{
+		    // データが無ければ新しく作成
+		    \DB::table('personal_info')->insert([
+		        'user_id'               => $user_auth,
+                'user_name_sei_kanji'   => $user_name_sei_kanji,
+                'user_name_mei_kanji'   => $user_name_mei_kanji,
+                'user_name_sei_kana'    => $user_name_sei_kana,
+                'user_name_mei_kana'    => $user_name_mei_kana,
+                'company_name'          => $company_name,
+                'company_profile_title' => $company_profile_title,
+                'description'           => $description,
+                'post_up'               => $post_up,
+                'address_1'             => $address_1,
+                'home_tel'              => $home_tel,
+                'bank_name'             => $bank_name,
+                'bank_branch'           => $bank_branch,
+                'bank_type_account'     => $bank_type_account,
+                'bank_account_number'   => $bank_account_number,
+                'bank_account_name'     => $bank_account_name,
+                'delflg'                => 0,
+                'created_at'            => $now,
+                'updated_at'            => $now
+            ]);
+		}
+		
+        return back()->with('message', '更新完了しました。');
     }
     // 自己紹介登録確認画面
     public function home_register_confirm(Request $request)
     {
-
+        
         $id = Auth::user()->id;
         $user = Auth::user()->email;
         $user_name_sei_kanji = $request->input('user_name_sei_kanji');
