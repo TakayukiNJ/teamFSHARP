@@ -171,18 +171,17 @@ class Npo_registerController extends Controller {
         // NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
             $member              = "member".$i;
-            $personal_info       = "personal_info".$i;
+            // $personal_info       = "personal_info".$i;
             $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
         	$currentPersonalInfo = "";
             if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
-        	}
-        	//連想配列に入れtBladeテンプレートに渡しています。
-        	$data[$personal_info] = $currentPersonalInfo;
+            	$data['personal_info'][$i] = $currentPersonalInfo->image_id;
+            }else{
+                $data['personal_info'][$i] = "";
+            }
         }
-        
-        // dd($npo_name); // idを返している。
-		//連想配列に入れtBladeテンプレートに渡しています。
+        //連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
         
         if($name_auth === $currentNpoInfo->manager){
@@ -277,14 +276,15 @@ class Npo_registerController extends Controller {
     	// NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
             $member              = "member".$i;
-            $personal_info       = "personal_info".$i;
+            // $personal_info       = "personal_info".$i;
             $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
         	$currentPersonalInfo = "";
             if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
-        	}
-        	//連想配列に入れtBladeテンプレートに渡しています。
-        	$data[$personal_info] = $currentPersonalInfo;
+            	$data['personal_info'][$i] = $currentPersonalInfo->image_id;
+            }else{
+                $data['personal_info'][$i] = "";
+            }
         }
         
         $data['npo_info'] = $currentNpoInfo;

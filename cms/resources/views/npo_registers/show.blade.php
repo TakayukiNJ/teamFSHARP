@@ -333,324 +333,41 @@
                 <div class="space-top"></div>
                 <h2 class="title">メンバー</h2>
                 <div class="row">
-                    @if (( $npo_info->member1 ) != "")
-                    {{-- 一人目 --}}
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info1)
-                                                <img class="img" src="{{ !$personal_info1->image_id ? 'img/placeholder.jpg' : '/img/personal_info/'.$personal_info1->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
+                    @for ($i = 1; $i <= 10; $i++)
+                        <?php $member = "member".$i ?>
+                        @if (( $npo_info->$member ) != "")
+                        <?php $member_pos = "member".$i."_pos" ?>
+                        <?php $member_detail = "member".$i."_detail" ?>
+                        <div class="col-md-6">
+                            <div class="card card-profile card-plain">
+                                <div class="row">
+                                    {{-- 画像 --}}
+                                    <div class="col-md-5">
+                                        <div class="card-img-top">
+                                            {{--<a href="#pablo">--}}
+                                                @if($personal_info[$i])
+                                                    <img class="img" src="{{ !$personal_info[$i] ? 'img/placeholder.jpg' : '/img/personal_info/'.$personal_info[$i]}}"/>
+                                                @else
+                                                <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
+                                                @endif
+                                            {{--</a>--}}
+                                        </div>
                                     </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member1 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member1_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member1_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    @if (( $npo_info->member2 ) != "")
-                    {{-- 二人目 --}}
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info2->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info2->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member2 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member2_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member2_detail }}
-                                        </p>
+                                    {{-- 詳細 --}}
+                                    <div class="col-md-7">
+                                        <div class="card-body text-left">
+                                            <h4 class="card-title">{{ $npo_info->$member }}</h4>
+                                            <h6 class="card-category">{{ $npo_info->$member_pos }}</h6>
+                                            <p class="card-description">
+                                                {{ $npo_info->$member_detail }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @endif
-                    
-                    {{-- 三人目 --}}
-                    @if (( $npo_info->member3 ) != "")
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info3->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info3->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif 
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member3 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member3_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member3_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-    
-                    {{-- 四人目 --}}
-                    @if (( $npo_info->member4 ) != "")
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info4->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info4->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member4 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member4_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member4_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    
-                    {{-- ５人目 --}}
-                    @if (( $npo_info->member5 ) != "")
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info5->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info5->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member5 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member5_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member5_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    
-                    {{-- 6人目 --}}
-                    @if (( $npo_info->member6 ) != "")
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info6->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info6->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member6 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member6_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member6_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    
-                    {{-- 7人目 --}}
-                    @if (( $npo_info->member7 ) != "")
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info7->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info7->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member7 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member7_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member7_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    
-                    {{-- 8人目 --}}
-                    @if (( $npo_info->member8 ) != "")
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info8->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info8->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member8 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member8_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member8_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    
-                    {{-- 9人目 --}}
-                    @if (( $npo_info->member9 ) != "")
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info9->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info9->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member9 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member9_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member9_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
-                    
-                    {{-- 10人目 --}}
-                    @if (( $npo_info->member10 ) != "")
-                    <div class="col-md-6">
-                        <div class="card card-profile card-plain">
-                            <div class="row">
-                                {{-- 画像 --}}
-                                <div class="col-md-5">
-                                    <div class="card-img-top">
-                                        <a href="#pablo">
-                                            @if($personal_info10->image_id)
-                                            <img class="img" src="{{ url('/') }}/../images/{{$personal_info10->image_id}}"/>
-                                            @else
-                                            <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
-                                            @endif
-                                        </a>
-                                    </div>
-                                </div>
-                                {{-- 詳細 --}}
-                                <div class="col-md-7">
-                                    <div class="card-body text-left">
-                                        <h4 class="card-title">{{ $npo_info->member10 }}</h4>
-                                        <h6 class="card-category">{{ $npo_info->member10_pos }}</h6>
-                                        <p class="card-description">
-                                            {{ $npo_info->member10_detail }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endif
+                        @endif
+                    @endfor
                 </div>
             </div>
         </div>
