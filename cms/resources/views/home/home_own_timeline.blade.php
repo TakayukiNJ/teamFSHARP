@@ -12,15 +12,16 @@
             <div class="row">
                 <div class="profile-picture">
                     <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <div class="fileinput-new img-no-padding">
-                            {{--
-                            <!--@ if (!$image_id)-->
-                              <!--<IMG id='own_image' src='/img/contents/user-default.png' style="width:150px">-->
-                            <!--@ else-->
-                              <!--<IMG id='own_image' style="width:200px">-->
-                            <!--@ endif-->
-                            --}}
-                            <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                        <div class="fileinput-new img-no-padding text-center">
+                            @if($personal_info)
+                                @if($personal_info->image_id)
+                                    <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}">
+                                @else
+                                    <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                @endif
+                            @else
+                                <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                            @endif
                         </div>
                         <div class="name">
                             <h4 class="title text-center">{{ Auth::user()->name }}<br /><small>{{ Auth::user()->email }}</small></h4>
