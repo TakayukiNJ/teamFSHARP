@@ -194,6 +194,7 @@ class HomeController extends Controller
     public function home_register_update(Request $request)
     {
         $rules = [
+            'image_id' => 'image',
 	        'post_up' => 'integer',
 	        'home_tel' => 'integer',
             'bank_account_number' => 'digits:7',
@@ -206,6 +207,7 @@ class HomeController extends Controller
         $npo_auth  = Auth::user()->npo;
         $this->middleware('auth');
         
+        $image_file            = $request->file('image_id');
         $user_name_sei_kanji   = $request->input('user_name_sei_kanji');
         $user_name_mei_kanji   = $request->input('user_name_mei_kanji');
         $user_name_sei_kana    = $request->input('user_name_sei_kana');
@@ -223,6 +225,17 @@ class HomeController extends Controller
         $bank_account_name     = $request->input('bank_account_name');
         $now                   = new Carbon(Carbon::now());
         
+        // 画像が空かチェック
+        if(!empty($image_file)){
+            // 画像の名前を取得
+            $image_id = $name_auth."_".$image_file->getClientOriginalName();
+            // 画像をpublicの中に保存
+            $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
+        }else{
+            $image_id = "";
+        }
+        
+        
         // NPOの名前をヘッダーに表示
 		if(!$npo_auth){
             Auth::user()->where('id', $id_auth)->update([
@@ -231,10 +244,11 @@ class HomeController extends Controller
         }
         
         // 個人情報データを取ってくる
-        $currentPersonalInfo = \DB::table('personal_info')->where('user_id', $user_auth)->first();
-        if($currentPersonalInfo != null){
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        if(!empty($data['personal_info'])){
             // データがすでにあったら更新
             \DB::table('personal_info')->where('user_id', $user_auth)->update([
+                'image_id'              => $image_id,
                 'user_name_sei_kanji'   => $user_name_sei_kanji,
                 'user_name_mei_kanji'   => $user_name_mei_kanji,
                 'user_name_sei_kana'    => $user_name_sei_kana,
@@ -256,6 +270,7 @@ class HomeController extends Controller
 		}else{
 		    // データが無ければ新しく作成
 		    \DB::table('personal_info')->insert([
+                'image_id'              => $image_id,
 		        'user_id'               => $user_auth,
                 'user_name_sei_kanji'   => $user_name_sei_kanji,
                 'user_name_mei_kanji'   => $user_name_mei_kanji,
@@ -278,7 +293,9 @@ class HomeController extends Controller
             ]);
 		}
 		
-        return back()->with('message', '更新完了しました。');
+        return back()
+            ->with('image_id', $image_id)
+            ->with('message', '更新完了しました。');
     }
     // 自己紹介登録確認画面
     public function home_register_confirm(Request $request)
@@ -416,10 +433,16 @@ class HomeController extends Controller
     // ホーム画面自分のタイムライン
     public function home_own_timeline(Request $request)
     {
-        $name     = Auth::user()->name;
         $id       = Auth::user()->id;
+        $name     = Auth::user()->name;
         $email    = Auth::user()->email;
         $auth_npo = Auth::user()->npo;
+        
+        $data['npo_info_personal'] = [];
+        $data['npo_info_enterprise'] = [];
+        
+        // ユーザーがアカウント設定をしていたら取得
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $email)->first(); 
         
         // 新着情報を取得
         $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     

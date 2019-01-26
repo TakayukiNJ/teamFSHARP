@@ -397,7 +397,7 @@
                                     <div class="card-img-top">
                                         <a href="#pablo">
                                             @if($personal_info1)
-                                                <img class="img" src="{{ url('/') }}/../{{ !$personal_info1->image_id ? 'img/placeholder.jpg' : 'images/'.$personal_info1->image_id}}"/>
+                                                <img class="img" src="{{ !$personal_info1->image_id ? 'img/placeholder.jpg' : '/img/personal_info/$personal_info1->image_id}}'"/>
                                             @else
                                             <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
                                             @endif

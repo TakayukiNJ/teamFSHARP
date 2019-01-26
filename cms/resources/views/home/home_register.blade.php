@@ -9,23 +9,20 @@
     </div>
     <div class="profile-content section">
         <div class="container">
-            <form name="changeform" method="POST" action="{{ url('/home/home_register_update') }}">
+            <form enctype="multipart/form-data" name="changeform" method="POST" action="{{ url('/home/home_register_update') }}">
                 <div class="row">
                     <div class="profile-picture">
-    					<div class="fileinput fileinput-new" data-provides="fileinput">
+    					<div class="fileinput fileinput-new" data-provides="fileinput" name="image_id">
                             <div class="fileinput-new img-no-padding">
-                                {{--
-                                <!--@ if (!$image_id)-->
-                                  <!--<IMG id='own_image' src='/img/contents/user-default.png' style="width:150px">-->
-                                <!--@ else-->
-                                  <!--<IMG id='own_image' style="width:200px">-->
-                                <!--@ endif-->
-                                --}}
-                                <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                @if($image_id)
+                                    <img src='/img/personal_info/{{ $image_id }}' alt="{{ Auth::user()->name }}">
+                                @else
+                                    <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                @endif
                             </div>
                             <div class="fileinput-preview fileinput-exists img-no-padding"></div>
                             <div class="text-center">
-                                <span class="btn btn-outline-default btn-file btn-round"><span class="fileinput-new">画像変更</span><span class="fileinput-exists">変更</span><input type="file" name="..."></span>
+                                <span class="btn btn-outline-default btn-file btn-round"><span class="fileinput-new">画像変更</span><span class="fileinput-exists">変更</span><input type="file" name="image_id"></span>
                                 <br />
                                 <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> キャンセル</a>
                             </div>
