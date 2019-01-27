@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Image;
 
 class HomeController extends Controller
 {
@@ -228,13 +229,15 @@ class HomeController extends Controller
         // 画像が空かチェック
         if(!empty($image_file)){
             // 画像の名前を取得
-            $image_id = $name_auth."_".$image_file->getClientOriginalName();
+            $image_id = time()."_".$image_file->getClientOriginalName();
             // 画像をpublicの中に保存
-            $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
+            // dd($resize_file);
+            Image::make($image_file)->resize(300, 300)->save( './img/personal_info//' . $image_id );
+            
+            // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
         }else{
             $image_id = "";
         }
-        
         
         // NPOの名前をヘッダーに表示
 		if(!$npo_auth){
