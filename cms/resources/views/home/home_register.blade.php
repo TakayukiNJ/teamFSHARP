@@ -173,7 +173,7 @@
                             {{-- 口座番号(7桁) --}}
                             <div class="form-group @if($errors->has('bank_account_number')) has-error @endif">
                                 <label for="bank_account_number-field">口座番号(7桁)</label>
-                                <input type="text" id="bank_account_number-field" name="bank_account_number" class="form-control border-input" placeholder="かぶしきがいしゃえふしゃーぷ" value="{{ is_null(old("bank_account_number")) ? $bank_account_number : old("bank_account_number") }}"/>
+                                <input type="text" id="bank_account_number-field" name="bank_account_number" class="form-control border-input" placeholder="1234567" value="{{ is_null(old("bank_account_number")) ? $bank_account_number : old("bank_account_number") }}"/>
                                 @if($errors->has("bank_account_number"))
                                    <span class="help-block form-control-feedback">{{ $errors->first("bank_account_number") }}</span>
                                 @endif
@@ -181,7 +181,7 @@
                             {{-- 口座種別 --}}
                             <div class="form-group @if($errors->has('bank_type_account')) has-error @endif">
                                 <label for="bank_type_account-field">口座種別</label>
-                                <input type="text" id="bank_type_account-field" name="bank_type_account" class="form-control border-input" placeholder="1234567" value="{{ is_null(old("bank_type_account")) ? $bank_type_account : old("bank_type_account") }}"/>
+                                <input type="text" id="bank_type_account-field" name="bank_type_account" class="form-control border-input" placeholder="普通預金" value="{{ is_null(old("bank_type_account")) ? $bank_type_account : old("bank_type_account") }}"/>
                                 @if($errors->has("bank_type_account"))
                                    <span class="help-block form-control-feedback">{{ $errors->first("bank_type_account") }}</span>
                                 @endif
@@ -318,7 +318,6 @@
                         </div>
                     <div class="well well-sm">
                         <button type="button" class="btn btn-primary" onClick="C03_run()">　確　認　</button>
-                        <a class="btn btn-link pull-right" onClick="history.back()"><i class="glyphicon glyphicon-backward"></i> 戻る</a>
                     </div>
                     {{ csrf_field() }}
                 </form>
@@ -328,6 +327,12 @@
                 </div>
             </form>
         </div>
+            <br>
+            <div class="text-center">
+                <span class="btn btn-outline-default btn-round text-center">
+                    <a onClick="history.back()">戻る</a>
+                </span>
+            </div>
     </div>
 </div>
 
