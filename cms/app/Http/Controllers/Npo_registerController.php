@@ -10,6 +10,7 @@ use App\Npo_register;
 use App;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
+use Image;
 
 class Npo_registerController extends Controller {
     
@@ -281,7 +282,11 @@ class Npo_registerController extends Controller {
         	$currentPersonalInfo = "";
             if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
-            	$data['personal_info'][$i] = $currentPersonalInfo->image_id;
+            	if($currentPersonalInfo){
+            	    $data['personal_info'][$i] = $currentPersonalInfo->image_id;
+            	}else{
+            	    $data['personal_info'][$i] = "";
+            	}
             }else{
                 $data['personal_info'][$i] = "";
             }
@@ -341,6 +346,8 @@ class Npo_registerController extends Controller {
     	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                 'support_contents_detail_pratinum' => 'active_url',
                 'npo_name'                => 'alpha_dash',
+                'avater'                  => 'image',
+                'background_pic'          => 'image',
     		];
 		}else{
     		if($npo_register->proval < 1){
@@ -356,6 +363,8 @@ class Npo_registerController extends Controller {
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                     'support_contents_detail_pratinum' => 'active_url',
                     'npo_name'                => 'unique:npo_registers|alpha_dash',
+                    'avater'                  => 'image',
+                    'background_pic'          => 'image',
         		];
     		}else{
     		    $rules = [
@@ -370,6 +379,8 @@ class Npo_registerController extends Controller {
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                     'support_contents_detail_pratinum' => 'active_url',
                     'npo_name'                => 'unique:npo_registers|required | alpha_dash',
+                    'avater'                  => 'image',
+                    'background_pic'          => 'image',
         	    ];
         	}
 		}
@@ -378,6 +389,40 @@ class Npo_registerController extends Controller {
 		if($npo_register->npo_name){
 		    $npo_register->published = new Carbon(Carbon::now());
 		}
+		
+		// 画像に関して(1月28日追加)
+        $avater_file     = $request->file('avater');
+        // 画像が空かチェック
+        if(!empty($avater_file)){
+            // 画像の名前を取得
+            $avater = time()."_".$avater_file->getClientOriginalName();
+            // 画像をpublicの中に保存
+            Image::make($avater_file)->resize(300, 300)->save( './img/project_logo/' . $avater );
+            // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
+            $npo_register->avater = $avater; 
+        }else{
+            $avater = "";
+        }
+        
+        $background_file = $request->file('background_pic');
+        // 画像が空かチェック
+        if(!empty($background_file)){
+            // 画像の名前を取得
+            $background_pic = time()."_".$background_file->getClientOriginalName();
+            // 画像をpublicの中に保存
+            Image::make($background_file)->save( './img/project_back/' . $background_pic );
+            // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
+            $npo_register->background_pic = $background_pic; 
+        }else{
+            $background_pic = "";
+        }
+        
+		$npo_register->sdgs1 = $request->input("sdgs1");
+		$npo_register->sdgs2 = $request->input("sdgs2");
+		$npo_register->sdgs3 = $request->input("sdgs3");
+		$npo_register->sdgs4 = $request->input("sdgs4");
+		$npo_register->sdgs5 = $request->input("sdgs5");
+		$npo_register->sdgs6 = $request->input("sdgs6");
 		
 		$npo_register->title             = $request->input("title"); // npo name
         $npo_register->subtitle          = $request->input("subtitle"); //project name
@@ -399,7 +444,6 @@ class Npo_registerController extends Controller {
             $member_facebook  = $member."_facebook";
             $member_linkedin  = $member."_linkedin";
             $currentUserInfo  = \DB::table('users')->where('name', $request->input($member))->first();
-            // dd($currentUserInfo);
             // 一旦なしで。後々は、メールアドレスでメッセージを送って承認の流れでバリデーションかけたい。(2019年1月21日)
             if($currentUserInfo){
                 if($currentUserInfo->name == $request->input($member)){
@@ -555,6 +599,9 @@ class Npo_registerController extends Controller {
         $token = $_POST['stripeToken'];
         // Create a charge: this will charge the user's card
         $the_price = floor(($currentNpoInfo->support_amount+258)*1.046);
+        // $total = $currentNpoInfo->support_amount*1.0375;
+        // $tax   = ($total-$currentNpoInfo->support_amount)*1.08;
+        // $the_price = floor($total);
         try {
             $customer = \Stripe\Customer::create(array(
                 'email' => $user_request_email
@@ -711,7 +758,9 @@ class Npo_registerController extends Controller {
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
         // Create a charge: this will charge the user's card
-        $the_price = floor(($currentNpoInfo->support_price_pratinum+258)*1.046);
+        // $the_price = floor(($currentNpoInfo->support_price_pratinum+258)*1.046);
+        
+        $the_price = floor(($currentNpoInfo->support_price_pratinum)*1.037345);
         try {
             $charge = \Stripe\Charge::create(array(
                 "amount"      => $the_price, // 課金額はココで調整

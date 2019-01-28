@@ -35,7 +35,7 @@
                     <div class="form-group @if($errors->has('description')) has-error @endif">
                         <label for="description-field">自己紹介（説明）文</label>
 						<textarea id="description-field" name="description" class="form-control textarea-limited" placeholder="紹介文の文字数は150字までです。" rows="6", maxlength="150">{{ is_null(old("description")) ? $description : old("description") }}</textarea>
-						<h5><small><span id="textarea-limited-message" class="pull-right">150 characters left</span></small></h5>
+						<h5><small><span id="textarea-limited-message" class="pull-right">残り150文字</span></small></h5>
 						@if($errors->has("description"))
                            <span class="help-block form-control-feedback">{{ $errors->first("description") }}</span>
                         @endif
