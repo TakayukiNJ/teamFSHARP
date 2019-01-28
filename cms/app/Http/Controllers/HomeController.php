@@ -226,19 +226,6 @@ class HomeController extends Controller
         $bank_account_name     = $request->input('bank_account_name');
         $now                   = new Carbon(Carbon::now());
         
-        // 画像が空かチェック
-        if(!empty($image_file)){
-            // 画像の名前を取得
-            $image_id = time()."_".$image_file->getClientOriginalName();
-            // 画像をpublicの中に保存
-            // dd($resize_file);
-            Image::make($image_file)->resize(300, 300)->save( './img/personal_info//' . $image_id );
-            
-            // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
-        }else{
-            $image_id = "";
-        }
-        
         // NPOの名前をヘッダーに表示
 		if(!$npo_auth){
             Auth::user()->where('id', $id_auth)->update([
@@ -248,10 +235,51 @@ class HomeController extends Controller
         
         // 個人情報データを取ってくる
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        $image_id = "";
+        // 画像が空かチェック
+        if(!empty($image_file)){
+            // 画像の名前を取得
+            $image_id = time()."_".$image_file->getClientOriginalName();
+            // 画像をpublicの中に保存
+            // dd($resize_file);
+            Image::make($image_file)->resize(300, 300)->save( './img/personal_info/' . $image_id );
+            // 画像が入ってた時だけ最初に処理をしてしまう。
+            if(!empty($data['personal_info'])){
+                \DB::table('personal_info')->where('user_id', $user_auth)->update(['image_id' => $image_id]);
+            }else{
+                \DB::table('personal_info')->insert([
+                    'image_id'              => $image_id,
+    		        'user_id'               => $user_auth,
+                    'user_name_sei_kanji'   => $user_name_sei_kanji,
+                    'user_name_mei_kanji'   => $user_name_mei_kanji,
+                    'user_name_sei_kana'    => $user_name_sei_kana,
+                    'user_name_mei_kana'    => $user_name_mei_kana,
+                    'company_name'          => $company_name,
+                    'company_profile_title' => $company_profile_title,
+                    'description'           => $description,
+                    'post_up'               => $post_up,
+                    'address_1'             => $address_1,
+                    'home_tel'              => $home_tel,
+                    'bank_name'             => $bank_name,
+                    'bank_branch'           => $bank_branch,
+                    'bank_type_account'     => $bank_type_account,
+                    'bank_account_number'   => $bank_account_number,
+                    'bank_account_name'     => $bank_account_name,
+                    'delflg'                => 0,
+                    'created_at'            => $now,
+                    'updated_at'            => $now
+                ]);
+                return back()
+                    ->with('image_id', $image_id)
+                    ->with('message', '更新完了しました。');
+            }
+            // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
+        }
+        
+        
         if(!empty($data['personal_info'])){
             // データがすでにあったら更新
             \DB::table('personal_info')->where('user_id', $user_auth)->update([
-                'image_id'              => $image_id,
                 'user_name_sei_kanji'   => $user_name_sei_kanji,
                 'user_name_mei_kanji'   => $user_name_mei_kanji,
                 'user_name_sei_kana'    => $user_name_sei_kana,

@@ -9,7 +9,11 @@
         {{--     *********    HEADERS     *********      --}}
         <div class="cd-section" id="headers">
             <!-- <div class="page-header" style="background-image: linear-gradient(red, yellow, green);"> -->
+            @if($npo_info->background_pic)
+            <div class="page-header" style="background-image: url('/img/project_back/{{ $npo_info->background_pic }}');">
+            @else
             <div class="page-header" style="background-image: url('https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=');">
+            @endif
                 <div class="filter"></div>
                 <div class="content-center">
                     <div class="container">
@@ -25,13 +29,17 @@
                             @else
                             <div class="col-md-12 ml-auto">
                             @endif
-                                <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}</h2>
+                                <h2 class="title">
+                                    @if($npo_info->avater)
+                                    <img src="{{ url('/') }}/img/project_logo/{{$npo_info->avater}}" class="img-thumbnail img-no-padding img-responsive" alt="Rounded Image" width="64" height="64">
+                                    @endif
+                                    {!! nl2br(e(trans($npo_info->subtitle))) !!}
+                                    </h2>
                                 <h5 class="description">{!! nl2br(e(trans($npo_info->title))) !!}</h5>
                                 <br>
-                                @if(( $npo_info->support_price ) != 0)
                                 <div>
-                                    <a href="#support" class="btn btn-danger">
-                                        支援する
+                                    <a onClick="history.back()" class="btn btn-default">
+                                        戻る
                                     </a>
                                     @if(( $npo_info->proval ) > 0)
                                     <a href="{{ url('/') }}/{{ $npo_info->npo_name }}" class="btn btn-success">
@@ -52,55 +60,17 @@
                                     </div>
                                 </div>
                                 <br>
-                                <!--<div class="progress">-->
-                                <!--    <div class="progress-bar progress-bar-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>-->
-                                <!--</div>-->
-                                <!--<br/>-->
-                                <!--<div class="progress">-->
-                                <!--    <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>-->
-                                <!--</div>-->
-                                <!--<br/>-->
-                                <!--<div class="progress">-->
-                                <!--    <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>-->
-                                <!--    <div class="progress-bar progress-bar-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>-->
-                                <!--    <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>-->
-                                <!--</div>-->
-                                <!--<br>-->
-                                @endif
+                                {{-- SDGs --}}
+                                <div class="avatar">
+                                    <br>
+                                    @for ($i = 1; $i < 7; $i++)
+                                        <?php $sdgs = "sdgs".$i ?>
+                                        @if($npo_info->$sdgs)
+                                        <img src="{{ url('/') }}/img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                        @endif
+                                    @endfor
+                                </div>
                                 
-                                @if(( $npo_info->support_price ) == 0)
-                                <a href="https://twitter.com/intent/tweet?text={!! $npo_info->subtitle !!} {!! $npo_info->title !!}の支援のために。ひとりでも多くの方に広めてください♪%20-%20FSHARP%20%20https://fsharp.me/{{ $npo_info->npo_name }}" class="btn btn-round btn-twitter">
-                                    <!--<i class="twitter-share-button" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" aria-hidden="true" data-text="{{ $npo_info->subtitle }} {{ $npo_info->title }}の支援のために。ひとりでも多くの方に広めてください♪%20-%20F#%20%20https://fsharp.me/{{ $npo_info->npo_name }}" data-show-count="true" data-dnt="true"></i>Tweet-->
-                                    <i class="fa fa-twitter" aria-hidden="true"></i> Tweet 
-                                </a>
-                                <!--<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook">-->
-                                    
-                                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me/{{ $npo_info->npo_name }}%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook" data-layout="button_count">
-                                    <i class="fb-share-button" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-size="small" data-mobile-iframe="true" aria-hidden="true"></i>
-                                <!-- シェアボタンこみ -->
-                                <!--<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook">-->
-                                <!--    <i class="fb-like" data-href="https://fsharp/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></i>-->
-                                </a>
-                                
-                                
-                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                                @endif
-                                
-                                
-                                <script>(function(d, s, id) {
-                                  var js, fjs = d.getElementsByTagName(s)[0];
-                                  if (d.getElementById(id)) return;
-                                  js = d.createElement(s); js.id = id;
-                                  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1545608625538119&autoLogAppEvents=1';
-                                  fjs.parentNode.insertBefore(js, fjs);
-                                }(document, 'script', 'facebook-jssdk'));</script>
-                                
-                                <!--<a class="fb-xfbml-parse-ignore">-->
-                                
-                                
-                                <!--<a href="" class="btn btn-round btn-facebook">-->
-                                <!--    <i class="fa fa-facebook" aria-hidden="true"></i> Share &middot; 1-->
-                                <!--</a>-->
                             </div>
                         </div>
                     </div>
@@ -285,42 +255,71 @@
                 </div>
             </div>
         </div>
-     {{--     *********    TEAM     *********      --}}
+     {{--     *********    ３cards     *********      --}}
     <div class="nav-tabs-navigation">
     </div>
     <div id="my-tab-content" class="tab-content text-center section-white">
+        
         <div class="cd-section section-white" id="intro-cards">
             <div class="container">
                 <div class="row coloured-cards">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card card-just-text" data-background="color" data-color="blue">
-                            <div class="card-body">
-                                <h6 class="card-category">{{ $npo_info->blue_card_title }}</h6>
-                                <p class="card-description">
-                                    {!! nl2br(e(trans($npo_info->blue_card_body))) !!} 
-                                </p>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card card-blog">
+    							<div class="card-image">
+    							    @if($npo_info->code1)
+    								{{--<a href="#pablo">--}}
+    									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+    								{{--</a>--}}
+    								@endif
+                                </div>
+    							<div class="card-body text-center">
+                                    <h4 class="card-title">
+                                        {{ $npo_info->blue_card_title }}
+                                    </h4>
+                                    <div class="card-description">
+                                        {!! nl2br(e(trans($npo_info->blue_card_body))) !!}
+                                    </div>
+    							</div>
+    						</div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card card-just-text" data-background="color" data-color="green">
-                            <div class="card-body">
-                                <h6 class="card-category">{{ $npo_info->green_card_title }}</h6>
-                                <p class="card-description">
-                                    {!! nl2br(e(trans($npo_info->green_card_body))) !!} 
-                                </p>
-                            </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card card-blog">
+    							<div class="card-image">
+    							    @if($npo_info->code2)
+    								{{--<a href="#pablo">--}}
+    									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+    								{{--</a>--}}
+    							    @endif
+                                </div>
+    							<div class="card-body text-center">
+                                    <h4 class="card-title">
+                                        {{ $npo_info->green_card_title }}
+                                    </h4>
+                                    <div class="card-description">
+                                        {!! nl2br(e(trans($npo_info->green_card_body))) !!}
+                                    </div>
+    							</div>
+    						</div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card card-just-text" data-background="color" data-color="yellow">
-                            <div class="card-body">
-                                <h6 class="card-category">{{ $npo_info->yellow_card_title }}</h6>
-                                {{-- <h4 class="card-title"><a href="#paper-kit">Yellow Card</a></h4> --}}
-                                <p class="card-description"> 
-                                    {!! nl2br(e(trans($npo_info->yellow_card_body))) !!} 
-                                </p>
-                            </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card card-blog">
+    							<div class="card-image">
+    							    @if($npo_info->code3)
+    								{{--<a href="#pablo">--}}
+									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+    								{{--</a>--}}
+    								@endif
+                                </div>
+    							<div class="card-body text-center">
+                                    <h4 class="card-title">
+                                        {{ $npo_info->yellow_card_title }}
+                                    </h4>
+                                    <div class="card-description">
+                                        {!! nl2br(e(trans($npo_info->yellow_card_body))) !!}
+                                    </div>
+    							</div>
+    						</div>
                         </div>
                     </div>
                 </div>
@@ -372,6 +371,7 @@
             </div>
         </div>
     </div>
+    {{--
     <div class="section section-gray">
         <div class="container">
             <div class="row">
@@ -409,6 +409,7 @@
             </div>
         </div>
     </div>
+    --}}
 </div>
 @endsection
 @include('layouts.footer')
