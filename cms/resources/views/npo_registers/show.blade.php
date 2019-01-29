@@ -52,13 +52,13 @@
                                     @endif
                                 </div>
                                 <br>
-                                <h6>目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）</h6>
-                                <h6>現在：{{$currency_data}}円 ／ 寄付数：{{$npo_info->buyer}}</h6>
+                                <h6>目標金額：{{$npo_info->support_price}}円</h6>
+                                <h6>現在：{{$npo_info->follower}}円 ／ 寄付数：{{$npo_info->buyer}}</h6>
                                 <br>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{$parcentage}}%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
-                                    </div>
-                                </div>
+                                <!--<div class="progress">-->
+                                <!--    <div class="progress-bar progress-bar-success" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">-->
+                                <!--    </div>-->
+                                <!--</div>-->
                                 <br>
                                 {{-- SDGs --}}
                                 <div class="avatar">
@@ -269,7 +269,7 @@
     							<div class="card-image">
     							    @if($npo_info->code1)
     								{{--<a href="#pablo">--}}
-    									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+    									<img class="img" src="{{ url('/') }}/img/project_code//{{$npo_info->code1}}">
     								{{--</a>--}}
     								@endif
                                 </div>
@@ -288,7 +288,7 @@
     							<div class="card-image">
     							    @if($npo_info->code2)
     								{{--<a href="#pablo">--}}
-    									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+    									<img class="img" src="{{ url('/') }}/img/project_code//{{$npo_info->code2}}">
     								{{--</a>--}}
     							    @endif
                                 </div>
@@ -307,7 +307,7 @@
     							<div class="card-image">
     							    @if($npo_info->code3)
     								{{--<a href="#pablo">--}}
-									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+    									<img class="img" src="{{ url('/') }}/img/project_code//{{$npo_info->code3}}">
     								{{--</a>--}}
     								@endif
                                 </div>
