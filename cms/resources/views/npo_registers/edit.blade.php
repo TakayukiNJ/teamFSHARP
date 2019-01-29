@@ -6,6 +6,8 @@
     @include('error')
     
 <form enctype="multipart/form-data" action="{{ route('npo_registers.update', $npo_info->id) }}" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div id="description-areas">
         {{--     *********    HEADERS     *********      --}}
         <div class="cd-section" id="headers">
@@ -52,7 +54,7 @@
                                 </div>
                                 <div class="form-group @if($errors->has('embed_youtube')) has-error @endif">
                                    <label for="embed_youtube-field">Embed YouTube(トップに載せるYouTube) https://www.youtube.com/watch?v=〇〇〇〇〇〇〇〇の部分</label>
-                                <input type="text" id="url-field" name="embed_youtube" class="form-control text-center" value="{{ is_null(old("embed_youtube")) ? $npo_info->embed_youtube : old("embed_youtube") }}"/>
+                                <input type="text" id="embed_youtube-field" name="embed_youtube" class="form-control text-center" value="{{ is_null(old("embed_youtube")) ? $npo_info->embed_youtube : old("embed_youtube") }}"/>
                                    @if($errors->has("embed_youtube"))
                                     <span class="help-block">{{ $errors->first("embed_youtube") }}</span>
                                    @endif
@@ -82,49 +84,12 @@
                             <span class="btn btn-outline-default btn-round btn-file"><span class="fileinput-new">背景画像変更</span><span class="fileinput-exists">Change</span><input type="file" name="background_pic"></span>
                             <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                         </div>
-                    </div>
-                    <div class="profile-picture text-center">
-    					<div class="fileinput fileinput-new" data-provides="fileinput" name="avater">
-                            <div class="fileinput-new img-no-padding">
-                                @if($npo_info->avater)
-                                    <img src='/img/project_logo/{{ $npo_info->avater }}' alt="{{ Auth::user()->name }}">
-                                @else
-                                    <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
-                                @endif
-                            </div>
-                            <div class="fileinput-preview fileinput-exists img-no-padding"></div>
-                            <div class="text-center">
-                                <span class="btn btn-outline-default btn-file btn-round"><span class="fileinput-new">ロゴ画像変更</span><span class="fileinput-exists">変更</span><input type="file" name="avater"></span>
-                                <br />
-                                <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> キャンセル</a>
-                            </div>
-                        </div>
-                    </div>
-
-     <!--               <h6>Format <span class="icon-danger">*</span></h6>-->
-					<!--<div class="form-check-radio">-->
-     <!--                   <label class="form-check-label">-->
-     <!--                       <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >-->
-     <!--                       Digital-->
-     <!--                       <span class="form-check-sign"></span>-->
-     <!--                   </label>-->
-     <!--               </div>-->
-     <!--               <div class="form-check-radio">-->
-     <!--                   <label class="form-check-label">-->
-     <!--                       <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>-->
-     <!--                       Print-->
-     <!--                       <span class="form-check-sign"></span>-->
-     <!--                   </label>-->
-     <!--               </div>-->
-
-                </div>
-
-                <div class="col-md-7 col-sm-7">
                     <br>
+                    </div>
                     <div class="row price-row text-center">
                         <br>
                         @for ($i = 1; $i < 7; $i++)
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group @if($errors->has('sdgs'.$i)) has-error @endif">
                                 <select class="selectpicker" data-style="btn btn-outline-default btn-round" name="sdgs{{$i}}">
                                     <?php $sdgs = "sdgs".$i ?>
@@ -153,6 +118,46 @@
                         </div>
                         @endfor
                     </div>
+         <!--           <div class="text-center">-->
+    					<!--<div class="fileinput fileinput-new" data-provides="fileinput" name="avater">-->
+         <!--                   <div class="fileinput-new img-no-padding" >-->
+         <!--                       @if($npo_info->avater)-->
+         <!--                           <img src='/img/project_logo/{{ $npo_info->avater }}' alt="{{ Auth::user()->name }}">-->
+         <!--                       @else-->
+         <!--                           <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">-->
+         <!--                       @endif-->
+         <!--                   </div>-->
+         <!--                   <div class="fileinput-preview fileinput-exists img-no-padding"></div>-->
+         <!--                   <div class="text-center">-->
+         <!--                       <br>-->
+         <!--                       <span class="btn btn-outline-default btn-file btn-round"><span class="fileinput-new">ロゴ画像変更</span><span class="fileinput-exists">変更</span><input type="file" name="avater"></span>-->
+         <!--                       <br>-->
+         <!--                       <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> キャンセル</a>-->
+         <!--                   </div>-->
+         <!--               </div>-->
+         <!--           </div>-->
+
+     <!--               <h6>Format <span class="icon-danger">*</span></h6>-->
+					<!--<div class="form-check-radio">-->
+     <!--                   <label class="form-check-label">-->
+     <!--                       <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >-->
+     <!--                       Digital-->
+     <!--                       <span class="form-check-sign"></span>-->
+     <!--                   </label>-->
+     <!--               </div>-->
+     <!--               <div class="form-check-radio">-->
+     <!--                   <label class="form-check-label">-->
+     <!--                       <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>-->
+     <!--                       Print-->
+     <!--                       <span class="form-check-sign"></span>-->
+     <!--                   </label>-->
+     <!--               </div>-->
+     
+
+                </div>
+
+                <div class="col-md-7 col-sm-7">
+                    <br>
                     <!-- FsharpのURL -->
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
                         <label for="npo_name-field">バッジの名前（https://fsharp.me/〇〇〇〇の〇部分に使用。設定後変更不可）</label>
@@ -161,43 +166,62 @@
                         <span class="help-block">この{{ $errors->first("npo_name") }}バッジはすでに使われております。</span>
                         @endif
                     </div>
-                    <div class="form-group">
-                        <h6>Name <span class="icon-danger">*</span></h6>
-                        <input type="text" class="form-control border-input" placeholder="enter the product name here...">
+                    
+                    {{-- 資金の使い道 --}}
+                    <div class="form-group @if($errors->has('support_purpose')) has-error @endif">
+                       <h6 for="support_purpose-field">資金の使い道</h6>
+                    <input type="text" id="support_purpose-field" name="support_purpose" class="form-control" value="{{ is_null(old("support_purpose")) ? $npo_info->support_purpose : old("support_purpose") }}"/>
+                       @if($errors->has("support_purpose"))
+                        <span class="help-block">{{ $errors->first("support_purpose") }}</span>
+                       @endif
                     </div>
-                    <div class="form-group">
-                        <h6>Tagline <span class="icon-danger">*</span></h6>
-                        <input type="text" class="form-control border-input" placeholder="enter the product tagline here...">
+                    <!-- リターン -->
+                    <div class="form-group @if($errors->has('support_contents')) has-error @endif">
+                       <h6 for="support_contents-field">バッジ購入者へのリターン（無しでも可能）</h6>
+                    <input type="text" id="support_contents-field" name="support_contents" class="form-control" value="{{ is_null(old("support_contents")) ? $npo_info->support_contents : old("support_contents") }}"/>
+                       @if($errors->has("support_contents"))
+                        <span class="help-block">{{ $errors->first("support_contents") }}</span>
+                       @endif
                     </div>
+                    <!-- 特典利用期限 -->
+                    
+                    
                     <div class="row price-row">
                         <div class="col-md-6">
-                            <h6>Price <span class="icon-danger">*</span></h6>
-                            <div class="input-group border-input">
-                                <input type="text" value="" placeholder="enter price" class="form-control border-input">
-                                <span class="input-group-addon"><i class="fa fa-euro"></i></span>
+                            <h6>バッジの値段 <span class="icon-danger">*</span>（公開後変更不可）</h6>
+                            <div class="input-group border-input form-group  @if($errors->has('support_amount')) has-error @endif">
+                                <span class="input-group-addon"><i class="fa fa-yen"></i></span>
+                                <input type="text" id="support_amount-field" name="support_amount" placeholder="3,000" class="form-control border-input" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}>
+                                @if($errors->has("support_amount"))
+                                    <span class="help-block">{{ $errors->first("support_amount") }}</span>
+                                @endif
                             </div>
-
                         </div>
                         <div class="col-md-6">
-                            <h6>Discount</h6>
-                            <div class="input-group border-input">
-                                <input type="text" value="" placeholder="enter discount" class="form-control border-input">
-                                <span class="input-group-addon">%</span>
-                            </div>
+                            <h6 for="support_contents_detail-field">リターン有効期限（なしの場合記入しない）</h6>
+    			            <div class="form-group @if($errors->has('support_contents_detail')) has-error @endif">
+    			                 <div class='input-group date' id='datetimepicker'>
+    			                 <input type='text' id="support_contents_detail-field" class="form-control datetimepicker" name="support_contents_detail" value="{{ is_null(old("support_contents_detail")) ? $npo_info->support_contents_detail : old("support_contents_detail") }}"/>
+    			                    @if($errors->has("support_contents_detail"))
+                                        <span class="help-block">{{ $errors->first("support_contents_detail") }}</span>
+                                    @endif
+    			                    <span class="input-group-addon">
+    			                        <span class="glyphicon glyphicon-calendar"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+    			                    </span>
+    			                </div>
+    			            </div>
+                            
+                            <!--<div class="input-group border-input">-->
+                            <!--    <input type="text" value="" placeholder="enter discount" class="form-control border-input">-->
+                            <!--    <span class="input-group-addon">%</span>-->
+                            <!--</div>-->
                         </div>
                     </div>
                     <div class="form-group">
                         <h6>Description</h6>
-						<textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters." rows="13", maxlength="150" ></textarea>
-                        <h5><small><span id="textarea-limited-message" class="pull-right">150 characters left</span></small></h5>
+						<textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters." rows="10", maxlength="200" ></textarea>
+                        <h5><small><span id="textarea-limited-message" class="pull-right">残り200文字</span></small></h5>
 
-                    </div>
-					<div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="">
-                        	Display on landing page
-                            <span class="form-check-sign"></span>
-                        </label>
                     </div>
                 </div>
             </div>
@@ -380,117 +404,152 @@
                 </div>
             </div>
         </div>--}}
-     {{--     *********    TEAM     *********      --}}
+     {{--     *********    3cards     *********      --}}
     <div class="nav-tabs-navigation">
     </div>
     <div id="my-tab-content" class="tab-content text-center section-white">
         <div class="cd-section section-white" id="intro-cards">
             <div class="container">
                 <div class="row coloured-cards">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card card-just-text" data-background="color" data-color="blue">
-                            <div class="card-body">
-                                <!--<h6 class="card-category">{ { $npo_info->blue_card_title } }</h6>-->
-                                <p class="card-description">
-                                    <!--{! ! nl2br(e(trans($npo_info->blue_card_body))) ! !} -->
-                                </p>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card card-blog">
+    							{{-- 活動1 --}}
+                                <div class="card-image">
+            					    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
+            							    @if($npo_info->code1)
+                                            <img src='/img/project_activities/{{ $npo_info->code1 }}' alt="{{ $npo_info->code1 }}">
+                                            @else
+                                            <img src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" alt="default">
+                                            @endif
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-no-padding"></div>
+                                        <div>
+                                            <span class="btn btn-outline-default btn-round btn-file"><span class="fileinput-new">活動写真（左）</span><span class="fileinput-exists">Change</span><input type="file" name="code1"></span>
+                                            <a href="#" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+    							<div class="card-body text-center">
+                                    <label for="blue_card_title-field">タイトル(左)</label>
+                                    <h4 class="card-title">
+                                        <div class="form-group @if($errors->has('blue_card_title')) has-error @endif">
+                                        <input type="text" id="blue_card_title-field" name="blue_card_title" class="form-control text-center" value="{{ is_null(old("blue_card_title")) ? $npo_info->blue_card_title : old("blue_card_title") }}"/>
+                                           @if($errors->has("blue_card_title"))
+                                            <span class="help-block">{{ $errors->first("blue_card_title") }}</span>
+                                           @endif
+                                        </div>
+                                    </h4>
+                                    <label for="blue_card_body-field">詳細説明</label>
+                                    <div class="card-description">
+                                        <div class="form-group @if($errors->has('blue_card_body')) has-error @endif">
+                                        <textarea class="form-control" id="blue_card_body-field" rows="10" name="blue_card_body">{{ is_null(old("blue_card_body")) ? $npo_info->blue_card_body : old("blue_card_body") }}</textarea>
+                                           @if($errors->has("blue_card_body"))
+                                            <span class="help-block">{{ $errors->first("blue_card_body") }}</span>
+                                           @endif
+                                        </div>
+                                    </div>
+    							</div>
+    						</div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card card-just-text" data-background="color" data-color="green">
-                            <div class="card-body">
-                                <!--<h6 class="card-category">{ { $npo_info->green_card_title } }</h6>-->
-                                <p class="card-description">
-                                    <!--{ !! nl2br(e(trans($npo_info->green_card_body))) !! } -->
-                                </p>
-                            </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card card-blog">
+    							{{-- 活動2 --}}
+                                <div class="card-image">
+            					    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
+            							    @if($npo_info->code2)
+                                            <img src='/img/project_activities/{{ $npo_info->code2 }}' alt="{{ $npo_info->code2 }}">
+                                            @else
+                                            <img src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" alt="default">
+                                            @endif
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-no-padding"></div>
+                                        <div>
+                                            <span class="btn btn-outline-default btn-round btn-file"><span class="fileinput-new">活動写真（中）</span><span class="fileinput-exists">Change</span><input type="file" name="code2"></span>
+                                            <a href="#" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+    							<div class="card-body text-center">
+                                    <label for="green_card_title-field">タイトル(中)</label>
+                                    <h4 class="card-title">
+                                        <div class="form-group @if($errors->has('green_card_title')) has-error @endif">
+                                        <input type="text" id="green_card_title-field" name="green_card_title" class="form-control text-center" value="{{ is_null(old("green_card_title")) ? $npo_info->green_card_title : old("green_card_title") }}"/>
+                                           @if($errors->has("green_card_title"))
+                                            <span class="help-block">{{ $errors->first("green_card_title") }}</span>
+                                           @endif
+                                        </div>
+                                    </h4>
+                                    <label for="green_card_body-field">詳細説明</label>
+                                    <div class="card-description">
+                                        <div class="form-group @if($errors->has('green_card_body')) has-error @endif">
+                                        <textarea class="form-control" id="green_card_body-field" rows="10" name="green_card_body">{{ is_null(old("green_card_body")) ? $npo_info->green_card_body : old("green_card_body") }}</textarea>
+                                           @if($errors->has("green_card_body"))
+                                            <span class="help-block">{{ $errors->first("green_card_body") }}</span>
+                                           @endif
+                                        </div>
+                                    </div>
+    							</div>
+    						</div>
                         </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="card card-just-text" data-background="color" data-color="yellow">
-                            <div class="card-body">
-                                <!--<h6 class="card-category">{ { $npo_info->yellow_card_title } }</h6>-->
-                                {{-- <h4 class="card-title"><a href="#paper-kit">Yellow Card</a></h4> --}}
-                                <p class="card-description"> 
-                                    <!--{ !! nl2br(e(trans($npo_info->yellow_card_body))) !! } -->
-                                </p>
-                            </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card card-blog">
+    							{{-- 活動3 --}}
+                                <div class="card-image">
+            					    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
+            							    @if($npo_info->code3)
+                                            <img src='/img/project_activities/{{ $npo_info->code3 }}' alt="{{ $npo_info->code3 }}">
+                                            @else
+                                            <img src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" alt="default">
+                                            @endif
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-no-padding"></div>
+                                        <div>
+                                            <span class="btn btn-outline-default btn-round btn-file"><span class="fileinput-new">活動写真（右）</span><span class="fileinput-exists">Change</span><input type="file" name="code3"></span>
+                                            <a href="#" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+    							<div class="card-body text-center">
+    							    <label for="yellow_card_title-field">タイトル（右）</label>
+                                    <h4 class="card-title">
+                                        <div class="form-group @if($errors->has('yellow_card_title')) has-error @endif">
+                                        <input type="text" id="yellow_card_title-field" name="yellow_card_title" class="form-control text-center" value="{{ is_null(old("yellow_card_title")) ? $npo_info->yellow_card_title : old("yellow_card_title") }}"/>
+                                           @if($errors->has("yellow_card_title"))
+                                            <span class="help-block">{{ $errors->first("yellow_card_title") }}</span>
+                                           @endif
+                                        </div>
+                                    </h4>
+                                   <label for="yellow_card_body-field">詳細説明</label>
+                                    <div class="card-description">
+                                        <div class="form-group @if($errors->has('yellow_card_body')) has-error @endif">
+                                        <textarea class="form-control" id="yellow_card_body-field" rows="10" name="yellow_card_body">{{ is_null(old("yellow_card_body")) ? $npo_info->yellow_card_body : old("yellow_card_body") }}</textarea>
+                                           @if($errors->has("yellow_card_body"))
+                                            <span class="help-block">{{ $errors->first("yellow_card_body") }}</span>
+                                           @endif
+                                        </div>
+                                    </div>
+    							</div>
+    						</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         {{--     *********    TEAM     *********      --}}
     </div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
-
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-                <input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    {{--
-                    <div class="form-group @if($errors->has('manager')) has-error @endif">
-                       <label for="manager-field">Owner(サイト作成者)</label>
-                    <input type="text" id="manager-field" name="manager" class="form-control" value="{{ is_null(old("manager")) ? $npo_info->manager : old("manager") }}" readonly="readonly"/>
-                       @if($errors->has("manager"))
-                        <span class="help-block">{{ $errors->first("manager") }}</span>
-                       @endif
-                    </div>
-                    --}}
                     <h1><i class="glyphicon glyphicon-edit"></i>3枚のカード</h1>
                     <!-- ブルーカード -->
-                    <div class="form-group @if($errors->has('blue_card_title')) has-error @endif">
-                       <label for="blue_card_title-field">ブルーカード（1枚目）のタイトル</label>
-                    <input type="text" id="blue_card_title-field" name="blue_card_title" class="form-control" value="{{ is_null(old("blue_card_title")) ? $npo_info->blue_card_title : old("blue_card_title") }}"/>
-                       @if($errors->has("blue_card_title"))
-                        <span class="help-block">{{ $errors->first("blue_card_title") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('blue_card_body')) has-error @endif">
-                       <label for="blue_card_body-field">ブルーカード（1枚目）の内容</label>
-                    <textarea class="form-control" id="blue_card_body-field" rows="6" name="blue_card_body">{{ is_null(old("blue_card_body")) ? $npo_info->blue_card_body : old("blue_card_body") }}</textarea>
-                       @if($errors->has("blue_card_body"))
-                        <span class="help-block">{{ $errors->first("blue_card_body") }}</span>
-                       @endif
-                    </div>
                     <!-- グリーンカード -->
-                    <div class="form-group @if($errors->has('green_card_title')) has-error @endif">
-                       <label for="green_card_title-field">グリーンカード（2枚目）のタイトル</label>
-                    <input type="text" id="green_card_title-field" name="green_card_title" class="form-control" value="{{ is_null(old("green_card_title")) ? $npo_info->green_card_title : old("green_card_title") }}"/>
-                       @if($errors->has("green_card_title"))
-                        <span class="help-block">{{ $errors->first("green_card_title") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('green_card_body')) has-error @endif">
-                       <label for="green_card_body-field">グリーンカード（2枚目）の内容</label>
-                    <textarea class="form-control" id="green_card_body-field" rows="6" name="green_card_body">{{ is_null(old("green_card_body")) ? $npo_info->green_card_body : old("green_card_body") }}</textarea>
-                       @if($errors->has("green_card_body"))
-                        <span class="help-block">{{ $errors->first("green_card_body") }}</span>
-                       @endif
-                    </div>
                     <!-- イエローカード -->
-                    <div class="form-group @if($errors->has('yellow_card_title')) has-error @endif">
-                       <label for="yellow_card_title-field">イエローカード（3枚目）のタイトル</label>
-                    <input type="text" id="yellow_card_title-field" name="yellow_card_title" class="form-control" value="{{ is_null(old("yellow_card_title")) ? $npo_info->yellow_card_title : old("yellow_card_title") }}"/>
-                       @if($errors->has("yellow_card_title"))
-                        <span class="help-block">{{ $errors->first("yellow_card_title") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('yellow_card_body')) has-error @endif">
-                       <label for="yellow_card_body-field">イエローカード（3枚目）の内容</label>
-                    <textarea class="form-control" id="yellow_card_body-field" rows="6" name="yellow_card_body">{{ is_null(old("yellow_card_body")) ? $npo_info->yellow_card_body : old("yellow_card_body") }}</textarea>
-                       @if($errors->has("yellow_card_body"))
-                        <span class="help-block">{{ $errors->first("yellow_card_body") }}</span>
-                       @endif
-                    </div>
                     
                     <h1><i class="glyphicon glyphicon-edit"></i>チームメンバー</h1>
                     
@@ -577,39 +636,7 @@
                         @endif
                     @endfor
                     
-                    <h1><i class="glyphicon glyphicon-edit"></i>寄付内容の設定</h1>
-                    <!-- 目的 -->
-                    <div class="form-group @if($errors->has('support_purpose')) has-error @endif">
-                       <label for="support_purpose-field">資金の使い道</label>
-                    <input type="text" id="support_purpose-field" name="support_purpose" class="form-control" value="{{ is_null(old("support_purpose")) ? $npo_info->support_purpose : old("support_purpose") }}"/>
-                       @if($errors->has("support_purpose"))
-                        <span class="help-block">{{ $errors->first("support_purpose") }}</span>
-                       @endif
-                    </div>
-                    <!-- 寄付金額 -->
-                    <div class="form-group @if($errors->has('support_amount')) has-error @endif">
-                       <label for="support_amount-field">値段*公開後変更不可</label>
-                    <input type="text" id="support_amount-field" name="support_amount" class="form-control" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
-                       @if($errors->has("support_amount"))
-                        <span class="help-block">{{ $errors->first("support_amount") }}</span>
-                       @endif
-                    </div>
-                    <!-- リターン -->
-                    <div class="form-group @if($errors->has('support_contents')) has-error @endif">
-                       <label for="support_contents-field">購入者へのリターン（無しでも可能）</label>
-                    <input type="text" id="support_contents-field" name="support_contents" class="form-control" value="{{ is_null(old("support_contents")) ? $npo_info->support_contents : old("support_contents") }}"/>
-                       @if($errors->has("support_contents"))
-                        <span class="help-block">{{ $errors->first("support_contents") }}</span>
-                       @endif
-                    </div>
-                    <!-- 特典利用期限 -->
-                    <div class="form-group @if($errors->has('support_contents_detail')) has-error @endif">
-                       <label for="support_contents_detail-field">購入者へのリターン有効期限</label>
-                    <input type="date" id="support_contents_detail-field" name="support_contents_detail" class="form-control" value="{{ is_null(old("support_contents_detail")) ? $npo_info->support_contents_detail : old("support_contents_detail") }}"/>
-                       @if($errors->has("support_contents_detail"))
-                        <span class="help-block">{{ $errors->first("support_contents_detail") }}</span>
-                       @endif
-                    </div>
+                    
                     
                     <h1><i class="glyphicon glyphicon-edit"></i>法人からの寄付内容の設定</h1>
                     {{-- 寄付金額（法人） --}}
