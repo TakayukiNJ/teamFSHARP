@@ -346,8 +346,6 @@ class Npo_registerController extends Controller {
     	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                 'support_contents_detail_pratinum' => 'active_url',
                 'npo_name'                => 'alpha_dash',
-                'avater'                  => 'image',
-                'background_pic'          => 'image',
     		];
 		}else{
     		if($npo_register->proval < 1){
@@ -363,8 +361,6 @@ class Npo_registerController extends Controller {
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                     'support_contents_detail_pratinum' => 'active_url',
                     'npo_name'                => 'unique:npo_registers|alpha_dash',
-                    'avater'                  => 'image',
-                    'background_pic'          => 'image',
         		];
     		}else{
     		    $rules = [
@@ -379,8 +375,6 @@ class Npo_registerController extends Controller {
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                     'support_contents_detail_pratinum' => 'active_url',
                     'npo_name'                => 'unique:npo_registers|required | alpha_dash',
-                    'avater'                  => 'image',
-                    'background_pic'          => 'image',
         	    ];
         	}
 		}
@@ -415,6 +409,23 @@ class Npo_registerController extends Controller {
             $npo_register->background_pic = $background_pic; 
         }else{
             $background_pic = "";
+        }
+        
+        // 画像に関して(1月28日追加)
+        for($i = 1; $i < 4; $i++){
+            $code = "code".$i;
+            $code_file = $request->file($code);
+            // 画像が空かチェック
+            if(!empty($code_file)){
+                // 画像の名前を取得
+                $code_avater = $npo_register->title."_".$code_file->getClientOriginalName();
+                // 画像をpublicの中に保存
+                Image::make($code_file)->save( './img/project_code/' . $code_avater );
+                // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
+                $npo_register->$code = $code_avater; 
+            }else{
+                $code_avater = "";
+            }
         }
         
 		$npo_register->sdgs1 = $request->input("sdgs1");
@@ -491,12 +502,15 @@ class Npo_registerController extends Controller {
         $npo_register->support_amount_pratinum = $request->input("support_amount_pratinum"); //プラチナ寄付の募集数
         $npo_register->support_price_pratinum = $request->input("support_price_pratinum"); //法人寄付の値段(プラチナ寄付)*公開後変更不可
         
-        // $npo_register->body = $request->input("body");
+        $npo_register->body = $request->input("body");
         $npo_register->updated_at = new Carbon(Carbon::now());
         // $npo_register->proval = $request->input("proval");
 
 		$npo_register->save();
 		// return view('npo.npo_landing_page', compact('npo_register'));
+// 		if($npo_register->published){
+// 		    return view('npo.npo_landing_page', compact('npo_register'));
+// 		}
         return redirect()->route('npo_registers.show', compact('npo_register'))->with('message', 'Item updated successfully.');
 	}
 
@@ -529,6 +543,8 @@ class Npo_registerController extends Controller {
     	
 		//連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
+        
+        // currentNpoInfoの中からmemberのpersonalInfoを抜き出す必要あり。
         
         if($name_auth === $currentNpoInfo->manager){
             return view('npo_registers.edit', $data);

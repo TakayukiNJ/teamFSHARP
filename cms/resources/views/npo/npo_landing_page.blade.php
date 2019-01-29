@@ -357,7 +357,7 @@
     							<div class="card-image">
     							    @if($npo_info->code1)
     								{{--<a href="#pablo">--}}
-    									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+    									<img class="img" src="{{ url('/') }}/img/project_code/{{$npo_info->code1}}">
     								{{--</a>--}}
     								@endif
                                 </div>
@@ -376,7 +376,7 @@
     							<div class="card-image">
     							    @if($npo_info->code2)
     								{{--<a href="#pablo">--}}
-    									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+    									<img class="img" src="{{ url('/') }}/img/project_code//{{$npo_info->code2}}">
     								{{--</a>--}}
     							    @endif
                                 </div>
@@ -395,7 +395,7 @@
     							<div class="card-image">
     							    @if($npo_info->code3)
     								{{--<a href="#pablo">--}}
-									<img class="img" src="assets/img/sections/neill-kumar.jpg">
+									<img class="img" src="{{ url('/') }}/img/project_code/{{$npo_info->code3}}">
     								{{--</a>--}}
     								@endif
                                 </div>
