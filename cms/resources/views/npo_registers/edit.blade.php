@@ -6,8 +6,8 @@
     @include('error')
     
 <form enctype="multipart/form-data" action="{{ route('npo_registers.update', $npo_info->id) }}" method="POST">
-                <input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div id="description-areas">
         {{--     *********    HEADERS     *********      --}}
         <div class="cd-section" id="headers">

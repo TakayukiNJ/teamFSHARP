@@ -33,7 +33,11 @@ class Npo_registerController extends Controller {
 	public function create()
 	{
 	    $npo_auth = Auth::user()->npo;
-		return view('npo_registers/create');
+	    
+		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
+        $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
+	    
+		return view('npo_registers/create' ,$data);
 	}
 
 	/**
@@ -45,12 +49,12 @@ class Npo_registerController extends Controller {
 	public function store(Request $request)
 	{
 		$npo_register = new Npo_register();
-		
+	    	
 	    $rules = [
             'title'         => 'required | min:1 | max:55',
 	        'support_price' => 'digits_between:5,8',
 	    ];
-    	
+	    
         $this -> validate($request, $rules);
 		
 		$id_auth   = Auth::user()->id;
@@ -68,6 +72,33 @@ class Npo_registerController extends Controller {
                 'npo' => $npo_register->title
             ]);
         }
+        
+        // ロゴの登録
+        $avater_file = $request->file('avater');
+        // 画像が空かチェック
+        if(!empty($avater_file)){
+            // 画像の名前を取得
+            // $avater = time()."_".$avater_file->getClientOriginalName();
+            // 画像をpublicの中に保存
+            Image::make($avater_file)->resize(300, 300)->save( './img/project_logo/' . $npo_auth );
+            // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
+            // $npo_register->avater = $npo_auth;
+            
+            \DB::table('npo_registers')
+                ->where('title', $npo_auth)
+                ->update(['avater' => $npo_auth]);
+        }else{
+            $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
+            // すでにプロジェクトを登録してあって
+            if($currentNpoInfo){
+                // ロゴも登録してあった場合
+                if($currentNpoInfo->avater){
+                    // ロゴを登録
+                    $npo_register->avater = $npo_auth;
+                }
+            }
+        }
+        
         $npo_register->subtitle                = $request->input("subtitle"); // プロジェクトの名前
         
         $npo_register->manager                 = $name_auth;
@@ -91,8 +122,9 @@ class Npo_registerController extends Controller {
         $npo_register->proval                  = "0";
         $npo_register->created_at              = new Carbon(Carbon::now());
         $npo_register->updated_at              = new Carbon(Carbon::now());
-        
-        $npo_register->save();
+        if($npo_register->subtitle){
+            $npo_register->save();
+        }
 
 		return redirect()->route('npo_registers.index')->with('message', 'Item created successfully.');
 	}
@@ -175,11 +207,12 @@ class Npo_registerController extends Controller {
             // $personal_info       = "personal_info".$i;
             $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
         	$currentPersonalInfo = "";
+            $data['personal_info'][$i] = "";
             if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
-            	$data['personal_info'][$i] = $currentPersonalInfo->image_id;
-            }else{
-                $data['personal_info'][$i] = "";
+            	if($currentPersonalInfo){
+            	    $data['personal_info'][$i] = $currentPersonalInfo->image_id;
+            	}
             }
         }
         //連想配列に入れtBladeテンプレートに渡しています。
@@ -280,15 +313,12 @@ class Npo_registerController extends Controller {
             // $personal_info       = "personal_info".$i;
             $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
         	$currentPersonalInfo = "";
-            if($currentUserInfo){
+            $data['personal_info'][$i] = "";
+        	if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
             	if($currentPersonalInfo){
             	    $data['personal_info'][$i] = $currentPersonalInfo->image_id;
-            	}else{
-            	    $data['personal_info'][$i] = "";
             	}
-            }else{
-                $data['personal_info'][$i] = "";
             }
         }
         
@@ -385,19 +415,6 @@ class Npo_registerController extends Controller {
 		}
 		
 		// 画像に関して(1月28日追加)
-        $avater_file     = $request->file('avater');
-        // 画像が空かチェック
-        if(!empty($avater_file)){
-            // 画像の名前を取得
-            $avater = time()."_".$avater_file->getClientOriginalName();
-            // 画像をpublicの中に保存
-            Image::make($avater_file)->resize(300, 300)->save( './img/project_logo/' . $avater );
-            // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
-            $npo_register->avater = $avater; 
-        }else{
-            $avater = "";
-        }
-        
         $background_file = $request->file('background_pic');
         // 画像が空かチェック
         if(!empty($background_file)){

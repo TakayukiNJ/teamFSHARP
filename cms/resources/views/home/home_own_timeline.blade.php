@@ -24,7 +24,7 @@
                             @endif
                         </div>
                         <div class="name">
-                            <h4 class="title text-center">{{ Auth::user()->name }}<br /><small>{{ Auth::user()->email }}</small></h4>
+                            <h4 class="title text-center"> {{ Auth::user()->name }}@if($personal_info)<br><small>{{ $personal_info->description}}</small>@endif</h4>
                         </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
                             <a class="nav-link active" data-toggle="tab" href="#new" role="tab">新着</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">サポート</a>
+                            <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">プロジェクト</a>
@@ -111,7 +111,7 @@
                                         <hr>
                                     @endfor
                                 @elseif(!$npo_info_enterprise)
-                                    <p class="text-muted">まだどこにも寄付していないようです！</p>
+                                    <p class="text-muted text-center">まだどこにも寄付していないようです！</p>
                                 @endif
                             </ul>
                         </div>

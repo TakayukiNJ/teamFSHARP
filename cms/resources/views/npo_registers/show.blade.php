@@ -29,13 +29,13 @@
                             @else
                             <div class="col-md-12 ml-auto">
                             @endif
-                                <h2 class="title">
+                                <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}</h2>
+                                <h5 class="description">
                                     @if($npo_info->avater)
-                                    <img src="{{ url('/') }}/img/project_logo/{{$npo_info->avater}}" class="img-thumbnail img-no-padding img-responsive" alt="Rounded Image" width="64" height="64">
+                                    <img src="{{ url('/') }}/img/project_logo/{{$npo_info->avater}}" class="img-thumbnail img-no-padding img-responsive" alt="Rounded Image" width="32" height="32">
                                     @endif
-                                    {!! nl2br(e(trans($npo_info->subtitle))) !!}
-                                    </h2>
-                                <h5 class="description">{!! nl2br(e(trans($npo_info->title))) !!}</h5>
+                                    {!! nl2br(e(trans($npo_info->title))) !!}
+                                </h5>
                                 <br>
                                 <div>
                                     <a onClick="history.back()" class="btn btn-default">
@@ -54,11 +54,6 @@
                                 <br>
                                 <h6>目標金額：{{$npo_info->support_price}}円</h6>
                                 <h6>現在：{{$npo_info->follower}}円 ／ 寄付数：{{$npo_info->buyer}}</h6>
-                                <br>
-                                <!--<div class="progress">-->
-                                <!--    <div class="progress-bar progress-bar-success" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">-->
-                                <!--    </div>-->
-                                <!--</div>-->
                                 <br>
                                 {{-- SDGs --}}
                                 <div class="avatar">
