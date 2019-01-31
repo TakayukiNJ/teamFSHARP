@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'NPOと個人を繋ぐ、資金調達WEBサービス F♯(エフ・シャープ)',
+    'name' => 'NPOと個人を繋ぐ、資金調達WEBサービス F#(エフ・シャープ)',
 
     /*
     |--------------------------------------------------------------------------

@@ -540,6 +540,7 @@ class HomeController extends Controller
         } else {
             $image_id = '/img/contents/user-default.png';
         }
+        // dd($data);
 
         return view('home/home_own_timeline', $data)
         ->with('id', $id)

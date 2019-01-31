@@ -69,7 +69,7 @@
                         <div class="col-md-6 ml-auto mr-auto">
                             <ul class="list-unstyled follows">
                                 @if($npo_info_enterprise)
-                                    <h4 class="text-muted text-center">【法人サポート履歴】</h4>
+                                    <h4 class="text-muted text-center">【法人バッジ（履歴）】</h4>
                                     <br>
                                     @for($i = 0; $i < count($npo_info_enterprise); $i++)
                                         <li>
@@ -91,24 +91,56 @@
                                     <br>
                                 @endif
                                 @if($npo_info_personal)
-                                    <h4 class="text-muted text-center">【個人サポート履歴】</h4>
-                                    <br>
+                                    <h4 class="text-muted text-center">【個人バッジ（履歴）】</h4>
+                                    <br><br><br><br><br>
                                     @for($i = 0; $i < count($npo_info_personal); $i++)
                                         <li>
                                             <div class="row">
-                                                <div class="col-md-2 col-3">
-                                                    {{$i + 1}}
-                                                    <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
+                                                <div class="col-md-6 col-6">
+                                                    <a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge">
+                                                        <svg viewBox="0 0 210 210">
+                                                            <g stroke="none" fill="none">
+                                                                <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
+                                                                <path d="M22,104.5 C22,150.063492 58.9365081,187 104.5,187 C150.063492,187 187,150.063492 187,104.5" id="bottom"></path>
+                                                            </g>
+                                                    		<circle cx="105" cy="105" r="62" stroke="currentColor" stroke-width="1" fill="none" />
+                                                            <text width="120" font-size="12" fill="currentColor">
+                                                                <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#top">
+                                                                    {{$npo_info_personal[$i]->subtitle}}
+                                                                </textPath>
+                                                            </text>
+                                                            <text width="200" font-size="20" fill="currentColor">
+                                                                <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
+                                                                    {{$npo_info_personal[$i]->title}}
+                                                                </textPath>
+                                                            </text>
+                                                        </svg>
+                                                        <span>{{$npo_info_personal[$i]->npo_name}}</span>
+                                                    </a>
                                                 </div>
-                                                <div class="col-md-7 col-4">
-                                                    <h6><a href="/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br><small>{{ $npo_info_personal[$i]->title }}</small></h6></h6>
+                                                <div class="col-md-3 col-3">
+                                                    <h6><a href="/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br>
+                                                    <small>{{ $npo_info_personal[$i]->title }}</small><br>
+                                                    <small>単価:{{ $npo_info_personal[$i]->support_amount }}円</small><br>
+                                                    <small>目標:{{ $npo_info_personal[$i]->support_price }}円</small><br>
+                                                    <small>現在:{{ $npo_info_personal[$i]->follower }}円</small><br>
+                                                    <small>寄付数:{{ $npo_info_personal[$i]->buyer }}</small><br>
+                                                    @if($npo_info_personal[$i]->support_contents != "このページに名前を記載")
+                                                    <small>バッジの効果:{{ $npo_info_personal[$i]->support_contents }}</small><br>
+                                                    @endif
+                                                    @if($npo_info_personal[$i]->support_contents_detail)
+                                                    <small>期限:{{ $npo_info_personal[$i]->support_contents_detail }}</small><br>
+                                                    @endif
+                                                    <!--<small>現在:{{ $npo_info_personal[$i]->follower }}円</small><br>-->
+                                                    <!--<small>現在:{{ $npo_info_personal[$i]->follower }}円</small><br>-->
+                                                    </h6></h6><br>
                                                 </div>
-                                                <div class="col-md-3 col-2">
-                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_personal[$i]->npo_name }}">GO!</a>
+                                                <div class="col-md-1 col-1">
+                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_proval[$i]->npo_name }}">GO!</a>
                                                 </div>
                                             </div>
                                         </li>
-                                        <hr>
+                                        <hr><br><br>
                                     @endfor
                                 @elseif(!$npo_info_enterprise)
                                     <p class="text-muted text-center">まだどこにも寄付していないようです！</p>
@@ -145,114 +177,8 @@
             </div>
         </div>
     </div>
-</div>    
-{{--
-<div class="w3-main" style="margin-left:300px">
 </div>
-
-  <!--<div class="w3-container w3-padding-large">-->
-  <!--  <h4 id="portfolio"><b>PICKUP おすすめ</b></h4>-->
-  <!--</div>-->
-  <!-- Contact Section -->
-  <!--<div class="w3-container w3-padding-large">-->
-  <!--  <h4 id="about"><b>About Me (自己紹介)</b></h4>-->
-    
-  <!--  <p>ご登録、誠にありがとうございます。<br>F♯は、<strong>デジタルハリウッド大学大学院の2018年度学内コンペティション（インテリム・コンペティション）に選出されたWebサービスです。</strong></p>-->
-    <!--<h4 id="about"><b>USAGE (使い方)</b></h4>-->
-    <!--<p>応援したいNPOやコミュニティを選んで、コインを購入することによって支援や寄附をすることができます。</p>-->
-    <!--<p>NPOの支援・寄附した場合、お名前（ユーザーネーム）がサイトに公開され、NPO側にはメールアドレスもお伝えいたします。(購入履歴は、今後ご活用できる仕組みを作成中です。)</p>-->
-    <!--<p>コインをご購入すると、その団体の特典などを使用することができます。</p>-->
-    <!--<p><strong>【NPOページ掲載に関して】</strong></p>-->
-    <!--<p>ご自身のNPOやコミュニティを登録することできます。（審査期間：約1週間）</p>-->
-    <!--<p>お気軽に、右上の「NPOページを作成」からご登録ください。</p>-->
-    <!--<p><strong>③ICO(資金調達)に関して</strong></p>-->
-    <!--<p>登録後、運営側からの承認を得ると、新たにご自身のNPOやコミュニティが右上の項目に追加されます。</p>-->
-    <!--<p>公開されたご自身のホームページとしてだけでもご活用いただけますし、資金調達も始めることができます。（審査期間：約1週間）</p>-->
-    <!--<p>その他、何かご不明点がございましたら、<a href="https://docs.google.com/forms/d/e/1FAIpQLSfM5FkFx27lREs-yMsY11P9dmx8ZQCkDVlPXL2Ch-AOoiz1vA/viewform?c=0&w=1">お気軽にご相談ください。</a></p>-->
-    <!--<p>オリジナルトークン(ICO)ではなく、</p>-->
-  <!--  <hr>-->
-  <!--</div>-->
-  
-  
-  <!--<div class="w3-container w3-padding-large w3-grey">-->
-  <!--  <h4 id="contact"><b>Contact with FSHARP</b></h4>-->
-    
-    <!--<form action="/action_page.php" target="_blank">-->
-    <!--  <div class="w3-section">-->
-      <!--  <label>Name</label>-->
-      <!--  <input class="w3-input w3-border" type="text" name="Name" required>-->
-      <!--</div>-->
-      <!--<div class="w3-section">-->
-      <!--  <label>Email</label>-->
-      <!--  <input class="w3-input w3-border" type="text" name="Email" required>-->
-      <!--</div>-->
-      <!--<div class="w3-section">-->
-      <!--  <label>Message</label>-->
-      <!--  <input class="w3-input w3-border" type="text" name="Message" required>-->
-      <!--</div>-->
-    <!--  <a href="https://goo.gl/YZLao1" target="_blank">-->
-        <!--<button type="submit" class="w3-button w3-black w3-margin-bottom">-->
-        <!--<i class="fa fa-paper-plane w3-margin-right" style="font-size:36px"></i>-->
-    <!--    <i class="fa fa-paper-plane" style="font-size:36px"></i>-->
-        <!--@lang('app.help')-->
-        <!--</button>-->
-    <!--  </a>-->
-      <!--<div>-->
-        <!--<a href="https://fb.me/LiCleOrg"><i class="fa fa-facebook-official" style="font-size:36px"></i></a>-->
-        <!--<a href="https://twitter.com/TakayukiNakajo"><i class="fa fa-twitter" style="font-size:36px"></i></a>-->
-        <!--<a href="https://www.instagram.com/nj.takayuki"><i class="fa fa-instagram" style="font-size:36px"></i></a>-->
-        <!--<a href="https://www.youtube.com/channel/UCtEvLQ00OoOioktf5g5EgIQ?view_as=subscriber" target="_blank"><i class="fa fa-youtube-play" style="font-size:36px"></i></a>-->
-        <!--<a href="https://www.linkedin.com/in/%E9%AB%98%E5%B9%B8-%E4%BB%B2%E6%9D%A1-68513984/" target="_blank"><i class="fa fa-linkedin-square" style="font-size:36px"></i></a>-->
-        <!--<a href="https://vote.fe-ver.jp/communities/90" target="_blank"><i class="fa fa-globe" style="font-size:36px"></i></a>-->
-    <!--  </div>-->
-    <!--  <a class="indiesquare-tip-button" href="//widget.indiesquare.me/tip/abc690e1a12d9e88" target="_blank" data-vid="abc690e1a12d9e88" data-domain="indiesquare.me" style="width:150px">Donate with IndieSquare</a><script src="//widget.indiesquare.me/tip/buttonjs" async="" type="text/javascript"></script>-->
-      
-    <!--</form>-->
-    
-<br><br><br><br><br>
-<!--  </div>-->
-
-  <!-- Footer -->
-  <!--<footer class="w3-container w3-padding-32 w3-dark-grey">-->
-  <!--<div class="w3-row-padding">-->
-  <!--  <div class="w3-third">-->
-  <!--    <h3>FOOTER</h3>-->
-  <!--    <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>-->
-  <!--    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>-->
-  <!--  </div>-->
-  
-  <!--  <div class="w3-third">-->
-  <!--    <h3>BLOG POSTS</h3>-->
-  <!--    <ul class="w3-ul w3-hoverable">-->
-  <!--      <li class="w3-padding-16">-->
-  <!--        <img src="/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">-->
-  <!--        <span class="w3-large">Lorem</span><br>-->
-  <!--        <span>Sed mattis nunc</span>-->
-  <!--      </li>-->
-  <!--      <li class="w3-padding-16">-->
-  <!--        <img src="/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">-->
-  <!--        <span class="w3-large">Ipsum</span><br>-->
-  <!--        <span>Praes tinci sed</span>-->
-  <!--      </li> -->
-  <!--    </ul>-->
-  <!--  </div>-->
-
-  <!--  <div class="w3-third">-->
-  <!--    <h3>POPULAR TAGS</h3>-->
-  <!--    <p>-->
-  <!--      <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">London</span>-->
-  <!--      <span class="w3-tag w3-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">DIY</span>-->
-  <!--      <span class="w3-tag w3-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Family</span>-->
-  <!--      <span class="w3-tag w3-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Shopping</span>-->
-  <!--      <span class="w3-tag w3-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Games</span>-->
-  <!--    </p>-->
-  <!--  </div>-->
-
-  <!--</div>-->
-  <!--</footer>-->
-  
-  
-
+{{--
 <script>
 // Script to open and close sidebar
 function w3_open() {
@@ -339,10 +265,6 @@ $(document).ready(function() {
     setInterval(changeCheckModule, 1000);
 });
 </script>
-
-</div>
-<!-- End page content -->
-</div>
 --}}
 @endsection
 @include('layouts.footer')
