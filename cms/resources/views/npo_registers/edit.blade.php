@@ -3,8 +3,6 @@
 @include('layouts.script')
 @include('layouts.nav_lp')
 @section('content')
-    @include('error')
-    
 <form enctype="multipart/form-data" action="{{ route('npo_registers.update', $npo_info->id) }}" method="POST">
     <input type="hidden" name="_method" value="PUT">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -18,6 +16,7 @@
             @endif
                 <div class="filter"></div>
                 <div class="content-center">
+                    @include('error')
                     <div class="container">
                         <div class="row">
                             @if (( $npo_info->embed_youtube ) != "")
@@ -35,28 +34,28 @@
                                    <label for="subtitle-field">プロジェクト名 <span class="icon-danger">*</span></label>
                                 <input type="text" id="subtitle-field" name="subtitle" class="form-control text-center" value="{{ is_null(old("subtitle")) ? $npo_info->subtitle : old("subtitle") }}"/>
                                    @if($errors->has("subtitle"))
-                                    <span class="help-block">{{ $errors->first("subtitle") }}</span>
+                                    <span class="help-block icon-danger">{{ $errors->first("subtitle") }}</span>
                                    @endif
                                 </div>
                                 <div class="form-group @if($errors->has('title')) has-error @endif">
                                    <label for="title-field">団体の名前（変更不可）</label>
                                    <input type="text" id="title-field" name="title" class="form-control text-center" value="{{ is_null(old("title")) ? $npo_info->title : old("title") }}" readonly="readonly"/>
                                    @if($errors->has("title"))
-                                    <span class="help-block">{{ $errors->first("title") }}</span>
+                                    <span class="help-block icon-danger">{{ $errors->first("title") }}</span>
                                    @endif
                                 </div>
                                 <div class="form-group @if($errors->has('support_price')) has-error @endif">
                                    <label for="support_price-field">目標金額（公開中変更不可）</label>
                                 <input type="text" id="support_price-field" name="support_price" class="form-control text-center" value="{{ is_null(old("support_price")) ? $npo_info->support_price : old("support_price") }}" {{ !$npo_info->proval == 1 ? '' : 'readonly="readonly"'}}/>
                                    @if($errors->has("support_price"))
-                                    <span class="help-block">公開する場合、目標金額は必須です。（10,000円以上）</span>
+                                    <span class="help-block icon-danger">公開する場合、目標金額は必須です。（10,000円以上）</span>
                                    @endif
                                 </div>
                                 <div class="form-group @if($errors->has('embed_youtube')) has-error @endif">
                                    <label for="embed_youtube-field">Embed YouTube(トップに載せるYouTube) https://www.youtube.com/watch?v=〇〇〇〇〇〇〇〇の部分</label>
                                 <input type="text" id="embed_youtube-field" name="embed_youtube" class="form-control text-center" value="{{ is_null(old("embed_youtube")) ? $npo_info->embed_youtube : old("embed_youtube") }}"/>
                                    @if($errors->has("embed_youtube"))
-                                    <span class="help-block">{{ $errors->first("embed_youtube") }}</span>
+                                    <span class="help-block icon-danger">{{ $errors->first("embed_youtube") }}</span>
                                    @endif
                                 </div>
                             </div>
@@ -96,21 +95,21 @@
                                     <option disabled <?php if($npo_info->$sdgs == 0){ echo "selected"; } ?>>SDGsを選択</option>
                                     <option value="01_ja" <?php if($npo_info->$sdgs == "01_ja"){ echo "selected"; } ?>>1.貧困をなくそう</option>
                                     <option value="02_ja" <?php if($npo_info->$sdgs == "02_ja"){ echo "selected"; } ?>>2.飢餓をゼロに</option>
-                                    <option value="03_ja" <?php if($npo_info->$sdgs == "03_ja"){ echo "selected"; } ?>>3.すべての人に健康と福祉を</option>
-                                    <option value="04_ja" <?php if($npo_info->$sdgs == "04_ja"){ echo "selected"; } ?>>4.質の高い教育をみんなに</option>
-                                    <option value="05_ja" <?php if($npo_info->$sdgs == "05_ja"){ echo "selected"; } ?>>5.ジェンダー平等を実現しよう</option>
-                                    <option value="06_ja" <?php if($npo_info->$sdgs == "06_ja"){ echo "selected"; } ?>>6.安全な水とトイレを世界中に</option>
-                                    <option value="07_ja" <?php if($npo_info->$sdgs == "07_ja"){ echo "selected"; } ?>>7.エネルギーをみんなに そしてクリーンに</option>
+                                    <option value="03_ja" <?php if($npo_info->$sdgs == "03_ja"){ echo "selected"; } ?>>3.すべての人に健康福祉</option>
+                                    <option value="04_ja" <?php if($npo_info->$sdgs == "04_ja"){ echo "selected"; } ?>>4.質の高い教育を</option>
+                                    <option value="05_ja" <?php if($npo_info->$sdgs == "05_ja"){ echo "selected"; } ?>>5.ジェンダー平等を実現</option>
+                                    <option value="06_ja" <?php if($npo_info->$sdgs == "06_ja"){ echo "selected"; } ?>>6.安全な水とトイレを</option>
+                                    <option value="07_ja" <?php if($npo_info->$sdgs == "07_ja"){ echo "selected"; } ?>>7.エネルギー＆クリーン</option>
                                     <option value="08_ja" <?php if($npo_info->$sdgs == "08_ja"){ echo "selected"; } ?>>8.働きがいも経済成長も</option>
-                                    <option value="09_ja" <?php if($npo_info->$sdgs == "09_ja"){ echo "selected"; } ?>>9.産業と技術革新の基盤をつくろう</option>
-                                    <option value="10_ja_2" <?php if($npo_info->$sdgs=="10_ja_2"){ echo "selected"; } ?>>10.人や国の不平等をなくそう</option>
-                                    <option value="11_ja" <?php if($npo_info->$sdgs == "11_ja"){ echo "selected"; } ?>>11.住み続けられるまちづくりを</option>
-                                    <option value="12_ja" <?php if($npo_info->$sdgs == "12_ja"){ echo "selected"; } ?>>12.つくる責任 つかう責任</option>
-                                    <option value="13_ja" <?php if($npo_info->$sdgs == "13_ja"){ echo "selected"; } ?>>13.気候変動に具体的な対策を</option>
+                                    <option value="09_ja" <?php if($npo_info->$sdgs == "09_ja"){ echo "selected"; } ?>>9.産業と技術革新の基盤</option>
+                                    <option value="10_ja_2" <?php if($npo_info->$sdgs=="10_ja_2"){ echo "selected"; } ?>>10.人や国の不平等</option>
+                                    <option value="11_ja" <?php if($npo_info->$sdgs == "11_ja"){ echo "selected"; } ?>>11.住み続けられるまち</option>
+                                    <option value="12_ja" <?php if($npo_info->$sdgs == "12_ja"){ echo "selected"; } ?>>12.つくる責任つかう責任</option>
+                                    <option value="13_ja" <?php if($npo_info->$sdgs == "13_ja"){ echo "selected"; } ?>>13.気候変動に具体的対策</option>
                                     <option value="14_ja" <?php if($npo_info->$sdgs == "14_ja"){ echo "selected"; } ?>>14.海の豊かさを守ろう</option>
                                     <option value="15_ja" <?php if($npo_info->$sdgs == "15_ja"){ echo "selected"; } ?>>15.陸の豊かさを守ろう</option>
-                                    <option value="16_ja" <?php if($npo_info->$sdgs == "16_ja"){ echo "selected"; } ?>>16.平和と公正をすべての人に</option>
-                                    <option value="17_ja" <?php if($npo_info->$sdgs == "17_ja"){ echo "selected"; } ?>>17.パートナーシップで目標を達成しよう</option>
+                                    <option value="16_ja" <?php if($npo_info->$sdgs == "16_ja"){ echo "selected"; } ?>>16.平和と公正を</option>
+                                    <option value="17_ja" <?php if($npo_info->$sdgs == "17_ja"){ echo "selected"; } ?>>17.パートナーシップ</option>
                                     <option value="wheel_rgb" <?php if($npo_info->$sdgs == "wheel_rgb"){ echo "selected"; } ?>>全て</option>
                                     <option value="">該当なし</option>
                                </select>
@@ -160,10 +159,10 @@
                     <br>
                     <!-- FsharpのURL -->
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
-                        <label for="npo_name-field">バッジの名前（https://fsharp.me/〇〇〇〇の〇部分に使用。設定後変更不可）</label>
+                        <label for="npo_name-field">バッジの名前（https://fsharp.me/〇〇〇〇部分のURLに使用。設定後変更不可）</label>
                         <input type="text" id="npo_name-field" name="npo_name" class="form-control" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
                         @if($errors->has("npo_name"))
-                        <span class="help-block">この{{ $errors->first("npo_name") }}バッジはすでに使われております。</span>
+                        <span class="help-block icon-danger">この{{ $errors->first("npo_name") }}バッジはすでに使われております。</span>
                         @endif
                     </div>
                     
@@ -172,7 +171,7 @@
                        <h6 for="support_purpose-field">資金の使い道</h6>
                     <input type="text" id="support_purpose-field" name="support_purpose" class="form-control" value="{{ is_null(old("support_purpose")) ? $npo_info->support_purpose : old("support_purpose") }}"/>
                        @if($errors->has("support_purpose"))
-                        <span class="help-block">{{ $errors->first("support_purpose") }}</span>
+                        <span class="help-block icon-danger">{{ $errors->first("support_purpose") }}</span>
                        @endif
                     </div>
                     <!-- リターン -->
@@ -180,7 +179,7 @@
                        <h6 for="support_contents-field">バッジ購入者へのリターン（無しでも可能）</h6>
                     <input type="text" id="support_contents-field" name="support_contents" class="form-control" value="{{ is_null(old("support_contents")) ? $npo_info->support_contents : old("support_contents") }}"/>
                        @if($errors->has("support_contents"))
-                        <span class="help-block">{{ $errors->first("support_contents") }}</span>
+                        <span class="help-block icon-danger">{{ $errors->first("support_contents") }}</span>
                        @endif
                     </div>
                     <!-- 特典利用期限 -->
@@ -193,7 +192,7 @@
                                 <span class="input-group-addon"><i class="fa fa-yen"></i></span>
                                 <input type="text" id="support_amount-field" name="support_amount" placeholder="3,000" class="form-control border-input" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}>
                                 @if($errors->has("support_amount"))
-                                    <span class="help-block">{{ $errors->first("support_amount") }}</span>
+                                    <span class="help-block icon-danger">{{ $errors->first("support_amount") }}</span>
                                 @endif
                             </div>
                         </div>
@@ -203,7 +202,7 @@
     			                 <div class='input-group date' id='datetimepicker'>
     			                 <input type='text' id="support_contents_detail-field" class="form-control datetimepicker" name="support_contents_detail" value="{{ is_null(old("support_contents_detail")) ? $npo_info->support_contents_detail : old("support_contents_detail") }}"/>
     			                    @if($errors->has("support_contents_detail"))
-                                        <span class="help-block">{{ $errors->first("support_contents_detail") }}</span>
+                                        <span class="help-block icon-danger">{{ $errors->first("support_contents_detail") }}</span>
                                     @endif
     			                    <span class="input-group-addon">
     			                        <span class="glyphicon glyphicon-calendar"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -222,78 +221,78 @@
 						<textarea class="form-control textarea-limited" id="body-field" name="body" placeholder="説明・紹介文は、200文字までです。" rows="10", maxlength="200" value="{{ is_null(old("yellow_card_body")) ? $npo_info->yellow_card_body : old("yellow_card_body") }}"></textarea>
                         <h5><small><span id="textarea-limited-message" class="pull-right">残り200文字</span></small></h5>
                         @if($errors->has("yellow_card_body"))
-                            <span class="help-block">{{ $errors->first("body") }}</span>
+                            <span class="help-block icon-danger">{{ $errors->first("body") }}</span>
                         @endif
                     </div>
                 </div>
             </div>
             <h1><i class="glyphicon glyphicon-edit"></i>法人からの寄付内容の設定</h1>
-                    {{-- 寄付金額（法人） --}}
-                    <div class="form-group @if($errors->has('support_price_gold')) has-error @endif">
-                       <label for="support_price_gold-field">法人寄付の値段*公開後変更不可</label>
-                    <input type="text" id="support_price_gold-field" name="support_price_gold" class="form-control" value="{{ is_null(old("support_price_gold")) ? $npo_info->support_price_gold : old("support_price_gold") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
-                       @if($errors->has("support_price_gold"))
-                        <span class="help-block">{{ $errors->first("support_price_gold") }}</span>
-                       @endif
-                    </div>
-                    <!-- 寄付の募集数 -->
-                    <div class="form-group @if($errors->has('support_amount_gold')) has-error @endif">
-                       <label for="support_amount_gold-field">法人寄付の募集数</label>
-                    <input type="text" id="support_amount_gold-field" name="support_amount_gold" class="form-control" value="{{ is_null(old("support_amount_gold")) ? $npo_info->support_amount_gold : old("support_amount_gold") }}"/>
-                       @if($errors->has("support_amount_gold"))
-                        <span class="help-block">{{ $errors->first("support_amount_gold") }}</span>
-                       @endif
-                    </div>
-                    <!-- リターン -->
-                    <div class="form-group @if($errors->has('support_contents_gold')) has-error @endif">
-                       <label for="support_contents_gold-field">法人寄付リターンの内容（無しでも可能）</label>
-                    <input type="text" id="support_contents_gold-field" name="support_contents_gold" class="form-control" value="{{ is_null(old("support_contents_gold")) ? $npo_info->support_contents_gold : old("support_contents_gold") }}"/>
-                       @if($errors->has("support_contents_gold"))
-                        <span class="help-block">{{ $errors->first("support_contents_gold") }}</span>
-                       @endif
-                    </div>
-                    <!-- リターン詳細 -->
-                    <div class="form-group @if($errors->has('support_contents_detail_gold')) has-error @endif">
-                       <label for="support_contents_detail_gold-field">法人寄付リターンの詳細リンク（URLを入力。無しでも可能）</label>
-                    <input type="text" id="support_contents_detail_gold-field" name="support_contents_detail_gold" class="form-control" value="{{ is_null(old("support_contents_detail_gold")) ? $npo_info->support_contents_detail_gold : old("support_contents_detail_gold") }}"/>
-                       @if($errors->has("support_contents_detail_gold"))
-                        <span class="help-block">{{ $errors->first("support_contents_detail_gold") }}</span>
-                       @endif
-                    </div>
-                    
-                    <h1><i class="glyphicon glyphicon-edit"></i>法人からのプラチナ寄付内容の設定</h1>
-                    <!-- 寄付金額（プラチナ法人） -->
-                    <div class="form-group @if($errors->has('support_price_pratinum')) has-error @endif">
-                       <label for="support_price_pratinum-field">法人寄付の値段(プラチナ寄付)*公開後変更不可</label>
-                    <input type="text" id="support_price_pratinum-field" name="support_price_pratinum" class="form-control" value="{{ is_null(old("support_price_pratinum")) ? $npo_info->support_price_pratinum : old("support_price_pratinum") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
-                       @if($errors->has("support_price_pratinum"))
-                        <span class="help-block">{{ $errors->first("support_price_pratinum") }}</span>
-                       @endif
-                    </div>
-                    <!-- 寄付の募集数 -->
-                    <div class="form-group @if($errors->has('support_amount_pratinum')) has-error @endif">
-                       <label for="support_amount_pratinum-field">プラチナ寄付の募集数</label>
-                    <input type="text" id="support_amount_pratinum-field" name="support_amount_pratinum" class="form-control" value="{{ is_null(old("support_amount_pratinum")) ? $npo_info->support_amount_pratinum : old("support_amount_pratinum") }}"/>
-                       @if($errors->has("support_amount_pratinum"))
-                        <span class="help-block">{{ $errors->first("support_amount_pratinum") }}</span>
-                       @endif
-                    </div>
-                    <!-- リターン -->
-                    <div class="form-group @if($errors->has('support_contents_pratinum')) has-error @endif">
-                       <label for="support_contents_pratinum-field">プラチナ寄付リターンの内容（無しでも可能）</label>
-                    <input type="text" id="support_contents_pratinum-field" name="support_contents_pratinum" class="form-control" value="{{ is_null(old("support_contents_pratinum")) ? $npo_info->support_contents_pratinum : old("support_contents_pratinum") }}"/>
-                       @if($errors->has("support_contents_pratinum"))
-                        <span class="help-block">{{ $errors->first("support_contents_pratinum") }}</span>
-                       @endif
-                    </div>
-                    <!-- リターン詳細 -->
-                    <div class="form-group @if($errors->has('support_contents_detail_pratinum')) has-error @endif">
-                       <label for="support_contents_detail_pratinum-field">プラチナ寄付リターンの詳細リンク（URLを入力。無しでも可能）</label>
-                    <input type="text" id="support_contents_detail_pratinum-field" name="support_contents_detail_pratinum" class="form-control" value="{{ is_null(old("support_contents_detail_pratinum")) ? $npo_info->support_contents_detail_pratinum : old("support_contents_detail_pratinum") }}"/>
-                       @if($errors->has("support_contents_detail_pratinum"))
-                        <span class="help-block">{{ $errors->first("support_contents_detail_pratinum") }}</span>
-                       @endif
-                    </div>
+            {{-- 寄付金額（法人） --}}
+            <div class="form-group @if($errors->has('support_price_gold')) has-error @endif">
+               <label for="support_price_gold-field">法人寄付の値段*公開後変更不可</label>
+            <input type="text" id="support_price_gold-field" name="support_price_gold" class="form-control" value="{{ is_null(old("support_price_gold")) ? $npo_info->support_price_gold : old("support_price_gold") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
+               @if($errors->has("support_price_gold"))
+                <span class="help-block icon-danger">{{ $errors->first("support_price_gold") }}</span>
+               @endif
+            </div>
+            <!-- 寄付の募集数 -->
+            <div class="form-group @if($errors->has('support_amount_gold')) has-error @endif">
+               <label for="support_amount_gold-field">法人寄付の募集数</label>
+            <input type="text" id="support_amount_gold-field" name="support_amount_gold" class="form-control" value="{{ is_null(old("support_amount_gold")) ? $npo_info->support_amount_gold : old("support_amount_gold") }}"/>
+               @if($errors->has("support_amount_gold"))
+                <span class="help-block icon-danger">{{ $errors->first("support_amount_gold") }}</span>
+               @endif
+            </div>
+            <!-- リターン -->
+            <div class="form-group @if($errors->has('support_contents_gold')) has-error @endif">
+               <label for="support_contents_gold-field">法人寄付リターンの内容（無しでも可能）</label>
+            <input type="text" id="support_contents_gold-field" name="support_contents_gold" class="form-control" value="{{ is_null(old("support_contents_gold")) ? $npo_info->support_contents_gold : old("support_contents_gold") }}"/>
+               @if($errors->has("support_contents_gold"))
+                <span class="help-block icon-danger">{{ $errors->first("support_contents_gold") }}</span>
+               @endif
+            </div>
+            <!-- リターン詳細 -->
+            <div class="form-group @if($errors->has('support_contents_detail_gold')) has-error @endif">
+               <label for="support_contents_detail_gold-field">法人寄付リターンの詳細リンク（URLを入力。無しでも可能）</label>
+            <input type="text" id="support_contents_detail_gold-field" name="support_contents_detail_gold" class="form-control" value="{{ is_null(old("support_contents_detail_gold")) ? $npo_info->support_contents_detail_gold : old("support_contents_detail_gold") }}"/>
+               @if($errors->has("support_contents_detail_gold"))
+                <span class="help-block icon-danger">{{ $errors->first("support_contents_detail_gold") }}</span>
+               @endif
+            </div>
+            
+            <h1><i class="glyphicon glyphicon-edit"></i>法人からのプラチナ寄付内容の設定</h1>
+            <!-- 寄付金額（プラチナ法人） -->
+            <div class="form-group @if($errors->has('support_price_pratinum')) has-error @endif">
+               <label for="support_price_pratinum-field">法人寄付の値段(プラチナ寄付)*公開後変更不可</label>
+            <input type="text" id="support_price_pratinum-field" name="support_price_pratinum" class="form-control" value="{{ is_null(old("support_price_pratinum")) ? $npo_info->support_price_pratinum : old("support_price_pratinum") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
+               @if($errors->has("support_price_pratinum"))
+                <span class="help-block icon-danger">{{ $errors->first("support_price_pratinum") }}</span>
+               @endif
+            </div>
+            <!-- 寄付の募集数 -->
+            <div class="form-group @if($errors->has('support_amount_pratinum')) has-error @endif">
+               <label for="support_amount_pratinum-field">プラチナ寄付の募集数</label>
+            <input type="text" id="support_amount_pratinum-field" name="support_amount_pratinum" class="form-control" value="{{ is_null(old("support_amount_pratinum")) ? $npo_info->support_amount_pratinum : old("support_amount_pratinum") }}"/>
+               @if($errors->has("support_amount_pratinum"))
+                <span class="help-block icon-danger">{{ $errors->first("support_amount_pratinum") }}</span>
+               @endif
+            </div>
+            <!-- リターン -->
+            <div class="form-group @if($errors->has('support_contents_pratinum')) has-error @endif">
+               <label for="support_contents_pratinum-field">プラチナ寄付リターンの内容（無しでも可能）</label>
+            <input type="text" id="support_contents_pratinum-field" name="support_contents_pratinum" class="form-control" value="{{ is_null(old("support_contents_pratinum")) ? $npo_info->support_contents_pratinum : old("support_contents_pratinum") }}"/>
+               @if($errors->has("support_contents_pratinum"))
+                <span class="help-block icon-danger">{{ $errors->first("support_contents_pratinum") }}</span>
+               @endif
+            </div>
+            <!-- リターン詳細 -->
+            <div class="form-group @if($errors->has('support_contents_detail_pratinum')) has-error @endif">
+               <label for="support_contents_detail_pratinum-field">プラチナ寄付リターンの詳細リンク（URLを入力。無しでも可能）</label>
+            <input type="text" id="support_contents_detail_pratinum-field" name="support_contents_detail_pratinum" class="form-control" value="{{ is_null(old("support_contents_detail_pratinum")) ? $npo_info->support_contents_detail_pratinum : old("support_contents_detail_pratinum") }}"/>
+               @if($errors->has("support_contents_detail_pratinum"))
+                <span class="help-block icon-danger">{{ $errors->first("support_contents_detail_pratinum") }}</span>
+               @endif
+            </div>
         </div>
         
         {{--     *********    PRICING     *********      --}}
@@ -305,7 +304,7 @@
                         <div class="choose-plan">
                             <ul class="nav nav-pills nav-pills-danger" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" id="#aa" role="tab">{{ $npo_info->title }}を支援</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#personal" id="#aa" role="tab">{{ $npo_info->subtitle }}を支援</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#commercial" id="bb" role="tab">法人の方</a>
@@ -316,7 +315,7 @@
                         <div class="tab-content text-center" >
                             <p>現在の寄付者と法人の合計数：<b>{{$buyer_data}}</b></p>
                             <p>寄付するとユーザー名・法人名が記載されます。</p>
-                            <p>集まった寄付金は全額担当者にお渡しします。</p>
+                            <p>集まった寄付金は全額ご担当者にお渡しします。</p>
                             <p class="description text-gray">
                                 決済時に、運営(振込)手数料258円とクレジットカード手数料4.6%がかかります。
                                 <!--仮に毎月1,000円の寄付を認定NPO法人に寄付をした場合、最大5,000円の税制控除を受けられます。-->
@@ -488,7 +487,7 @@
             					    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                         <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
             							    @if($npo_info->code1)
-                                            <img src='/img/project_activities/{{ $npo_info->code1 }}' alt="{{ $npo_info->code1 }}">
+                                            <img src='/img/project_code/{{ $npo_info->code1 }}' alt="{{ $npo_info->code1 }}">
                                             @else
                                             <img src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" alt="default">
                                             @endif
@@ -506,7 +505,7 @@
                                         <div class="form-group @if($errors->has('blue_card_title')) has-error @endif">
                                         <input type="text" id="blue_card_title-field" name="blue_card_title" class="form-control text-center" value="{{ is_null(old("blue_card_title")) ? $npo_info->blue_card_title : old("blue_card_title") }}"/>
                                            @if($errors->has("blue_card_title"))
-                                            <span class="help-block">{{ $errors->first("blue_card_title") }}</span>
+                                            <span class="help-block icon-danger">{{ $errors->first("blue_card_title") }}</span>
                                            @endif
                                         </div>
                                     </h4>
@@ -515,7 +514,7 @@
                                         <div class="form-group @if($errors->has('blue_card_body')) has-error @endif">
                                         <textarea class="form-control" id="blue_card_body-field" rows="10" name="blue_card_body">{{ is_null(old("blue_card_body")) ? $npo_info->blue_card_body : old("blue_card_body") }}</textarea>
                                            @if($errors->has("blue_card_body"))
-                                            <span class="help-block">{{ $errors->first("blue_card_body") }}</span>
+                                            <span class="help-block icon-danger">{{ $errors->first("blue_card_body") }}</span>
                                            @endif
                                         </div>
                                     </div>
@@ -529,7 +528,7 @@
             					    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                         <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
             							    @if($npo_info->code2)
-                                            <img src='/img/project_activities/{{ $npo_info->code2 }}' alt="{{ $npo_info->code2 }}">
+                                            <img src='/img/project_code/{{ $npo_info->code2 }}' alt="{{ $npo_info->code2 }}">
                                             @else
                                             <img src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" alt="default">
                                             @endif
@@ -547,7 +546,7 @@
                                         <div class="form-group @if($errors->has('green_card_title')) has-error @endif">
                                         <input type="text" id="green_card_title-field" name="green_card_title" class="form-control text-center" value="{{ is_null(old("green_card_title")) ? $npo_info->green_card_title : old("green_card_title") }}"/>
                                            @if($errors->has("green_card_title"))
-                                            <span class="help-block">{{ $errors->first("green_card_title") }}</span>
+                                            <span class="help-block icon-danger">{{ $errors->first("green_card_title") }}</span>
                                            @endif
                                         </div>
                                     </h4>
@@ -556,7 +555,7 @@
                                         <div class="form-group @if($errors->has('green_card_body')) has-error @endif">
                                         <textarea class="form-control" id="green_card_body-field" rows="10" name="green_card_body">{{ is_null(old("green_card_body")) ? $npo_info->green_card_body : old("green_card_body") }}</textarea>
                                            @if($errors->has("green_card_body"))
-                                            <span class="help-block">{{ $errors->first("green_card_body") }}</span>
+                                            <span class="help-block icon-danger">{{ $errors->first("green_card_body") }}</span>
                                            @endif
                                         </div>
                                     </div>
@@ -570,7 +569,7 @@
             					    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                         <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
             							    @if($npo_info->code3)
-                                            <img src='/img/project_activities/{{ $npo_info->code3 }}' alt="{{ $npo_info->code3 }}">
+                                            <img src='/img/project_code/{{ $npo_info->code3 }}' alt="{{ $npo_info->code3 }}">
                                             @else
                                             <img src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" alt="default">
                                             @endif
@@ -588,7 +587,7 @@
                                         <div class="form-group @if($errors->has('yellow_card_title')) has-error @endif">
                                         <input type="text" id="yellow_card_title-field" name="yellow_card_title" class="form-control text-center" value="{{ is_null(old("yellow_card_title")) ? $npo_info->yellow_card_title : old("yellow_card_title") }}"/>
                                            @if($errors->has("yellow_card_title"))
-                                            <span class="help-block">{{ $errors->first("yellow_card_title") }}</span>
+                                            <span class="help-block icon-danger">{{ $errors->first("yellow_card_title") }}</span>
                                            @endif
                                         </div>
                                     </h4>
@@ -597,7 +596,7 @@
                                         <div class="form-group @if($errors->has('yellow_card_body')) has-error @endif">
                                         <textarea class="form-control" id="yellow_card_body-field" rows="10" name="yellow_card_body">{{ is_null(old("yellow_card_body")) ? $npo_info->yellow_card_body : old("yellow_card_body") }}</textarea>
                                            @if($errors->has("yellow_card_body"))
-                                            <span class="help-block">{{ $errors->first("yellow_card_body") }}</span>
+                                            <span class="help-block icon-danger">{{ $errors->first("yellow_card_body") }}</span>
                                            @endif
                                         </div>
                                     </div>
@@ -608,7 +607,6 @@
                 </div>
             </div>
         </div>
-        
         {{--     *********    TEAM     *********      --}}
     </div>
 </div>
@@ -633,10 +631,11 @@
                         ?>
                         @if($npo_info->$member_check != "")
                         <div class="form-group @if($errors->has('{{$member}}')) has-error @endif">
-                           <label for="{{$member}}-field">【メンバーの名前{{$i}}人目】</label>
-                        <input type="text" id="{{$member}}-field" name="{{$member}}" class="form-control" value="{{ is_null(old("$member")) ? $npo_info->$member : old("$member") }}"/>
+                            <h4>【メンバー{{$i}}人目】</h4>
+                            <label for="{{$member}}-field">名前(既に登録済みのユーザー名を記入してください。)</label>
+                            <input type="text" id="{{$member}}-field" name="{{$member}}" class="form-control" value="{{ is_null(old("$member")) ? $npo_info->$member : old("$member") }}"/>
                            @if($errors->has($member))
-                            <span class="help-block">{{ $errors->first("$member") }}aaaaaa</span>
+                            <span class="help-block icon-danger">{{ $errors->first("$member") }}</span>
                            @endif
                         </div>
                         @endif
@@ -645,16 +644,18 @@
                               <p for="{{$member_pos}}-field">メンバーの役割</p>
                               <input type="text" id="{{$member_pos}}-field" rows="3" name="{{$member_pos}}" class="form-control" value="{{ is_null(old($member_pos)) ? $npo_info->$member_pos : old($member_pos) }}"/>
                               @if($errors->has($member_pos))
-                               <span class="help-block">{{ $errors->first($member_pos) }}</span>
+                               <span class="help-block icon-danger">{{ $errors->first($member_pos) }}</span>
                               @endif
                            </div>
+                           {{--
                            <div class="form-group @if($errors->has($member_detail)) has-error @endif">
                               <p for="{{$member_detail}}-field">メンバーの詳細</p>
                               <textarea class="form-control" id="{{$member_detail}}-field" rows="6" name="{{$member_detail}}">{{ is_null(old($member_detail)) ? $npo_info->$member_detail : old($member_detail) }}</textarea>
                               @if($errors->has($member_detail))
-                                 <span class="help-block">{{ $errors->first($member_detail) }}</span>
+                                 <span class="help-block icon-danger">{{ $errors->first($member_detail) }}</span>
                               @endif
                            </div>
+                           --}}
                            {{-- 編集権限 --}}
                            @if($npo_info->$member != $npo_info->manager)
                            <div class="form-group @if($errors->has('$member_twitter')) has-error @endif">
@@ -669,7 +670,7 @@
                                 <input type="radio" id="{{$member_twitter}}-field_0" name="{{$member_twitter}}" value="{{$npo_info->$member}}" style="width:40px;height:30px">編集権限なし
                                 @endif
                                 @if($errors->has("$member_twitter"))
-                                <span class="help-block">{{ $errors->first("$member_twitter") }}</span>
+                                <span class="help-block icon-danger">{{ $errors->first("$member_twitter") }}</span>
                                 @endif
                             </div>
                             @endif
@@ -689,7 +690,7 @@
                         <input type="radio" id="proval-field_0" name="proval" value="0" style="width:40px;height:30px">未公開
                         @endif
                         @if($errors->has("proval"))
-                        <span class="help-block">{{ $errors->first("proval") }}</span>
+                        <span class="help-block icon-danger">{{ $errors->first("proval") }}</span>
                         @endif
                     </div>
                    <div class="well well-sm">
