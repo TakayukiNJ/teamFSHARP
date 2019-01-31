@@ -109,7 +109,7 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing">
                                             <div class="card-body">
-                                                <h6 class="card-category text-danger">{{ $npo_info->title }}を支援</h6>
+                                                <h6 class="card-category text-danger">{{ $npo_info->subtitle }}を支援</h6>
                                                 <h1 class="card-title">{{ $npo_info->support_amount }}円</h1>
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
@@ -136,7 +136,7 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
-                                                <h6 class="card-category text-success">支援者リスト</h6>
+                                                <h6 class="card-category text-success">バッジ保有者（支援者）リスト</h6>
                                                 <h3 class="card-title">現在の寄付者：<b>{{$donater_count}}人</b></h3>
                                                 <ul>
                                                     @if(count($donater)>1)

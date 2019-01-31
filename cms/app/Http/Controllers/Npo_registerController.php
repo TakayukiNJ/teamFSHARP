@@ -58,9 +58,11 @@ class Npo_registerController extends Controller {
         $this -> validate($request, $rules);
 		
 		$id_auth   = Auth::user()->id;
+        $npo_id    = Auth::user()->npo_id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
         $npo_auth  = Auth::user()->npo;
+        
         $edit_auth = $name_auth."1";
         
 		$npo_register->npo_name                = ""; // URL
@@ -78,15 +80,15 @@ class Npo_registerController extends Controller {
         // 画像が空かチェック
         if(!empty($avater_file)){
             // 画像の名前を取得
-            // $avater = time()."_".$avater_file->getClientOriginalName();
+            $avater = $npo_auth.time().$avater_file->getClientOriginalName();
             // 画像をpublicの中に保存
-            Image::make($avater_file)->resize(300, 300)->save( './img/project_logo/' . $npo_auth );
+            Image::make($avater_file)->resize(150, 150)->save( './img/project_logo/' . $avater );
             // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
-            // $npo_register->avater = $npo_auth;
+            $npo_register->avater = $avater;
             
             \DB::table('npo_registers')
                 ->where('title', $npo_auth)
-                ->update(['avater' => $npo_auth]);
+                ->update(['avater' => $avater]);
         }else{
             $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
             // すでにプロジェクトを登録してあって
@@ -98,6 +100,9 @@ class Npo_registerController extends Controller {
                 }
             }
         }
+        
+        // 認定NPOだった時、certificated_npoに内閣府の法人idを追加
+        $npo_register->certificated_npo        = $npo_id;
         
         $npo_register->subtitle                = $request->input("subtitle"); // プロジェクトの名前
         
@@ -359,6 +364,9 @@ class Npo_registerController extends Controller {
 	{
 		$npo_register = Npo_register::findOrFail($npo_name);
  		
+        $name_auth = Auth::user()->name;
+        $npo_id    = Auth::user()->npo_id;
+ 		
 		$npo_register->npo_name      = $request->input("npo_name"); // URL
         $npo_register->support_price = $request->input("support_price"); // 目標金額
 		$npo_register->proval = $request->input("proval"); // 1だったら公開
@@ -443,6 +451,11 @@ class Npo_registerController extends Controller {
             }else{
                 $code_avater = "";
             }
+        }
+        
+        // 認定NPOだった時、certificated_npoに内閣府の法人idを追加
+        if($npo_id && $npo_register->manager == $name_auth){
+            $npo_register->certificated_npo = $npo_id;
         }
         
 		$npo_register->sdgs1 = $request->input("sdgs1");

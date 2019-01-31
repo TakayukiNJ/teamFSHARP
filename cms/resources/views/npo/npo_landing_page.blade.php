@@ -21,7 +21,6 @@
                             <div class="col-md-5">
                                 <div class="iframe-container">
                                     <iframe src="https://www.youtube.com/embed/{{ $npo_info->embed_youtube }}?modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen height="250"></iframe>
-                                    <!--<iframe src="https://www.youtube.com/embed/xdgqBFFQXKY?modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen height="250"></iframe>-->
                                 </div>
                             </div>
                             <div class="col-md-6 ml-auto">
@@ -65,12 +64,7 @@
                                 <!--<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffsharp.me%2F&amp;src=sdkpreparse" class="btn btn-round btn-facebook">-->
                                 <!--    <i class="fb-like" data-href="https://fsharp/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></i>-->
                                 </a>
-                                
-                                
                                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                                
-                                
-                                
                                 <script>(function(d, s, id) {
                                   var js, fjs = d.getElementsByTagName(s)[0];
                                   if (d.getElementById(id)) return;
@@ -78,16 +72,18 @@
                                   js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1545608625538119&autoLogAppEvents=1';
                                   fjs.parentNode.insertBefore(js, fjs);
                                 }(document, 'script', 'facebook-jssdk'));</script>
-                                
                                 <!--<a class="fb-xfbml-parse-ignore">-->
-                                
-                                
                                 <!--<a href="" class="btn btn-round btn-facebook">-->
                                 <!--    <i class="fa fa-facebook" aria-hidden="true"></i> Share &middot; 1-->
                                 <!--</a>-->
                                 <!--<br>-->
                                 <div class="avatar">
                                     <br>
+                                    @if($npo_info->certificated_npo)
+                                    <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
+                                        <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                    </a>
+                                    @endif
                                     @for ($i = 1; $i < 7; $i++)
                                         <?php $sdgs = "sdgs".$i ?>
                                         @if($npo_info->$sdgs)
@@ -107,7 +103,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <h2 class="title">支援方法を選択</h2>
+                        <h2 class="title text-center">支援方法を選択</h2>
                         <div class="choose-plan">
                             <ul class="nav nav-pills nav-pills-danger" role="tablist">
                                 <li class="nav-item">
@@ -120,12 +116,17 @@
                         </div>
                         <br/>
                         <div class="tab-content text-center" >
-                            <p>現在の寄付者と法人の合計数：<b>{{$buyer_data}}</b></p>
+                            <p>現在の寄付者と法人の合計数：<b>{{ $buyer_data }}</b></p>
                             <p>寄付するとユーザー名・法人名が記載されます。</p>
-                            <p>集まった寄付金は全額担当者にお渡しします。</p>
+                            <p>*集まった寄付金は全額担当者にお渡しします。</p>
+                            @if($npo_info->certificated_npo == 1)
+                            <p>**こちらは<a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている認定NPO法人の寄付先なので、税額控除の対象です。</p>
+                            @endif
                             <p class="description text-gray">
-                                決済時に、運営(振込)手数料258円とクレジットカード手数料4.6%がかかります。
-                                <!--仮に毎月1,000円の寄付を認定NPO法人に寄付をした場合、最大5,000円の税制控除を受けられます。-->
+                                *決済時に258円と4.6%の手数料がかかります。<br>
+                                @if($npo_info->certificated_npo)
+                                **10,000円を認定NPO法人に寄付した場合、最大約5,000円の税額控除を受けられます。
+                                @endif
                             </p>
                         </div>
                     </div>
@@ -188,7 +189,7 @@
                                     <div class="col-md-6">
                                         <div class="card card-pricing" data-color="orange">
                                             <div class="card-body">
-                                                <h6 class="card-category text-success">支援者リスト</h6>
+                                                <h6 class="card-category text-success">バッジ保有者(支援者)リスト</h6>
                                                 <h3 class="card-title">現在の寄付者：<b>{{$donater_count}}人</b></h3>
                                                 <ul>
                                                     @if(count($donater)>1)
