@@ -318,15 +318,18 @@ class Npo_registerController extends Controller {
             // $personal_info       = "personal_info".$i;
             $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
         	$currentPersonalInfo = "";
-            $data['personal_info'][$i] = "";
+            $data['personal_info_image_id'][$i] = "";
+            $data['personal_info_company_name'][$i] = "";
+            $data['personal_info_description'][$i] = "";
         	if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
             	if($currentPersonalInfo){
-            	    $data['personal_info'][$i] = $currentPersonalInfo->image_id;
+            	    $data['personal_info_image_id'][$i]     = $currentPersonalInfo->image_id;
+            	    $data['personal_info_company_name'][$i] = $currentPersonalInfo->company_name;
+            	    $data['personal_info_description'][$i] = $currentPersonalInfo->description;
             	}
             }
         }
-        
         $data['npo_info'] = $currentNpoInfo;
         if($currentNpoInfo->proval < 1){
             // 未公開だった時の処理 

@@ -305,7 +305,8 @@
                                                 @if($npo_info->support_contents_detail_pratinum)
                                                     <a href="{{$npo_info->support_contents_detail_pratinum}}" class="btn btn-neutral btn-round">
                                                         内容の詳細はこちら
-                                                    </a><br>
+                                                    </a>
+                                                    <br><br>
                                                 @endif
                                                 @if (Auth::guest())
                                                 <a href="{{ url('/login') }}" class="btn btn-neutral btn-round">ログイン</a>
@@ -433,8 +434,8 @@
                                     <div class="col-md-5">
                                         <div class="card-img-top">
                                             {{--<a href="#pablo">--}}
-                                                @if($personal_info[$i])
-                                                    <img class="img" src="{{ !$personal_info[$i] ? 'img/placeholder.jpg' : '/img/personal_info/'.$personal_info[$i]}}"/>
+                                                @if($personal_info_image_id[$i])
+                                                    <img class="img" src="{{ !$personal_info_image_id[$i] ? 'img/placeholder.jpg' : '/img/personal_info/'.$personal_info_image_id[$i]}}"/>
                                                 @else
                                                 <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
                                                 @endif
@@ -445,9 +446,13 @@
                                     <div class="col-md-7">
                                         <div class="card-body text-left">
                                             <h4 class="card-title">{{ $npo_info->$member }}</h4>
+                                            @if($npo_info->$member_pos){
                                             <h6 class="card-category">{{ $npo_info->$member_pos }}</h6>
+                                            @else
+                                            <h6 class="card-category">{{ $personal_info_company_name[$i] }}</h6>
+                                            @endif
                                             <p class="card-description">
-                                                {{ $npo_info->$member_detail }}
+                                                {{ $personal_info_description[$i] }}
                                             </p>
                                         </div>
                                     </div>
