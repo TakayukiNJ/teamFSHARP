@@ -1,5 +1,5 @@
 @extends('layouts.common_nav_lp')
-@include('layouts.head')
+@include('layouts.head_npo_create')
 @include('layouts.script')
 @include('layouts.nav_lp')
 @section('content')
@@ -14,10 +14,14 @@
                             <div class="col-md-3 col-sm-3">
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                     <div class="fileinput-new thumbnail img-no-padding" style="max-width: 150px; max-height: 150px;">
-                                        @if($npo_info->avater)
-                                        <img src='/img/project_logo/{{ $npo_info->avater }}' alt="{{ Auth::user()->npo }}">
+                                        @if($npo_info)
+                                            @if($npo_info->avater)
+                                            <img src='/img/project_logo/{{ $npo_info->avater }}' alt="{{ Auth::user()->npo }}">
+                                            @else
+                                            <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                            @endif
                                         @else
-                                        <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                            <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
                                         @endif
                                     </div>
                                     <div class="fileinput-preview fileinput-exists thumbnail img-no-padding" style="max-width: 150px; max-height: 150px;"></div>

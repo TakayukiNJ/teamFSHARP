@@ -118,12 +118,12 @@
                         <div class="tab-content text-center" >
                             <p>現在の寄付者と法人の合計数：<b>{{ $buyer_data }}</b></p>
                             <p>寄付するとユーザー名・法人名が記載されます。</p>
-                            <p>*集まった寄付金は全額担当者にお渡しします。</p>
+                            <!--<p>*集まった寄付金は全額担当者にお渡しします。</p>-->
                             @if($npo_info->certificated_npo == 1)
                             <p>**こちらは<a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている認定NPO法人の寄付先なので、税額控除の対象です。</p>
                             @endif
                             <p class="description text-gray">
-                                *決済時に258円と4.6%の手数料がかかります。<br>
+                                <!--*決済時に258円と4.6%の手数料がかかります。<br>-->
                                 @if($npo_info->certificated_npo)
                                 **10,000円を認定NPO法人に寄付した場合、最大約5,000円の税額控除を受けられます。
                                 @endif
@@ -157,10 +157,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="{{$stripe_key}}"
-                                                            data-amount="{{ ($npo_info->support_amount+258)*1.046 }}"
+                                                            data-amount="{{ $npo_info->support_amount }}"
                                                             data-name="{{ $npo_info->title }}"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="合計額：(寄付金額+258)×4.6%"
+                                                            data-description="バッジがもらえます。"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -258,10 +258,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="{{$stripe_key}}"
-                                                            data-amount="{{ ($npo_info->support_price_gold+258)*1.046 }}"
+                                                            data-amount="{{ $npo_info->support_price_gold }}"
                                                             data-name="{{ $npo_info->title }}の法人寄付"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="合計額：(寄付金額+258)×4.6%"
+                                                            data-description="法人寄付"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"
@@ -319,10 +319,10 @@
                                                         <script
                                                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                             data-key="{{$stripe_key}}"
-                                                            data-amount="{{ ($npo_info->support_price_pratinum+258)*1.046 }}"
+                                                            data-amount="{{ $npo_info->support_price_pratinum }}"
                                                             data-name="{{ $npo_info->title }}の法人プラチナ寄付"
                                                             data-email="{{Auth::user()->email}}"
-                                                            data-description="合計額：(寄付金額+258)×4.6%"
+                                                            data-description="法人プラチナ寄付"
                                                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                                             data-locale="auto"
                                                             data-currency="jpy"

@@ -137,8 +137,8 @@
 								<i class="nc-icon nc-bulb-63"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">手数料258円+4.6%</h4>
-								<p>支払者のみ、<strong>258</strong>円(税込)と<strong>4.6%</strong>手数料が決済時にかかります。集まった寄付金は、<strong>全額担当者にお渡しします</strong>。</p>
+								<h4 class="info-title">バッジ制度</h4>
+								<p>決済が完了すると、集まった寄付金団体に渡され、寄付者にはバッジがもらえます。</p>
 							</div>
 						</div>
 					</div>
