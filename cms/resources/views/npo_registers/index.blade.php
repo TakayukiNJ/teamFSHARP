@@ -1,78 +1,113 @@
-@extends('layouts.app')
+@extends('layouts.common_nav_lp')
+@include('layouts.head_npo_index')
+@include('layouts.script')
+@include('layouts.nav_lp')
 @section('content')
 @include('error')
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-<div class="container">
-    <div class="page-header clearfix">
-        <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> {{Auth::user()->npo}}の登録プロジェクト
-            <a class="btn btn-success pull-right" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
-        </h1>
-
+<div class="wrapper">
+    <div class="page-header page-header-small" style="background-image: url('https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=');">
+        <div class="filter"></div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            @if($npo_registers->count())
-                <table class="table table-condensed table-striped">
-                    <thead>
-                        <tr>
-                            <th>タイトル</th>
-                            <th>獲得金額／目標金額</th>
-                            <th class="text-right">オプション</th>
-                        </tr>{{--$message--}}
-                    </thead>
-
-                    <tbody>
-                        @foreach($npo_registers as $npo_register)
-                            @if(($npo_register->proval) > 0)
-                            <tr>
-                                <td><a href="/{{ $npo_register->npo_name }}"><h1>{{$npo_register->subtitle}}</h1></a></td>
-                                <td><h1>{{$npo_register->follower}}／{{$npo_register->support_price}} 円（寄付数：{{$npo_register->buyer}}）</h1></td>
-                                <td class="text-right">
-                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_register->npo_name }}"><h1><i class="glyphicon glyphicon-eye-open"></i> 公開画面</h1></a>
-                                    <a class="btn btn-xs btn-warning" href="/{{ $npo_register->npo_name }}/edit"><h1><i class="glyphicon glyphicon-edit"></i> 編集</h1></a>
-                                </td>
-                            </tr>
+    <div class="profile-content section-white-gray">
+        <div class="container">
+            <div class="row owner">
+                <div class="col-md-2 col-sm-4 col-6 ml-auto mr-auto text-center">
+                    <div class="avatar">
+                        @if($npo_info)
+                            @if($npo_info->avater)
+                            <img src="{{ url('/') }}/img/project_logo/{{$npo_info->avater}}" class="img-thumbnail img-no-padding img-responsive" alt="Rounded Image" width="32" height="32">
                             @else
-                            <tr>
-                                @if(($npo_register->proval) == 0)
-                                <td><a href="/{{ $npo_register->npo_name }}"><h1>{{$npo_register->subtitle}}（未公開）</h1></a></td>
-                                @elseif(($npo_register->proval) == -1)
-                                <td><a href="/{{ $npo_register->npo_name }}"><h1>{{$npo_register->subtitle}}（期限切れ）</h1></a></td>
-                                @elseif(($npo_register->proval) == -2)
-                                <td><a href="/{{ $npo_register->npo_name }}"><h1>{{$npo_register->subtitle}}（要編集）</h1></a></td>
-                                @else
-                                <td><a href="/{{ $npo_register->npo_name }}"><h1>{{$npo_register->subtitle}}</h1></a></td>
-                                @endif
-                                <td><h1>{{$npo_register->follower}}／{{$npo_register->support_price}} 円</h1></td>
-                                <td class="text-right">
-                                    @if(($npo_register->npo_name) == "")
-                                        <a class="btn btn-xs btn-primary" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}"><h1><i class="glyphicon glyphicon-eye-open"></i> プレビュー</h1></a>
-                                        <a class="btn btn-xs btn-warning" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit"><h1><i class="glyphicon glyphicon-edit"></i> 編集</h1></a>
-                                    @else
-                                        <a class="btn btn-xs btn-primary" href="/{{ $npo_register->npo_name }}"><h1><i class="glyphicon glyphicon-eye-open"></i> プレビュー</h1></a>
-                                        <a class="btn btn-xs btn-warning" href="/{{ $npo_register->npo_name }}/edit"><h1><i class="glyphicon glyphicon-edit"></i> 編集</h1></a>
-                                    @endif
-                                    @if(($npo_register->published) == "")
-                                    <form action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger"><h1><i class="glyphicon glyphicon-trash"></i> 削除</h1></button>
-                                    </form>
-                                    @endif
-                                </td>
-                            </tr>
+                            <br><br><br>
                             @endif
-                        @endforeach
-                    </tbody>
-                </table>
-                {!! $npo_registers->render() !!}
-            @else
-                <h3 class="text-center alert alert-info">Empty!</h3>
-            @endif
+                        @else
+                        <br><br><br>
+                        @endif
+                    </div>
+                    <div class="name">
+                        <h4>{{Auth::user()->npo}}</h4>
+                    </div>
+                    <div class="following">
+                        <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>        
+                    </div>
+                </div>
+            </div>
+            {{--<div class="row">
+                <div class="col-md-6 ml-auto mr-auto text-center">
+                    <p> <a class="link-danger twitter-hashtag" href="javascript: void(0);">#ANTIdiaRy</a> — <a href="javascript: void(0);">http://smarturl.it</a> </p>
+                    <div class="description-details">
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-map-marker"></i> ANTI</li>
+                            <li><i class="fa fa-link"></i> <a href="javascript:void(0);">rihanna.com</a></li>
+                            <li><i class="fa fa-calendar"></i> Joined October 2009</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>--}}
+            
+            <div class="row">
+                    
+                @if($npo_registers->count())
+                    @foreach($npo_registers as $npo_register)
+                        <div class="col-md-4">
+                            <div class="card card-profile card-plain">
+                                <div class="card-img-top">
+                                    @if($npo_register->background_pic)
+                                    <img class="img" src="/img/project_back/{{ $npo_register->background_pic }}" />
+                                    @else
+                                    <img class="img" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" />
+                                    @endif
+                                </div>
+                                <div class="card-body">
+                                    @if(($npo_register->proval) > 0)
+                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
+                                        <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
+                                        <p class="card-description">目標金額: {{$npo_register->support_price}} 円</p>
+                                        <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
+                                        <a class="btn btn-info btn-round" href="/{{ $npo_register->npo_name }}">公開画面</a>
+                                        <a class="btn btn-success btn-round" href="/{{ $npo_register->npo_name }}/edit">編集</a>
+                                    @else
+                                        @if(($npo_register->proval) == 0)
+                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（未公開）</a></h4>
+                                        @elseif(($npo_register->proval) == -1)
+                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（期限切れ）</a></h4>
+                                        @elseif(($npo_register->proval) == -2)
+                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（要編集）</a></h4>
+                                        @else
+                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
+                                        @endif
+                                        <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
+                                        @if($npo_register->support_price)
+                                        <p class="card-description">目標金額: {{$npo_register->support_price}} 円</p>
+                                        @endif
+                                        <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
+                                        @if(($npo_register->npo_name) == "")
+                                            <a class="btn btn-info btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">プレビュー</a>
+                                            <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
+                                        @else
+                                            <a class="btn btn-info btn-round" href="/{{ $npo_register->npo_name }}">プレビュー</a>
+                                            <a class="btn btn-success btn-round" href="/{{ $npo_register->npo_name }}/edit">編集</a>
+                                        @endif
+                                        @if(($npo_register->published) == "")
+                                        <form action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-danger btn-round">削除</button>
+                                        </form>
+                                        @endif
+                                    @endif
+                                </div>
+            				</div>
+        				</div>
+                    @endforeach
+                    {!! $npo_registers->render() !!}
+                @else
+                <!--<h3 class="text-center alert alert-info">Empty!</h3>-->
+                <br>
+                @endif
+			</div>
         </div>
     </div>
 </div>
 @endsection
+@include('layouts.footer')

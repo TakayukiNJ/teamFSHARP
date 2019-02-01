@@ -22,8 +22,13 @@ class Npo_registerController extends Controller {
 	public function index()
 	{
         $name_auth = Auth::user()->name;
+	    $npo_auth = Auth::user()->npo;
+	    
+		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
+        $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
+        // dd($data);
 		$npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
-		return view('npo_registers.index', compact('npo_registers'))->with('message', 'Item created successfully.');
+		return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -36,7 +41,6 @@ class Npo_registerController extends Controller {
 	    
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
-	    
 		return view('npo_registers/create' ,$data);
 	}
 
@@ -188,7 +192,7 @@ class Npo_registerController extends Controller {
         if($currentNpoInfo->support_price){
             $par = ($currency_amount / $currentNpoInfo->support_price) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
             $parcentage = round($par,2); // 切捨て整数化
-            $data['parcentage']             = $parcentage;
+            $data['parcentage'] = $parcentage;
         }
         $data['buyer_data']             = $buyer_count;
         $data['donater_count']          = $donater_count;
@@ -205,18 +209,22 @@ class Npo_registerController extends Controller {
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
         // $currentNpoInfo = \DB::table('npo_registers')->where('id', $npo_name)->first();
-        
+        // NPOメンバーが画像を保存していれば、はめていく。
         // NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
             $member              = "member".$i;
             // $personal_info       = "personal_info".$i;
             $currentUserInfo     = \DB::table('users')->where('name', $currentNpoInfo->$member)->first();
         	$currentPersonalInfo = "";
-            $data['personal_info'][$i] = "";
-            if($currentUserInfo){
+            $data['personal_info_image_id'][$i] = "";
+            $data['personal_info_company_name'][$i] = "";
+            $data['personal_info_description'][$i] = "";
+        	if($currentUserInfo){
             	$currentPersonalInfo = \DB::table('personal_info')->where('user_id', $currentUserInfo->email)->first();
             	if($currentPersonalInfo){
-            	    $data['personal_info'][$i] = $currentPersonalInfo->image_id;
+            	    $data['personal_info_image_id'][$i]     = $currentPersonalInfo->image_id;
+            	    $data['personal_info_company_name'][$i] = $currentPersonalInfo->company_name;
+            	    $data['personal_info_description'][$i] = $currentPersonalInfo->description;
             	}
             }
         }
@@ -647,7 +655,7 @@ class Npo_registerController extends Controller {
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
         // Create a charge: this will charge the user's card
-        $the_price = floor(($currentNpoInfo->support_amount+258)*1.046);
+        $the_price = $currentNpoInfo->support_amount;
         // $total = $currentNpoInfo->support_amount*1.0375;
         // $tax   = ($total-$currentNpoInfo->support_amount)*1.08;
         // $the_price = floor($total);
@@ -731,7 +739,7 @@ class Npo_registerController extends Controller {
         // Get the credit card details submitted by the form
         $token = $_POST['stripeToken'];
         // Create a charge: this will charge the user's card
-        $the_price = floor(($currentNpoInfo->support_price_gold+258)*1.046);
+        $the_price = $currentNpoInfo->support_price_gold;
         try {
             $charge = \Stripe\Charge::create(array(
                 "amount"      => $the_price, // 課金額はココで調整
@@ -809,7 +817,7 @@ class Npo_registerController extends Controller {
         // Create a charge: this will charge the user's card
         // $the_price = floor(($currentNpoInfo->support_price_pratinum+258)*1.046);
         
-        $the_price = floor(($currentNpoInfo->support_price_pratinum)*1.037345);
+        $the_price = $currentNpoInfo->support_price_pratinum;
         try {
             $charge = \Stripe\Charge::create(array(
                 "amount"      => $the_price, // 課金額はココで調整
