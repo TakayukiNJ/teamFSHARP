@@ -41,6 +41,11 @@
                                     <a onClick="history.back()" class="btn btn-default">
                                         戻る
                                     </a>
+                                    @if($npo_info->url)
+                                    <a href="{{ $npo_info->url }}" class="btn btn-warning" target="_blank">
+                                        公式サイト    
+                                    </a>
+                                    @endif
                                     @if(( $npo_info->proval ) > 0)
                                     <a href="{{ url('/') }}/{{ $npo_info->npo_name }}" class="btn btn-success">
                                         公開ページ        
