@@ -37,6 +37,11 @@
                                 <br>
                                 @if(( $npo_info->support_price ) != 0)
                                 <div>
+                                    @if($npo_info->url)
+                                    <a href="{{ $npo_info->url }}" class="btn btn-warning" target="_blank">
+                                        公式サイト    
+                                    </a>
+                                    @endif
                                     <a href="#support" class="btn btn-danger">
                                         支援する
                                     </a>

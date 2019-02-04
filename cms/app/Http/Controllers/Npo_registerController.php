@@ -394,6 +394,7 @@ class Npo_registerController extends Controller {
                 'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
     	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                 'support_contents_detail_pratinum' => 'active_url',
+                'url'                     => 'active_url',
                 'npo_name'                => 'alpha_dash',
     		];
 		}else{
@@ -409,6 +410,7 @@ class Npo_registerController extends Controller {
                     'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                     'support_contents_detail_pratinum' => 'active_url',
+                    'url'                     => 'active_url',
                     'npo_name'                => 'unique:npo_registers|alpha_dash',
         		];
     		}else{
@@ -423,6 +425,7 @@ class Npo_registerController extends Controller {
                     'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                     'support_contents_detail_pratinum' => 'active_url',
+                    'url'                     => 'active_url',
                     'npo_name'                => 'unique:npo_registers|required | alpha_dash',
         	    ];
         	}
@@ -544,6 +547,7 @@ class Npo_registerController extends Controller {
         $npo_register->support_price_pratinum = $request->input("support_price_pratinum"); //法人寄付の値段(プラチナ寄付)*公開後変更不可
         
         $npo_register->body = $request->input("body");
+        $npo_register->url  = $request->input("url");
         $npo_register->updated_at = new Carbon(Carbon::now());
         // $npo_register->proval = $request->input("proval");
 

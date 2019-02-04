@@ -38,14 +38,14 @@
                                     @if ((Auth::user()->npo) == "")
                                     <div class="form-group @if($errors->has('title')) has-error @endif">
                                         <label for="title-field">団体名 ※右上のユーザー名の左に表示されます。</label>
-                                        <input type="text" id="title-field" name="title" class="form-control" value="{{ old("title") }}"/>
+                                        <input type="text" id="title-field" name="title" class="form-control text-center" value="{{ old("title") }}"/>
                                         @if($errors->has("title"))
                                         <span class="help-block">{{ $errors->first("title") }}</span>
                                         @endif
                                     </div>
                                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
                                        <label for="subtitle-field">最初のプロジェクト名</label>
-                                    <input type="text" id="subtitle-field" name="subtitle" class="form-control" value="{{ old("subtitle") }}"/>
+                                    <input type="text" id="subtitle-field" name="subtitle" class="form-control text-center" value="{{ old("subtitle") }}"/>
                                        @if($errors->has("subtitle"))
                                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
                                        @endif
@@ -53,16 +53,16 @@
                                     @else
                                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
                                        <label for="subtitle-field">新しいプロジェクト名</label>
-                                    <input type="text" id="subtitle-field" name="subtitle" class="form-control" value="{{ old("subtitle") }}"/>
+                                    <input type="text" id="subtitle-field" name="subtitle" class="form-control text-center" value="{{ old("subtitle") }}"/>
                                        @if($errors->has("subtitle"))
                                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
                                        @endif
                                     </div>
-                                    <input type="hidden" id="title-field" name="title" class="form-control" value="{{ Auth::user()->npo }}"/>
+                                    <input type="hidden" id="title-field" name="title" class="form-control text-center" value="{{ Auth::user()->npo }}"/>
                                     {{-- 目標金額 --}}
                                     <div class="form-group @if($errors->has('support_price')) has-error @endif">
                                        <label for="support_price-field">目標金額</label>
-                                    <input type="text" id="support_price-field" name="support_price" class="form-control" value="{{ old("support_price") }}"/>
+                                    <input type="text" id="support_price-field" name="support_price" class="form-control text-center" value="{{ old("support_price") }}"/>
                                        @if($errors->has("support_price"))
                                         <span class="help-block">{{ $errors->first("support_price") }}<</span>
                                        @endif
