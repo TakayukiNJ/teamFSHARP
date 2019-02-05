@@ -58,17 +58,18 @@
         <div class="col-md-2 text-center col-sm-3 col-12 ml-auto mr-auto">
             <h4>F#</h4>
             <div class="social-area">
+                
+                <a class="btn btn-just-icon btn-round btn-facebook" href="https://www.facebook.com/fsharp.me" target="_blank">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-just-icon btn-round btn-twitter" href="https://twitter.com/fsharpme" target="_blank">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
                 {{--
-                <!--<a class="btn btn-just-icon btn-round btn-facebook" href="https://www.facebook.com/nj.takayuki" target="_blank">-->
-                <!--    <i class="fa fa-facebook" aria-hidden="true"></i>-->
-                <!--</a>-->
-                <!--<a class="btn btn-just-icon btn-round btn-twitter" href="https://twitter.com/IbRducocvvsX0bC" target="_blank">-->
-                <!--    <i class="fa fa-twitter" aria-hidden="true"></i>-->
-                <!--</a>-->
-                --}}
                 <a class="btn btn-just-icon btn-round btn-github" href="https://github.com/TakayukiNJ/teamFSHARP" target="_blank">
                     <i class="fa fa-github" aria-hidden="true"></i>
                 </a>
+                --}}
             </div>
         </div>
         <div class="col-md-9 col-sm-9 col-12 ml-auto mr-auto">
