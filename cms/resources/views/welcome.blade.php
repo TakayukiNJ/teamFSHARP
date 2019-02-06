@@ -93,6 +93,8 @@
                     @else
                     <a href="{{ url('/npo_registers') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
                     @endif
+                    <br>
+                    <h1 class="presentation-subtitle text-center">▼</h1>
                 </div>
     		</div>
     	</div>
