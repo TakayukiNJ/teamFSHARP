@@ -38,16 +38,16 @@
                                 </h5>
                                 <br>
                                 <div>
-                                    <a onClick="history.back()" class="btn btn-default">
+                                    <a onClick="history.back()" class="btn btn-warning">
                                         戻る
                                     </a>
                                     @if($npo_info->url)
-                                    <a href="{{ $npo_info->url }}" class="btn btn-warning" target="_blank">
+                                    <a href="{{ $npo_info->url }}" class="btn btn-success" target="_blank">
                                         公式サイト    
                                     </a>
                                     @endif
                                     @if(( $npo_info->proval ) > 0)
-                                    <a href="{{ url('/') }}/{{ $npo_info->npo_name }}" class="btn btn-success">
+                                    <a href="{{ url('/') }}/{{ $npo_info->npo_name }}" class="btn btn-info">
                                         公開ページ        
                                     </a>
                                     @else

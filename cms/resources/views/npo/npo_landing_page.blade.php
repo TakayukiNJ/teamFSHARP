@@ -38,7 +38,7 @@
                                 @if(( $npo_info->support_price ) != 0)
                                 <div>
                                     @if($npo_info->url)
-                                    <a href="{{ $npo_info->url }}" class="btn btn-warning" target="_blank">
+                                    <a href="{{ $npo_info->url }}" class="btn btn-success" target="_blank">
                                         公式サイト    
                                     </a>
                                     @endif

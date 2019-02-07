@@ -108,8 +108,6 @@
                     <h5 class="description">このWebサービスでできること</h5>
                     <br><br>
                 </div>
-                
-                
                 <div class="row">
 					<div class="col-md-3">
 						<div class="info">
@@ -150,7 +148,7 @@
 								<i class="nc-icon nc-sun-fog-29"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">NPO版 ふるさと納税</h4>
+								<h4 class="info-title">NPO版ふるさと納税</h4>
 								<p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている認定NPO法人に、仮に毎月<strong>1,000</strong>円の寄付をした場合、最大<strong>5,000</strong>円が確定申告で税務署から戻ってきます。</p>
 							</div>
 						</div>

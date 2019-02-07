@@ -24,8 +24,12 @@
                         <br><br><br>
                         @endif
                     </div>
+                </div>
+            </div>
+            <div class="row owner">
+                <div class="col-md-6 col-sm-6 col-6 ml-auto mr-auto text-center">
                     <div class="name">
-                        <h4>{{Auth::user()->npo}}</h4>
+                        <h3>{{Auth::user()->npo}}</h3>
                     </div>
                     <div class="following">
                         <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>        
@@ -38,7 +42,7 @@
                     <div class="description-details">
                         <ul class="list-unstyled">
                             <li><i class="fa fa-map-marker"></i> ANTI</li>
-                            <li><i class="fa fa-link"></i> <a href="javascript:void(0);">rihanna.com</a></li>
+                            <li><i class="fa fa-link"></i><a href="javascript:void(0);">rihanna.com</a></li>
                             <li><i class="fa fa-calendar"></i> Joined October 2009</li>
                         </ul>
                     </div>
