@@ -116,7 +116,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">人とお金の流れを可視化</h4>
-								<p class="description">寄付をすると、ユーザー名（もしくは法人名）が記載されます。</p>
+								<p class="description">寄付をすると、ユーザー名（もしくは法人名）が記載されます。寄付者は、マイページで「バッジ」が寄付履歴としてもらえ、最新情報が見れます。</p>
 							</div>
 						</div>
 					</div>
@@ -126,8 +126,8 @@
 								<i class="nc-icon nc-chart-bar-32"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">プロジェクトを簡単公開 </h4>
-								<p>世界中の解決すべき課題のプロジェクトを、簡単に公開できます。</p>
+								<h4 class="info-title">簡単公開・簡単管理 </h4>
+								<p>世界中の解決すべき課題のプロジェクトを、簡単に公開できます。寄付者やチームメンバーには、メールを送ることができます。</p>
                             </div>
 						</div>
 					</div>
@@ -137,8 +137,8 @@
 								<i class="nc-icon nc-bulb-63"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">バッジ制度</h4>
-								<p>決済が完了すると、集まった寄付金団体に渡され、寄付者にはバッジがもらえます。</p>
+								<h4 class="info-title">ポイント還元</h4>
+								<p>寄付が完了すると、<strong>1</strong>ポイント<strong>1</strong>円分のポイントが寄付金の<strong>1%</strong>分もらえます。現在はキャンペーン中で<strong>10%</strong>分のポイントがもらえます。（3/31まで）</p>
 							</div>
 						</div>
 					</div>
@@ -149,7 +149,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">NPO版ふるさと納税</h4>
-								<p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている認定NPO法人に、仮に毎月<strong>1,000</strong>円の寄付をした場合、最大<strong>5,000</strong>円が確定申告で税務署から戻ってきます。</p>
+								<p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>掲載の認定NPOに寄付をすると、確定申告で税務署から約半分の金額が戻ります。ポイントとリターンを合わせると、同額相当の金額が戻ります。</p>
 							</div>
 						</div>
 					</div>
