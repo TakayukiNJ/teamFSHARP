@@ -192,29 +192,73 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="card card-pricing" data-color="orange">
-                                            <div class="card-body">
+                                        {{--<div class="card card-pricing" data-color="orange">--}}
+                                            {{--<div class="card-body">--}}
+                                                {{--
                                                 <h6 class="card-category text-success">バッジ保有者(支援者)リスト</h6>
                                                 <h3 class="card-title">現在の寄付者：<b>{{$donater_count}}人</b></h3>
-                                                <ul>
-                                                    @if(count($donater)>1)
-                                                        <li>
-                                                        @for ($i = 1; $i < count($donater); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater[$i]}}さん
-                                                            @else
-                                                                、{{$donater[$i]}}さん
-                                                            @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                        <li>まだ寄付者はいません。</li>
-                                                        <li>　</li>
-                                                        <li>　</li>
-                                                    @endif
-                                                </ul>
-                                            </div>
-                                        </div>
+                                                --}}
+                                                <br><br><br><br><br>
+                                                <div href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}">
+                                                        <svg viewBox="0 0 210 210">
+                                                            <g stroke="none" fill="none">
+                                                                <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
+                                                                <path d="M22,104.5 C22,150.063492 58.9365081,187 104.5,187 C150.063492,187 187,150.063492 187,104.5" id="bottom"></path>
+                                                            </g>
+                                                    		<circle cx="105" cy="105" r="62" stroke="currentColor" stroke-width="1" fill="none" />
+                                                            <text width="120" font-size="12" fill="currentColor">
+                                                                <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#top">
+                                                                    {{$npo_info->subtitle}}
+                                                                </textPath>
+                                                            </text>
+                                                            <text width="200" font-size="20" fill="currentColor">
+                                                                <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
+                                                                    {{$npo_info->title}}
+                                                                </textPath>
+                                                            </text>
+                                                        </svg>
+                                                        <span>現在寄付者：<b>{{$donater_count}}人</span>
+                                                    </div>
+                                                    {{-- ポップアップの中身 --}}
+                                                    <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
+                                                        <div class="modal-dialog modal-register">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header no-border-header text-center">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                      <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                    <h3 class="modal-title text-center">{{ $npo_info->subtitle }}</h3>
+                                                                    <p>{{ $npo_info->title }}</p>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <label>管理者</label>
+                                                                    <p>{{ $npo_info->manager }}</p>
+                                                                    <label>目標</label>
+                                                                    <p>{{ $npo_info->support_price }}円</p>
+                                                                    <label>現在</label>
+                                                                    <p>{{ $npo_info->follower }}円</p>
+                                                                    <label>寄付数</label>
+                                                                    <p>{{ $npo_info->buyer }}</p>
+                                                                    <label>寄付者</label>
+                                                                    <p>
+                                                                    @if(count($donater)>1)
+                                                                        @for ($i = 1; $i < count($donater); $i++)
+                                                                            @if($i == 1)
+                                                                                {{$donater[$i]}}さん
+                                                                            @else
+                                                                                、{{$donater[$i]}}さん
+                                                                            @endif
+                                                                        @endfor
+                                                                    @else
+                                                                        まだ寄付者はいません。
+                                                                    @endif
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            <!--</div>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
