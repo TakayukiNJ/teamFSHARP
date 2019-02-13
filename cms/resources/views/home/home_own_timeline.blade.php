@@ -97,7 +97,8 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-md-6 col-6">
-                                                    <a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge">
+                                                    <!--<a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge">-->
+                                                    <div href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge" data-toggle="modal" data-target="#loginModal">
                                                         <svg viewBox="0 0 210 210">
                                                             <g stroke="none" fill="none">
                                                                 <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
@@ -116,7 +117,81 @@
                                                             </text>
                                                         </svg>
                                                         <span>{{$npo_info_personal[$i]->npo_name}}</span>
-                                                    </a>
+                                                    </div>
+                                                    
+                                                    
+                                                    
+                                                    
+                    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-register">
+                            <div class="modal-content">
+                                <div class="modal-header no-border-header text-center">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h3 class="modal-title text-center">ようこそ！</h3>
+                                    <p>まずはご登録をお願いします。</p>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="register-form" role="form" method="POST" action="{{ url('/register') }}">
+                                        {{ csrf_field() }}
+                                        {{-- ユーザー名 --}}
+                                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                            <label for="name">ユーザー名(半角英数)</label>
+                                            <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
+                                            @if ($errors->has('name'))
+                                                <span class="help-block division">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        {{-- メールアドレス --}}
+                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                            <label for="email">E-Mailアドレス</label>
+                                            <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレス" value="{{ old('email') }}" required>
+                                            @if ($errors->has('email'))
+                                                <span class="help-block division">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        {{-- パスワード --}}
+                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                            <label for="password">パスワード</label>
+                                            <input id="password" type="password" class="form-control" placeholder="パスワード" name="password" required>
+                                            @if ($errors->has('password'))
+                                                <span class="help-block division">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        {{-- パスワード確認 --}}
+                                        <div class="form-group division">
+                                            <label for="password">パスワード確認</label>
+                                            <input id="password-confirm" type="password" class="form-control" placeholder="パスワード確認" name="password_confirmation" required>
+                                        </div>
+                                        {{-- 利用規約とプライバシーポリシー --}}
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" required>
+                                                <span class="form-check-sign">
+                                                    本サイトの<strong><a href="{{ url('/terms') }}" target="_blank"> 利用規約 </a>および</strong><strong><a href="{{ url('/privacy_policy') }}" target="_blank"> プライバシーポリシー </a></strong>に同意する（チェックを入れる）
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-block btn-primary btn-round">登録</button>
+                                    </form>
+                                    <div class="modal-footer no-border-footer">
+                                        <p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                                    
+                                                    
+                                                    
+                                                    
                                                 </div>
                                                 <div class="col-md-3 col-3">
                                                     <h6><a href="/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br>
