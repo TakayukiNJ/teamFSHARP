@@ -108,7 +108,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <h2 class="title text-center">支援方法を選択</h2>
+                        <h2 class="title text-center">支援する</h2>
+                        {{--
                         <div class="choose-plan">
                             <ul class="nav nav-pills nav-pills-danger" role="tablist">
                                 <li class="nav-item">
@@ -120,9 +121,10 @@
                             </ul>
                         </div>
                         <br/>
+                        --}}
                         <div class="tab-content text-center" >
-                            <p>現在の寄付者と法人の合計数：<b>{{ $buyer_data }}</b></p>
-                            <p>寄付するとユーザー名・法人名が記載されます。</p>
+                            <p>現在寄付数：<b>{{ $buyer_data }}</b>回</p>
+                            <p>寄付するとユーザー名がバッジに記載されます。</p>
                             <!--<p>*集まった寄付金は全額担当者にお渡しします。</p>-->
                             @if($npo_info->certificated_npo == 1)
                             <p>**こちらは<a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている認定NPO法人の寄付先なので、税額控除の対象です。</p>
@@ -211,7 +213,7 @@
                                                                     {{$npo_info->subtitle}}
                                                                 </textPath>
                                                             </text>
-                                                            <text width="200" font-size="20" fill="currentColor">
+                                                            <text width="120" font-size="12" fill="currentColor">
                                                                 <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
                                                                     {{$npo_info->title}}
                                                                 </textPath>
@@ -257,12 +259,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                            <!--</div>-->
-                                        <!--</div>-->
+                                                <br><br>
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
 
+                            {{--
                             <div class="tab-pane" id="commercial" role="tabpanel">
                                 <div class="space-top"></div>
                                 <div class="row">
@@ -387,6 +391,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    --}}
                                 </div>
                             </div>
                         </div>
