@@ -69,8 +69,8 @@ class Npo_registerController extends Controller {
         
         $edit_auth = $name_auth."1";
         
-		$npo_register->npo_name                = ""; // URL
-		$npo_register->title                   = $request->input("title"); // NPOの名前
+		$npo_register->npo_name = ""; // URL
+		$npo_register->title    = $request->input("title"); // NPOの名前
 		// NPOの名前をヘッダーに表示
 		if("" == $npo_auth){
             $npo_auth = $npo_register->npo_name;
@@ -639,11 +639,15 @@ class Npo_registerController extends Controller {
         return view('/errors/503');
     }
     
-    // Stripeの支払い。３パターンあり（1パターン目）
     public function payment(Request $request, string $npo_name) {
         $this->middleware('auth');
         $user_request_email = $request->stripeEmail;
-        // $user_company_auth = Auth::user()->npo; // 個人の時は必要ない。premier_idが2以上の時必要
+        $npo_id    = Auth::user()->npo_id;
+        $name_auth = Auth::user()->name;
+        $user_auth = Auth::user()->email;
+        $npo_auth  = Auth::user()->npo;
+        $user_company_auth = Auth::user()->npo; // 個人の時は必要ない。premier_idが2以上の時必要
+		$user_company_auth = Auth::user()->id; // 個人の時は必要ない。premier_idが2以上の時必要
 		
         // 個人の寄付データ取ってくる
         $currentPremierData = \DB::table('premier_data')
@@ -661,8 +665,8 @@ class Npo_registerController extends Controller {
         // Create a charge: this will charge the user's card
         $the_price = $currentNpoInfo->support_amount;
         // $total = $currentNpoInfo->support_amount*1.0375;
-        // $tax   = ($total-$currentNpoInfo->support_amount)*1.08;
-        // $the_price = floor($total);
+        $point = $the_price/100;
+        $the_point = floor($total);
         try {
             $customer = \Stripe\Customer::create(array(
                 'email' => $user_request_email
@@ -707,167 +711,22 @@ class Npo_registerController extends Controller {
                 ]
             );
         }
-         \DB::table('npo_registers')->where('npo_name', $npo_name)->update([
+        \DB::table('npo_registers')->where('npo_name', $npo_name)->update([
             'follower' => $currentNpoInfo->follower + $currentNpoInfo->support_amount, // いくら寄付したかの合計
             'buyer'    => $currentNpoInfo->buyer + 1 // 購入した数
         ]);
         
+        // デポジットに追加
+        \DB::table('users')->where('npo', $npo_name)->update([
+            'deposit' => $the_price,
+        ]);
+        
+        // ポイント
+        Auth::user()->where('id', $id_auth)->update([
+            'point' => $the_point
+        ]);
+        
         // この後にサンクスメール送る...
-        // return view('/thank_you_for_support');
-        return back();
-    }
-    
-    // Stripeの支払い。３パターンあり（2パターン目）
-    public function payment_company(Request $request, string $npo_name) {
-        $this->middleware('auth');
-        // $user_request_email = $request->stripeEmail; // これは個人の時に使う。
-        $user_company_auth = Auth::user()->npo;
-        // 企業の寄付データ取ってくる
-        $currentPremierData = \DB::table('premier_data')
-            ->where('vision_id', $npo_name)
-            ->where('user_define', $user_company_auth)
-            ->first();
-        // 企業の寄付数を持ってくる
-        $currentPremierDataCount = \DB::table('premier_data')
-            ->where('vision_id', $npo_name)
-            ->where('premier_id', 2)
-            ->count();
-        $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
-		if($currentPremierDataCount == $currentNpoInfo->support_amount_gold){
-            return view('/errors/503');
-		}
-		
-		// ストライプ側の処理
-		\Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
-        
-        // Get the credit card details submitted by the form
-        $token = $_POST['stripeToken'];
-        // Create a charge: this will charge the user's card
-        $the_price = $currentNpoInfo->support_price_gold;
-        try {
-            $charge = \Stripe\Charge::create(array(
-                "amount"      => $the_price, // 課金額はココで調整
-                "currency"    => "jpy",
-                "description" => $npo_name,
-                "source"      => $token
-            ));
-        } catch (\Stripe\Error\Card $e) {
-            return view('/errors/503');
-        }
-        
-        // F#側のデータベースの処理
-        // user_idとvision_idとpremier_idで判別
-        if($currentPremierData != null){
-            \DB::table('premier_data')
-                ->where('vision_id', $npo_name)
-                ->where('user_define', $user_company_auth)
-                ->update([
-                    'status'      => $currentPremierData->status + $currentNpoInfo->support_price_gold,
-                    'participants'=> $currentPremierData->participants + 1,
-                    'updated_at'  => new Carbon(Carbon::now())
-                ]);
-        }else{
-            \DB::table('premier_data')->insert(
-                [
-                'user_id'     => $token,                  // 何の団体が寄付したのかは団体名（USERテーブルのnpoカラム）で管理
-                'vision_id'   => $npo_name,                           // どのプロジェクトに寄付したのかURLで管理
-                'premier_id'  => 2,                                   // 通常の寄付なら1、企業からの寄付なら2、企業からのプレミア寄付なら3
-                'user_define' => $user_company_auth,              // 寄付した団体名（これは使わないかな。）
-                'status'      => $currentNpoInfo->support_price_gold, // いくら寄付したのか
-                'published'   => new Carbon(Carbon::now()),           // これも使わなそうだけど一応
-                'description' => $user_company_auth,                  // 寄付をした法人名
-                'participants'=> 1,                                   // 購入回数
-                'delflg'      => 0,                                   // 1だったら非表示。未実装
-                'created_at'  => new Carbon(Carbon::now()),           // 寄付した時刻
-                'updated_at'  => new Carbon(Carbon::now())            // 寄付した時刻
-                ]
-            );
-        }
-        \DB::table('npo_registers')->where('npo_name', $npo_name)->update([
-            'follower' => $currentNpoInfo->follower + $currentNpoInfo->support_price_gold, // いくら寄付したかの合計
-            'buyer'    => $currentNpoInfo->buyer + 1 // 購入した数
-        ]);
-        
-        // この後にサンクスメール送りたい...
-        // return view('/thank_you_for_support');
-        return back();
-    }
-    
-    // Stripeの支払い。３パターンあり（3パターン目）
-    public function payment_company_pratinum(Request $request, string $npo_name) {
-        $this->middleware('auth');
-        // $user_request_email = $request->stripeEmail; // これは個人の時に使う。
-        $user_company_auth = Auth::user()->npo;
-        // 企業の寄付データ取ってくる
-        $currentPremierData = \DB::table('premier_data')
-            ->where('user_define', $user_company_auth)
-            ->where('vision_id', $npo_name)
-            ->first();
-        // 企業の寄付数を持ってくる
-        $currentPremierDataCount = \DB::table('premier_data')
-            ->where('vision_id', $npo_name)
-            ->where('premier_id', 3)
-            ->count();
-        $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
-		if($currentPremierDataCount == $currentNpoInfo->support_amount_pratinum){
-            return view('/errors/503');
-		}
-		
-		// ストライプ側の処理
-		\Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
-        
-        // Get the credit card details submitted by the form
-        $token = $_POST['stripeToken'];
-        // Create a charge: this will charge the user's card
-        // $the_price = floor(($currentNpoInfo->support_price_pratinum+258)*1.046);
-        
-        $the_price = $currentNpoInfo->support_price_pratinum;
-        try {
-            $charge = \Stripe\Charge::create(array(
-                "amount"      => $the_price, // 課金額はココで調整
-                "currency"    => "jpy",
-                "description" => $npo_name,
-                "source"      => $token
-            ));
-        } catch (\Stripe\Error\Card $e) {
-            return view('/errors/503');
-        }
-        
-        // F#側のデータベースの処理
-        // user_defineとvision_idとpremier_idで判別
-        if($currentPremierData != null){
-            \DB::table('premier_data')
-                ->where('user_define', $user_company_auth)
-                ->where('vision_id', $npo_name)
-                ->update([
-                    'status'      => $currentPremierData->status + $currentNpoInfo->support_price_pratinum,
-                    'participants'=> $currentPremierData->participants + 1,
-                    'premier_id'  => 3, // 企業からの寄付の2だったら、プレミア寄付の3に変更
-                    'updated_at'  => new Carbon(Carbon::now())
-                ]);
-        }else{
-            \DB::table('premier_data')->insert(
-                [
-                'user_id'     => $token,                                  // 何の団体が寄付したのかは団体名（USERテーブルのnpoカラム）で管理
-                'vision_id'   => $npo_name,                               // どのプロジェクトに寄付したのかURLで管理
-                'premier_id'  => 3,                                       // 通常の寄付なら1、企業からの寄付なら2、企業からのプレミア寄付なら3
-                'user_define' => $user_company_auth,                      // 寄付した団体名（これは使わないかな。）
-                'status'      => $currentNpoInfo->support_price_pratinum, // いくら寄付したのか
-                'published'   => new Carbon(Carbon::now()),               // これも使わなそうだけど一応
-                'description' => $user_company_auth,                      // 寄付をした法人名
-                'participants'=> 1,                                       // 購入回数
-                'delflg'      => 0,                                       // 1だったら非表示。未実装
-                'created_at'  => new Carbon(Carbon::now()),               // 寄付した時刻
-                'updated_at'  => new Carbon(Carbon::now())                // 寄付した時刻
-                ]
-            );
-        }
-        \DB::table('npo_registers')->where('npo_name', $npo_name)->update([
-            'follower' => $currentNpoInfo->follower + $currentNpoInfo->support_price_pratinum, // いくら寄付したかの合計
-            'buyer'    => $currentNpoInfo->buyer + 1 // 購入した数
-        ]);
-        
-        // この後にサンクスメール送りたい...
         // return view('/thank_you_for_support');
         return back();
     }
