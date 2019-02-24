@@ -646,8 +646,6 @@ class Npo_registerController extends Controller {
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
         $npo_auth  = Auth::user()->npo;
-        $user_company_auth = Auth::user()->npo; // 個人の時は必要ない。premier_idが2以上の時必要
-		$user_company_auth = Auth::user()->id; // 個人の時は必要ない。premier_idが2以上の時必要
 		
         // 個人の寄付データ取ってくる
         $currentPremierData = \DB::table('premier_data')
@@ -655,7 +653,8 @@ class Npo_registerController extends Controller {
             ->where('user_define', $user_request_email)
             ->where('premier_id', 1)
             ->first();
-        $currentNpoInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+        $currentUserInfo = Auth::user()->where('name', $name_auth)->first();
+        $currentNpoInfo  = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
         
         // ストライプ側の処理
         \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
@@ -666,7 +665,7 @@ class Npo_registerController extends Controller {
         $the_price = $currentNpoInfo->support_amount;
         // $total = $currentNpoInfo->support_amount*1.0375;
         $point = $the_price/100;
-        $the_point = floor($total);
+        $the_point = floor($point);
         try {
             $customer = \Stripe\Customer::create(array(
                 'email' => $user_request_email
@@ -712,18 +711,18 @@ class Npo_registerController extends Controller {
             );
         }
         \DB::table('npo_registers')->where('npo_name', $npo_name)->update([
+            'deposit'  => $currentNpoInfo->deposit + $the_price,
             'follower' => $currentNpoInfo->follower + $currentNpoInfo->support_amount, // いくら寄付したかの合計
             'buyer'    => $currentNpoInfo->buyer + 1 // 購入した数
         ]);
-        
         // デポジットに追加
-        \DB::table('users')->where('npo', $npo_name)->update([
-            'deposit' => $the_price,
-        ]);
+        // \DB::table('users')->where('npo', $npo_name)->update([
+        //     'deposit' => $the_price,
+        // ]);
         
         // ポイント
-        Auth::user()->where('id', $id_auth)->update([
-            'point' => $the_point
+        Auth::user()->where('name', $name_auth)->update([
+            'point' => $currentUserInfo->point + $the_point,
         ]);
         
         // この後にサンクスメール送る...
