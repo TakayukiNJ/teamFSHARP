@@ -710,15 +710,12 @@ class Npo_registerController extends Controller {
                 ]
             );
         }
+        // デポジットに追加
         \DB::table('npo_registers')->where('npo_name', $npo_name)->update([
             'deposit'  => $currentNpoInfo->deposit + $the_price,
             'follower' => $currentNpoInfo->follower + $currentNpoInfo->support_amount, // いくら寄付したかの合計
             'buyer'    => $currentNpoInfo->buyer + 1 // 購入した数
         ]);
-        // デポジットに追加
-        // \DB::table('users')->where('npo', $npo_name)->update([
-        //     'deposit' => $the_price,
-        // ]);
         
         // ポイント
         Auth::user()->where('name', $name_auth)->update([

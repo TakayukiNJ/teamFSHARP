@@ -24,7 +24,8 @@
                             @endif
                         </div>
                         <div class="name">
-                            <h4 class="title text-center"> {{ Auth::user()->name }}@if($personal_info)<br><small>{{ $personal_info->description}}</small>@endif</h4>
+                            <h4 class="title text-center"> {{ Auth::user()->name }}@if($personal_info)<br><small>{{ $personal_info->description }}</small><br><br>現在保有ポイント：{{ Auth::user()->point }} ポイント @endif
+                            @if($personal_info)@endif
                         </div>
                   </div>
                 </div>
