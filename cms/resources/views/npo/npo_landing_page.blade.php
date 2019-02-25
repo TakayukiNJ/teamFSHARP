@@ -491,7 +491,7 @@
                                     <div class="col-md-7">
                                         <div class="card-body text-left">
                                             <h4 class="card-title">{{ $npo_info->$member }}</h4>
-                                            @if($npo_info->$member_pos){
+                                            @if($npo_info->$member_pos)
                                             <h6 class="card-category">{{ $npo_info->$member_pos }}</h6>
                                             @else
                                             <h6 class="card-category">{{ $personal_info_company_name[$i] }}</h6>
