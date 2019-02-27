@@ -56,48 +56,40 @@
                                 </div>
                                 <br>
                                 @endif
-                                {{-- LINE --}}
-                                <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
-                                <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-                                
-                                {{-- Twitter --}}
-                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text={!! $npo_info->title !!} {!! $npo_info->subtitle !!}の支援のために。ひとりでも多くの方に広めてください♪" class="twitter-share-button" data-show-count="false">Tweet</a>
-                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                                
-                                {{-- Facebook --}}
-                                <!--<i class="fb-like" data-href="https://fsharp/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></i>-->
-                                <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
-                                
-                                
-                                <div id="fb-root"></div>
-                                <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
-                                
-                                
-                                <script>(function(d, s, id) {
-                                  var js, fjs = d.getElementsByTagName(s)[0];
-                                  if (d.getElementById(id)) return;
-                                  js = d.createElement(s); js.id = id;
-                                  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1545608625538119&autoLogAppEvents=1';
-                                  fjs.parentNode.insertBefore(js, fjs);
-                                }(document, 'script', 'facebook-jssdk'));</script>
-                                <!--<a class="fb-xfbml-parse-ignore">-->
-                                <!--<a href="" class="btn btn-round btn-facebook">-->
-                                <!--    <i class="fa fa-facebook" aria-hidden="true"></i> Share &middot; 1-->
-                                <!--</a>-->
-                                <!--<br>-->
-                                <div class="avatar">
-                                    <br>
-                                    @if($npo_info->certificated_npo)
-                                    <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
-                                        <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
-                                    </a>
-                                    @endif
-                                    @for ($i = 1; $i < 7; $i++)
-                                        <?php $sdgs = "sdgs".$i ?>
-                                        @if($npo_info->$sdgs)
-                                        <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                <div class="containersns">
+                                    {{-- Facebook --}}
+                                    <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                                    <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
+                                    <div>　</div>
+                                    {{-- Twitter --}}
+                                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text={!! $npo_info->title !!} {!! $npo_info->subtitle !!}の支援のために。ひとりでも多くの方に広めてください♪" class="twitter-share-button" data-show-count="false"></a>
+                                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                    <div>　</div>
+                                    {{-- LINE --}}
+                                    <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
+                                    <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+                                    {{-- SDGs --}}
+                                    <div class="avatar">
+                                        <br>
+                                        @if($npo_info->certificated_npo)
+                                        <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
+                                            <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                        </a>
                                         @endif
-                                    @endfor
+                                        @for ($i = 1; $i < 7; $i++)
+                                            <?php $sdgs = "sdgs".$i ?>
+                                            @if($npo_info->$sdgs)
+                                            <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    <style type="text/css">
+                                        .containersns {
+                                          display: flex;
+                                          justify-content: center;
+                                          align-items: center;
+                                        }
+                                    </style>
                                 </div>
                             </div>
                         </div>
@@ -227,6 +219,42 @@
                                                         </button>
                                                         <h3 class="modal-title text-center">{{ $npo_info->subtitle }}</h3>
                                                         <p>{{ $npo_info->title }}</p>
+                                                    </div>
+                                                    {{-- SNS share --}}
+                                                    <div class="containersns">
+                                                        {{-- Facebook --}}
+                                                        <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                                                        <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
+                                                        <div>　</div>
+                                                        {{-- Twitter --}}
+                                                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text={!! $npo_info->title !!} {!! $npo_info->subtitle !!}の支援のために。ひとりでも多くの方に広めてください♪" class="twitter-share-button" data-show-count="false"></a>
+                                                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                                        <div>　</div>
+                                                        {{-- LINE --}}
+                                                        <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
+                                                        <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+                                                        {{-- SDGs --}}
+                                                        <div class="avatar">
+                                                            <br>
+                                                            @if($npo_info->certificated_npo)
+                                                            <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
+                                                                <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                                            </a>
+                                                            @endif
+                                                            @for ($i = 1; $i < 7; $i++)
+                                                                <?php $sdgs = "sdgs".$i ?>
+                                                                @if($npo_info->$sdgs)
+                                                                <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                                                @endif
+                                                            @endfor
+                                                        </div>
+                                                        <style type="text/css">
+                                                            .containersns {
+                                                              display: flex;
+                                                              justify-content: center;
+                                                              align-items: center;
+                                                            }
+                                                        </style>
                                                     </div>
                                                     <div class="modal-body">
                                                         <label>管理者</label>
