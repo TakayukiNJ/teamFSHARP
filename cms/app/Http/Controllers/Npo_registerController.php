@@ -690,7 +690,7 @@ class Npo_registerController extends Controller {
                 ->where('premier_id', 1)
                 ->update([
                     'status'      => $currentPremierData->status + $currentNpoInfo->support_amount,
-                    'participants'=> $currentPremierData->status + 1,
+                    'participants'=> $currentPremierData->participants + 1,
                     'updated_at'  => new Carbon(Carbon::now())
                 ]);
         }else{

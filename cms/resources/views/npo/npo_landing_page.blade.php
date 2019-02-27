@@ -37,11 +37,6 @@
                                 <br>
                                 @if(( $npo_info->support_price ) != 0)
                                 <div>
-                                    @if($npo_info->url)
-                                    <a href="{{ $npo_info->url }}" class="btn btn-success" target="_blank">
-                                        公式サイト    
-                                    </a>
-                                    @endif
                                     <a href="#support" class="btn btn-danger">
                                         支援する
                                     </a>
@@ -69,27 +64,20 @@
                                     <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
                                     <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
                                     {{-- SDGs --}}
-                                    <div class="avatar">
-                                        <br>
-                                        @if($npo_info->certificated_npo)
-                                        <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
-                                            <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
-                                        </a>
+                                </div>
+                                <div class="avatar">
+                                    <br>
+                                    @if($npo_info->certificated_npo)
+                                    <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
+                                        <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                    </a>
+                                    @endif
+                                    @for($i = 1; $i < 7; $i++)
+                                        <?php $sdgs = "sdgs".$i ?>
+                                        @if($npo_info->$sdgs)
+                                        <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
                                         @endif
-                                        @for ($i = 1; $i < 7; $i++)
-                                            <?php $sdgs = "sdgs".$i ?>
-                                            @if($npo_info->$sdgs)
-                                            <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
-                                            @endif
-                                        @endfor
-                                    </div>
-                                    <style type="text/css">
-                                        .containersns {
-                                          display: flex;
-                                          justify-content: center;
-                                          align-items: center;
-                                        }
-                                    </style>
+                                    @endfor
                                 </div>
                             </div>
                         </div>
@@ -207,7 +195,7 @@
                                                     </textPath>
                                                 </text>
                                             </svg>
-                                            <span>現在寄付者：<b>{{$donater_count}}人</span>
+                                            <span>現在寄付者：<b>{{$donater_count}}</b>人</span>
                                         </div>
                                         {{-- ポップアップの中身 --}}
                                         <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
@@ -219,6 +207,11 @@
                                                         </button>
                                                         <h3 class="modal-title text-center">{{ $npo_info->subtitle }}</h3>
                                                         <p>{{ $npo_info->title }}</p>
+                                                        @if($npo_info->url)
+                                                        <a href="{{ $npo_info->url }}" class="btn btn-danger" target="_blank">
+                                                            公式サイト    
+                                                        </a>
+                                                        @endif
                                                     </div>
                                                     {{-- SNS share --}}
                                                     <div class="containersns">
@@ -233,7 +226,9 @@
                                                         {{-- LINE --}}
                                                         <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
                                                         <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-                                                        {{-- SDGs --}}
+                                                    </div>
+                                                    {{-- SDGs --}}
+                                                    <div class="containersns">
                                                         <div class="avatar">
                                                             <br>
                                                             @if($npo_info->certificated_npo)
@@ -268,11 +263,20 @@
                                                         <label>寄付者</label>
                                                         <p>
                                                         @if(count($donater)>1)
-                                                            @for ($i = 1; $i < count($donater); $i++)
+                                                            @for($i = 1; $i < count($donater); $i++)
                                                                 @if($i == 1)
-                                                                    {{$donater[$i]}}さん
+                                                                    @if((Auth::user()->name) == $donater[$i])
+                                                                        <b><font color="red">{{$donater[$i]}}さん（あなた）</font></b>
+                                                                    @else
+                                                                        {{$donater[$i]}}さん
+                                                                    @endif
                                                                 @else
-                                                                    、{{$donater[$i]}}さん
+                                                                    、
+                                                                    @if((Auth::user()->name) == $donater[$i])
+                                                                        <b><font color="red">{{$donater[$i]}}さん（あなた）</font></b>
+                                                                    @else
+                                                                        {{$donater[$i]}}さん
+                                                                    @endif
                                                                 @endif
                                                             @endfor
                                                         @else
@@ -285,135 +289,6 @@
                                         </div>
                                         <br><br>
                                     </div>
-                                </div>
-                            </div>
-
-                            {{--
-                            <div class="tab-pane" id="commercial" role="tabpanel">
-                                <div class="space-top"></div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-danger">法人（団体・チーム）として支援する</h6>
-                                                <h1 class="card-title">¥{{$npo_info->support_price_gold}}</h1>
-                                                <ul>
-                                                    <li>現在<b>{{$company_count_gold}}</b>法人が支援中です。</li>
-                                                    <li>最大<b>{{$npo_info->support_amount_gold}}</b>法人まで支援可能。</li>
-                                                    @if($npo_info->support_contents_gold)
-                                                        <li>リターン：<b>{{$npo_info->support_contents_gold}}</b></li>
-                                                    @endif
-                                                    @if(count($donater_gold)>1)
-                                                        <li>支援法人名：
-                                                        @for ($i = 1; $i < count($donater_gold); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater_gold[$i]}}
-                                                            @else
-                                                                、{{$donater_gold[$i]}}
-                                                            @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                    <li>支援した法人名をこちらに掲載。</li>
-                                                    @endif
-                                                </ul>
-                                                @if($npo_info->support_contents_detail_gold)
-                                                    <a class="btn btn-success btn-round" href="{{$npo_info->support_contents_detail_gold}}" target="_blank">
-                                                        内容の詳細はこちら
-                                                    </a>
-                                                    <br><br>
-                                                @endif
-                                                @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
-                                                @elseif(Auth::user()->npo == "")
-                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-danger btn-round">まずは団体登録</a>
-                                                @elseif($company_count_gold < $npo_info->support_amount_gold)
-                                                    <form action="/{{$npo_info->npo_name}}/payment_company" method="POST">
-                                                        {!! csrf_field() !!}
-                                                        <script
-                                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                            data-key="{{$stripe_key}}"
-                                                            data-amount="{{ $npo_info->support_price_gold }}"
-                                                            data-name="{{ $npo_info->title }}の法人寄付"
-                                                            data-email="{{Auth::user()->email}}"
-                                                            data-description="法人寄付"
-                                                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                                            data-locale="auto"
-                                                            data-currency="jpy"
-                                                            $.ajaxSetup({
-                                                            headers: {
-                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                                            }
-                                                        })
-                                                        >
-                                                        </script>
-                                                     </form>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing" data-color="orange">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-success">プラチナ法人として支援する</h6>
-                                                <h1 class="card-title">¥{{$npo_info->support_price_pratinum}}</h1>
-                                                <ul>
-                                                    <li>現在<b>{{$company_count_pratinum}}</b>法人が支援中です。</li>
-                                                    <li>最大<b>{{$npo_info->support_amount_pratinum}}</b>法人まで支援可能。</li>
-                                                    @if($npo_info->support_contents_pratinum)
-                                                        <li>リターン：<b>{{$npo_info->support_contents_pratinum}}</b></li>
-                                                    @endif
-                                                    @if(count($donater_pratinum)>1)
-                                                        <li>支援法人名：
-                                                        @for ($i = 1; $i < count($donater_pratinum); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater_pratinum[$i]}}
-                                                            @else
-                                                                、{{$donater_pratinum[$i]}}
-                                                            @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                    <li>支援した法人名をこちらに掲載。</li>
-                                                    @endif
-                                                </ul>
-                                                @if($npo_info->support_contents_detail_pratinum)
-                                                    <a href="{{$npo_info->support_contents_detail_pratinum}}" class="btn btn-neutral btn-round">
-                                                        内容の詳細はこちら
-                                                    </a>
-                                                    <br><br>
-                                                @endif
-                                                @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-neutral btn-round">ログイン</a>
-                                                @elseif(Auth::user()->npo == "")
-                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-neutral btn-round">まずは団体登録</a>
-                                                @elseif($company_count_pratinum < $npo_info->support_amount_pratinum)
-                                                
-                                                    <form action="/{{$npo_info->npo_name}}/payment_company_pratinum" method="POST">
-                                                        {!! csrf_field() !!}
-                                                        <script
-                                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                            data-key="{{$stripe_key}}"
-                                                            data-amount="{{ $npo_info->support_price_pratinum }}"
-                                                            data-name="{{ $npo_info->title }}の法人プラチナ寄付"
-                                                            data-email="{{Auth::user()->email}}"
-                                                            data-description="法人プラチナ寄付"
-                                                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                                            data-locale="auto"
-                                                            data-currency="jpy"
-                                                            $.ajaxSetup({
-                                                            headers: {
-                                                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                                            }
-                                                        })
-                                                        >
-                                                        </script>
-                                                     </form>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    --}}
                                 </div>
                             </div>
                         </div>

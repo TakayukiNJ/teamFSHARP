@@ -109,18 +109,18 @@
                                                                 <path d="M22,104.5 C22,150.063492 58.9365081,187 104.5,187 C150.063492,187 187,150.063492 187,104.5" id="bottom"></path>
                                                             </g>
                                                     		<circle cx="105" cy="105" r="62" stroke="currentColor" stroke-width="1" fill="none" />
-                                                            <text width="120" font-size="12" fill="currentColor">
+                                                            <text width="80" font-size="8" fill="currentColor">
                                                                 <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#top">
                                                                     {{$npo_info_personal[$i]->subtitle}}
                                                                 </textPath>
                                                             </text>
-                                                            <text width="200" font-size="20" fill="currentColor">
+                                                            <text width="80" font-size="8" fill="currentColor">
                                                                 <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
                                                                     {{$npo_info_personal[$i]->title}}
                                                                 </textPath>
                                                             </text>
                                                         </svg>
-                                                        <span>{{$npo_info_personal[$i]->npo_name}}</span>
+                                                        <span>現在寄付者：<b>{{$donater_count}}</b>人</span>
                                                     </div>
                                                     {{-- ポップアップの中身 --}}
                                                     <div class="modal fade" id="{{ $npo_info_personal[$i]->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
@@ -133,15 +133,72 @@
                                                                     <h3 class="modal-title text-center">{{ $npo_info_personal[$i]->subtitle }}</h3>
                                                                     <p>{{ $npo_info_personal[$i]->title }}</p>
                                                                 </div>
+                                                                {{-- SNS share --}}
+                                                                <div class="containersns">
+                                                                    {{-- Facebook --}}
+                                                                    <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info_personal[$i]->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                                                                    <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
+                                                                    <div>　</div>
+                                                                    {{-- Twitter --}}
+                                                                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text={!! $npo_info_personal[$i]->title !!} {!! $npo_info_personal[$i]->subtitle !!}の支援のために。ひとりでも多くの方に広めてください♪" class="twitter-share-button" data-show-count="false"></a>
+                                                                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                                                    <div>　</div>
+                                                                    {{-- LINE --}}
+                                                                    <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info_personal[$i]->npo_name }}" style="display: none;"></div>
+                                                                    <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+                                                                </div>
+                                                                <style type="text/css">
+                                                                    .containersns {
+                                                                      display: flex;
+                                                                      justify-content: center;
+                                                                      align-items: center;
+                                                                    }
+                                                                </style>
+                                                                {{-- SDGs --}}
+                                                                <div class="containersns">
+                                                                    <div class="avatar">
+                                                                        <br>
+                                                                        @if($npo_info_personal[$i]->certificated_npo)
+                                                                        <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info_personal[$i]->certificated_npo }}" target="_blank">
+                                                                            <img src="/img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                                                        </a>
+                                                                        @endif
+                                                                        @for ($j = 1; $j < 7; $j++)
+                                                                            <?php $sdgs = "sdgs".$j ?>
+                                                                            @if($npo_info_personal[$i]->$sdgs)
+                                                                            <img src="/img/sdgs-logo/sdg_icon_{{$npo_info_personal[$i]->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                                                            @endif
+                                                                        @endfor
+                                                                    </div>
+                                                                </div>
                                                                 <div class="modal-body">
-                                                                    <label>管理者</label>
-                                                                    <p>{{ $npo_info_personal[$i]->manager }}</p>
-                                                                    <label>目標</label>
-                                                                    <p>{{ $npo_info_personal[$i]->support_price }}円</p>
-                                                                    <label>現在</label>
-                                                                    <p>{{ $npo_info_personal[$i]->follower }}円</p>
-                                                                    <label>寄付数</label>
-                                                                    <p>{{ $npo_info_personal[$i]->buyer }}</p>
+                                                                    <label>管理者：<b>{{ $npo_info_personal[$i]->manager }}さん</b></label><br>
+                                                                    <label>{{Auth::user()->name}}さんの最終寄付日：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日') }}</b></label><br>
+                                                                    <label>{{Auth::user()->name}}さんの合計寄付数：<b>{{ $premierData_personal[$i]->participants }}回</b></label><br>
+                                                                    <label>{{Auth::user()->name}}さんの合計寄付金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
+                                                                    <label><b>寄付者</b></label>
+                                                                    <p>
+                                                                    @if(count($donater[$i])>1)
+                                                                        @for($d = 1; $d < count($donater[$i]); $d++)
+                                                                            @if($d == 1)
+                                                                                @if((Auth::user()->name) == $donater[$i][$d])
+                                                                                    <b><font color="red">{{$donater[$i][$d]}}さん（あなた）</font></b>
+                                                                                @else
+                                                                                    {{$donater[$i][$d]}}さん
+                                                                                @endif
+                                                                            @else
+                                                                                、
+                                                                                @if((Auth::user()->name) == $donater[$i][$d])
+                                                                                    <b><font color="red">{{$donater[$i][$d]}}さん（あなた）</font></b>
+                                                                                @else
+                                                                                    {{$donater[$i][$d]}}さん
+                                                                                @endif
+                                                                            @endif
+                                                                        @endfor
+                                                                    @else
+                                                                        まだ寄付者はいません。
+                                                                    @endif
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -480,13 +480,64 @@ class HomeController extends Controller
 		// 寄付した団体を取得（個人）
 		$premierData_personal = \DB::table('premier_data')->where('user_define', $email)->orderBy('updated_at', 'desc')->get();
 		$data['premierData_personal'] = $premierData_personal;
+        $data['donater']          = array(0=>"Donater");
+        $data['donater_gold']     = array(0=>"Company");
+        $data['donater_pratinum'] = array(0=>"Company(pratinum)");
 		if($premierData_personal){
 		    for($i = 0; $i < count($premierData_personal); $i++){
     		    $premierData_email = $premierData_personal[$i]->vision_id;
     		    $data['npo_info_personal'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_email)->first();
     		    //  = $premierData_personal[$i];
+    		    
+        		// そのままNpo_registerControllerをコピペ
+        		$currentPremierData = \DB::table('premier_data')->where('vision_id', $data['npo_info_personal'][$i]->npo_name)->get();
+                // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
+                // 何人がいくら寄付したのか、誰が寄付したのか表示
+                $mail_message = "";
+                $donater = 'donater_'.$i;
+                $data['donater'][$i]          = array(0=>"Donater");
+            	$buyer_count                     = 0; // 寄付した人・団体の数字
+            	$currency_amount                 = 0; // 現在いくらか
+            	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
+            	$donater_count                   = 0; // 寄付した人は何人か
+            	$company_count_gold              = 0; // 寄付した人は何人か(企業)
+            	$company_count_pratinum          = 0; // 寄付した人は何人か(プラチナ企業)
+            	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
+            	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
+            	for($array_count=0; $array_count<count($currentPremierData); $array_count++){
+                    $buyer_count++; // 人数
+                    $currency_origin = $currentPremierData[$array_count]->status;
+                    $currency_amount += $currency_origin; // 金額
+                    if(1 == $currentPremierData[$array_count]->premier_id){ // 個人
+                        $currency_amount_personal += $currency_origin;
+                        $donater_count++;
+                        $donater_email = $currentPremierData[$array_count]->user_define;
+                        $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
+                        $donater_name  = $donater_info->name;
+                        $data['donater'][$i] += array($donater_count=>$donater_name);
+                        // $data['donater'.$donater_count] = $donater_name;
+                    }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
+                        $currency_amount_company += $currency_origin;
+                        $company_count_gold++;
+                        $donater_npo = $currentPremierData[$array_count]->user_define;
+                        // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
+                        // $donater_name  = $donater_info->name;
+                        $data['donater_gold'] += array($company_count_gold=>$donater_npo);
+                    }else if(3 == $currentPremierData[$array_count]->premier_id){ // 法人
+                        $currency_amount_company_premier += $currency_origin;
+                        $company_count_pratinum++;
+                        $donater_npo = $currentPremierData[$array_count]->user_define;
+                        // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
+                        // $donater_name  = $donater_info->name;
+                        $data['donater_pratinum'] += array($company_count_pratinum=>$donater_npo);
+                    }
+                }
+    		    
     		}
 		}
+		$data['buyer_data']    = $buyer_count;
+        $data['donater_count'] = $donater_count;
+        $data['currency_data'] = $currency_amount;
 		// 寄付した団体を取得（企業）
 		$premierData_enterprise = \DB::table('premier_data')->where('user_define', $auth_npo)->orderBy('updated_at', 'desc')->get();
 		$data['premierData_enterprise'] = $premierData_enterprise;
