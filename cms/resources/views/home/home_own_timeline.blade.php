@@ -24,8 +24,11 @@
                             @endif
                         </div>
                         <div class="name">
-                            <h4 class="title text-center"> {{ Auth::user()->name }}@if($personal_info)<br><small>{{ $personal_info->description }}</small><br><br>現在保有ポイント：{{ Auth::user()->point }} ポイント @endif
-                            @if($personal_info)@endif
+                            <h4 class="title text-center">{{ Auth::user()->name }}@if($personal_info)<br><small>{{ $personal_info->description }}</small>@endif<br><br><small>現在保有ポイント：{{ Auth::user()->point }} ポイント</small>
+                            
+                            @if(Auth::user()->total_deposit)
+                            <br><small>出金可能金額：{{Auth::user()->total_deposit}}円</small></h4>
+                            @endif
                         </div>
                   </div>
                 </div>
@@ -120,7 +123,7 @@
                                                                 </textPath>
                                                             </text>
                                                         </svg>
-                                                        <span>現在寄付者：<b>{{$donater_count}}</b>人</span>
+                                                        <span>現在寄付者：<b>{{count($donater[$i])-1}}</b>人</span>
                                                     </div>
                                                     {{-- ポップアップの中身 --}}
                                                     <div class="modal fade" id="{{ $npo_info_personal[$i]->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
@@ -173,31 +176,21 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <label>管理者：<b>{{ $npo_info_personal[$i]->manager }}さん</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの最終寄付日：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日') }}</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの合計寄付数：<b>{{ $premierData_personal[$i]->participants }}回</b></label><br>
+                                                                    <label>{{Auth::user()->name}}さんの合計寄付回数：<b>{{ $premierData_personal[$i]->participants }}回</b></label><br>
                                                                     <label>{{Auth::user()->name}}さんの合計寄付金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
+                                                                    <label>{{Auth::user()->name}}さんの最終寄付日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日 h:m') }}</b></label><br>
                                                                     <label><b>寄付者</b></label>
                                                                     <p>
-                                                                    @if(count($donater[$i])>1)
                                                                         @for($d = 1; $d < count($donater[$i]); $d++)
-                                                                            @if($d == 1)
-                                                                                @if((Auth::user()->name) == $donater[$i][$d])
-                                                                                    <b><font color="red">{{$donater[$i][$d]}}さん（あなた）</font></b>
-                                                                                @else
-                                                                                    {{$donater[$i][$d]}}さん
-                                                                                @endif
-                                                                            @else
+                                                                            @if($d > 1)
                                                                                 、
-                                                                                @if((Auth::user()->name) == $donater[$i][$d])
-                                                                                    <b><font color="red">{{$donater[$i][$d]}}さん（あなた）</font></b>
-                                                                                @else
-                                                                                    {{$donater[$i][$d]}}さん
-                                                                                @endif
+                                                                            @endif
+                                                                            @if((Auth::user()->name) == $donater[$i][$d])
+                                                                                <b><font color="red">{{$donater[$i][$d]}}さん（あなた）@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
+                                                                            @else
+                                                                                {{$donater[$i][$d]}}さん@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif
                                                                             @endif
                                                                         @endfor
-                                                                    @else
-                                                                        まだ寄付者はいません。
-                                                                    @endif
                                                                     </p>
                                                                 </div>
                                                             </div>

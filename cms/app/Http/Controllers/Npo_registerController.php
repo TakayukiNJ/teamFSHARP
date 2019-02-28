@@ -266,6 +266,7 @@ class Npo_registerController extends Controller {
         // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
         // 何人がいくら寄付したのか、誰が寄付したのか表示
         $data['donater']          = array(0=>"Donater");
+        $data['donater_times']    = array(0=>"Donater times");
         $data['donater_gold']     = array(0=>"Company");
         $data['donater_pratinum'] = array(0=>"Company(pratinum)");
         $mail_message = "";
@@ -286,8 +287,10 @@ class Npo_registerController extends Controller {
                 $donater_count++;
                 $donater_email = $currentPremierData[$array_count]->user_define;
                 $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
+                $donater_times = $currentPremierData[$array_count]->participants;
                 $donater_name  = $donater_info->name;
                 $data['donater'] += array($donater_count=>$donater_name);
+                $data['donater_times'] += array($donater_count=>$donater_times);
                 // $data['donater'.$donater_count] = $donater_name;
             }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
                 $currency_amount_company += $currency_origin;
@@ -655,7 +658,6 @@ class Npo_registerController extends Controller {
             ->first();
         $currentUserInfo = Auth::user()->where('name', $name_auth)->first();
         $currentNpoInfo  = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
-        
         // ストライプ側の処理
         \Stripe\Stripe::setApiKey("sk_test_FoGhfwb6NnvDUnFHoeufcBss");
         
@@ -666,6 +668,32 @@ class Npo_registerController extends Controller {
         // $total = $currentNpoInfo->support_amount*1.0375;
         $point = $the_price/100;
         $the_point = floor($point);
+        $sdgs_count = 0;
+        $sdgs_num = [];
+        for($i = 1; $i < 7; $i++){
+            $sdgs_i = 'sdgs'.$i;
+            if($currentNpoInfo->$sdgs_i){
+                $sdgs_count++;
+                $sdgs_num[$i] = $currentNpoInfo->$sdgs_i;        
+            }else{
+                $sdgs_num[$i] = "";
+            }
+        }
+        $sdgs_point = round($point/$sdgs_count, 2);
+        $sdgs_point_box = [];
+        for($j = 1; $j < 18; $j++){
+            $sdgs_j = 'sdgs'.$j;
+            $sdgs_point_box[$j] = 0;
+            $j_ja  = '0'.$j.'_ja';
+            $j_ja2 = $j.'_ja';
+            $j_ja_2 = $j.'_ja_2';
+            for($k = 1; $k < 7; $k++){
+                if($sdgs_num[$k] == $j_ja || $sdgs_num[$k] == $j_ja2 || $sdgs_num[$k] == $j_ja_2){
+                    $sdgs_point_box[$j] = $sdgs_point;
+                }
+            }
+        }
+        
         try {
             $customer = \Stripe\Customer::create(array(
                 'email' => $user_request_email
@@ -710,16 +738,60 @@ class Npo_registerController extends Controller {
                 ]
             );
         }
-        // デポジットに追加
+        // デポジットに追加（NPOテーブル）
         \DB::table('npo_registers')->where('npo_name', $npo_name)->update([
             'deposit'  => $currentNpoInfo->deposit + $the_price,
             'follower' => $currentNpoInfo->follower + $currentNpoInfo->support_amount, // いくら寄付したかの合計
             'buyer'    => $currentNpoInfo->buyer + 1 // 購入した数
         ]);
+        // デポジット・ポイントに追加（ユーザーテーブル）
+        $npoUserInfo = \DB::table('users')->where('npo', $currentNpoInfo->title)->first();
+        if($sdgs_count != 0){
+            \DB::table('users')
+                ->where('npo', $currentNpoInfo->title)
+                ->update([
+                    'point' => $npoUserInfo->point + $the_point,
+                    'sdgs1' => $npoUserInfo->sdgs1 + $sdgs_point_box[1],
+                    'sdgs2' => $npoUserInfo->sdgs2 + $sdgs_point_box[2],
+                    'sdgs3' => $npoUserInfo->sdgs3 + $sdgs_point_box[3],
+                    'sdgs4' => $npoUserInfo->sdgs4 + $sdgs_point_box[4],
+                    'sdgs5' => $npoUserInfo->sdgs5 + $sdgs_point_box[5],
+                    'sdgs6' => $npoUserInfo->sdgs6 + $sdgs_point_box[6],
+                    'sdgs7' => $npoUserInfo->sdgs7 + $sdgs_point_box[7],
+                    'sdgs8' => $npoUserInfo->sdgs8 + $sdgs_point_box[8],
+                    'sdgs9' => $npoUserInfo->sdgs9 + $sdgs_point_box[9],
+                    'sdgs10' => $npoUserInfo->sdgs10 + $sdgs_point_box[10],
+                    'sdgs11' => $npoUserInfo->sdgs11 + $sdgs_point_box[11],
+                    'sdgs12' => $npoUserInfo->sdgs12 + $sdgs_point_box[12],
+                    'sdgs13' => $npoUserInfo->sdgs13 + $sdgs_point_box[13],
+                    'sdgs14' => $npoUserInfo->sdgs14 + $sdgs_point_box[14],
+                    'sdgs15' => $npoUserInfo->sdgs15 + $sdgs_point_box[15],
+                    'sdgs16' => $npoUserInfo->sdgs16 + $sdgs_point_box[16],
+                    'sdgs17' => $npoUserInfo->sdgs17 + $sdgs_point_box[17],
+                    'total_deposit' => $npoUserInfo->total_deposit + $the_price
+                ]);
+        }
         
         // ポイント
         Auth::user()->where('name', $name_auth)->update([
             'point' => $currentUserInfo->point + $the_point,
+            'sdgs1' => $currentUserInfo->sdgs1 + $sdgs_point_box[1],
+            'sdgs2' => $currentUserInfo->sdgs2 + $sdgs_point_box[2],
+            'sdgs3' => $currentUserInfo->sdgs3 + $sdgs_point_box[3],
+            'sdgs4' => $currentUserInfo->sdgs4 + $sdgs_point_box[4],
+            'sdgs5' => $currentUserInfo->sdgs5 + $sdgs_point_box[5],
+            'sdgs6' => $currentUserInfo->sdgs6 + $sdgs_point_box[6],
+            'sdgs7' => $currentUserInfo->sdgs7 + $sdgs_point_box[7],
+            'sdgs8' => $currentUserInfo->sdgs8 + $sdgs_point_box[8],
+            'sdgs9' => $currentUserInfo->sdgs9 + $sdgs_point_box[9],
+            'sdgs10' => $currentUserInfo->sdgs10 + $sdgs_point_box[10],
+            'sdgs11' => $currentUserInfo->sdgs11 + $sdgs_point_box[11],
+            'sdgs12' => $currentUserInfo->sdgs12 + $sdgs_point_box[12],
+            'sdgs13' => $currentUserInfo->sdgs13 + $sdgs_point_box[13],
+            'sdgs14' => $currentUserInfo->sdgs14 + $sdgs_point_box[14],
+            'sdgs15' => $currentUserInfo->sdgs15 + $sdgs_point_box[15],
+            'sdgs16' => $currentUserInfo->sdgs16 + $sdgs_point_box[16],
+            'sdgs17' => $currentUserInfo->sdgs17 + $sdgs_point_box[17]
         ]);
         
         // この後にサンクスメール送る...

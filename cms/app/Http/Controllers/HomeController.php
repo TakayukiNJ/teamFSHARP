@@ -495,8 +495,9 @@ class HomeController extends Controller
                 // 何人がいくら寄付したのか、誰が寄付したのか表示
                 $mail_message = "";
                 $donater = 'donater_'.$i;
-                $data['donater'][$i]          = array(0=>"Donater");
-            	$buyer_count                     = 0; // 寄付した人・団体の数字
+                $data['donater'][$i]   = array(0=>"Donater");
+            	$data['donater_times'] = array(0=>"Donater times");
+                $buyer_count                     = 0; // 寄付した人・団体の数字
             	$currency_amount                 = 0; // 現在いくらか
             	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
             	$donater_count                   = 0; // 寄付した人は何人か
@@ -513,8 +514,10 @@ class HomeController extends Controller
                         $donater_count++;
                         $donater_email = $currentPremierData[$array_count]->user_define;
                         $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
+                        $donater_times = $currentPremierData[$array_count]->participants;
                         $donater_name  = $donater_info->name;
                         $data['donater'][$i] += array($donater_count=>$donater_name);
+                        $data['donater_times'] += array($donater_count=>$donater_times);
                         // $data['donater'.$donater_count] = $donater_name;
                     }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
                         $currency_amount_company += $currency_origin;

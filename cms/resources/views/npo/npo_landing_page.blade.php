@@ -53,7 +53,7 @@
                                 @endif
                                 <div class="containersns">
                                     {{-- Facebook --}}
-                                    <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                                    <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
                                     <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
                                     <div>　</div>
                                     {{-- Twitter --}}
@@ -209,14 +209,14 @@
                                                         <p>{{ $npo_info->title }}</p>
                                                         @if($npo_info->url)
                                                         <a href="{{ $npo_info->url }}" class="btn btn-danger" target="_blank">
-                                                            公式サイト    
+                                                            外部公式サイト
                                                         </a>
                                                         @endif
                                                     </div>
                                                     {{-- SNS share --}}
                                                     <div class="containersns">
                                                         {{-- Facebook --}}
-                                                        <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+                                                        <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
                                                         <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
                                                         <div>　</div>
                                                         {{-- Twitter --}}
@@ -233,13 +233,13 @@
                                                             <br>
                                                             @if($npo_info->certificated_npo)
                                                             <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
-                                                                <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                                                <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
                                                             </a>
                                                             @endif
                                                             @for ($i = 1; $i < 7; $i++)
                                                                 <?php $sdgs = "sdgs".$i ?>
                                                                 @if($npo_info->$sdgs)
-                                                                <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                                                <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
                                                                 @endif
                                                             @endfor
                                                         </div>
@@ -264,19 +264,13 @@
                                                         <p>
                                                         @if(count($donater)>1)
                                                             @for($i = 1; $i < count($donater); $i++)
-                                                                @if($i == 1)
-                                                                    @if((Auth::user()->name) == $donater[$i])
-                                                                        <b><font color="red">{{$donater[$i]}}さん（あなた）</font></b>
-                                                                    @else
-                                                                        {{$donater[$i]}}さん
-                                                                    @endif
-                                                                @else
+                                                                @if($i > 1)
                                                                     、
-                                                                    @if((Auth::user()->name) == $donater[$i])
-                                                                        <b><font color="red">{{$donater[$i]}}さん（あなた）</font></b>
-                                                                    @else
-                                                                        {{$donater[$i]}}さん
-                                                                    @endif
+                                                                @endif
+                                                                @if((Auth::user()->name) == $donater[$i])
+                                                                    <b><font color="red">{{$donater[$i]}}さん@if($donater_times[$i] > 1)（あなた）<small>×{{$donater_times[$i]}}</small>@endif</font></b>
+                                                                @else
+                                                                    {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
                                                                 @endif
                                                             @endfor
                                                         @else
