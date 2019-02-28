@@ -160,7 +160,7 @@
                         <label for="npo_name-field">バッジの名前（https://fsharp.me/〇〇〇〇部分のURLに使用。設定後変更不可）</label>
                         <input type="text" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
                         @if($errors->has("npo_name"))
-                        <span class="help-block icon-danger">この{{ $errors->first("npo_name") }}バッジはすでに使われております。</span>
+                        <span class="help-block icon-danger">この{{ $errors->first("npo_name") }}（重複不可）</span>
                         @endif
                     </div>
                     {{-- 公式サイトのURL --}}
@@ -168,7 +168,7 @@
                         <label for="url-field">公式サイトのURL</label>
                         <input type="text" id="url-field" name="url" class="form-control" placeholder="https://www.facebook.com/fsharp.me" value="{{ is_null(old("url")) ? $npo_info->url : old("url") }}"/>
                         @if($errors->has("url"))
-                        <span class="help-block icon-danger">この{{ $errors->first("url") }}バッジはすでに使われております。</span>
+                        <span class="help-block icon-danger">この{{ $errors->first("url") }}</span>
                         @endif
                     </div>
                     {{-- 資金の使い道 --}}

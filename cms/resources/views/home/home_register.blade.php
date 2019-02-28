@@ -329,9 +329,9 @@
         </div>
             <br>
             <div class="text-center">
-                <span class="btn btn-outline-default btn-round text-center">
-                    <a onClick="history.back()">戻る</a>
-                </span>
+                <a class="btn btn-outline-default btn-round text-center" href="/home/home_own_timeline">
+                    戻る
+                </a>
             </div>
     </div>
 </div>

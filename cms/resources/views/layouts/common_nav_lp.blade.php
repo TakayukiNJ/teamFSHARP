@@ -6,7 +6,7 @@
   @yield('script')
 </head>
 
-@yield('nav_lp')
+  @yield('nav_lp')
   @yield('headers')
   @yield('content')
 </body>
