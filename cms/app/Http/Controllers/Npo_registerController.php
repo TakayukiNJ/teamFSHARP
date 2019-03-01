@@ -412,7 +412,7 @@ class Npo_registerController extends Controller {
                     'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                     'support_contents_detail_pratinum' => 'active_url',
-                    'url'                     => 'active_url',
+                    'url'                     => 'url',
                     'npo_name'                => 'unique:npo_registers|alpha_dash',
         		];
     		}else{
@@ -427,7 +427,7 @@ class Npo_registerController extends Controller {
                     'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
                     'support_contents_detail_pratinum' => 'active_url',
-                    'url'                     => 'active_url',
+                    'url'                     => 'url',
                     'npo_name'                => 'unique:npo_registers|required | alpha_dash',
         	    ];
         	}
