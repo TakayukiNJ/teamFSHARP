@@ -25,9 +25,8 @@
                         </div>
                         <div class="name">
                             <h4 class="title text-center">{{ Auth::user()->name }}@if($personal_info)<br><small>{{ $personal_info->description }}</small>@endif<br><br><small>現在保有ポイント：{{ Auth::user()->point }} ポイント</small>
-                            
                             @if(Auth::user()->total_deposit)
-                            <br><small>出金可能金額：{{Auth::user()->total_deposit}}円</small></h4>
+                                <br><small>出金可能金額：{{Auth::user()->total_deposit}}円</small></h4>
                             @endif
                         </div>
                   </div>
