@@ -13,7 +13,6 @@
                     <div class="col-md-4 col-sm-6 ml-auto mr-auto">
                         <div class="card card-register">
                             <h3 class="card-title">ようこそ</h3>
-
                             <form class="register-form" role="form" method="POST" action="{{ url('/login') }}">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

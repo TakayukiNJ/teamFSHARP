@@ -82,7 +82,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <h2 class="title">支援方法を選択</h2>
+                        <h2 class="title text-center">支援する</h2>
+                        {{--
                         <div class="choose-plan">
                             <ul class="nav nav-pills nav-pills-danger" role="tablist">
                                 <li class="nav-item">
@@ -94,13 +95,19 @@
                             </ul>
                         </div>
                         <br/>
+                        --}}
                         <div class="tab-content text-center" >
-                            <p>現在の寄付者と法人の合計数：<b>{{$buyer_data}}</b></p>
-                            <p>寄付するとユーザー名・法人名が記載されます。</p>
-                            <!--<p>集まった寄付金は全額担当者にお渡しします。</p>-->
+                            <p>現在寄付数：<b>{{ $buyer_data }}</b>回</p>
+                            <p>寄付するとユーザー名がバッジに記載されます。</p>
+                            <!--<p>*集まった寄付金は全額担当者にお渡しします。</p>-->
+                            @if($npo_info->certificated_npo == 1)
+                            <p>**こちらは<a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている認定NPO法人の寄付先なので、税額控除の対象です。</p>
+                            @endif
                             <p class="description text-gray">
-                                <!--決済時に、運営(振込)手数料258円とクレジットカード手数料4.6%がかかります。-->
-                                <!--仮に毎月1,000円の寄付を認定NPO法人に寄付をした場合、最大5,000円の税制控除を受けられます。-->
+                                <!--*決済時に258円と4.6%の手数料がかかります。<br>-->
+                                @if($npo_info->certificated_npo)
+                                **10,000円を認定NPO法人に寄付した場合、最大約5,000円の税額控除を受けられます。
+                                @endif
                             </p>
                         </div>
                     </div>
@@ -118,140 +125,128 @@
                                                 <h1 class="card-title">{{ $npo_info->support_amount }}円</h1>
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
+                                                    @if($npo_info->support_contents)
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
+                                                    @endif
                                                     @if($npo_info->support_contents_detail)
                                                     <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
                                                     @endif
                                                 </ul>
-                                                @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
-                                                @endif
-                                                
-                                                <style type="text/css">
-                                                button.stripe-button-el,
-                                                button.stripe-button-el>span {
-                                                  background-color: #F57763 !important;
-                                                  background-image: none;
-                                                }
-                                                </style>
-                                                
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="card card-pricing" data-color="orange">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-success">バッジ保有者（支援者）リスト</h6>
-                                                <h3 class="card-title">現在の寄付者：<b>{{$donater_count}}人</b></h3>
-                                                <ul>
-                                                    @if(count($donater)>1)
-                                                        <li>
-                                                        @for ($i = 1; $i < count($donater); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater[$i]}}さん
-                                                            @else
-                                                                、{{$donater[$i]}}さん
+                                        <br><br><br><br><br>
+                                        <div href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}">
+                                            <svg viewBox="0 0 210 210">
+                                                <g stroke="none" fill="none">
+                                                    <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
+                                                    <path d="M22,104.5 C22,150.063492 58.9365081,187 104.5,187 C150.063492,187 187,150.063492 187,104.5" id="bottom"></path>
+                                                </g>
+                                        		<circle cx="105" cy="105" r="62" stroke="currentColor" stroke-width="1" fill="none" />
+                                                <text width="120" font-size="12" fill="currentColor">
+                                                    <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#top">
+                                                        {{$npo_info->subtitle}}
+                                                    </textPath>
+                                                </text>
+                                                <text width="120" font-size="12" fill="currentColor">
+                                                    <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
+                                                        {{$npo_info->title}}
+                                                    </textPath>
+                                                </text>
+                                            </svg>
+                                            <span>現在寄付者：<b>{{$donater_count}}</b>人</span>
+                                        </div>
+                                        {{-- ポップアップの中身 --}}
+                                        <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
+                                            <div class="modal-dialog modal-register">
+                                                <div class="modal-content">
+                                                    <div class="modal-header no-border-header text-center">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        <h3 class="modal-title text-center">{{ $npo_info->subtitle }}</h3>
+                                                        <p>{{ $npo_info->title }}</p>
+                                                        @if($npo_info->url)
+                                                        <a href="{{ $npo_info->url }}" class="btn btn-danger" target="_blank">
+                                                            外部公式サイト
+                                                        </a>
+                                                        @endif
+                                                    </div>
+                                                    {{-- SNS share --}}
+                                                    <div class="containersns">
+                                                        {{-- Facebook --}}
+                                                        <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                                                        <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
+                                                        <div>　</div>
+                                                        {{-- Twitter --}}
+                                                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text={!! $npo_info->title !!} {!! $npo_info->subtitle !!}の支援のために。ひとりでも多くの方に広めてください♪" class="twitter-share-button" data-show-count="false"></a>
+                                                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                                        <div>　</div>
+                                                        {{-- LINE --}}
+                                                        <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
+                                                        <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+                                                    </div>
+                                                    {{-- SDGs --}}
+                                                    <div class="containersns">
+                                                        <div class="avatar">
+                                                            <br>
+                                                            @if($npo_info->certificated_npo)
+                                                            <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
+                                                                <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
+                                                            </a>
                                                             @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                        <li>まだ寄付者はいません。</li>
-                                                        <li>　</li>
-                                                        <li>　</li>
-                                                    @endif
-                                                </ul>
+                                                            @for ($i = 1; $i < 7; $i++)
+                                                                <?php $sdgs = "sdgs".$i ?>
+                                                                @if($npo_info->$sdgs)
+                                                                <img src="{{ url('/') }}/img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
+                                                                @endif
+                                                            @endfor
+                                                        </div>
+                                                        <style type="text/css">
+                                                            .containersns {
+                                                              display: flex;
+                                                              justify-content: center;
+                                                              align-items: center;
+                                                            }
+                                                        </style>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label>管理者</label>
+                                                        <p>{{ $npo_info->manager }}</p>
+                                                        <label>目標</label>
+                                                        <p>{{ $npo_info->support_price }}円</p>
+                                                        <label>現在</label>
+                                                        <p>{{ $npo_info->follower }}円</p>
+                                                        <label>寄付数</label>
+                                                        <p>{{ $npo_info->buyer }}</p>
+                                                        <label>寄付者</label>
+                                                        <p>
+                                                        @if(count($donater)>1)
+                                                            @for($i = 1; $i < count($donater); $i++)
+                                                                @if($i > 1)
+                                                                    、
+                                                                @endif
+                                                                @if((Auth::user()->name) == $donater[$i])
+                                                                    <b><font color="red">{{$donater[$i]}}さん@if($donater_times[$i] > 1)（あなた）<small>×{{$donater_times[$i]}}</small>@endif</font></b>
+                                                                @else
+                                                                    {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
+                                                                @endif
+                                                            @endfor
+                                                        @else
+                                                            まだ寄付者はいません。
+                                                        @endif
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane" id="commercial" role="tabpanel">
-                                <div class="space-top"></div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-danger">法人（団体・チーム）として支援する</h6>
-                                                <h1 class="card-title">¥{{$npo_info->support_price_gold}}</h1>
-                                                <ul>
-                                                    <li>現在<b>{{$company_count_gold}}</b>法人が支援中です。</li>
-                                                    <li>最大<b>{{$npo_info->support_amount_gold}}</b>法人まで支援可能。</li>
-                                                    @if($npo_info->support_contents_gold)
-                                                        <li>リターン：<b>{{$npo_info->support_contents_gold}}</b></li>
-                                                    @endif
-                                                    @if(count($donater_gold)>1)
-                                                        <li>支援法人名：
-                                                        @for ($i = 1; $i < count($donater_gold); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater_gold[$i]}}
-                                                            @else
-                                                                、{{$donater_gold[$i]}}
-                                                            @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                    <li>支援した法人名をこちらに掲載。</li>
-                                                    @endif
-                                                </ul>
-                                                @if($npo_info->support_contents_detail_gold)
-                                                    <a class="btn btn-success btn-round" href="{{$npo_info->support_contents_detail_gold}}" target="_blank">
-                                                        内容の詳細はこちら
-                                                    </a>
-                                                    <br><br>
-                                                @endif
-                                                @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
-                                                @elseif(Auth::user()->npo == "")
-                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-danger btn-round">まずは団体登録</a>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing" data-color="orange">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-success">プラチナ法人として支援する</h6>
-                                                <h1 class="card-title">¥{{$npo_info->support_price_pratinum}}</h1>
-                                                <ul>
-                                                    <li>現在<b>{{$company_count_pratinum}}</b>法人が支援中です。</li>
-                                                    <li>最大<b>{{$npo_info->support_amount_pratinum}}</b>法人まで支援可能。</li>
-                                                    @if($npo_info->support_contents_pratinum)
-                                                        <li>リターン：<b>{{$npo_info->support_contents_pratinum}}</b></li>
-                                                    @endif
-                                                    @if(count($donater_pratinum)>1)
-                                                        <li>支援法人名：
-                                                        @for ($i = 1; $i < count($donater_pratinum); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater_pratinum[$i]}}
-                                                            @else
-                                                                、{{$donater_pratinum[$i]}}
-                                                            @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                    <li>支援した法人名をこちらに掲載。</li>
-                                                    @endif
-                                                </ul>
-                                                @if($npo_info->support_contents_detail_pratinum)
-                                                    <a class="btn btn-success btn-round" href="{{$npo_info->support_contents_detail_pratinum}}" target="_blank">
-                                                        内容の詳細はこちら
-                                                    </a>
-                                                    <br><br>
-                                                @endif
-                                                @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-neutral btn-round">ログイン</a>
-                                                @elseif(Auth::user()->npo == "")
-                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-neutral btn-round">まずは団体登録</a>
-                                                @endif
-                                            </div>
-                                        </div>
+                                        <br><br>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>

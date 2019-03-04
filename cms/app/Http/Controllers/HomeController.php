@@ -483,13 +483,19 @@ class HomeController extends Controller
         $data['donater']          = array(0=>"Donater");
         $data['donater_gold']     = array(0=>"Company");
         $data['donater_pratinum'] = array(0=>"Company(pratinum)");
-		if($premierData_personal){
+		$buyer_count                     = 0; // 寄付した人・団体の数字
+    	$currency_amount                 = 0; // 現在いくらか
+    	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
+    	$donater_count                   = 0; // 寄付した人は何人か
+    	$company_count_gold              = 0; // 寄付した人は何人か(企業)
+    	$company_count_pratinum          = 0; // 寄付した人は何人か(プラチナ企業)
+    	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
+    	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
+    	if($premierData_personal){
 		    for($i = 0; $i < count($premierData_personal); $i++){
     		    $premierData_email = $premierData_personal[$i]->vision_id;
     		    $data['npo_info_personal'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_email)->first();
-    		    //  = $premierData_personal[$i];
-    		    
-        		// そのままNpo_registerControllerをコピペ
+    		    // そのままNpo_registerControllerをコピペ
         		$currentPremierData = \DB::table('premier_data')->where('vision_id', $data['npo_info_personal'][$i]->npo_name)->get();
                 // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
                 // 何人がいくら寄付したのか、誰が寄付したのか表示
@@ -497,15 +503,7 @@ class HomeController extends Controller
                 $donater = 'donater_'.$i;
                 $data['donater'][$i]   = array(0=>"Donater");
             	$data['donater_times'] = array(0=>"Donater times");
-                $buyer_count                     = 0; // 寄付した人・団体の数字
-            	$currency_amount                 = 0; // 現在いくらか
-            	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
-            	$donater_count                   = 0; // 寄付した人は何人か
-            	$company_count_gold              = 0; // 寄付した人は何人か(企業)
-            	$company_count_pratinum          = 0; // 寄付した人は何人か(プラチナ企業)
-            	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
-            	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
-            	for($array_count=0; $array_count<count($currentPremierData); $array_count++){
+                for($array_count=0; $array_count<count($currentPremierData); $array_count++){
                     $buyer_count++; // 人数
                     $currency_origin = $currentPremierData[$array_count]->status;
                     $currency_amount += $currency_origin; // 金額
