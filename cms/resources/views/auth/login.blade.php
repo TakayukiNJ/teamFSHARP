@@ -41,15 +41,13 @@
                             </div>
                                 
     
-                            <div class="form-group">
+                            <div class="form-group forgot">
                                 <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
                                 <a href="{{ url('/register') }}" class="btn btn-link">ご登録がお済みでない方はこちら</a>
+                                <!--<a href="{{ url('passwordchange/require/inquiry') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>-->
                             </div>
-                            
                             </form>
-                            <div class="forgot">
-                                <a href="{{ url('passwordchange/require/inquiry') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

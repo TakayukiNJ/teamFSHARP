@@ -1,5 +1,5 @@
-@extends('layouts.common_nav_lp')
-@include('layouts.head')
+@extends('layouts.common_nav_npo_lp')
+@include('layouts.head_npo_lp')
 @include('layouts.script')
 @include('layouts.nav_lp')
 @section('content')

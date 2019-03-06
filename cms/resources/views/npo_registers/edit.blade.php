@@ -110,8 +110,6 @@
                                     <option value="15_ja" <?php if($npo_info->$sdgs == "15_ja"){ echo "selected"; } ?>>15.陸の豊かさを守ろう</option>
                                     <option value="16_ja" <?php if($npo_info->$sdgs == "16_ja"){ echo "selected"; } ?>>16.平和と公正を</option>
                                     <option value="17_ja" <?php if($npo_info->$sdgs == "17_ja"){ echo "selected"; } ?>>17.パートナーシップ</option>
-                                    <option value="wheel_rgb" <?php if($npo_info->$sdgs == "wheel_rgb"){ echo "selected"; } ?>>全て</option>
-                                    <option value="">該当なし</option>
                                </select>
                             </div>
                         </div>
@@ -163,14 +161,6 @@
                         <span class="help-block icon-danger">この{{ $errors->first("npo_name") }}（重複不可）</span>
                         @endif
                     </div>
-                    {{-- 公式サイトのURL --}}
-                    <div class="form-group @if($errors->has('url')) has-error @endif">
-                        <label for="url-field">公式サイトのURL</label>
-                        <input type="text" id="url-field" name="url" class="form-control" placeholder="https://www.facebook.com/fsharp.me" value="{{ is_null(old("url")) ? $npo_info->url : old("url") }}"/>
-                        @if($errors->has("url"))
-                        <span class="help-block icon-danger">この{{ $errors->first("url") }}</span>
-                        @endif
-                    </div>
                     {{-- 資金の使い道 --}}
                     <div class="form-group @if($errors->has('support_purpose')) has-error @endif">
                        <h6 for="support_purpose-field">資金の使い道</h6>
@@ -214,11 +204,6 @@
     			                    </span>
     			                </div>
     			            </div>
-                            
-                            <!--<div class="input-group border-input">-->
-                            <!--    <input type="text" value="" placeholder="enter discount" class="form-control border-input">-->
-                            <!--    <span class="input-group-addon">%</span>-->
-                            <!--</div>-->
                         </div>
                     </div>
                     <div class="form-group @if($errors->has('body')) has-error @endif">
@@ -231,69 +216,52 @@
                     </div>
                 </div>
             </div>
-            <h1><i class="glyphicon glyphicon-edit"></i>法人からの寄付内容の設定</h1>
             {{-- 寄付金額（法人） --}}
             <div class="form-group @if($errors->has('support_price_gold')) has-error @endif">
-               <label for="support_price_gold-field">法人寄付の値段*公開後変更不可</label>
-            <input type="text" id="support_price_gold-field" name="support_price_gold" class="form-control" value="{{ is_null(old("support_price_gold")) ? $npo_info->support_price_gold : old("support_price_gold") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
+            <input type="hidden" id="support_price_gold-field" name="support_price_gold" class="form-control" value="{{ is_null(old("support_price_gold")) ? $npo_info->support_price_gold : old("support_price_gold") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
                @if($errors->has("support_price_gold"))
                 <span class="help-block icon-danger">{{ $errors->first("support_price_gold") }}</span>
                @endif
             </div>
-            <!-- 寄付の募集数 -->
             <div class="form-group @if($errors->has('support_amount_gold')) has-error @endif">
-               <label for="support_amount_gold-field">法人寄付の募集数</label>
-            <input type="text" id="support_amount_gold-field" name="support_amount_gold" class="form-control" value="{{ is_null(old("support_amount_gold")) ? $npo_info->support_amount_gold : old("support_amount_gold") }}"/>
+            <input type="hidden" id="support_amount_gold-field" name="support_amount_gold" class="form-control" value="{{ is_null(old("support_amount_gold")) ? $npo_info->support_amount_gold : old("support_amount_gold") }}"/>
                @if($errors->has("support_amount_gold"))
                 <span class="help-block icon-danger">{{ $errors->first("support_amount_gold") }}</span>
                @endif
             </div>
-            <!-- リターン -->
             <div class="form-group @if($errors->has('support_contents_gold')) has-error @endif">
-               <label for="support_contents_gold-field">法人寄付リターンの内容（無しでも可能）</label>
-            <input type="text" id="support_contents_gold-field" name="support_contents_gold" class="form-control" value="{{ is_null(old("support_contents_gold")) ? $npo_info->support_contents_gold : old("support_contents_gold") }}"/>
+            <input type="hidden" id="support_contents_gold-field" name="support_contents_gold" class="form-control" value="{{ is_null(old("support_contents_gold")) ? $npo_info->support_contents_gold : old("support_contents_gold") }}"/>
                @if($errors->has("support_contents_gold"))
                 <span class="help-block icon-danger">{{ $errors->first("support_contents_gold") }}</span>
                @endif
             </div>
-            <!-- リターン詳細 -->
             <div class="form-group @if($errors->has('support_contents_detail_gold')) has-error @endif">
-               <label for="support_contents_detail_gold-field">法人寄付リターンの詳細リンク（URLを入力。無しでも可能）</label>
-            <input type="text" id="support_contents_detail_gold-field" name="support_contents_detail_gold" class="form-control" value="{{ is_null(old("support_contents_detail_gold")) ? $npo_info->support_contents_detail_gold : old("support_contents_detail_gold") }}"/>
+            <input type="hidden" id="support_contents_detail_gold-field" name="support_contents_detail_gold" class="form-control" value="{{ is_null(old("support_contents_detail_gold")) ? $npo_info->support_contents_detail_gold : old("support_contents_detail_gold") }}"/>
                @if($errors->has("support_contents_detail_gold"))
                 <span class="help-block icon-danger">{{ $errors->first("support_contents_detail_gold") }}</span>
                @endif
             </div>
             
-            <h1><i class="glyphicon glyphicon-edit"></i>法人からのプラチナ寄付内容の設定</h1>
-            <!-- 寄付金額（プラチナ法人） -->
             <div class="form-group @if($errors->has('support_price_pratinum')) has-error @endif">
-               <label for="support_price_pratinum-field">法人寄付の値段(プラチナ寄付)*公開後変更不可</label>
-            <input type="text" id="support_price_pratinum-field" name="support_price_pratinum" class="form-control" value="{{ is_null(old("support_price_pratinum")) ? $npo_info->support_price_pratinum : old("support_price_pratinum") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
+            <input type="hidden" id="support_price_pratinum-field" name="support_price_pratinum" class="form-control" value="{{ is_null(old("support_price_pratinum")) ? $npo_info->support_price_pratinum : old("support_price_pratinum") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
                @if($errors->has("support_price_pratinum"))
                 <span class="help-block icon-danger">{{ $errors->first("support_price_pratinum") }}</span>
                @endif
             </div>
-            <!-- 寄付の募集数 -->
             <div class="form-group @if($errors->has('support_amount_pratinum')) has-error @endif">
-               <label for="support_amount_pratinum-field">プラチナ寄付の募集数</label>
-            <input type="text" id="support_amount_pratinum-field" name="support_amount_pratinum" class="form-control" value="{{ is_null(old("support_amount_pratinum")) ? $npo_info->support_amount_pratinum : old("support_amount_pratinum") }}"/>
+            <input type="hidden" id="support_amount_pratinum-field" name="support_amount_pratinum" class="form-control" value="{{ is_null(old("support_amount_pratinum")) ? $npo_info->support_amount_pratinum : old("support_amount_pratinum") }}"/>
                @if($errors->has("support_amount_pratinum"))
                 <span class="help-block icon-danger">{{ $errors->first("support_amount_pratinum") }}</span>
                @endif
             </div>
-            <!-- リターン -->
             <div class="form-group @if($errors->has('support_contents_pratinum')) has-error @endif">
-               <label for="support_contents_pratinum-field">プラチナ寄付リターンの内容（無しでも可能）</label>
-            <input type="text" id="support_contents_pratinum-field" name="support_contents_pratinum" class="form-control" value="{{ is_null(old("support_contents_pratinum")) ? $npo_info->support_contents_pratinum : old("support_contents_pratinum") }}"/>
+            <input type="hidden" id="support_contents_pratinum-field" name="support_contents_pratinum" class="form-control" value="{{ is_null(old("support_contents_pratinum")) ? $npo_info->support_contents_pratinum : old("support_contents_pratinum") }}"/>
                @if($errors->has("support_contents_pratinum"))
                 <span class="help-block icon-danger">{{ $errors->first("support_contents_pratinum") }}</span>
                @endif
             </div>
-            <!-- リターン詳細 -->
             <div class="form-group @if($errors->has('support_contents_detail_pratinum')) has-error @endif">
-               <label for="support_contents_detail_pratinum-field">プラチナ寄付リターンの詳細リンク（URLを入力。無しでも可能）</label>
-            <input type="text" id="support_contents_detail_pratinum-field" name="support_contents_detail_pratinum" class="form-control" value="{{ is_null(old("support_contents_detail_pratinum")) ? $npo_info->support_contents_detail_pratinum : old("support_contents_detail_pratinum") }}"/>
+            <input type="hidden" id="support_contents_detail_pratinum-field" name="support_contents_detail_pratinum" class="form-control" value="{{ is_null(old("support_contents_detail_pratinum")) ? $npo_info->support_contents_detail_pratinum : old("support_contents_detail_pratinum") }}"/>
                @if($errors->has("support_contents_detail_pratinum"))
                 <span class="help-block icon-danger">{{ $errors->first("support_contents_detail_pratinum") }}</span>
                @endif
