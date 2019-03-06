@@ -47,6 +47,13 @@
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
         						<a class="dropdown-item" href="{{ url('/npo_registers/create') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; 団体登録</a>
                         @else
+                        @if((Auth::user()->total_deposit) > 0)
+                        {{--デポジット編集中
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">{{Auth::user()->total_deposit}}円</a>
+                        </li>
+                        --}}	
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">@lang('app.ask my page')</a>
                         </li>

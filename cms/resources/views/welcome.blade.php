@@ -12,7 +12,7 @@
     				<h1 class="presentation-title"></h1>
     				<!--<div class="type">F♯</div>-->
     			</div>
-    			<h2 class="presentation-subtitle text-center">社会課題をもっと身近に。NPOと繋がりませんか？</h2>
+    			<h2 class="presentation-subtitle text-center">社会課題をもっと身近に。資金調達アプリ「Fシャープ」</h2>
     			
                 <div class="w3-panel w3-large">
                     <br>
@@ -116,7 +116,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">人とお金の流れを可視化</h4>
-								<p class="description">寄付をすると、ユーザー名（もしくは法人名）が記載されます。寄付者は、マイページで「バッジ」が寄付履歴としてもらえ、最新情報が見れます。</p>
+								<p class="description">寄付すると、登録したユーザー名がバッジに記載されます。プロジェクトページ或いはマイページで、黒い「バッジ」をタップすると、寄付履歴と最新情報を見ることができます。</p>
 							</div>
 						</div>
 					</div>
@@ -127,7 +127,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">簡単公開・簡単管理 </h4>
-								<p>世界中の解決すべき課題のプロジェクトを、簡単に公開できます。寄付者やチームメンバーには、メールを送ることができます。</p>
+								<p>ご自身の団体とプロジェクトを、簡単に公開・管理ができます。まずユーザー登録を行い、団体名を登録して下さい。次にタイトルと目標金額と寄付金額を決め、公開して下さい。</p>
                             </div>
 						</div>
 					</div>
@@ -138,7 +138,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">ポイント還元</h4>
-								<p>寄付が完了すると、<strong>1</strong>ポイント<strong>1</strong>円分のポイントが寄付金の<strong>1%</strong>分もらえます。現在はキャンペーン中で<strong>10%</strong>分のポイントがもらえます。（3/31まで）</p>
+								<p>寄付すると、<strong>1</strong>ポイント<strong>1</strong>円分のポイントが、寄付の<strong>1%</strong>分もらえます。（現在実装中&商品募集中！）詳しくは、メールでお尋ねください。▶︎g181tg2061@dhw.ac.jp</p>
 							</div>
 						</div>
 					</div>
@@ -149,7 +149,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">NPO版ふるさと納税</h4>
-								<p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>掲載の認定NPOに寄付をすると、確定申告で税務署から約半分の金額が戻ります。ポイントとリターンを合わせると、同額相当の金額が戻ります。</p>
+								<p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>掲載の認定NPOに寄付をすると、確定申告で税務署から約半分の金額が戻ります。詳しくは、メールでお尋ねください。▶︎g181tg2061@dhw.ac.jp</p>
 							</div>
 						</div>
 					</div>
@@ -174,18 +174,18 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="/{{ $npo_info1->npo_name }}">
-    									<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_10_ja_2.png" />
+    									<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_02_ja.png" />
 	                                </a>
 								</div>
 								<div class="card-body">
-									<h6 class="card-category text-danger">
-									    Reduced Inequalities
+									<h6 class="card-category text-warning">
+									    Zero Hunger
 									</h6>
 									<h5 class="card-title">
-										<a href="/{{ $npo_info1->npo_name }}">{{ $npo_info1->title }}</a>
+										<a href="/{{ $npo_info1->npo_name }}">{{ $npo_info1->subtitle }}</a>
 									</h5>
 									<p class="card-description">
-										{{ $npo_info1->subtitle }}<br>
+										{{ $npo_info1->title }}<br>
 										現在合計：{{ $npo_info1->follower }}円<br>
 										支援額：{{ $npo_info1->support_amount }}円<br>
                                         目標金額：{{ $npo_info1->support_price }}円<br>
@@ -210,18 +210,18 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="/{{ $npo_info2->npo_name }}">
-										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_15_ja.png" />
+										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_04_en.png" />
 									</a>
 								</div>
 								<div class="card-body">
-									<h6 class="card-category text-success">
-										Life on Land
+									<h6 class="card-category text-danger">
+										Quality Education
 									</h6>
 									<h5 class="card-title">
-										<a href="/{{ $npo_info2->npo_name }}">{{ $npo_info2->title }}</a>
+										<a href="/{{ $npo_info2->npo_name }}">{{ $npo_info2->subtitle }}</a>
 									</h5>
 									<p class="card-description">
-										{{ $npo_info2->subtitle }}<br>
+										{{ $npo_info2->title }}<br>
 										現在合計：{{ $npo_info2->follower }}円<br>
 										支援額：{{ $npo_info2->support_amount }}円<br>
                                         目標金額：{{ $npo_info2->support_price }}円<br>
@@ -255,10 +255,10 @@
 										Sustainable Cities And Communities
 									</h6>
 									<h5 class="card-title">
-										<a href="/{{ $npo_info3->npo_name }}">{{ $npo_info3->title }}</a>
+										<a href="/{{ $npo_info3->npo_name }}">{{ $npo_info3->subtitle }}</a>
 									</h5>
 									<p class="card-description">
-										{{ $npo_info3->subtitle }}<br>
+										{{ $npo_info3->title }}<br>
 										現在合計：{{ $npo_info3->follower }}円<br>
 										支援額：{{ $npo_info3->support_amount }}円<br>
                                         目標金額：{{ $npo_info3->support_price }}円<br>
@@ -288,7 +288,7 @@
                                         <div class="title-brand">
                                             <h1 class="presentation-title"></h1>
                                         </div>
-                                        <h2 class="presentation-subtitle text-center">社会課題をもっと身近に。NPOと繋がりませんか？</h2>
+                                        <h2 class="presentation-subtitle text-center">社会課題をもっと身近に。「Fシャープ」</h2>
 
                                         <div class="w3-panel w3-large">
                                             <br>
