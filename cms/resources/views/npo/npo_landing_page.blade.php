@@ -105,7 +105,7 @@
                         <br/>
                         --}}
                         <div class="tab-content text-center" >
-                            <p>現在寄付数：<b>{{ $buyer_data }}</b>回</p>
+                            <p>現在寄付数：<b>{{$npo_info->buyer}}</b>回</p>
                             <p>寄付するとユーザー名がバッジに記載されます。</p>
                             <!--<p>*集まった寄付金は全額担当者にお渡しします。</p>-->
                             @if($npo_info->certificated_npo == 1)
@@ -258,8 +258,6 @@
                                                         <p>{{ $npo_info->support_price }}円</p>
                                                         <label>現在</label>
                                                         <p>{{ $npo_info->follower }}円</p>
-                                                        <label>寄付数</label>
-                                                        <p>{{ $npo_info->buyer }}</p>
                                                         <label>寄付者</label>
                                                         <p>
                                                         @if(count($donater)>1)
@@ -267,8 +265,12 @@
                                                                 @if($i > 1)
                                                                     、
                                                                 @endif
-                                                                @if((Auth::user()->name) == $donater[$i])
-                                                                    <b><font color="red">{{$donater[$i]}}さん@if($donater_times[$i] > 1)（あなた）<small>×{{$donater_times[$i]}}</small>@endif</font></b>
+                                                                @if(!Auth::guest())
+                                                                    @if((Auth::user()->name) == $donater[$i])
+                                                                        <b><font color="red">{{$donater[$i]}}さん@if($donater_times[$i] > 1)（あなた）<small>×{{$donater_times[$i]}}</small>@endif</font></b>
+                                                                    @else
+                                                                        {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
+                                                                    @endif
                                                                 @else
                                                                     {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
                                                                 @endif
