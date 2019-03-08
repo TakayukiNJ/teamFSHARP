@@ -177,7 +177,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <br><br><br><br><br>
-                                        <button type="button" href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}" aria-label="Close">
+                                        <a href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}" aria-label="Close">
                                             <svg viewBox="0 0 210 210">
                                                 <g stroke="none" fill="none">
                                                     <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
@@ -196,7 +196,7 @@
                                                 </text>
                                             </svg>
                                             <span>現在寄付者：<b>{{$donater_count}}</b>人</span>
-                                        </button>
+                                        </a>
                                         {{-- ポップアップの中身 --}}
                                         <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
                                             <div class="modal-dialog modal-register">
