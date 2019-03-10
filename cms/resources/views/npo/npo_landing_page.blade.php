@@ -135,7 +135,7 @@
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
                                                     @if($npo_info->support_contents_detail)
-                                                    <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
+                                                    <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日H:i') }}</b></li>
                                                     @endif
                                                 </ul>
                                                 @if (Auth::guest())
@@ -177,7 +177,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <br><br><br><br><br>
-                                        <div href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}">
+                                        <a href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}" aria-label="Close">
                                             <svg viewBox="0 0 210 210">
                                                 <g stroke="none" fill="none">
                                                     <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
@@ -186,17 +186,19 @@
                                         		<circle cx="105" cy="105" r="62" stroke="currentColor" stroke-width="1" fill="none" />
                                                 <text width="120" font-size="12" fill="currentColor">
                                                     <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#top">
-                                                        {{$npo_info->subtitle}}
+                                                        {{$npo_info->npo_name}}
                                                     </textPath>
                                                 </text>
-                                                <text width="120" font-size="12" fill="currentColor">
+                                                <text width="80" font-size="8" fill="currentColor">
                                                     <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
-                                                        {{$npo_info->title}}
+                                                        @if($npo_info->support_contents_detail)
+                                                        利用期限:{{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日H:i') }}
+                                                        @endif
                                                     </textPath>
                                                 </text>
                                             </svg>
                                             <span>現在寄付者：<b>{{$donater_count}}</b>人</span>
-                                        </div>
+                                        </a>
                                         {{-- ポップアップの中身 --}}
                                         <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
                                             <div class="modal-dialog modal-register">

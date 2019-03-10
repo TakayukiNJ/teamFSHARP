@@ -678,8 +678,17 @@ class Npo_registerController extends Controller {
                 $sdgs_num[$i] = "";
             }
         }
+        // 
+        if($sdgs_count == 0){
+            $sdgs_count = 17;
+        }
         $sdgs_point = round($point/$sdgs_count, 2);
         $sdgs_point_box = [];
+        if($sdgs_count == 17){
+            for($i = 1; $i < 18; $i++){
+                $sdgs_point_box[$i] = $sdgs_point;
+            }
+        }
         for($j = 1; $j < 18; $j++){
             $sdgs_j = 'sdgs'.$j;
             $sdgs_point_box[$j] = 0;

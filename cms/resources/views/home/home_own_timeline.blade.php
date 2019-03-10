@@ -104,7 +104,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 col-6">
                                                     <!--<a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge">-->
-                                                    <div href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info_personal[$i]->npo_name }}">
+                                                    <a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info_personal[$i]->npo_name }}" aria-label="Close">
                                                         <svg viewBox="0 0 210 210">
                                                             <g stroke="none" fill="none">
                                                                 <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
@@ -113,17 +113,19 @@
                                                     		<circle cx="105" cy="105" r="62" stroke="currentColor" stroke-width="1" fill="none" />
                                                             <text width="80" font-size="8" fill="currentColor">
                                                                 <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#top">
-                                                                    {{$npo_info_personal[$i]->subtitle}}
+                                                                    {{$npo_info_personal[$i]->npo_name}}
                                                                 </textPath>
                                                             </text>
                                                             <text width="80" font-size="8" fill="currentColor">
                                                                 <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
-                                                                    {{$npo_info_personal[$i]->title}}
+                                                                    @if($npo_info_personal[$i]->support_contents_detail)
+                                                                    利用期限:{{ Carbon\Carbon::parse($npo_info_personal[$i]->support_contents_detail)->format('Y年m月d日H:i') }}
+                                                                    @endif
                                                                 </textPath>
                                                             </text>
                                                         </svg>
                                                         <span>現在寄付者：<b>{{count($donater[$i])-1}}</b>人</span>
-                                                    </div>
+                                                    </a>
                                                     {{-- ポップアップの中身 --}}
                                                     <div class="modal fade" id="{{ $npo_info_personal[$i]->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
                                                         <div class="modal-dialog modal-register">
@@ -177,7 +179,7 @@
                                                                     <label>管理者：<b>{{ $npo_info_personal[$i]->manager }}さん</b></label><br>
                                                                     <label>{{Auth::user()->name}}さんの合計寄付回数：<b>{{ $premierData_personal[$i]->participants }}回</b></label><br>
                                                                     <label>{{Auth::user()->name}}さんの合計寄付金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの最終寄付日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日 h:m') }}</b></label><br>
+                                                                    <label>{{Auth::user()->name}}さんの最終寄付日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日H:i') }}</b></label><br>
                                                                     <label><b>寄付者</b></label>
                                                                     <p>
                                                                         @for($d = 1; $d < count($donater[$i]); $d++)
