@@ -135,7 +135,7 @@
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
                                                     @if($npo_info->support_contents_detail)
-                                                    <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
+                                                    <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日H:i') }}</b></li>
                                                     @endif
                                                 </ul>
                                                 @if (Auth::guest())
@@ -186,12 +186,14 @@
                                         		<circle cx="105" cy="105" r="62" stroke="currentColor" stroke-width="1" fill="none" />
                                                 <text width="120" font-size="12" fill="currentColor">
                                                     <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#top">
-                                                        {{$npo_info->subtitle}}
+                                                        {{$npo_info->npo_name}}
                                                     </textPath>
                                                 </text>
-                                                <text width="120" font-size="12" fill="currentColor">
+                                                <text width="80" font-size="8" fill="currentColor">
                                                     <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
-                                                        {{$npo_info->title}}
+                                                        @if($npo_info->support_contents_detail)
+                                                        利用期限:{{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日H:i') }}
+                                                        @endif
                                                     </textPath>
                                                 </text>
                                             </svg>
