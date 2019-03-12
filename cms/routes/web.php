@@ -61,7 +61,7 @@ Route::post('/menu', 'BooksController@index');
 
 /*********************/
 // B-0 登録退会機能
-// RegiびstController.php
+// RegistController.php
 /*********************/
 //Route::post('/register', 'HomeController@register');
 
