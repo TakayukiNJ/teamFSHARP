@@ -116,7 +116,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">人とお金の流れを可視化</h4>
-								<p class="description">寄付すると、登録したユーザー名がバッジに記載されます。プロジェクトページ或いはマイページで、黒い「バッジ」をタップすると、寄付履歴と最新情報を見ることができます。</p>
+								<p class="description">寄付すると、登録したユーザー名が記載されます。プロジェクトページあるいはマイページで、黒い「バッジ」をタップすると、寄付履歴と最新情報を見ることができます。</p>
 							</div>
 						</div>
 					</div>
@@ -127,7 +127,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">簡単公開・簡単管理 </h4>
-								<p>ご自身の団体とプロジェクトを、簡単に公開・管理ができます。まずユーザー登録を行い、団体名を登録して下さい。次にタイトルと目標金額と寄付金額を決め、公開して下さい。</p>
+								<p>一度登録・ログインをすれば、ご自身の団体とプロジェクトを簡単に公開・管理ができます。寄付を行うのも、とても手軽にすることができます。是非試してみてください。</p>
                             </div>
 						</div>
 					</div>
@@ -137,8 +137,8 @@
 								<i class="nc-icon nc-bulb-63"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">ポイント還元</h4>
-								<p>寄付すると、<strong>1</strong>ポイント<strong>1</strong>円分のポイントが、寄付の<strong>1%</strong>分もらえます。（現在実装中&商品募集中！）詳しくは、メールでお尋ねください。▶︎g181tg2061@dhw.ac.jp</p>
+								<h4 class="info-title">SDGsポイント</h4>
+								<p>寄付すると、総額の<strong>1%</strong>分のポイントが溜まり、マイページで確認することができます。SDGsの内訳も計算されて溜まるので、自分がどの分野に貢献したのかご確認いただけます。</p>
 							</div>
 						</div>
 					</div>
@@ -148,8 +148,8 @@
 								<i class="nc-icon nc-sun-fog-29"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">NPO版ふるさと納税</h4>
-								<p><a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>掲載の認定NPOに寄付をすると、確定申告で税務署から約半分の金額が戻ります。詳しくは、メールでお尋ねください。▶︎g181tg2061@dhw.ac.jp</p>
+								<h4 class="info-title">リターン</h4>
+								<p>プロジェクトによっては、リターンがあるものがございます。寄付すると何か良いことがあるかも！定期的にマイページをご確認ください。その他ご質問はメールでお尋ねください。▶︎g181tg2061@dhw.ac.jp</p>
 							</div>
 						</div>
 					</div>
@@ -210,7 +210,7 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="/{{ $npo_info2->npo_name }}">
-										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_04_en.png" />
+										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_04_ja.png" />
 									</a>
 								</div>
 								<div class="card-body">

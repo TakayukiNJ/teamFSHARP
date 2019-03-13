@@ -225,7 +225,6 @@
                         <!--    <input type="text" id="title-field" name="user" class="form-control" value="{{ $user }}" readonly="readonly"/>-->
                         <!--</div>-->
     
-    
                         <div class="form-group @if($errors->has('sex_type')) has-error @endif">
                             <label for="title-field">性別</label><br>
         					@if ($sex_type == 2)
