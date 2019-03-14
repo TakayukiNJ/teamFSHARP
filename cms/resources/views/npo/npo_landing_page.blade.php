@@ -50,7 +50,7 @@
                                 <br>
                                 @endif
                                 {{--<h6>目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）</h6>--}}
-                                <h6>現在寄付数：{{$npo_info->buyer}}（{{$currency_data}}円）／ 募集寄付数：{{$npo_info->support_limit}}</h6>
+                                <h6>現在支援数：{{$npo_info->buyer}}（{{$currency_data}}円）／ 募集支援数：{{$npo_info->support_limit}}（残り：{{$npo_info->support_limit - $npo_info->buyer}}口）</h6>
                                 @if($npo_info->buyer != 0)
                                 @if($parcentage < 10)
                                 <div class="progress">
@@ -94,7 +94,7 @@
                         </div>
                         --}}
                         <div class="tab-content text-center" >
-                            <p>現在：<b>{{$npo_info->buyer}}</b>口</p>
+                            <p>現在：<b>{{$npo_info->buyer}}</b>口（残り：{{$npo_info->support_limit - $npo_info->buyer}}口）</p>
                             <p>支援するとバッジにニックネームが記載されます。</p>
                             <br>
                             <div class="containersns">
