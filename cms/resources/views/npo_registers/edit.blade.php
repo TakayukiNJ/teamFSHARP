@@ -44,11 +44,11 @@
                                     <span class="help-block icon-danger">{{ $errors->first("title") }}</span>
                                    @endif
                                 </div>
-                                <div class="form-group @if($errors->has('support_price')) has-error @endif">
-                                   <label for="support_price-field">目標金額（公開中変更不可）</label>
-                                <input type="text" id="support_price-field" name="support_price" class="form-control text-center" value="{{ is_null(old("support_price")) ? $npo_info->support_price : old("support_price") }}" {{ !$npo_info->proval == 1 ? '' : 'readonly="readonly"'}}/>
-                                   @if($errors->has("support_price"))
-                                    <span class="help-block icon-danger">公開する場合、目標金額は必須です。（10,000円以上）</span>
+                                <div class="form-group @if($errors->has('support_limit')) has-error @endif">
+                                   <label for="support_limit-field">募集寄付数（公開中変更不可）</label>
+                                <input type="text" id="support_limit-field" name="support_limit" class="form-control text-center" value="{{ is_null(old("support_limit")) ? $npo_info->support_limit : old("support_limit") }}" {{ !$npo_info->proval == 1 ? '' : 'readonly="readonly"'}}/>
+                                   @if($errors->has("support_limit"))
+                                    <span class="help-block icon-danger">公開する場合、募集寄付数は必須です。（2〜9桁）</span>
                                    @endif
                                 </div>
                                 <div class="form-group @if($errors->has('embed_youtube')) has-error @endif">
@@ -155,7 +155,7 @@
                     <br>
                     {{-- FsharpのURL --}}
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
-                        <label for="npo_name-field">バッジの名前（https://fsharp.me/〇〇〇〇部分のURLに使用。設定後変更不可）</label>
+                        <label for="npo_name-field">URL（https://fsharp.me/〇〇〇〇部分。設定後変更不可）</label>
                         <input type="text" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
                         @if($errors->has("npo_name"))
                         <span class="help-block icon-danger">この{{ $errors->first("npo_name") }}（重複不可）</span>
@@ -171,7 +171,7 @@
                     </div>
                     <!-- リターン -->
                     <div class="form-group @if($errors->has('support_contents')) has-error @endif">
-                       <h6 for="support_contents-field">バッジ購入者へのリターン（無しでも可能）</h6>
+                       <h6 for="support_contents-field">購入者へのリターン（無しでも可能）</h6>
                     <input type="text" id="support_contents-field" name="support_contents" class="form-control" value="{{ is_null(old("support_contents")) ? $npo_info->support_contents : old("support_contents") }}"/>
                        @if($errors->has("support_contents"))
                         <span class="help-block icon-danger">{{ $errors->first("support_contents") }}</span>
@@ -182,7 +182,7 @@
                     
                     <div class="row price-row">
                         <div class="col-md-6">
-                            <h6>バッジの値段 <span class="icon-danger">*</span>（公開後変更不可）</h6>
+                            <h6>一口の値段 <span class="icon-danger">*</span>（公開後変更不可）</h6>
                             <div class="input-group border-input form-group  @if($errors->has('support_amount')) has-error @endif">
                                 <span class="input-group-addon"><i class="fa fa-yen"></i></span>
                                 <input type="text" id="support_amount-field" name="support_amount" placeholder="3,000" class="form-control border-input" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}>
@@ -650,7 +650,8 @@
                         @endif
                     @endfor
                     
-                    <!-- 公開非公開 -->
+                    {{-- 公開非公開 --}}
+                    @if($npo_info->buyer == 0)
                     <div class="form-group @if($errors->has('proval')) has-error @endif">
                         <label for="title-field">公開・未公開</label><br>
     					@if ($npo_info->proval == 0)
@@ -666,6 +667,7 @@
                         <span class="help-block icon-danger">{{ $errors->first("proval") }}</span>
                         @endif
                     </div>
+                    @endif
                    <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Save</button>
                     <a class="btn btn-link pull-right" href="{{ route('npo_registers.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>

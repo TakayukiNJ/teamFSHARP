@@ -66,7 +66,6 @@
                                     @if(($npo_register->proval) > 0)
                                         <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                         <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
-                                        <p class="card-description">目標金額: {{$npo_register->support_price}} 円</p>
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
                                         <a class="btn btn-info btn-round" href="/{{ $npo_register->npo_name }}">公開画面</a>
                                         <a class="btn btn-success btn-round" href="/{{ $npo_register->npo_name }}/edit">編集</a>
@@ -81,9 +80,6 @@
                                         <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                         @endif
                                         <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
-                                        @if($npo_register->support_price)
-                                        <p class="card-description">目標金額: {{$npo_register->support_price}} 円</p>
-                                        @endif
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
                                         @if(($npo_register->npo_name) == "")
                                             <a class="btn btn-info btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">プレビュー</a>
@@ -107,6 +103,7 @@
                     {!! $npo_registers->render() !!}
                 @else
                 <!--<h3 class="text-center alert alert-info">Empty!</h3>-->
+                <br>
                 <br>
                 @endif
 			</div>

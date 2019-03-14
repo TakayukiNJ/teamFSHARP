@@ -36,16 +36,10 @@
                                     @endif
                                     {!! nl2br(e(trans($npo_info->title))) !!}
                                 </h5>
-                                <br>
                                 <div>
                                     <a onClick="history.back()" class="btn btn-warning">
                                         戻る
                                     </a>
-                                    @if($npo_info->url)
-                                    <a href="{{ $npo_info->url }}" class="btn btn-success" target="_blank">
-                                        公式サイト    
-                                    </a>
-                                    @endif
                                     @if(( $npo_info->proval ) > 0)
                                     <a href="{{ url('/') }}/{{ $npo_info->npo_name }}" class="btn btn-info">
                                         公開ページ        
@@ -57,20 +51,28 @@
                                     @endif
                                 </div>
                                 <br>
-                                <h6>目標金額：{{$npo_info->support_price}}円</h6>
-                                <h6>現在：{{$npo_info->follower}}円 ／ 寄付数：{{$npo_info->buyer}}</h6>
-                                <br>
-                                {{-- SDGs --}}
-                                <div class="avatar">
-                                    <br>
-                                    @for ($i = 1; $i < 7; $i++)
-                                        <?php $sdgs = "sdgs".$i ?>
-                                        @if($npo_info->$sdgs)
-                                        <img src="{{ url('/') }}/img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
-                                        @endif
-                                    @endfor
+                                {{--<h6>目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）</h6>--}}
+                                @if($npo_info->support_limit != "")
+                                <h6>現在：{{$npo_info->buyer}}口（{{$currency_data}}円） ／ 募集：{{$npo_info->support_limit}}口</h6>
+                                @endif
+                                @if($npo_info->buyer != 0)
+                                @if($parcentage < 10)
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{$parcentage}}%" aria-valuenow="" aria-valuemin="0" aria-valuemax="0">
+                                    </div>
                                 </div>
-                                
+                                @elseif($parcentage < 50)
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{$parcentage}}%" aria-valuenow="" aria-valuemin="0" aria-valuemax="0">
+                                    </div>
+                                </div>
+                                @else
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{$parcentage}}%" aria-valuenow="" aria-valuemin="0" aria-valuemax="0">
+                                    </div>
+                                </div>
+                                @endif
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -82,7 +84,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <h2 class="title text-center">支援する</h2>
+                        <h2 class="title text-center">SUPPORT</h2>
                         {{--
                         <div class="choose-plan">
                             <ul class="nav nav-pills nav-pills-danger" role="tablist">
@@ -94,11 +96,39 @@
                                 </li>
                             </ul>
                         </div>
-                        <br/>
                         --}}
                         <div class="tab-content text-center" >
-                            <p>現在寄付数：<b>{{ $buyer_data }}</b>回</p>
-                            <p>寄付するとユーザー名がバッジに記載されます。</p>
+                            <p>現在：<b>{{$npo_info->buyer}}</b>口</p>
+                            <p>支援するとバッジにニックネームが記載されます。</p>
+                            <br>
+                            <div class="containersns">
+                                {{-- Facebook --}}
+                                <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                                <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
+                                <div>　</div>
+                                {{-- Twitter --}}
+                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text={!! $npo_info->title !!} {!! $npo_info->subtitle !!}の支援のために。ひとりでも多くの方に広めてください♪" class="twitter-share-button" data-show-count="false"></a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                <div>　</div>
+                                {{-- LINE --}}
+                                <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
+                                <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+                                {{-- SDGs --}}
+                            </div>
+                            <div class="avatar">
+                                <br>
+                                @if($npo_info->certificated_npo)
+                                <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
+                                    <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                </a>
+                                @endif
+                                @for($i = 1; $i < 7; $i++)
+                                    <?php $sdgs = "sdgs".$i ?>
+                                    @if($npo_info->$sdgs)
+                                    <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                    @endif
+                                @endfor
+                            </div>
                             <!--<p>*集まった寄付金は全額担当者にお渡しします。</p>-->
                             @if($npo_info->certificated_npo == 1)
                             <p>**こちらは<a href="https://www.npo-homepage.go.jp/npoportal" target="_blank">内閣府公式サイト</a>に掲載されている認定NPO法人の寄付先なので、税額控除の対象です。</p>
@@ -129,15 +159,23 @@
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
                                                     @endif
                                                     @if($npo_info->support_contents_detail)
-                                                    <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
+                                                    <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日H:i') }}</b></li>
                                                     @endif
                                                 </ul>
+                                                <style type="text/css">
+                                                button.stripe-button-el,
+                                                button.stripe-button-el>span {
+                                                  background-color: #F57763 !important;
+                                                  background-image: none;
+                                                }
+                                                </style>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <br><br><br><br><br>
-                                        <div href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}">
+                                        <a href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}" aria-label="Close">
                                             <svg viewBox="0 0 210 210">
                                                 <g stroke="none" fill="none">
                                                     <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
@@ -146,17 +184,19 @@
                                         		<circle cx="105" cy="105" r="62" stroke="currentColor" stroke-width="1" fill="none" />
                                                 <text width="120" font-size="12" fill="currentColor">
                                                     <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#top">
-                                                        {{$npo_info->subtitle}}
+                                                        {{$npo_info->npo_name}}
                                                     </textPath>
                                                 </text>
-                                                <text width="120" font-size="12" fill="currentColor">
+                                                <text width="80" font-size="8" fill="currentColor">
                                                     <textPath startOffset="50%" text-anchor="middle" alignment-baseline="middle" xlink:href="#bottom">
-                                                        {{$npo_info->title}}
+                                                        @if($npo_info->support_contents_detail)
+                                                        利用期限:{{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日H:i') }}
+                                                        @endif
                                                     </textPath>
                                                 </text>
                                             </svg>
-                                            <span>現在寄付者：<b>{{$donater_count}}</b>人</span>
-                                        </div>
+                                            <span>現在<b>{{ $npo_info->buyer }}</b>口（<b>{{$parcentage}}</b>%）</span>
+                                        </a>
                                         {{-- ポップアップの中身 --}}
                                         <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
                                             <div class="modal-dialog modal-register">
@@ -199,7 +239,7 @@
                                                             @for ($i = 1; $i < 7; $i++)
                                                                 <?php $sdgs = "sdgs".$i ?>
                                                                 @if($npo_info->$sdgs)
-                                                                <img src="{{ url('/') }}/img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
+                                                                <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
                                                                 @endif
                                                             @endfor
                                                         </div>
@@ -214,12 +254,10 @@
                                                     <div class="modal-body">
                                                         <label>管理者</label>
                                                         <p>{{ $npo_info->manager }}</p>
-                                                        <label>目標</label>
-                                                        <p>{{ $npo_info->support_price }}円</p>
+                                                        <label>募集支援数</label>
+                                                        <p>{{ $npo_info->support_limit }}口</p>
                                                         <label>現在</label>
-                                                        <p>{{ $npo_info->follower }}円</p>
-                                                        <label>寄付数</label>
-                                                        <p>{{ $npo_info->buyer }}</p>
+                                                        <p>{{ $npo_info->buyer }}口（{{ $npo_info->follower }}円）</p>
                                                         <label>寄付者</label>
                                                         <p>
                                                         @if(count($donater)>1)
@@ -227,8 +265,12 @@
                                                                 @if($i > 1)
                                                                     、
                                                                 @endif
-                                                                @if((Auth::user()->name) == $donater[$i])
-                                                                    <b><font color="red">{{$donater[$i]}}さん@if($donater_times[$i] > 1)（あなた）<small>×{{$donater_times[$i]}}</small>@endif</font></b>
+                                                                @if(!Auth::guest())
+                                                                    @if((Auth::user()->name) == $donater[$i])
+                                                                        <b><font color="red">{{$donater[$i]}}（あなた）@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif</font></b>
+                                                                    @else
+                                                                        {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
+                                                                    @endif
                                                                 @else
                                                                     {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
                                                                 @endif
@@ -247,14 +289,14 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
-     {{--     *********    ３cards     *********      --}}
+     {{--     *********    3cards     *********      --}}
     <div class="nav-tabs-navigation">
     </div>
     <div id="my-tab-content" class="tab-content text-center section-white">
-        
         <div class="cd-section section-white" id="intro-cards">
             <div class="container">
                 <div class="row coloured-cards">
@@ -264,7 +306,7 @@
     							<div class="card-image">
     							    @if($npo_info->code1)
     								{{--<a href="#pablo">--}}
-    									<img class="img" src="{{ url('/') }}/img/project_code//{{$npo_info->code1}}">
+    									<img class="img" src="{{ url('/') }}/img/project_code/{{$npo_info->code1}}">
     								{{--</a>--}}
     								@endif
                                 </div>
@@ -302,7 +344,7 @@
     							<div class="card-image">
     							    @if($npo_info->code3)
     								{{--<a href="#pablo">--}}
-    									<img class="img" src="{{ url('/') }}/img/project_code//{{$npo_info->code3}}">
+									<img class="img" src="{{ url('/') }}/img/project_code/{{$npo_info->code3}}">
     								{{--</a>--}}
     								@endif
                                 </div>
@@ -351,7 +393,7 @@
                                     <div class="col-md-7">
                                         <div class="card-body text-left">
                                             <h4 class="card-title">{{ $npo_info->$member }}</h4>
-                                            @if($npo_info->$member_pos){
+                                            @if($npo_info->$member_pos)
                                             <h6 class="card-category">{{ $npo_info->$member_pos }}</h6>
                                             @else
                                             <h6 class="card-category">{{ $personal_info_company_name[$i] }}</h6>
@@ -371,36 +413,38 @@
         </div>
     </div>
     {{--
+    @if($mail_message == "")
     <div class="section section-gray">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}に関してお問い合わせ</h2>
+                    <h2 class="title">{!! nl2br(e(trans($npo_info->subtitle))) !!}に関するお問い合わせ</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <form class="contact">
+                    <form action="/{{$npo_info->npo_name}}/send_mail" method="POST" class="contact">
+                        {!! csrf_field() !!}
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Name（お名前）" value="{{!Auth::guest() ? Auth::user()->name : ''}}">
+                                <input type="text" name="name" class="form-control" placeholder="Name（お名前）" value="{{!Auth::guest() ? Auth::user()->name : ''}}">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Email（メールアドレス）" value="{{!Auth::guest() ? Auth::user()->email : ''}}">
+                                <input type="text" name="email" class="form-control" placeholder="Email（メールアドレス）" value="{{!Auth::guest() ? Auth::user()->email : ''}}">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Subject（タイトル）" value="{!! nl2br(e(trans($npo_info->subtitle))) !!}に関して">
+                                <input type="text" name="title" class="form-control" placeholder="Subject（タイトル）" value="{!! nl2br(e(trans($npo_info->subtitle))) !!}に関して">
                             </div>
                         </div>
                         <br>
-                        <textarea class="form-control" placeholder="Message（お問い合わせ内容）" rows="7" ></textarea>
+                        <textarea class="form-control" name="message" placeholder="Message（お問い合わせ内容）" rows="7" ></textarea>
                         <br>
                         <div class="row">
                             <div class="col-md-6 ml-auto mr-auto">
-                                <button class="btn btn-primary btn-block btn-round">Send </button>
+                                <button type="submit" class="btn btn-primary btn-block btn-round">Send </button>
                             </div>
                         </div>
                     </form>
@@ -408,7 +452,10 @@
             </div>
         </div>
     </div>
-    --}}
+    @else
+        {{$mail_message}}
+    @endif
+    --}}<br>
 </div>
 @endsection
 @include('layouts.footer')
