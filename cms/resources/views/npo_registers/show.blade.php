@@ -100,6 +100,16 @@
                         <div class="tab-content text-center" >
                             <p>現在：<b>{{$npo_info->buyer}}</b>口</p>
                             <p>支援するとバッジにニックネームが記載されます。</p>
+                            @if($npo_info->body)
+                            <button type="button" class="btn btn-round btn-warning"
+                                data-toggle="popover"
+                                data-placement="bottom"
+                                title="説明・紹介文"
+                                data-content="{{ $npo_info->body }}">説明・紹介文
+                            </button>
+                            <br>
+                            @endif
+                            <br>
                             <br>
                             <div class="containersns">
                                 {{-- Facebook --}}
@@ -125,7 +135,7 @@
                                 @for($i = 1; $i < 7; $i++)
                                     <?php $sdgs = "sdgs".$i ?>
                                     @if($npo_info->$sdgs)
-                                    <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                    <img src="/img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
                                     @endif
                                 @endfor
                             </div>
@@ -296,7 +306,7 @@
      {{--     *********    3cards     *********      --}}
     <div class="nav-tabs-navigation">
     </div>
-    <div id="my-tab-content" class="tab-content text-center section-white">
+    <div id="my-tab-content" class="tab-content text-center section-white container tim-container">
         <div class="cd-section section-white" id="intro-cards">
             <div class="container">
                 <div class="row coloured-cards">

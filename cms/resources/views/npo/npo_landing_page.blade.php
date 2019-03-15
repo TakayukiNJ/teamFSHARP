@@ -49,8 +49,7 @@
                                 </div>
                                 <br>
                                 @endif
-                                {{--<h6>目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）</h6>--}}
-                                <h6>現在支援数：{{$npo_info->buyer}}（{{$currency_data}}円）／ 募集支援数：{{$npo_info->support_limit}}（残り：{{$npo_info->support_limit - $npo_info->buyer}}口）</h6>
+                                <h6>現在：{{$npo_info->buyer}}口（{{$currency_data}}円）／ 募集：{{$npo_info->support_limit}}口（残り{{$npo_info->support_limit - $npo_info->buyer}}口）</h6>
                                 @if($npo_info->buyer != 0)
                                 @if($parcentage < 10)
                                 <div class="progress">
@@ -81,21 +80,18 @@
                 <div class="row">
                     <div class="col-md-4">
                         <h2 class="title text-center">SUPPORT</h2>
-                        {{--
-                        <div class="choose-plan">
-                            <ul class="nav nav-pills nav-pills-danger" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" id="#aa" role="tab">{{ $npo_info->title }}を支援</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#commercial" id="bb" role="tab">法人の方</a>
-                                </li>
-                            </ul>
-                        </div>
-                        --}}
                         <div class="tab-content text-center" >
-                            <p>現在：<b>{{$npo_info->buyer}}</b>口（残り：{{$npo_info->support_limit - $npo_info->buyer}}口）</p>
+                            <p>現在<b>{{$npo_info->buyer}}</b>口（残り{{$npo_info->support_limit - $npo_info->buyer}}口）</p>
                             <p>支援するとバッジにニックネームが記載されます。</p>
+                            @if($npo_info->body)
+                            <button type="button" class="btn btn-round btn-warning"
+                                data-toggle="popover"
+                                data-placement="bottom"
+                                title="説明・紹介文"
+                                data-content="{{ $npo_info->body }}">説明・紹介文
+                            </button>
+                            <br>
+                            @endif
                             <br>
                             <div class="containersns">
                                 {{-- Facebook --}}
@@ -217,7 +213,7 @@
                                                     </textPath>
                                                 </text>
                                             </svg>
-                                            <span>現在<b>{{ $npo_info->buyer }}</b>口（<b>{{$parcentage}}</b>%）</span>
+                                            <span>残り{{$npo_info->support_limit - $npo_info->buyer}}口</span>
                                         </a>
                                         {{-- ポップアップの中身 --}}
                                         <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
@@ -318,12 +314,12 @@
      {{--     *********    3cards     *********      --}}
     <div class="nav-tabs-navigation">
     </div>
-    <div id="my-tab-content" class="tab-content text-center section-white">
+    <div id="my-tab-content" class="tab-content text-center section-white container tim-container">
         <div class="cd-section section-white" id="intro-cards">
-            <div class="container">
+            <div class="container ">
                 <div class="row coloured-cards">
                     <div class="row">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-4 col-sm-6">
                             <div class="card card-blog">
     							<div class="card-image">
     							    @if($npo_info->code1)
@@ -342,7 +338,7 @@
     							</div>
     						</div>
                         </div>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-4 col-sm-6">
                             <div class="card card-blog">
     							<div class="card-image">
     							    @if($npo_info->code2)
@@ -361,7 +357,7 @@
     							</div>
     						</div>
                         </div>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-4 col-sm-6">
                             <div class="card card-blog">
     							<div class="card-image">
     							    @if($npo_info->code3)

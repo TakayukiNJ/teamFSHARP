@@ -26,8 +26,7 @@ class Npo_registerController extends Controller {
 	    
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
-        // dd($data);
-		$npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
+        $npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
 		return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	/**
@@ -331,7 +330,7 @@ class Npo_registerController extends Controller {
             $par = ($currentNpoInfo->buyer / $currentNpoInfo->support_limit) * 100; //指定値「現在いくらか」を最大値(目標値)で割った後、100を掛ける
             $parcentage = round($par,2); // 切捨て整数化
         }
-        $data['mail_message'] = $mail_message;
+        $data['mail_message']           = $mail_message;
         $data['parcentage']             = $parcentage;
         $data['buyer_data']             = $buyer_count;
         $data['donater_count']          = $donater_count;
@@ -418,7 +417,7 @@ class Npo_registerController extends Controller {
                 'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
                 'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
     	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
-                'url'                     => 'url',
+                //'url'                     => 'url',
                 'npo_name'                => 'alpha_dash',
     		];
 		}else{
@@ -433,7 +432,7 @@ class Npo_registerController extends Controller {
                     'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
                     'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
-                    'url'                     => 'url',
+                    //'url'                     => 'url',
                     'npo_name'                => 'unique:npo_registers|alpha_dash',
         		];
     		}else{
@@ -445,7 +444,7 @@ class Npo_registerController extends Controller {
                     'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
                     'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
         	        'support_amount_pratinum' => 'required | digits_between:1,2', // 企業（プラチナ）寄付の定員数
-                    'url'                     => 'url',
+                    //'url'                     => 'url',
                     'npo_name'                => 'unique:npo_registers|required | alpha_dash',
         	    ];
         	}
