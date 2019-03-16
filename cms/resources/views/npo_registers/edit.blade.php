@@ -153,16 +153,18 @@
 
                 <div class="col-md-7 col-sm-7">
                     <br>
-                    @if($npo_info->proval < 1)
                     {{-- FsharpのURL --}}
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
+                    @if($npo_info->proval < 1)
                         <label for="npo_name-field">URL（https://fsharp.me/〇〇〇〇部分。設定後変更不可）</label>
                         <input type="text" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
                         @if($errors->has("npo_name"))
                         <span class="help-block icon-danger">この{{ $errors->first("npo_name") }}（重複不可）</span>
                         @endif
-                    </div>
+                    @else
+                        <input type="hidden" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
                     @endif
+                    </div>
                     {{-- 特典利用期限 --}}
                     <div class="row price-row">
                         <div class="col-md-6">
