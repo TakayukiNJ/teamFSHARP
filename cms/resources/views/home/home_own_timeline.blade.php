@@ -24,7 +24,9 @@
                             @endif
                         </div>
                         <div class="name">
+                            @if(Auth::user()->point != 0)
                             <h4 class="title text-center">{{ Auth::user()->name }}@if($personal_info)<br><small>{{ $personal_info->description }}</small>@endif<br><br><small>現在保有ポイント：{{ Auth::user()->point }} ポイント</small>
+                            @endif
                             @if(Auth::user()->total_deposit)
                                 <br><small>出金可能金額：{{Auth::user()->total_deposit}}円</small></h4>
                             @endif
@@ -124,7 +126,7 @@
                                                                 </textPath>
                                                             </text>
                                                         </svg>
-                                                        <span>現在寄付者：<b>{{count($donater[$i])-1}}</b>人</span>
+                                                        <span><b>{{ $premierData_personal[$i]->participants }}</b>口保有</b></span>
                                                     </a>
                                                     {{-- ポップアップの中身 --}}
                                                     <div class="modal fade" id="{{ $npo_info_personal[$i]->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
@@ -177,17 +179,17 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <label>管理者：<b>{{ $npo_info_personal[$i]->manager }}さん</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの合計寄付回数：<b>{{ $premierData_personal[$i]->participants }}回</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの合計寄付金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの最終寄付日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日H:i') }}</b></label><br>
-                                                                    <label><b>寄付者</b></label>
+                                                                    <label>{{Auth::user()->name}}さんの合計支援回数：<b>{{ $premierData_personal[$i]->participants }}口</b></label><br>
+                                                                    <label>{{Auth::user()->name}}さんの合計支援金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
+                                                                    <label>{{Auth::user()->name}}さんの最終支援日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日H:i') }}</b></label><br>
+                                                                    <label><b>支援者</b></label>
                                                                     <p>
                                                                         @for($d = 1; $d < count($donater[$i]); $d++)
                                                                             @if($d > 1)
                                                                                 、
                                                                             @endif
                                                                             @if((Auth::user()->name) == $donater[$i][$d])
-                                                                                <b><font color="red">{{$donater[$i][$d]}}さん（あなた）@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
+                                                                                <b><font color="red">{{$donater[$i][$d]}}（あなた）@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
                                                                             @else
                                                                                 {{$donater[$i][$d]}}さん@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif
                                                                             @endif
@@ -202,23 +204,23 @@
                                                     <h6><a href="/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br>
                                                     <small>{{ $npo_info_personal[$i]->title }}</small><br>
                                                     <small>単価:{{ $npo_info_personal[$i]->support_amount }}円</small><br>
-                                                    <small>目標:{{ $npo_info_personal[$i]->support_price }}円</small><br>
                                                     <small>現在:{{ $npo_info_personal[$i]->follower }}円</small><br>
-                                                    <small>寄付数:{{ $npo_info_personal[$i]->buyer }}</small><br>
-                                                    @if($npo_info_personal[$i]->support_contents != "このページに名前を記載")
-                                                    <small>バッジの効果:{{ $npo_info_personal[$i]->support_contents }}</small><br>
+                                                    <small>支援数:{{ $npo_info_personal[$i]->buyer }}</small><br>
+                                                    <small>募集数:{{ $npo_info_personal[$i]->support_limit }}</small><br>
+                                                    @if($npo_info_personal[$i]->support_contents != "")
+                                                    <small>リターン:{{ $npo_info_personal[$i]->support_contents }}</small><br>
                                                     @endif
                                                     @if($npo_info_personal[$i]->support_contents_detail)
-                                                    <small>期限:{{ $npo_info_personal[$i]->support_contents_detail }}</small><br>
+                                                    <small>期限:{{ Carbon\Carbon::parse($npo_info_personal[$i]->support_contents_detail)->format('Y年m月d日H:i') }}</small><br>
                                                     @endif
                                                     <!--<small>現在:{{ $npo_info_personal[$i]->follower }}円</small><br>-->
                                                     <!--<small>現在:{{ $npo_info_personal[$i]->follower }}円</small><br>-->
                                                     </h6></h6><br>
                                                 </div>
                                                 <div class="col-md-1 col-1">
-                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_proval[$i]->npo_name }}">GO!</a>
-                                                    @if($npo_info_proval[$i]->url)
-                                                    <br><br><a class="btn btn-xs btn-success" href="{{ $npo_info_proval[$i]->url }}" target="_blank">外部LINK</a>
+                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_personal[$i]->npo_name }}">GO!</a>
+                                                    @if($npo_info_personal[$i]->url)
+                                                    <br><br><a class="btn btn-xs btn-success" href="{{ $npo_info_personal[$i]->url }}" target="_blank">外部LINK</a>
                                                     @endif
                                                 </div>
                                             </div>

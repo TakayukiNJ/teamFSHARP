@@ -44,11 +44,11 @@
                                     <span class="help-block icon-danger">{{ $errors->first("title") }}</span>
                                    @endif
                                 </div>
-                                <div class="form-group @if($errors->has('support_price')) has-error @endif">
-                                   <label for="support_price-field">目標金額（公開中変更不可）</label>
-                                <input type="text" id="support_price-field" name="support_price" class="form-control text-center" value="{{ is_null(old("support_price")) ? $npo_info->support_price : old("support_price") }}" {{ !$npo_info->proval == 1 ? '' : 'readonly="readonly"'}}/>
-                                   @if($errors->has("support_price"))
-                                    <span class="help-block icon-danger">公開する場合、目標金額は必須です。（10,000円以上）</span>
+                                <div class="form-group @if($errors->has('support_limit')) has-error @endif">
+                                   <label for="support_limit-field">募集寄付数（公開中変更不可）</label>
+                                <input type="text" id="support_limit-field" name="support_limit" class="form-control text-center" value="{{ is_null(old("support_limit")) ? $npo_info->support_limit : old("support_limit") }}" {{ !$npo_info->proval == 1 ? '' : 'readonly="readonly"'}}/>
+                                   @if($errors->has("support_limit"))
+                                    <span class="help-block icon-danger">公開する場合、募集寄付数は必須です。（2〜9桁）</span>
                                    @endif
                                 </div>
                                 <div class="form-group @if($errors->has('embed_youtube')) has-error @endif">
@@ -155,34 +155,20 @@
                     <br>
                     {{-- FsharpのURL --}}
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
-                        <label for="npo_name-field">バッジの名前（https://fsharp.me/〇〇〇〇部分のURLに使用。設定後変更不可）</label>
+                    @if($npo_info->proval < 1)
+                        <label for="npo_name-field">URL（https://fsharp.me/〇〇〇〇部分。設定後変更不可）</label>
                         <input type="text" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
                         @if($errors->has("npo_name"))
                         <span class="help-block icon-danger">この{{ $errors->first("npo_name") }}（重複不可）</span>
                         @endif
+                    @else
+                        <input type="hidden" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
+                    @endif
                     </div>
-                    {{-- 資金の使い道 --}}
-                    <div class="form-group @if($errors->has('support_purpose')) has-error @endif">
-                       <h6 for="support_purpose-field">資金の使い道</h6>
-                    <input type="text" id="support_purpose-field" name="support_purpose" class="form-control" value="{{ is_null(old("support_purpose")) ? $npo_info->support_purpose : old("support_purpose") }}"/>
-                       @if($errors->has("support_purpose"))
-                        <span class="help-block icon-danger">{{ $errors->first("support_purpose") }}</span>
-                       @endif
-                    </div>
-                    <!-- リターン -->
-                    <div class="form-group @if($errors->has('support_contents')) has-error @endif">
-                       <h6 for="support_contents-field">バッジ購入者へのリターン（無しでも可能）</h6>
-                    <input type="text" id="support_contents-field" name="support_contents" class="form-control" value="{{ is_null(old("support_contents")) ? $npo_info->support_contents : old("support_contents") }}"/>
-                       @if($errors->has("support_contents"))
-                        <span class="help-block icon-danger">{{ $errors->first("support_contents") }}</span>
-                       @endif
-                    </div>
-                    <!-- 特典利用期限 -->
-                    
-                    
+                    {{-- 特典利用期限 --}}
                     <div class="row price-row">
                         <div class="col-md-6">
-                            <h6>バッジの値段 <span class="icon-danger">*</span>（公開後変更不可）</h6>
+                            <h6>一口の値段 <span class="icon-danger">*</span>（公開後変更不可）</h6>
                             <div class="input-group border-input form-group  @if($errors->has('support_amount')) has-error @endif">
                                 <span class="input-group-addon"><i class="fa fa-yen"></i></span>
                                 <input type="text" id="support_amount-field" name="support_amount" placeholder="3,000" class="form-control border-input" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}>
@@ -206,13 +192,38 @@
     			            </div>
                         </div>
                     </div>
+                    {{-- 資金の使い道 --}}
+                    <div class="form-group @if($errors->has('support_purpose')) has-error @endif">
+                       <h6 for="support_purpose-field">資金の使い道</h6>
+                    <input type="text" id="support_purpose-field" name="support_purpose" class="form-control" value="{{ is_null(old("support_purpose")) ? $npo_info->support_purpose : old("support_purpose") }}"/>
+                       @if($errors->has("support_purpose"))
+                        <span class="help-block icon-danger">{{ $errors->first("support_purpose") }}</span>
+                       @endif
+                    </div>
+                    {{-- 説明・紹介文 --}}
                     <div class="form-group @if($errors->has('body')) has-error @endif">
                         <h6>説明・紹介文</h6>
-						<textarea class="form-control textarea-limited" id="body-field" name="body" placeholder="説明・紹介文は、200文字までです。" rows="10", maxlength="200" value="{{ is_null(old("yellow_card_body")) ? $npo_info->yellow_card_body : old("yellow_card_body") }}"></textarea>
+						<textarea class="form-control textarea-limited" id="body-field" name="body" placeholder="説明・紹介文は、200文字までです。" rows="6", maxlength="200" value="{{ is_null(old("yellow_card_body")) ? $npo_info->yellow_card_body : old("yellow_card_body") }}"></textarea>
                         <h5><small><span id="textarea-limited-message" class="pull-right">残り200文字</span></small></h5>
                         @if($errors->has("yellow_card_body"))
                             <span class="help-block icon-danger">{{ $errors->first("body") }}</span>
                         @endif
+                    </div>
+                    {{-- リターン --}}
+                    <div class="form-group @if($errors->has('support_contents')) has-error @endif">
+                       <h6 for="support_contents-field">購入者へのリターン（無しでも可能）</h6>
+                    <input type="text" id="support_contents-field" name="support_contents" class="form-control" value="{{ is_null(old("support_contents")) ? $npo_info->support_contents : old("support_contents") }}"/>
+                       @if($errors->has("support_contents"))
+                        <span class="help-block icon-danger">{{ $errors->first("support_contents") }}</span>
+                       @endif
+                    </div>
+                    {{-- 外部公式サイト --}}
+                    <div class="form-group @if($errors->has('url')) has-error @endif">
+                       <h6 for="url-field">外部公式サイト（無しでも可能）</h6>
+                    <input type="text" id="url-field" name="url" class="form-control" value="{{ is_null(old("url")) ? $npo_info->url : old("url") }}"/>
+                       @if($errors->has("url"))
+                        <span class="help-block icon-danger">{{ $errors->first("url") }}</span>
+                       @endif
                     </div>
                 </div>
             </div>
@@ -241,7 +252,6 @@
                 <span class="help-block icon-danger">{{ $errors->first("support_contents_detail_gold") }}</span>
                @endif
             </div>
-            
             <div class="form-group @if($errors->has('support_price_pratinum')) has-error @endif">
             <input type="hidden" id="support_price_pratinum-field" name="support_price_pratinum" class="form-control" value="{{ is_null(old("support_price_pratinum")) ? $npo_info->support_price_pratinum : old("support_price_pratinum") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}/>
                @if($errors->has("support_price_pratinum"))
@@ -267,188 +277,10 @@
                @endif
             </div>
         </div>
-        
-        {{--     *********    PRICING     *********      --}}
-        {{--<div class="pricing-5 section-gray" id="pricing">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h2 class="title">支援方法を選択</h2>
-                        <div class="choose-plan">
-                            <ul class="nav nav-pills nav-pills-danger" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#personal" id="#aa" role="tab">{{ $npo_info->subtitle }}を支援</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#commercial" id="bb" role="tab">法人の方</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <br/>
-                        <div class="tab-content text-center" >
-                            <p>現在の寄付者と法人の合計数：<b>{{$buyer_data}}</b></p>
-                            <p>寄付するとユーザー名・法人名が記載されます。</p>
-                            <p>集まった寄付金は全額ご担当者にお渡しします。</p>
-                            <p class="description text-gray">
-                                決済時に、運営(振込)手数料258円とクレジットカード手数料4.6%がかかります。
-                                <!--仮に毎月1,000円の寄付を認定NPO法人に寄付をした場合、最大5,000円の税制控除を受けられます。-->
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-7 ml-auto" id="support">
-                        <div class="tab-content text-center" >
-                            <div class="tab-pane active" id="personal" role="tabpanel">
-                                <div class="space-top"></div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-danger">{{ $npo_info->title }}を支援</h6>
-                                                <h1 class="card-title">{{ $npo_info->support_amount }}円</h1>
-                                                <ul>
-                                                    <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
-                                                    <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
-                                                    @if($npo_info->support_contents_detail)
-                                                    <li><b>特典利用期限: {{ Carbon\Carbon::parse($npo_info->support_contents_detail)->format('Y年m月d日') }}</b></li>
-                                                    @endif
-                                                </ul>
-                                                @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
-                                                @endif
-                                                
-                                                <style type="text/css">
-                                                button.stripe-button-el,
-                                                button.stripe-button-el>span {
-                                                  background-color: #F57763 !important;
-                                                  background-image: none;
-                                                }
-                                                </style>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing" data-color="orange">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-success">支援者リスト</h6>
-                                                <h3 class="card-title">現在の寄付者：<b>{{$donater_count}}人</b></h3>
-                                                <ul>
-                                                    @if(count($donater)>1)
-                                                        <li>
-                                                        @for ($i = 1; $i < count($donater); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater[$i]}}さん
-                                                            @else
-                                                                、{{$donater[$i]}}さん
-                                                            @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                        <li>まだ寄付者はいません。</li>
-                                                        <li>　</li>
-                                                        <li>　</li>
-                                                    @endif
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane" id="commercial" role="tabpanel">
-                                <div class="space-top"></div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-danger">法人（団体・チーム）として支援する</h6>
-                                                <h1 class="card-title">¥{{$npo_info->support_price_gold}}</h1>
-                                                <ul>
-                                                    <li>現在<b>{{$company_count_gold}}</b>法人が支援中です。</li>
-                                                    <li>最大<b>{{$npo_info->support_amount_gold}}</b>法人まで支援可能。</li>
-                                                    @if($npo_info->support_contents_gold)
-                                                        <li>リターン：<b>{{$npo_info->support_contents_gold}}</b></li>
-                                                    @endif
-                                                    @if(count($donater_gold)>1)
-                                                        <li>支援法人名：
-                                                        @for ($i = 1; $i < count($donater_gold); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater_gold[$i]}}
-                                                            @else
-                                                                、{{$donater_gold[$i]}}
-                                                            @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                    <li>支援した法人名をこちらに掲載。</li>
-                                                    @endif
-                                                </ul>
-                                                @if($npo_info->support_contents_detail_gold)
-                                                    <a class="btn btn-success btn-round" href="{{$npo_info->support_contents_detail_gold}}" target="_blank">
-                                                        内容の詳細はこちら
-                                                    </a>
-                                                    <br><br>
-                                                @endif
-                                                @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-danger btn-round">ログイン</a>
-                                                @elseif(Auth::user()->npo == "")
-                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-danger btn-round">まずは団体登録</a>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card card-pricing" data-color="orange">
-                                            <div class="card-body">
-                                                <h6 class="card-category text-success">プラチナ法人として支援する</h6>
-                                                <h1 class="card-title">¥{{$npo_info->support_price_pratinum}}</h1>
-                                                <ul>
-                                                    <li>現在<b>{{$company_count_pratinum}}</b>法人が支援中です。</li>
-                                                    <li>最大<b>{{$npo_info->support_amount_pratinum}}</b>法人まで支援可能。</li>
-                                                    @if($npo_info->support_contents_pratinum)
-                                                        <li>リターン：<b>{{$npo_info->support_contents_pratinum}}</b></li>
-                                                    @endif
-                                                    @if(count($donater_pratinum)>1)
-                                                        <li>支援法人名：
-                                                        @for ($i = 1; $i < count($donater_pratinum); $i++)
-                                                            @if($i == 1)
-                                                                {{$donater_pratinum[$i]}}
-                                                            @else
-                                                                、{{$donater_pratinum[$i]}}
-                                                            @endif
-                                                        @endfor
-                                                        </li>
-                                                    @else
-                                                    <li>支援した法人名をこちらに掲載。</li>
-                                                    @endif
-                                                </ul>
-                                                @if($npo_info->support_contents_detail_pratinum)
-                                                    <a class="btn btn-success btn-round" href="{{$npo_info->support_contents_detail_pratinum}}" target="_blank">
-                                                        内容の詳細はこちら
-                                                    </a>
-                                                    <br><br>
-                                                @endif
-                                                @if (Auth::guest())
-                                                <a href="{{ url('/login') }}" class="btn btn-neutral btn-round">ログイン</a>
-                                                @elseif(Auth::user()->npo == "")
-                                                <a href="{{ url('/npo_registers/create') }}" class="btn btn-neutral btn-round">まずは団体登録</a>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>--}}
      {{--     *********    3cards     *********      --}}
     <div class="nav-tabs-navigation">
     </div>
-    <div id="my-tab-content" class="tab-content text-center section-white">
+    <div id="my-tab-content" class="tab-content text-center section-white container tim-container">
         <div class="cd-section section-white" id="intro-cards">
             <div class="container">
                 <div class="row coloured-cards">
@@ -650,7 +482,8 @@
                         @endif
                     @endfor
                     
-                    <!-- 公開非公開 -->
+                    {{-- 公開非公開 --}}
+                    @if($npo_info->buyer == 0)
                     <div class="form-group @if($errors->has('proval')) has-error @endif">
                         <label for="title-field">公開・未公開</label><br>
     					@if ($npo_info->proval == 0)
@@ -666,6 +499,7 @@
                         <span class="help-block icon-danger">{{ $errors->first("proval") }}</span>
                         @endif
                     </div>
+                    @endif
                    <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Save</button>
                     <a class="btn btn-link pull-right" href="{{ route('npo_registers.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>

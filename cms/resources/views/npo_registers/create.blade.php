@@ -37,14 +37,14 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     @if ((Auth::user()->npo) == "")
                                     <div class="form-group @if($errors->has('title')) has-error @endif">
-                                        <label for="title-field">団体名 ※右上のユーザー名の左に表示されます。</label>
+                                        <label for="title-field">団体名（あとで変更不可）</label>
                                         <input type="text" id="title-field" name="title" class="form-control text-center" value="{{ old("title") }}"/>
                                         @if($errors->has("title"))
                                         <span class="help-block">{{ $errors->first("title") }}</span>
                                         @endif
                                     </div>
                                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
-                                       <label for="subtitle-field">最初のプロジェクト名</label>
+                                       <label for="subtitle-field">最初のプロジェクト名（あとで変更可能）</label>
                                     <input type="text" id="subtitle-field" name="subtitle" class="form-control text-center" value="{{ old("subtitle") }}"/>
                                        @if($errors->has("subtitle"))
                                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
@@ -59,12 +59,20 @@
                                        @endif
                                     </div>
                                     <input type="hidden" id="title-field" name="title" class="form-control text-center" value="{{ Auth::user()->npo }}"/>
-                                    {{-- 目標金額 --}}
-                                    <div class="form-group @if($errors->has('support_price')) has-error @endif">
-                                       <label for="support_price-field">目標金額</label>
-                                    <input type="text" id="support_price-field" name="support_price" class="form-control text-center" value="{{ old("support_price") }}"/>
-                                       @if($errors->has("support_price"))
-                                        <span class="help-block">{{ $errors->first("support_price") }}<</span>
+                                    {{-- 募集支援数 --}}
+                                    <div class="form-group @if($errors->has('support_limit')) has-error @endif">
+                                       <label for="support_limit-field">募集支援数</label>
+                                    <input type="text" id="support_limit-field" name="support_limit" class="form-control text-center" value="{{ old("support_limit") }}"/>
+                                       @if($errors->has("support_limit"))
+                                        <span class="help-block">{{ $errors->first("support_limit") }}<</span>
+                                       @endif
+                                    </div>
+                                    {{-- 一口の値段 --}}
+                                    <div class="form-group @if($errors->has('support_amount')) has-error @endif">
+                                       <label for="support_amount-field">一口の値段</label>
+                                    <input type="text" id="support_amount-field" name="support_amount" class="form-control text-center" value="{{ old("support_amount") }}"/>
+                                       @if($errors->has("support_amount"))
+                                        <span class="help-block">{{ $errors->first("support_amount") }}<</span>
                                        @endif
                                     </div>
                                     @endif
@@ -81,8 +89,6 @@
         </div>
     </div>
 </div>
-
-<br><br><br><br>
 @endsection
 @section('scripts')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>

@@ -493,6 +493,7 @@ class HomeController extends Controller
     	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
     	if($premierData_personal){
 		    for($i = 0; $i < count($premierData_personal); $i++){
+    		    $each_donater_count = 0;
     		    $premierData_email = $premierData_personal[$i]->vision_id;
     		    $data['npo_info_personal'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_email)->first();
     		    // そのままNpo_registerControllerをコピペ
@@ -504,18 +505,20 @@ class HomeController extends Controller
                 $data['donater'][$i]   = array(0=>"Donater");
             	$data['donater_times'] = array(0=>"Donater times");
                 for($array_count=0; $array_count<count($currentPremierData); $array_count++){
+                    
                     $buyer_count++; // 人数
                     $currency_origin = $currentPremierData[$array_count]->status;
                     $currency_amount += $currency_origin; // 金額
                     if(1 == $currentPremierData[$array_count]->premier_id){ // 個人
                         $currency_amount_personal += $currency_origin;
                         $donater_count++;
+                        $each_donater_count++;
                         $donater_email = $currentPremierData[$array_count]->user_define;
                         $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
                         $donater_times = $currentPremierData[$array_count]->participants;
                         $donater_name  = $donater_info->name;
-                        $data['donater'][$i] += array($donater_count=>$donater_name);
-                        $data['donater_times'] += array($donater_count=>$donater_times);
+                        $data['donater'][$i] += array($each_donater_count=>$donater_name);
+                        $data['donater_times'] += array($each_donater_count=>$donater_times);
                         // $data['donater'.$donater_count] = $donater_name;
                     }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
                         $currency_amount_company += $currency_origin;
@@ -592,7 +595,6 @@ class HomeController extends Controller
         } else {
             $image_id = '/img/contents/user-default.png';
         }
-        // dd($data);
 
         return view('home/home_own_timeline', $data)
         ->with('id', $id)

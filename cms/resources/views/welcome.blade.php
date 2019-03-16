@@ -34,10 +34,10 @@
                                 <div class="modal-body">
                                     <form class="register-form" role="form" method="POST" action="{{ url('/register') }}">
                                         {{ csrf_field() }}
-                                        {{-- ユーザー名 --}}
+                                        {{-- ニックネーム(半角英数) --}}
                                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                            <label for="name">ユーザー名(半角英数)</label>
-                                            <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
+                                            <label for="name">ニックネーム(半角英数)</label>
+                                            <input id="name" type="text" class="form-control" name="name" placeholder="ニックネーム(半角英数)" value="{{ old('name') }}" required autofocus>
                                             @if ($errors->has('name'))
                                                 <span class="help-block division">
                                                 <strong>{{ $errors->first('name') }}</strong>
@@ -56,7 +56,7 @@
                                         </div>
                                         {{-- パスワード --}}
                                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                            <label for="password">パスワード</label>
+                                            <label for="password">パスワード(8文字以上)</label>
                                             <input id="password" type="password" class="form-control" placeholder="パスワード" name="password" required>
                                             @if ($errors->has('password'))
                                                 <span class="help-block division">
@@ -116,7 +116,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">人とお金の流れを可視化</h4>
-								<p class="description">寄付すると、登録したユーザー名が記載されます。プロジェクトページあるいはマイページで、黒い「バッジ」をタップすると、寄付履歴と最新情報を見ることができます。</p>
+								<p class="description">寄付すると、登録したニックネームが記載されます。プロジェクトページあるいはマイページで、黒いバッジをタップすると、寄付履歴と最新情報を見ることができます。</p>
 							</div>
 						</div>
 					</div>
@@ -174,12 +174,12 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="/{{ $npo_info1->npo_name }}">
-    									<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_02_ja.png" />
+    									<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_11_ja.png" />
 	                                </a>
 								</div>
 								<div class="card-body">
 									<h6 class="card-category text-warning">
-									    Zero Hunger
+									    Sustainable Cities And Communities
 									</h6>
 									<h5 class="card-title">
 										<a href="/{{ $npo_info1->npo_name }}">{{ $npo_info1->subtitle }}</a>
@@ -187,9 +187,9 @@
 									<p class="card-description">
 										{{ $npo_info1->title }}<br>
 										現在合計：{{ $npo_info1->follower }}円<br>
-										支援額：{{ $npo_info1->support_amount }}円<br>
-                                        目標金額：{{ $npo_info1->support_price }}円<br>
-										@if($npo_info1->support_contents != 'このページに名前を記載')
+										一口：{{ $npo_info1->support_amount }}円<br>
+                                        残り：{{ $npo_info1->support_limit - $npo_info1->buyer}}口<br>
+										@if($npo_info1->support_contents != '')
     										リターン：{{ $npo_info1->support_contents }}<br>
 										@endif
 									</p>
@@ -223,9 +223,9 @@
 									<p class="card-description">
 										{{ $npo_info2->title }}<br>
 										現在合計：{{ $npo_info2->follower }}円<br>
-										支援額：{{ $npo_info2->support_amount }}円<br>
-                                        目標金額：{{ $npo_info2->support_price }}円<br>
-										@if($npo_info2->support_contents != 'このページに名前を記載')
+										一口：{{ $npo_info2->support_amount }}円<br>
+                                        残り：{{ $npo_info2->support_limit - $npo_info2->buyer}}口<br>
+										@if($npo_info2->support_contents != '')
     										リターン：{{ $npo_info2->support_contents }}<br>
 										@endif
 									</p>
@@ -235,7 +235,7 @@
 	                                       <span>{{ $npo_info2->manager }}</span>
     	                                </div>
                                         <div class="stats">
-     	                                    現在寄付数：{{ $npo_info2->buyer }}
+     	                                    現在寄付数：{{ $npo_info2->buyer}}
      	                                </div>
     	                            </div>
 								</div>
@@ -246,13 +246,13 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="/{{ $npo_info3->npo_name }}">
-										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_11_ja.png" />
+										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_15_ja.png" />
 									</a>
 								</div>
 
 								<div class="card-body">
-									<h6 class="card-category text-warning">
-										Sustainable Cities And Communities
+									<h6 class="card-category text-success">
+										Life No Land
 									</h6>
 									<h5 class="card-title">
 										<a href="/{{ $npo_info3->npo_name }}">{{ $npo_info3->subtitle }}</a>
@@ -260,9 +260,9 @@
 									<p class="card-description">
 										{{ $npo_info3->title }}<br>
 										現在合計：{{ $npo_info3->follower }}円<br>
-										支援額：{{ $npo_info3->support_amount }}円<br>
-                                        目標金額：{{ $npo_info3->support_price }}円<br>
-										@if($npo_info3->support_contents != 'このページに名前を記載')
+										一口：{{ $npo_info3->support_amount }}円<br>
+                                        残り：{{ $npo_info3->support_limit - $npo_info3->buyer}}口<br>
+										@if($npo_info3->support_contents != '')
     										リターン：{{ $npo_info3->support_contents }}<br>
 										@endif
 									</p>
@@ -309,10 +309,10 @@
                                                         <div class="modal-body">
                                                             <form class="register-form" role="form" method="POST" action="{{ url('/register') }}">
                                                                 {{ csrf_field() }}
-                                                                {{-- ユーザー名 --}}
+                                                                {{-- ニックネーム --}}
                                                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                                                    <label for="name">ユーザー名(半角英数)</label>
-                                                                    <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
+                                                                    <label for="name">ニックネーム(半角英数)</label>
+                                                                    <input id="name" type="text" class="form-control" name="name" placeholder="ニックネーム(半角英数)" value="{{ old('name') }}" required autofocus>
                                                                     @if ($errors->has('name'))
                                                                         <span class="help-block division">
                                                                         <strong>{{ $errors->first('name') }}</strong>

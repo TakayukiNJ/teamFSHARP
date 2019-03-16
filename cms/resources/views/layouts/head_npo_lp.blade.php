@@ -7,7 +7,7 @@
     <meta property="og:url" content="https://fsharp.me/{{$npo_info->npo_name}}" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="【{{ $npo_info->subtitle}}】{!! nl2br(e(trans($npo_info->title))) !!}" />
-    <meta property="og:description" content="目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）現在：{{$currency_data}}円 ／ 寄付数：{{$npo_info->buyer}}" />
+    <meta property="og:description" content="現在：{{$npo_info->buyer}}口（{{$currency_data}}円）／ 募集：{{$npo_info->support_limit}}口（残り{{$npo_info->support_limit - $npo_info->buyer}}口）{{ $npo_info->body }}　{!! nl2br(e(trans($npo_info->subtitle))) !!}「{!! nl2br(e(trans($npo_info->title))) !!}」" />
     <meta property="og:site_name" content="Fシャープ" />
     @if($npo_info->background_pic)
     <meta property="og:image" content="https://fsharp.me/img/project_back/{{ $npo_info->background_pic }}" />

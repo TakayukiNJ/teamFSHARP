@@ -47,10 +47,10 @@
                                         <div class="modal-body">
                                             <form class="register-form" role="form" method="POST" action="{{ url('/register') }}">
                                                 {{ csrf_field() }}
-                                                {{-- ユーザー名 --}}
+                                                {{-- ニックネーム(半角英数) --}}
                                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                                    <label for="name">ユーザー名(半角英数)</label>
-                                                    <input id="name" type="text" class="form-control" name="name" placeholder="ユーザー名(半角英数)" value="{{ old('name') }}" required autofocus>
+                                                    <label for="name">ニックネーム(半角英数)</label>
+                                                    <input id="name" type="text" class="form-control" name="name" placeholder="ニックネーム(半角英数)" value="{{ old('name') }}" required autofocus>
                                                     @if ($errors->has('name'))
                                                         <span class="help-block division">
                                                         <strong>{{ $errors->first('name') }}</strong>
@@ -69,7 +69,7 @@
                                                 </div>
                                                 {{-- パスワード --}}
                                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                                    <label for="password">パスワード</label>
+                                                    <label for="password">パスワード(8文字以上)</label>
                                                     <input id="password" type="password" class="form-control" placeholder="パスワード" name="password" required>
                                                     @if ($errors->has('password'))
                                                         <span class="help-block division">

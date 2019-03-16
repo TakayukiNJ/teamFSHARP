@@ -115,7 +115,7 @@ class Npo_register extends Model
         'member10_facebook',
         'member10_insta',
         'member10_youtube',
-        'member10_linkedin',
+        'support_limit',
         'support_contents', 
         'support_contents_detail', 
         'support_amount', 
