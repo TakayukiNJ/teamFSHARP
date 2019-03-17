@@ -87,12 +87,12 @@
     <p>住所：〒151-0053 東京都渋谷区代々木1丁目5-8 セボン代々木105<br>
     Webサービス名：F♯<br>
     担当部署：プライバシーポリシー担当<br>
-    Eメールアドレス：F♯.npo@gmail.com<br>
+    Eメールアドレス：g181tg2061@dhw.ac.jp<br>
     
     <div style="text-align: right;" align="right">以上</div>
     <br>
     <div style="text-align: right;" align="right">
-    作成日：2018年06月01日<br>変更日：2018年11月21日<br><br><br><br><br><br><br>
+    作成日：2018年06月01日<br>変更日：2018年11月21日<br>変更日：2019年03月17日<br><br><br><br><br><br>
     </div>
 
 </div><br>
