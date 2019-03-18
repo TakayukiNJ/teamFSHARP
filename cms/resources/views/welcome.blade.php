@@ -195,13 +195,17 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="/{{ $npo_info1->npo_name }}">
-    									<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_11_ja.png" />
-	                                </a>
+									    @if($npo_info1->background_pic)
+                                        <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info1->background_pic }}" />
+                                        @else
+                                        <img class="img img-raised" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=">
+                                        @endif
+    								</a>
 								</div>
 								<div class="card-body">
-									<h6 class="card-category text-warning">
-									    Sustainable Cities And Communities
-									</h6>
+									<!--<h6 class="card-category text-warning">-->
+									<!--    Sustainable Cities And Communities-->
+									<!--</h6>-->
 									<h5 class="card-title">
 										<a href="/{{ $npo_info1->npo_name }}">{{ $npo_info1->subtitle }}</a>
 									</h5>
@@ -231,13 +235,17 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="/{{ $npo_info2->npo_name }}">
-										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_04_ja.png" />
+									    @if($npo_info2->background_pic)
+                                        <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info2->background_pic }}" />
+                                        @else
+                                        <img class="img img-raised" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=">
+                                        @endif
 									</a>
 								</div>
 								<div class="card-body">
-									<h6 class="card-category text-danger">
-										Quality Education
-									</h6>
+									<!--<h6 class="card-category text-danger">-->
+									<!--	Quality Education-->
+									<!--</h6>-->
 									<h5 class="card-title">
 										<a href="/{{ $npo_info2->npo_name }}">{{ $npo_info2->subtitle }}</a>
 									</h5>
@@ -267,14 +275,18 @@
 							<div class="card card-blog">
 								<div class="card-image">
 									<a href="/{{ $npo_info3->npo_name }}">
-										<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_15_ja.png" />
+									    @if($npo_info3->background_pic)
+                                        <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info3->background_pic }}" />
+                                        @else
+                                        <img class="img img-raised" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=">
+                                        @endif
+										{{--<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_15_ja.png" /> --}}
 									</a>
 								</div>
-
 								<div class="card-body">
-									<h6 class="card-category text-success">
-										Life No Land
-									</h6>
+									<!--<h6 class="card-category text-success">-->
+									<!--	Life No Land-->
+									<!--</h6>-->
 									<h5 class="card-title">
 										<a href="/{{ $npo_info3->npo_name }}">{{ $npo_info3->subtitle }}</a>
 									</h5>
