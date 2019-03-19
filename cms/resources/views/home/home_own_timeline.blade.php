@@ -17,10 +17,10 @@
                                 @if($personal_info->image_id)
                                     <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}">
                                 @else
-                                    <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                    <!--<img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">-->
                                 @endif
                             @else
-                                <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                <!--<img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">-->
                             @endif
                         </div>
                         <div class="name">
@@ -228,7 +228,7 @@
                                         <hr><br><br>
                                     @endfor
                                 @elseif(!$npo_info_enterprise)
-                                    <p class="text-muted text-center">まだどこにも寄付していないようです！</p>
+                                    <p class="text-muted text-center">まだどこにも支援していないようです！</p>
                                 @endif
                             </ul>
                         </div>
@@ -241,12 +241,20 @@
                                 @for($i = 0; $i < count($npo_info_proval); $i++)
                                 <li>
                                     <div class="row">
-                                        <div class="col-md-2 col-3">
+                                        <div class="col-md-1 col-3">
                                             {{$i + 1}}
                                             <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
                                         </div>
-                                        <div class="col-md-7 col-4">
-                                            <h6><a href="/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a><br><small>{{ $npo_info_proval[$i]->title }}</small></h6></h6>
+                                        <div class="col-md-8 col-4">
+                                            <h6><a href="/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a><br>{{ $npo_info_proval[$i]->title }}</h6>
+                                            <h6><small>
+                                                現在合計：{{ $npo_info_proval[$i]->follower }}円
+        										<br>一口：{{ $npo_info_proval[$i]->support_amount }}円
+                                                <br>残り：{{ $npo_info_proval[$i]->support_limit - $npo_info_proval[$i]->buyer}}口
+        										@if($npo_info_proval[$i]->support_contents != '')
+            										<br>リターン：{{ $npo_info_proval[$i]->support_contents }}
+        										@endif
+        									</small></h6>
                                         </div>
                                         <div class="col-md-3 col-2">
                                             <a class="btn btn-xs btn-primary" href="/{{ $npo_info_proval[$i]->npo_name }}">GO!</a>
