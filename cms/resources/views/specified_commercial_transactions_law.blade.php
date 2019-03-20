@@ -63,7 +63,7 @@ g181tg2061@dhw.ac.jp
 
 <b>返品・交換不良品・解約について</b>
 <ul>
-返金、キャンセルは基本的に受け付けておりません
+返金、キャンセルは受け付けておりません
 </ul>
 
 <div style="text-align: right;" align="right">以上</div>
