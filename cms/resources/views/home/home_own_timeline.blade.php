@@ -17,18 +17,13 @@
                                 @if($personal_info->image_id)
                                     <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}">
                                 @else
-                                    <!--<img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">-->
+                                    <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
                                 @endif
-                            @else
-                                <!--<img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">-->
                             @endif
                         </div>
                         <div class="name">
                             @if(Auth::user()->point != 0)
-                            <h4 class="title text-center">{{ Auth::user()->name }}@if($personal_info)<br><small>{{ $personal_info->description }}</small>@endif<br><br><small>現在保有ポイント：{{ Auth::user()->point }} ポイント</small>
-                            @endif
-                            @if(Auth::user()->total_deposit)
-                                <br><small>出金可能金額：{{Auth::user()->total_deposit}}円</small></h4>
+                            <h4 class="title text-center">{{ Auth::user()->name }}さんのページ@if($personal_info)<br><small>{{ $personal_info->description }}</small>@endif</h4>
                             @endif
                         </div>
                   </div>
@@ -39,6 +34,88 @@
                     <!--<p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>-->
                     <!--<br />-->
                     <a href="{{ url('/home/home_register') }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> 設定</a>
+                    @if(Auth::user()->point != 0)
+                            <div class="chart-container" style="position: relative; height:100vh">
+                                <canvas id="myPieChart"></canvas>
+                            </div>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+                            <script>
+                                var ctx = document.getElementById("myPieChart");
+                                var myPieChart = new Chart(ctx, {
+                                    type: 'pie',
+                                    cutoutPercentage: 50,
+                                    data: {
+                                        labels: [
+                                            "貧困をなくそう",
+                                            "飢餓をゼロに",
+                                            "すべての人に福祉と健康を",
+                                            "質の高い教育をみんなに",
+                                            "ジェンダー平等を実現しよう",
+                                            "安全な水とトイレを世界中に",
+                                            "エネルギーをみんなに そしてクリーンに",
+                                            "働きがいも 経済成長も",
+                                            "産業と技術革新の基盤をつくろう",
+                                            "人や国の不平等を無くそう",
+                                            "住み続けられるまちづくりを",
+                                            "つくる責任 つかう責任",
+                                            "気候変動に具体的な対策を",
+                                            "海の豊かさを守ろう",
+                                            "陸の豊かさも守ろう",
+                                            "平和と公正をすべての人に",
+                                            "パートナーシップで目標を達成しよう"
+                                        ],
+                                        datasets: [{
+                                            backgroundColor: [
+                                                "#eb1c2d",
+                                                "#d3a029",
+                                                "#279b48",
+                                                "#c31f33",
+                                                "#ef402b",
+                                                "#00aed9",
+                                                "#fdb714",
+                                                "#911838",
+                                                "#f36d25",
+                                                "#e11384",
+                                                "#f99d26",
+                                                "#cf8d2a",
+                                                "#48773e",
+                                                "#017dbc",
+                                                "#3db049",
+                                                "#02558b",
+                                                "#183667"
+                                            ],
+                                            data: [
+                                                {{Auth::user()->sdgs1}},
+                                                {{Auth::user()->sdgs2}},
+                                                {{Auth::user()->sdgs3}},
+                                                {{Auth::user()->sdgs4}},
+                                                {{Auth::user()->sdgs5}},
+                                                {{Auth::user()->sdgs6}},
+                                                {{Auth::user()->sdgs7}},
+                                                {{Auth::user()->sdgs8}},
+                                                {{Auth::user()->sdgs9}},
+                                                {{Auth::user()->sdgs10}},
+                                                {{Auth::user()->sdgs11}},
+                                                {{Auth::user()->sdgs12}},
+                                                {{Auth::user()->sdgs13}},
+                                                {{Auth::user()->sdgs14}},
+                                                {{Auth::user()->sdgs15}},
+                                                {{Auth::user()->sdgs16}},
+                                                {{Auth::user()->sdgs17}}
+                                            ]
+                                        }]
+                                    },
+                                    options: {
+                                        cutoutPercentage: 55,
+                                        maintainAspectRatio: false,
+                                        title: {
+                                            display: true,
+                                            text: 'SDGsポイント：{{ Auth::user()->point }}'
+                                      }
+                                    }
+                                });
+                            </script>
+                        @endif
                 </div>
             </div>
             <br/>
@@ -59,7 +136,6 @@
             </div>
             <!-- Tab panes -->
             <div class="tab-content">
-                
                 <div class="tab-pane text-center" id="myProjects" role="tabpanel">
                     @if(Auth::user()->npo)
                     <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">管理ページへ</a>
@@ -104,7 +180,7 @@
                                     @for($i = 0; $i < count($npo_info_personal); $i++)
                                         <li>
                                             <div class="row">
-                                                <div class="col-md-6 col-6">
+                                                <div class="col-md-6 col-5">
                                                     <!--<a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge">-->
                                                     <a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info_personal[$i]->npo_name }}" aria-label="Close">
                                                         <svg viewBox="0 0 210 210">
