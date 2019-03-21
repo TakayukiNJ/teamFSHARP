@@ -4,7 +4,7 @@
         <div class="container">
             <div class="navbar-translate">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="{{ url('/') }}">F♯ BETA</a>
+                    <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
                 </div>
         
                 <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,6 +112,11 @@
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
         						<a class="dropdown-item" href="{{ url('/npo_registers/create') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; 団体登録</a>
                         @else
+                        @if(Auth::user()->total_deposit)
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">出金可能金額：{{Auth::user()->total_deposit}}円</a>
+                        </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">@lang('app.ask my page')</a>
                         </li>
@@ -122,7 +127,6 @@
                                 <a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
                         @endif        		
                                 <a class="dropdown-item" href="{{ url('home/home_own_timeline') }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
-                                <a class="dropdown-item" href="{{ url('home/home_register') }}"><i class="nc-icon nc-ruler-pencil"></i>&nbsp; @lang('app.mypage edit')</a>
                                 <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();"><i class="nc-icon nc-spaceship"></i>&nbsp; @lang('app.logout')</a>
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
