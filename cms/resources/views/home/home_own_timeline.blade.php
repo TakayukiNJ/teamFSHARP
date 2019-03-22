@@ -252,7 +252,7 @@
                                                                                 、
                                                                             @endif
                                                                             @if((Auth::user()->name) == $donater[$i][$d])
-                                                                                <b><font color="red">{{$donater[$i][$d]}}（あなた）@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
+                                                                                <b><font color="red">{{$donater[$i][$d]}}さん（あなた）@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
                                                                             @else
                                                                                 {{$donater[$i][$d]}}さん@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif
                                                                             @endif
