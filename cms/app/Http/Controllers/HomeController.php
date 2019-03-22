@@ -473,8 +473,7 @@ class HomeController extends Controller
         $data['npo_info_enterprise'] = [];
         
         // ユーザーがアカウント設定をしていたら取得
-        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $email)->first(); 
-        
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $email)->first();
         // 新着情報を取得
         $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
 		// 寄付した団体を取得（個人）
@@ -503,7 +502,7 @@ class HomeController extends Controller
                 $mail_message = "";
                 $donater = 'donater_'.$i;
                 $data['donater'][$i]   = array(0=>"Donater");
-            	$data['donater_times'] = array(0=>"Donater times");
+            	$data['donater_times'][$i] = array(0=>"Donater times");
                 for($array_count=0; $array_count<count($currentPremierData); $array_count++){
                     
                     $buyer_count++; // 人数
@@ -518,7 +517,7 @@ class HomeController extends Controller
                         $donater_times = $currentPremierData[$array_count]->participants;
                         $donater_name  = $donater_info->name;
                         $data['donater'][$i] += array($each_donater_count=>$donater_name);
-                        $data['donater_times'] += array($each_donater_count=>$donater_times);
+                        $data['donater_times'][$i] += array($each_donater_count=>$donater_times);
                         // $data['donater'.$donater_count] = $donater_name;
                     }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
                         $currency_amount_company += $currency_origin;
@@ -542,6 +541,8 @@ class HomeController extends Controller
 		$data['buyer_data']    = $buyer_count;
         $data['donater_count'] = $donater_count;
         $data['currency_data'] = $currency_amount;
+        
+// 		dd($data['donater']);
 		// 寄付した団体を取得（企業）
 		$premierData_enterprise = \DB::table('premier_data')->where('user_define', $auth_npo)->orderBy('updated_at', 'desc')->get();
 		$data['premierData_enterprise'] = $premierData_enterprise;
