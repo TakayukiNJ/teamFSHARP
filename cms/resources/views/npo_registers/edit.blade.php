@@ -45,7 +45,7 @@
                                    @endif
                                 </div>
                                 <div class="form-group @if($errors->has('support_limit')) has-error @endif">
-                                   <label for="support_limit-field">募集寄付数（公開中変更不可）</label>
+                                   <label for="support_limit-field">募集支援数（公開中変更不可）</label>
                                 <input type="text" id="support_limit-field" name="support_limit" class="form-control text-center" value="{{ is_null(old("support_limit")) ? $npo_info->support_limit : old("support_limit") }}" {{ !$npo_info->proval == 1 ? '' : 'readonly="readonly"'}}/>
                                    @if($errors->has("support_limit"))
                                     <span class="help-block icon-danger">公開する場合、募集寄付数は必須です。（2〜9桁）</span>
@@ -168,10 +168,10 @@
                     {{-- 特典利用期限 --}}
                     <div class="row price-row">
                         <div class="col-md-6">
-                            <h6>一口の値段 <span class="icon-danger">*</span>（公開後変更不可）</h6>
+                            <h6>一口の値段 <span class="icon-danger">*</span></h6>
                             <div class="input-group border-input form-group  @if($errors->has('support_amount')) has-error @endif">
                                 <span class="input-group-addon"><i class="fa fa-yen"></i></span>
-                                <input type="text" id="support_amount-field" name="support_amount" placeholder="3,000" class="form-control border-input" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ !$npo_info->published ? '' : 'readonly="readonly"'}}>
+                                <input type="text" id="support_amount-field" name="support_amount" placeholder="3,000" class="form-control border-input" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ $npo_info->buyer == 0 ? '' : 'readonly="readonly"'}}>
                                 @if($errors->has("support_amount"))
                                     <span class="help-block icon-danger">{{ $errors->first("support_amount") }}</span>
                                 @endif
