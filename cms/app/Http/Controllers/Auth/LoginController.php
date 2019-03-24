@@ -29,7 +29,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        session(['url.intended' => $_SERVER['HTTP_REFERER']]); // この行を追加
+        // session(['url.intended' => $_SERVER['HTTP_REFERER']]); // この行を追加
         return view('auth.login');
     }
     /**
