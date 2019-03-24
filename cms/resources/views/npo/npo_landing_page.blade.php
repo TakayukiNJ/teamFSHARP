@@ -34,7 +34,13 @@
                                     @endif
                                     {!! nl2br(e(trans($npo_info->title))) !!}
                                 </h5>
-                                @if($npo_info->buyer < $npo_info->support_limit)
+                                @if($npo_info->manager == $Auth::user()->name)
+                                <div>
+                                    <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                        編集する
+                                    </a>
+                                <div>
+                                @elseif($npo_info->buyer < $npo_info->support_limit)
                                 <div>
                                     <a href="#support" class="btn btn-danger">
                                         支援する
@@ -43,6 +49,11 @@
                                 <br>
                                 @else
                                 <div>
+                                    @if($npo_info->buyer < $npo_info->support_limit)
+                                    <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                        編集する
+                                    </a>
+                                    @endif
                                     <a href="#support" class="btn btn-danger">
                                         募集完売
                                     </a>
