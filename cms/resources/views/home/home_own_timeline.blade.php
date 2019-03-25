@@ -34,6 +34,30 @@
                     <!--<p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>-->
                     <!--<br />-->
                     <a href="{{ url('/home/home_register') }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> 設定</a>
+                </div>
+            </div>
+            <br/>
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#new" role="tab">新着</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
+                        </li>
+                        @if(Auth::user()->point != 0)
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">SDGs</a>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                @if(Auth::user()->point != 0)
+                <div class="tab-pane text-center" id="myProjects" role="tabpanel">
                     @if(Auth::user()->point != 0)
                         <div class="chart-container" style="position: relative; height:100vh">
                             <canvas id="myPieChart"></canvas>
@@ -104,34 +128,7 @@
                         </script>
                     @endif
                 </div>
-            </div>
-            <br/>
-            <div class="nav-tabs-navigation">
-                <div class="nav-tabs-wrapper">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#new" role="tab">新着</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">プロジェクト</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane text-center" id="myProjects" role="tabpanel">
-                    @if(Auth::user()->npo)
-                    <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">管理ページへ</a>
-                    @else
-                    <h3 class="text-muted">まずは団体登録！</h3>
-                    <br>
-                    <a href="{{ url('/npo_registers') }}" class="btn btn-warning btn-round">プロジェクト作成</a>
-                    @endif
-                </div>
+                @endif
                 <div class="tab-pane" id="supporting" role="tabpanel">
                     <div class="row">
                         <div class="col-md-6 ml-auto mr-auto">
