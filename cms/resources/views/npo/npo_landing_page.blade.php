@@ -19,6 +19,7 @@
                         <div class="row">
                             @if (( $npo_info->embed_youtube ) != "")
                             <div class="col-md-5">
+                                <br>
                                 <div class="iframe-container">
                                     <iframe src="https://www.youtube.com/embed/{{ $npo_info->embed_youtube }}?modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen height="250"></iframe>
                                 </div>
@@ -34,32 +35,36 @@
                                     @endif
                                     {!! nl2br(e(trans($npo_info->title))) !!}
                                 </h5>
-                                @if($npo_info->manager == $Auth::user()->name)
                                 <div>
+                                    @if($npo_info->manager == Auth::user()->name)
                                     <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
                                         編集する
                                     </a>
-                                <div>
-                                @elseif($npo_info->buyer < $npo_info->support_limit)
-                                <div>
-                                    <a href="#support" class="btn btn-danger">
-                                        支援する
-                                    </a>
-                                </div>
-                                <br>
-                                @else
-                                <div>
-                                    @if($npo_info->buyer < $npo_info->support_limit)
-                                    <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
-                                        編集する
-                                    </a>
+                                    @else
+                                        @for ($i = 1; $i <= 10; $i++)
+                                            <?php $member = "member".$i ?>
+                                            @if($npo_info->$member)
+                                                <?php $member_twitter = "member".$i."_twitter" ?>
+                                                <?php $member_auth    = $npo_info->$member . "1" ?>
+                                                @if($npo_info->$member_twitter == $member_auth)
+                                                    <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                                        編集する
+                                                    </a>
+                                                @endif
+                                            @endif
+                                        @endfor
+                                        @if($npo_info->buyer < $npo_info->support_limit)
+                                        <a href="#support" class="btn btn-danger">
+                                            支援する
+                                        </a>
+                                        @else
+                                        <a href="#support" class="btn btn-danger">
+                                            募集完売
+                                        </a>
+                                        @endif
                                     @endif
-                                    <a href="#support" class="btn btn-danger">
-                                        募集完売
-                                    </a>
                                 </div>
                                 <br>
-                                @endif
                                 <h6>現在：{{$npo_info->buyer}}口（{{$currency_data}}円）／ 募集：{{$npo_info->support_limit}}口（残り{{$npo_info->support_limit - $npo_info->buyer}}口）</h6>
                                 @if($npo_info->buyer != 0)
                                 @if($parcentage < 10)
