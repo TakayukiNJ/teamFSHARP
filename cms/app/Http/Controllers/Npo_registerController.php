@@ -399,7 +399,6 @@ class Npo_registerController extends Controller {
  		
         $name_auth = Auth::user()->name;
         $npo_id    = Auth::user()->npo_id;
- 		
 		$npo_register->npo_name      = $request->input("npo_name"); // URL
         // $npo_register->support_price = $request->input("support_price"); // 目標金額
         if($npo_register->buyer == 0){
