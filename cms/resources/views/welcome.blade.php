@@ -22,25 +22,24 @@
                         スタート
                     </button>
                     @if($errors->has('name'))
-                        <br>
+                        <br><br>
+                    @endif
+                    @if($errors->has('name'))
                         <span class="help-block division">
                         <strong>{{ $errors->first('name') }}</strong>
                         </span>
                         <br>
                     @endif
                     @if ($errors->has('email'))
-                        <br>
                         <span class="help-block division">
                         <strong>{{ $errors->first('email') }}</strong>
                         </span>
                         <br>
                     @endif
                     @if ($errors->has('password'))
-                        <br>
                         <span class="help-block division">
                         <strong>{{ $errors->first('password') }}</strong>
                         </span>
-                        <br>
                     @endif
                     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="false">
                         <div class="modal-dialog modal-register">
