@@ -21,22 +21,23 @@
                     <button type="button" class="btn-lg btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
                         スタート
                     </button>
-                    @if($errors->has('name'))
-                        <br><br>
+                    @if($errors->has('name') || $errors->has('email') || $errors->has('password'))
+                        <br>
                     @endif
                     @if($errors->has('name'))
+                        <br>
                         <span class="help-block division">
                         <strong>{{ $errors->first('name') }}</strong>
                         </span>
-                        <br>
                     @endif
                     @if ($errors->has('email'))
+                        <br>
                         <span class="help-block division">
                         <strong>{{ $errors->first('email') }}</strong>
                         </span>
-                        <br>
                     @endif
                     @if ($errors->has('password'))
+                        <br>
                         <span class="help-block division">
                         <strong>{{ $errors->first('password') }}</strong>
                         </span>

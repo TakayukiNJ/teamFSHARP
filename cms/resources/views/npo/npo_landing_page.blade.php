@@ -36,31 +36,37 @@
                                     {!! nl2br(e(trans($npo_info->title))) !!}
                                 </h5>
                                 <div>
-                                    @if($npo_info->manager == Auth::user()->name)
-                                    <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
-                                        編集する
-                                    </a>
+                                    @if(Auth::guest())
+                                        <button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal">
+                                            ユーザー登録
+                                        </button>
                                     @else
-                                        @for ($i = 1; $i <= 10; $i++)
-                                            <?php $member = "member".$i ?>
-                                            @if($npo_info->$member)
-                                                <?php $member_twitter = "member".$i."_twitter" ?>
-                                                <?php $member_auth    = $npo_info->$member . "1" ?>
-                                                @if($npo_info->$member_twitter == $member_auth)
-                                                    <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
-                                                        編集する
-                                                    </a>
-                                                @endif
-                                            @endif
-                                        @endfor
-                                        @if($npo_info->buyer < $npo_info->support_limit)
-                                        <a href="#support" class="btn btn-danger">
-                                            支援する
+                                        @if($npo_info->manager == Auth::user()->name)
+                                        <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                            編集する
                                         </a>
                                         @else
-                                        <a href="#support" class="btn btn-danger">
-                                            募集完売
-                                        </a>
+                                            @for ($i = 1; $i <= 10; $i++)
+                                                <?php $member = "member".$i ?>
+                                                @if($npo_info->$member)
+                                                    <?php $member_twitter = "member".$i."_twitter" ?>
+                                                    <?php $member_auth    = $npo_info->$member . "1" ?>
+                                                    @if($npo_info->$member_twitter == $member_auth)
+                                                        <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                                            編集する
+                                                        </a>
+                                                    @endif
+                                                @endif
+                                            @endfor
+                                            @if($npo_info->buyer < $npo_info->support_limit)
+                                            <a href="#support" class="btn btn-danger">
+                                                支援する
+                                            </a>
+                                            @else
+                                            <a href="#support" class="btn btn-danger">
+                                                募集完売
+                                            </a>
+                                            @endif
                                         @endif
                                     @endif
                                 </div>
