@@ -49,9 +49,9 @@
                                             @for ($i = 1; $i <= 10; $i++)
                                                 <?php $member = "member".$i ?>
                                                 @if($npo_info->$member)
-                                                    <?php $member_twitter = "member".$i."_twitter" ?>
+                                                    <?php $member_twitter = $member."_twitter" ?>
                                                     <?php $member_auth    = $npo_info->$member . "1" ?>
-                                                    @if($npo_info->$member_twitter == $member_auth)
+                                                    @if($npo_info->$member_twitter == $member_auth && Auth::user()->name == $npo_info->$member)
                                                         <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
                                                             編集する
                                                         </a>
