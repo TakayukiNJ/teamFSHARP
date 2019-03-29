@@ -566,6 +566,10 @@ class Npo_registerController extends Controller {
 // 		if($npo_register->published){
 // 		    return view('npo.npo_landing_page', compact('npo_register'));
 // 		}
+        if($npo_register->proval != 0){
+            // return view('npo.npo_landing_page');
+            // return redirect()->route('npo_registers.landing', compact('npo_register'))->with('message', 'Item updated successfully.');
+        }
         return redirect()->route('npo_registers.show', compact('npo_register'))->with('message', 'Item updated successfully.');
 	}
 
