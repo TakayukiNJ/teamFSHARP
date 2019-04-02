@@ -119,32 +119,22 @@
                         <li class="nav-item">
                             <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">@lang('app.ask my page')</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }} </a>
-                            <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                                <a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
-                        @endif        		
-                                <a class="dropdown-item" href="{{ url('home/home_own_timeline') }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
-                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();"><i class="nc-icon nc-spaceship"></i>&nbsp; @lang('app.logout')</a>
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </ul>
-                        </li>
                         
                     
                         <!-- message 用編集 -->
-                        <li class="nav-item">
-                            <a href="#paper-kit" class="btn btn-just-icon" data-toggle="dropdown">
-                                <i class="nc-icon nc-email-85"></i>
-                            </a>
-                        </li>
+                        <!--GRAY-->
+                        <!--<li class="nav-item">-->
+                        <!--    <a href="#paper-kit" class="btn btn-just-icon" data-toggle="dropdown">-->
+                        <!--        <i class="nc-icon nc-email-85"></i>-->
+                        <!--    </a>-->
+                        <!--</li>-->
+                        <!--RED-->
                         <li class="nav-item dropdown">
-                            <a class="btn btn-just-icon btn-danger  " data-toggle="dropdown">
-                                <i class="nc-icon nc-email-85"></i>
-                            </a>
-
+                            <div class="profile-photo-small">
+                                <a class="btn btn-just-icon btn-danger  " data-toggle="dropdown">
+                                    <i class="nc-icon nc-email-85"></i>
+                                </a>
+                            </div>
                             <ul class="dropdown-menu dropdown-menu-right dropdown-wide dropdown-notification">
                                 <li class="dropdown-header">
                                     You have 7 unread notifications
@@ -205,7 +195,26 @@
                                 </li>
                             </ul>
                             
-                            <span class="label label-danger notification-bubble">2</span>
+                            <!--<span class="label label-danger notification-bubble">2</span>-->
+                        </li>
+                        
+                        
+                        <li class="nav-item dropdown">
+                            <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30">
+                                <div class="profile-photo-small">
+                                    <img src="{{ url('/') }}/../img/placeholder.jpg" alt="Circle Image" class="img-circle img-responsive img-no-padding">
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                                <a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
+                        @endif        		
+                                <a class="dropdown-item" href="{{ url('home/home_own_timeline') }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
+                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();"><i class="nc-icon nc-spaceship"></i>&nbsp; @lang('app.logout')</a>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </ul>
                         </li>
                     @endif
                 </ul>
