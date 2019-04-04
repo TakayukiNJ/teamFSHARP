@@ -12,7 +12,7 @@
     				<h1 class="presentation-title"></h1>
     				<!--<div class="type">F♯</div>-->
     			</div>
-    			<h2 class="presentation-subtitle text-center">社会課題をもっと身近に。資金調達アプリ「Fシャープ」</h2>
+    			<h2 class="presentation-subtitle text-center">NPOの資金不足を解決する、資金調達Webサービス</h2>
     			
                 <div class="w3-panel w3-large">
                     <br>
@@ -268,7 +268,7 @@
                                         <div class="title-brand">
                                             <h1 class="presentation-title"></h1>
                                         </div>
-                                        <h2 class="presentation-subtitle text-center">社会課題をもっと身近に。「Fシャープ」</h2>
+                                        <h2 class="presentation-subtitle text-center">NPOの資金不足を解決する、資金調達Webサービス</h2>
 
                                         <div class="w3-panel w3-large">
                                             <br>
