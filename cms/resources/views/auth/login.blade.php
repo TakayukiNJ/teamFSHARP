@@ -28,7 +28,6 @@
                                     @endif
                                 </div>
                             </div>
-    
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password">パスワード</label>
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -37,19 +36,17 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                                <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
                                 </label>
                             </div>
-                                
-    
                             <div class="form-group forgot">
                                 <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
-                                <a href="{{ url('/register') }}" class="btn btn-link">ご登録がお済みでない方はこちら</a>
-                                <!--<a href="{{ url('passwordchange/require/inquiry') }}" class="btn btn-link">パスワードを忘れた方はこちら</a>-->
+                                <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
+                                    ご登録がお済みでない方はこちら
+                                </button>
                             </div>
                             </form>
-                            
                         </div>
                     </div>
                 </div>

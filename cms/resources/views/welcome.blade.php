@@ -42,19 +42,6 @@
                         <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
-                    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="false">
-                        <div class="modal-dialog modal-register">
-                            <div class="modal-content">
-                                <div class="modal-header no-border-header text-center">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <h3 class="modal-title text-center">ようこそ！</h3>
-                                    <p>まずはご登録をお願いします。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     {{-- NPO登録をまだしていなかった場合 --}}
                     @elseif ((Auth::user()->npo) == "")
                     <a href="{{ url('/home/home_own_timeline') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
