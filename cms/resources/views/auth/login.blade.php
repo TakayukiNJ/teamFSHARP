@@ -7,7 +7,9 @@
 <body class="full-screen login">
     <div class="wrapper">
         <div class="page-header" style="background-image: url('/img/sections/bruno-abatti.jpg');">
-            <div class="filter"></div>
+            <br>
+            <div class="filter"><br></div>
+            <br>
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 ml-auto mr-auto">
