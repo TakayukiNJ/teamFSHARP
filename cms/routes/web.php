@@ -358,3 +358,6 @@ Route::post('/passwordchange/reset/complete', 'PasswordChange\ResetController@co
 Route::get('/contact/form', 'ContactController@form')->name('contact');
 Route::post('/contact/form', 'ContactController@send')->name('contact.send');
 Route::get('/contact/result', 'ContactController@result')->name('contact.result');
+
+// チャット機能(2019/4/7)
+Route::get('chat/chat', 'ChatController@index');
