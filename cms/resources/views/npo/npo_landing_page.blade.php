@@ -391,7 +391,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <br><br>
+                                        <br><br><br><br><br><br>
+                                        ▲タップで詳細確認▲
                                     </div>
                                 </div>
                             </div>
