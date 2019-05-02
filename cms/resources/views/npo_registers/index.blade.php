@@ -8,6 +8,22 @@
 <div class="wrapper">
     <div class="page-header page-header-small" style="background-image: url('https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=');">
         <div class="filter"></div>
+        <div class="content-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 ml-auto">
+                        <div class="owner text-center">
+                            <div class="name">
+                                <h3>{{Auth::user()->npo}}</h3>
+                            </div>
+                            <div class="following">
+                                <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="profile-content section-white-gray">
         <div class="container">
@@ -23,16 +39,6 @@
                         @else
                         <br><br><br>
                         @endif
-                    </div>
-                </div>
-            </div>
-            <div class="row owner">
-                <div class="col-md-6 col-sm-6 col-6 ml-auto mr-auto text-center">
-                    <div class="name">
-                        <h3>{{Auth::user()->npo}}</h3>
-                    </div>
-                    <div class="following">
-                        <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>        
                     </div>
                 </div>
             </div>
