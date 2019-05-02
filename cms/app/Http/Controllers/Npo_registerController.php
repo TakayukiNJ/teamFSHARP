@@ -5,7 +5,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use Carbon\Carbon;
-
 use App\Npo_register;
 use App;
 use Illuminate\Http\Request;
