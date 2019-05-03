@@ -25,6 +25,7 @@ class Npo_registerController extends Controller {
 	    
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
+        $data['npo_owner_info'] = \DB::table('users')->where('npo', $npo_auth)->first();
         $npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
 		return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
