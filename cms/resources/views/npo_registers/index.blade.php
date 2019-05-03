@@ -42,18 +42,16 @@
                     </div>
                 </div>
             </div>
-            {{--<div class="row">
+            <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p> <a class="link-danger twitter-hashtag" href="javascript: void(0);">#ANTIdiaRy</a> — <a href="javascript: void(0);">http://smarturl.it</a> </p>
+                    <p>{{ $npo_owner_info->name }} — {{ $npo_owner_info->email }}</p>
                     <div class="description-details">
                         <ul class="list-unstyled">
-                            <li><i class="fa fa-map-marker"></i> ANTI</li>
-                            <li><i class="fa fa-link"></i><a href="javascript:void(0);">rihanna.com</a></li>
-                            <li><i class="fa fa-calendar"></i> Joined October 2009</li>
+                            <li>集まっている金額：{{ $npo_owner_info->total_deposit }}円</li>
                         </ul>
                     </div>
                 </div>
-            </div>--}}
+            </div>
             
             <div class="row">
                     
