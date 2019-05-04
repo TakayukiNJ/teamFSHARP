@@ -21,7 +21,9 @@ class BooksController extends Controller
         //$books = Book::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
         
         //$this->middleware('guest', ['except' => 'logout']);
-        return view('index');
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        
+        return view('index', $data);
         
     }
     

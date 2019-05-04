@@ -137,7 +137,7 @@
                                 <li class="dropdown-header">
                                     You have 7 unread notifications
                                 </li>
-                                <li >
+                                <li>
                                     <ul class="dropdown-notification-list scroll-area">
                                         <a href="#paper-kit" class="notification-item">
                                             <div class="notification-text">
@@ -180,10 +180,9 @@
                                                 <span class="time">3days ago</span>
                                             </div>
                                         </a>
-                                     </ul>
-                                 </li>
-                                <!--      end scroll area -->
-
+                                    </ul>
+                                </li>
+                                <!-- end scroll area -->
                                 <li class="dropdown-footer">
                                     <ul class="dropdown-footer-menu">
                                         <li>
@@ -201,6 +200,14 @@
                             <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30" style="margin-left:17px">
                                 <div class="profile-photo-small">
                                     <img src="{{ url('/') }}/../img/placeholder.jpg" alt="Circle Image" class="img-circle img-responsive img-no-padding">
+                                    @if($personal_info)
+                                        @if($personal_info->image_id)
+                                            <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}">
+                                        @else
+                                            <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                        @endif
+                                    @endif
+                                    
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
