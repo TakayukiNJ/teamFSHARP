@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
 //use App\Book;
 //use Validator;
 //use Auth;
@@ -21,18 +21,20 @@ class BooksController extends Controller
         //$books = Book::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
         
         //$this->middleware('guest', ['except' => 'logout']);
-        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
-        
-        return view('index', $data);
+        return view('index');
         
     }
     
     public function welcome(Request $request){
+        $user_auth = Auth::user()->email;
+        
         //$books = Book::orderBy('created_at', 'asc')->paginate(3);
         //$books = Book::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
         $data['npo_info1']  = \DB::table('npo_registers')->where('npo_name', 'toyama_bootcamp')->first();
         $data['npo_info2']  = \DB::table('npo_registers')->where('npo_name', 'biosbootcamp')->first();
         $data['npo_info3']  = \DB::table('npo_registers')->where('npo_name', 'clean_man')->first();
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        // dd($data);
         //$this->middleware('guest', ['except' => 'logout']);
         return view('welcome', $data);
         

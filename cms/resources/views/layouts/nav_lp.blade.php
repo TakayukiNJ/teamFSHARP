@@ -199,15 +199,13 @@
                         <li class="nav-item dropdown">
                             <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30" style="margin-left:17px">
                                 <div class="profile-photo-small">
-                                    <img src="{{ url('/') }}/../img/placeholder.jpg" alt="Circle Image" class="img-circle img-responsive img-no-padding">
                                     @if($personal_info)
                                         @if($personal_info->image_id)
-                                            <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}">
+                                            <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}" class="img-circle img-responsive img-no-padding">
                                         @else
-                                            <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
+                                            <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default" class="img-circle img-responsive img-no-padding">
                                         @endif
                                     @endif
-                                    
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
