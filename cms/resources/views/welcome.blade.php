@@ -13,8 +13,7 @@
     				<!--<div class="type">F♯</div>-->
     			</div>
     			<h2 class="presentation-subtitle text-center">NPOの資金不足を解決する、資金調達Webサービス</h2>
-    			
-                <div class="w3-panel w3-large">
+    			<div class="w3-panel w3-large">
                     <br>
                     @if (Auth::guest())
                     <!--<a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
@@ -93,7 +92,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">SDGsポイント</h4>
-								<p>寄付すると、総額の<strong>1%</strong>分のポイントが溜まり、マイページで確認することができます。SDGsの内訳も計算されて溜まるので、自分がどの分野に貢献したのかご確認いただけます。</p>
+								<p>総額の<strong>1%</strong>がポイントとして溜まり、マイページで確認ができます。<strong>SDGs</strong>の内訳も見ることができ、自分がどの分野に貢献したのかご確認いただけます。（ポイントの使用用途は検討中）</p>
 							</div>
 						</div>
 					</div>
