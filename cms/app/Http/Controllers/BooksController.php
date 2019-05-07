@@ -12,17 +12,14 @@ class BooksController extends Controller
 {
     public function __construct(){
         $this->middleware('auth', ['except' => ['index', 'welcome']]);
-        // $this->middleware('auth', ['except' => ['p_friends', 't_masaki', 'terms']]);
         //$this->middleware('guest', ['except' => 'index']);
     }
     //
     public function index(Request $request){
         //$books = Book::orderBy('created_at', 'asc')->paginate(3);
         //$books = Book::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
-        
         //$this->middleware('guest', ['except' => 'logout']);
         return view('index');
-        
     }
     
     public function welcome(Request $request){
@@ -34,7 +31,6 @@ class BooksController extends Controller
         $data['npo_info2']  = \DB::table('npo_registers')->where('npo_name', 'biosbootcamp')->first();
         $data['npo_info3']  = \DB::table('npo_registers')->where('npo_name', 'clean_man')->first();
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
-        // dd($data);
         //$this->middleware('guest', ['except' => 'logout']);
         return view('welcome', $data);
         
