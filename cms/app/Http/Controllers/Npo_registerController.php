@@ -22,7 +22,9 @@ class Npo_registerController extends Controller {
 	{
         $name_auth = Auth::user()->name;
 	    $npo_auth = Auth::user()->npo;
-	    
+	    $user_auth = Auth::user()->email;
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
         $data['npo_owner_info'] = \DB::table('users')->where('npo', $npo_auth)->first();
@@ -37,7 +39,9 @@ class Npo_registerController extends Controller {
 	public function create()
 	{
 	    $npo_auth = Auth::user()->npo;
-	    
+	    $user_auth = Auth::user()->email;
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
 		return view('npo_registers/create' ,$data);
@@ -150,7 +154,10 @@ class Npo_registerController extends Controller {
 	 */
 	public function show($npo_name)
 	{
-		$currentNpoInfo = Npo_register::find($npo_name);
+		$user_auth = Auth::user()->email;
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        
+        $currentNpoInfo = Npo_register::find($npo_name);
     // 	$currentNpoInfo     = \DB::table('npo_registers')->where('id', $npo_name)->first();
     	$currentPremierData = \DB::table('premier_data')->where('vision_id', $currentNpoInfo->npo_name)->get();
         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
@@ -597,6 +604,8 @@ class Npo_registerController extends Controller {
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        
         $this->middleware('auth:api');
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
@@ -631,6 +640,8 @@ class Npo_registerController extends Controller {
 		$id_auth   = Auth::user()->id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        
         $this->middleware('auth:api');
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
