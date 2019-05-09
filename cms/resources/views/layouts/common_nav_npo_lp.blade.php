@@ -5,7 +5,6 @@
   @yield('head_npo_lp')
   @yield('script')
 </head>
-
   @yield('nav_lp')
   @yield('headers')
   @yield('content')
