@@ -281,9 +281,10 @@ class Npo_registerController extends Controller {
     // トップページ
     public function landing(string $npo_name)
     {
-        $user_auth = Auth::user()->email;
-        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
-        
+        if(Auth::user()){
+            $user_auth = Auth::user()->email;
+            $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        }
         // 本番環境の時にここと、paymentの3パターンを変える
         $stripe_key = "pk_test_tfM2BWAFRlYSPO939BW5jIj5";
         $data['stripe_key'] = $stripe_key;

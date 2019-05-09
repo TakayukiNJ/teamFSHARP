@@ -23,14 +23,15 @@ class BooksController extends Controller
     }
     
     public function welcome(Request $request){
-        $user_auth = Auth::user()->email;
-        
+        if(Auth::user()){
+            $user_auth = Auth::user()->email;
+            $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        }    
         //$books = Book::orderBy('created_at', 'asc')->paginate(3);
         //$books = Book::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
         $data['npo_info1']  = \DB::table('npo_registers')->where('npo_name', 'toyama_bootcamp')->first();
         $data['npo_info2']  = \DB::table('npo_registers')->where('npo_name', 'biosbootcamp')->first();
         $data['npo_info3']  = \DB::table('npo_registers')->where('npo_name', 'clean_man')->first();
-        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
         //$this->middleware('guest', ['except' => 'logout']);
         return view('welcome', $data);
         
