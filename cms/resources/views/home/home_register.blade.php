@@ -1,6 +1,6 @@
 @extends('home.common_home_lp')
 @include('home.head_profile')
-@include('home.nav_home')
+@include('layouts.nav_lp')
 @include('layouts.script')
 @section('content')
 <div class="wrapper">
@@ -40,17 +40,14 @@
                            <span class="help-block form-control-feedback">{{ $errors->first("description") }}</span>
                         @endif
                     </div>
+                    <br>
                     <div class="text-center">
                         <button type="submit" class="btn btn-wd btn-info btn-round">保存</button>
                     </div>
-                    <br>
-                        
                 </div>
-                
+                <br>
                 <div class="nav-tabs-navigation">
-                    <br>
-                    <span>以下詳細の編集(個人か法人を選択)</span>
-                    <br>
+                    <h4>以下詳細の編集(個人か法人を選択)</h4>
                     <div class="nav-tabs-wrapper">
                         <br>
                         <ul class="nav nav-tabs" role="tablist">

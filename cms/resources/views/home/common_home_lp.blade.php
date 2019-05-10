@@ -5,9 +5,7 @@
   @yield('head_profile')
   @yield('script')
 </head>
-
-
-@yield('nav_home')
+  @yield('nav_lp')
   @yield('headers')
   @yield('content')
 </body>
