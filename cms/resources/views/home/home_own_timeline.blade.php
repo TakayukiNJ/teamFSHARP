@@ -1,6 +1,6 @@
 @extends('home.common_home_lp')
 @include('home.head_profile')
-@include('home.nav_home')
+@include('layouts.nav_lp')
 @include('layouts.script')
 @section('content')
 <div class="wrapper">

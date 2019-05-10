@@ -107,9 +107,10 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $user = Auth::user()->email;
-
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user)->first();
+        
         // 既に登録済のデータがあればそれを出力する
-        $query = DB::table('personal_info')->where('user_id', $user)->first();
+        $query = $data['personal_info'];
 
         // personal_infoが登録されているかどうかを取得する
         $count = DB::table('personal_info')->where('user_id', $user)->count();
@@ -131,7 +132,7 @@ class HomeController extends Controller
             // session(['param_bank_type_account' => $query->bank_type_account]);
             // session(['param_bank_account_number' => $query->bank_account_number]);
             // session(['param_bank_account_name' => $query->bank_account_name]);
-            return view('home/home_register')
+            return view('home/home_register', $data)
             ->with('id', $id)
             ->with('user', $user)
             ->with('user_name_sei_kanji', $query->user_name_sei_kanji)
@@ -168,7 +169,7 @@ class HomeController extends Controller
             // session(['param_bank_type_account' => '']);
             // session(['param_bank_account_number' => '']);
             // session(['param_bank_account_name' => '']);
-            return view('home/home_register')
+            return view('home/home_register', $data)
             ->with('id', $id)
             ->with('user', $user)
             ->with('user_name_sei_kanji', '')
