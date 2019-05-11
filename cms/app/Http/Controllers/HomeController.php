@@ -465,20 +465,36 @@ class HomeController extends Controller
     // ホーム画面自分のタイムライン
     public function home_own_timeline(Request $request)
     {
-        $id       = Auth::user()->id;
-        $name     = Auth::user()->name;
-        $email    = Auth::user()->email;
-        $auth_npo = Auth::user()->npo;
+        // nav部分、ユーザーがアカウント設定をしていたら取得
+        if(Auth::user()){
+            $user_auth = Auth::user()->email;
+            $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        }
         
+        if($request->name){
+            $name = $request->name;
+            // 他人のを見ていた場合
+            $this_user = \DB::table('users')->where('name', $name)->first();
+            $data["this_auth"] = $this_user;
+            $id       = $this_user->id;
+            $email    = $this_user->email;
+            $auth_npo = $this_user->npo;
+            // 寄付した団体を取得（閲覧している個人）
+        }else{
+            $data["this_auth"] = Auth::user();
+            $id       = Auth::user()->id;
+            $name     = Auth::user()->name;
+            $email    = Auth::user()->email;
+            $auth_npo = Auth::user()->npo;
+            dd("not");
+        }
         $data['npo_info_personal'] = [];
         $data['npo_info_enterprise'] = [];
         
-        // ユーザーがアカウント設定をしていたら取得
-        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $email)->first();
+        $premierData_personal = \DB::table('premier_data')->where('user_define', $email)->orderBy('updated_at', 'desc')->get();
+	    
         // 新着情報を取得
         $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
-		// 寄付した団体を取得（個人）
-		$premierData_personal = \DB::table('premier_data')->where('user_define', $email)->orderBy('updated_at', 'desc')->get();
 		$data['premierData_personal'] = $premierData_personal;
         $data['donater']          = array(0=>"Donater");
         $data['donater_gold']     = array(0=>"Company");
@@ -543,7 +559,6 @@ class HomeController extends Controller
         $data['donater_count'] = $donater_count;
         $data['currency_data'] = $currency_amount;
         
-// 		dd($data['donater']);
 		// 寄付した団体を取得（企業）
 		$premierData_enterprise = \DB::table('premier_data')->where('user_define', $auth_npo)->orderBy('updated_at', 'desc')->get();
 		$data['premierData_enterprise'] = $premierData_enterprise;
@@ -630,10 +645,11 @@ class HomeController extends Controller
         $id = Auth::user()->id;
         //$name = Auth::user()->name;
         $user = Auth::user()->email;
-
+$data['personal_info'] = \DB::table('personal_info')->where('user_id', $user)->first();
+        
         $currentUserInfo = \DB::table('users')->where('name', $request)->first();
 //連想配列に入れtBladeテンプレートに渡しています。
-        $user_data['user_info'] = $currentUserInfo;
+        $data['user_info'] = $currentUserInfo;
 
 
 //         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
@@ -711,7 +727,7 @@ class HomeController extends Controller
         ;
         //2018.1.4追加ここまで
 
-        return view('home/home_own_timeline', $user_data);
+        return view('home/home_own_timeline', $data);
     }
 
 

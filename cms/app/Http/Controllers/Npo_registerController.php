@@ -281,6 +281,7 @@ class Npo_registerController extends Controller {
     // トップページ
     public function landing(string $npo_name)
     {
+        // nav部分、ユーザーがアカウント設定をしていたら取得
         if(Auth::user()){
             $user_auth = Auth::user()->email;
             $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
