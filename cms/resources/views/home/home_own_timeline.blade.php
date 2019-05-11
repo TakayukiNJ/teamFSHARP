@@ -22,8 +22,8 @@
                             @endif
                         </div>
                         <div class="name">
-                            @if(Auth::user()->point != 0)
-                            <h4 class="title text-center">{{ Auth::user()->name }}さんのページ@if($personal_info)<br><small>{{ $personal_info->description }}</small>@endif</h4>
+                            @if($this_auth->point != 0)
+                            <h4 class="title text-center">{{ $this_auth->name }}さんのページ@if($personal_info)<br><small>{{ $personal_info->description }}</small>@endif</h4>
                             @endif
                         </div>
                   </div>

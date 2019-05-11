@@ -198,8 +198,8 @@ Route::post('/home/home_own_timeline', 'HomeController@home_own_timeline');
 Route::get('/home/home_own_timeline', 'HomeController@home_own_timeline');
 
 
-Route::post('/home/{name}', 'HomeController@home_own');
-Route::get('/home/{name}', 'HomeController@home_own');
+Route::post('/home/{name}', 'HomeController@home_own_timeline');
+Route::get('/home/{name}', 'HomeController@home_own_timeline');
 
 //ホーム画面投資家や選手のタイムライン
 Route::post('/home/home_outer_timeline/{folder_name}', 'HomeController@home_outer_timeline');
