@@ -6,6 +6,7 @@
   @yield('script')
 </head>
 
+<body class="profile presentation-page loading">
   @yield('nav_lp')
   @yield('headers')
   @yield('content')

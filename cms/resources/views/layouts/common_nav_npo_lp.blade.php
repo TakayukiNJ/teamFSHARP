@@ -5,6 +5,8 @@
   @yield('head_npo_lp')
   @yield('script')
 </head>
+
+<body class="presentation-page loading">
   @yield('nav_lp')
   @yield('headers')
   @yield('content')
