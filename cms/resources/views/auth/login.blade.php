@@ -50,6 +50,7 @@
                         </div>
                     </div>
                 </div>
+                <br>
 				<div class="demo-footer text-center">
 					<h6>&copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by F♯</h6>
 				</div>

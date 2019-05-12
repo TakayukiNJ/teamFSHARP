@@ -360,12 +360,12 @@
                                                         </style>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <label>管理者</label>
-                                                        <p>{{ $npo_info->manager }}</p>
-                                                        <label>募集支援数</label>
-                                                        <p>{{ $npo_info->support_limit }}口</p>
-                                                        <label>現在</label>
-                                                        <p>{{ $npo_info->buyer }}口（{{ $npo_info->follower }}円）</p>
+                                                        <label>管理者：<b><a href="{{ url('/home') }}/{{ $npo_info->manager }}">{{ $npo_info->manager }}</a>さん</b></label>
+                                                        <p></p>
+                                                        <label>募集支援数：<b>{{ $npo_info->support_limit }}口</b></label>
+                                                        <p></p>
+                                                        <label>現在：<b>{{ $npo_info->buyer }}口（{{ $npo_info->follower }}円）</b></label>
+                                                        <p></p>
                                                         <label>寄付者</label>
                                                         <p>
                                                         @if(count($donater)>1)
@@ -377,7 +377,7 @@
                                                                     @if((Auth::user()->name) == $donater[$i])
                                                                         <b><font color="red">{{$donater[$i]}}（あなた）@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif</font></b>
                                                                     @else
-                                                                        {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
+                                                                        <a href="{{ url('/home') }}/{{$donater[$i]}}">{{$donater[$i]}}</a>さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
                                                                     @endif
                                                                 @else
                                                                     {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
