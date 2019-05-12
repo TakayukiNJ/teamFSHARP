@@ -13,9 +13,9 @@
                 <div class="profile-picture">
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                         <div class="fileinput-new img-no-padding text-center">
-                            @if($personal_info)
-                                @if($personal_info->image_id)
-                                    <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ $this_auth->name }}">
+                            @if($this_personal_info)
+                                @if($this_personal_info->image_id)
+                                    <img src='/img/personal_info/{{ $this_personal_info->image_id }}' alt="{{ $this_auth->name }}">
                                 @else
                                     <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
                                 @endif
@@ -23,26 +23,30 @@
                         </div>
                         <div class="name">
                             @if($this_auth->point != 0)
-                            <h4 class="title text-center">{{ $this_auth->name }}さんのページ@if($personal_info)<br><small>{{ $personal_info->description }}</small>@endif</h4>
+                            <h4 class="title text-center">{{ $this_auth->name }}さんのページ@if($this_personal_info)<br><small>{{ $this_personal_info->description }}</small>@endif</h4>
                             @endif
                         </div>
                   </div>
                 </div>
             </div>
+            @if(Auth::user()->name == $this_auth->name)
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
                     <!--<p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>-->
                     <!--<br />-->
-                    <a href="{{ url('/home/home_register') }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> 設定</a>
+                    <a href="{{ url('/home/home_register') }}" class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> マイページ設定</a>
                 </div>
             </div>
+            @endif
             <br/>
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
                     <ul class="nav nav-tabs" role="tablist">
+                        @if(Auth::user()->name == $this_auth->name)
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#new" role="tab">新着</a>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
                         </li>
@@ -238,7 +242,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <label>管理者：<b>{{ $npo_info_personal[$i]->manager }}さん</b></label><br>
+                                                                    <label>管理者：<b><a href="{{ url('/home') }}/{{ $npo_info_personal[$i]->manager }}">{{ $npo_info_personal[$i]->manager }}</a>さん</b></label><br>
                                                                     <label>{{$this_auth->name}}さんの合計支援回数：<b>{{ $premierData_personal[$i]->participants }}口</b></label><br>
                                                                     <label>{{$this_auth->name}}さんの合計支援金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
                                                                     <label>{{$this_auth->name}}さんの最終支援日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日H:i') }}</b></label><br>
@@ -249,9 +253,9 @@
                                                                                 、
                                                                             @endif
                                                                             @if(($this_auth->name) == $donater[$i][$d])
-                                                                                <b><font color="red">{{$donater[$i][$d]}}さん（あなた）@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
+                                                                                <b><font color="red">{{$donater[$i][$d]}}さん@if(Auth::user()->name == $this_auth->name)（あなた）@endif @if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
                                                                             @else
-                                                                                {{$donater[$i][$d]}}さん@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif
+                                                                                <a href="{{ url('/home') }}/{{ $donater[$i][$d] }}">{{$donater[$i][$d]}}</a>さん@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif
                                                                             @endif
                                                                         @endfor
                                                                     </p>
@@ -294,6 +298,7 @@
                         </div>
                     </div>
                 </div>
+                @if(Auth::user()->name == $this_auth->name)
                 <div class="tab-pane active" id="new" role="tabpanel">
                     <div class="row">
                         <div class="col-md-6 ml-auto mr-auto">
@@ -327,6 +332,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
