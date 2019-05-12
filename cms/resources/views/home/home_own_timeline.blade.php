@@ -15,7 +15,7 @@
                         <div class="fileinput-new img-no-padding text-center">
                             @if($personal_info)
                                 @if($personal_info->image_id)
-                                    <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}">
+                                    <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ $this_auth->name }}">
                                 @else
                                     <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
                                 @endif
@@ -46,7 +46,7 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
                         </li>
-                        @if(Auth::user()->point != 0)
+                        @if($this_auth->point != 0)
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">SDGs</a>
                         </li>
@@ -56,9 +56,9 @@
             </div>
             <!-- Tab panes -->
             <div class="tab-content">
-                @if(Auth::user()->point != 0)
+                @if($this_auth->point != 0)
                 <div class="tab-pane text-center" id="myProjects" role="tabpanel">
-                    @if(Auth::user()->point != 0)
+                    @if($this_auth->point != 0)
                         <div class="chart-container" style="position: relative; height:100vh">
                             <canvas id="myPieChart"></canvas>
                         </div>
@@ -111,7 +111,7 @@
                                         data: [
                                             @for ($s = 1; $s < 18; $s++)
                                                 <?php $sdgs = "sdgs".$s ?>
-                                                {{Auth::user()->$sdgs}},
+                                                {{$this_auth->$sdgs}},
                                             @endfor
                                         ]
                                     }]
@@ -121,7 +121,7 @@
                                     maintainAspectRatio: false,
                                     title: {
                                         display: true,
-                                        text: 'SDGsポイント：{{ Auth::user()->point }}'
+                                        text: 'SDGsポイント：{{ $this_auth->point }}'
                                   }
                                 }
                             });
@@ -239,16 +239,16 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <label>管理者：<b>{{ $npo_info_personal[$i]->manager }}さん</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの合計支援回数：<b>{{ $premierData_personal[$i]->participants }}口</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの合計支援金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
-                                                                    <label>{{Auth::user()->name}}さんの最終支援日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日H:i') }}</b></label><br>
+                                                                    <label>{{$this_auth->name}}さんの合計支援回数：<b>{{ $premierData_personal[$i]->participants }}口</b></label><br>
+                                                                    <label>{{$this_auth->name}}さんの合計支援金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
+                                                                    <label>{{$this_auth->name}}さんの最終支援日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日H:i') }}</b></label><br>
                                                                     <label><b>支援者</b></label>
                                                                     <p>
                                                                         @for($d = 1; $d < count($donater[$i]); $d++)
                                                                             @if($d > 1)
                                                                                 、
                                                                             @endif
-                                                                            @if((Auth::user()->name) == $donater[$i][$d])
+                                                                            @if(($this_auth->name) == $donater[$i][$d])
                                                                                 <b><font color="red">{{$donater[$i][$d]}}さん（あなた）@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
                                                                             @else
                                                                                 {{$donater[$i][$d]}}さん@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif

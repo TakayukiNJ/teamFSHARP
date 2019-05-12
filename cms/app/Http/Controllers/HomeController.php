@@ -486,7 +486,6 @@ class HomeController extends Controller
             $name     = Auth::user()->name;
             $email    = Auth::user()->email;
             $auth_npo = Auth::user()->npo;
-            dd("not");
         }
         $data['npo_info_personal'] = [];
         $data['npo_info_enterprise'] = [];
