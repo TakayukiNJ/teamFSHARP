@@ -54,17 +54,23 @@
             </div>
             
             <div class="row">
-                    
                 @if($npo_registers->count())
                     @foreach($npo_registers as $npo_register)
                         <div class="col-md-4">
                             <div class="card card-profile card-plain">
                                 <div class="card-img-top">
-                                    @if($npo_register->background_pic)
-                                    <img class="img" src="/img/project_back/{{ $npo_register->background_pic }}" />
+                                    @if(($npo_register->npo_name) == "")
+                                        <a href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">
                                     @else
-                                    <img class="img" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" />
+                                        <a href="/{{ $npo_register->npo_name }}">
                                     @endif
+                                    
+                                        @if($npo_register->background_pic)
+                                        <img class="img" src="/img/project_back/{{ $npo_register->background_pic }}" />
+                                        @else
+                                        <img class="img" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" />
+                                        @endif
+                                    </a>
                                 </div>
                                 <div class="card-body">
                                     @if(($npo_register->proval) > 0)

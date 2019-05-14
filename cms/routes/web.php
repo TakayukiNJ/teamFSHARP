@@ -361,3 +361,5 @@ Route::get('/contact/result', 'ContactController@result')->name('contact.result'
 
 // チャット機能(2019/4/7)
 Route::get('chat/chat', 'ChatController@index');
+Route::get('chat/messages', 'ChatController@fetchMessages');
+Route::post('chat/messages', 'ChatController@sendMessage');
