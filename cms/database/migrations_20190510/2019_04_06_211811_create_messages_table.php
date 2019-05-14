@@ -17,13 +17,9 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->string('from'); // メッセージ本文
             $table->string('to'); // メッセージ本文
-            $table->text('message'); // メッセージ本文
+            $table->text('body'); // メッセージ本文
             $table->timestamps();
         });
-        //   $table->increments('id');
-        //   $table->integer('user_id')->unsigned();
-        //   $table->text('message');
-        //   $table->timestamps();
     }
 
     /**

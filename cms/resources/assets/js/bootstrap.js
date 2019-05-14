@@ -43,3 +43,12 @@ Vue.http.interceptors.push((request, next) => {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+import Echo from "laravel-echo"
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'f8a7d3c0fcf782795068',
+    cluster: 'ap3',
+    encrypted: true
+});

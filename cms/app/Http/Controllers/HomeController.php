@@ -15,9 +15,23 @@ use Image;
 
 class HomeController extends Controller
 {
+    // public function __construct(Request $request)
     public function __construct()
     {
         // ログイン不要で開きたいページはここに記入していく。
+        // if($request->name){
+        //     $name = $request->name;
+        //     // 他人のを見ていた場合
+        //     $this_user = \DB::table('users')->where('name', $name)->first();
+        //     $data["this_auth"] = $this_user;
+        //     $id       = $this_user->id;
+        //     $email    = $this_user->email;
+        //     $auth_npo = $this_user->npo;
+        // }else{
+        //     $name = "";
+        // }
+        // dd($name);
+        
         $this->middleware('auth', ['except' => ['terms', 'privacy_policy', 'specified_commercial_transactions_law', 'npo_landing_page']]);
     }
 
@@ -107,6 +121,7 @@ class HomeController extends Controller
     {
         $id = Auth::user()->id;
         $user = Auth::user()->email;
+        $data["this_auth"] = Auth::user();
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user)->first();
         
         // 既に登録済のデータがあればそれを出力する
@@ -472,21 +487,23 @@ class HomeController extends Controller
         }
         
         if($request->name){
+            // 閲覧している個人
             $name = $request->name;
             // 他人のを見ていた場合
             $this_user = \DB::table('users')->where('name', $name)->first();
-            $data["this_auth"] = $this_user;
             $id       = $this_user->id;
             $email    = $this_user->email;
             $auth_npo = $this_user->npo;
-            // 寄付した団体を取得（閲覧している個人）
+            $data["this_auth"] = $this_user;
         }else{
-            $data["this_auth"] = Auth::user();
+            // ログインしている個人
             $id       = Auth::user()->id;
             $name     = Auth::user()->name;
             $email    = Auth::user()->email;
             $auth_npo = Auth::user()->npo;
+            $data["this_auth"] = Auth::user();
         }
+        $data['this_personal_info'] = \DB::table('personal_info')->where('user_id', $email)->first();
         $data['npo_info_personal'] = [];
         $data['npo_info_enterprise'] = [];
         
@@ -637,97 +654,96 @@ class HomeController extends Controller
 
     }
 
-
-    // ホーム画面自分のタイムライン(urlも自分の)
-    public function home_own(Request $request)
-    {
-        $id = Auth::user()->id;
-        //$name = Auth::user()->name;
-        $user = Auth::user()->email;
-$data['personal_info'] = \DB::table('personal_info')->where('user_id', $user)->first();
+//     // ホーム画面自分のタイムライン(urlも自分の)
+//     public function home_own(Request $request)
+//     {
+//         $id = Auth::user()->id;
+//         //$name = Auth::user()->name;
+//         $user = Auth::user()->email;
+// $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user)->first();
         
-        $currentUserInfo = \DB::table('users')->where('name', $request)->first();
-//連想配列に入れtBladeテンプレートに渡しています。
-        $data['user_info'] = $currentUserInfo;
-
-
-//         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
-//         $currentUserInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+//         $currentUserInfo = \DB::table('users')->where('name', $request)->first();
 // //連想配列に入れtBladeテンプレートに渡しています。
-//         $data['npo_info'] = $currentNpoInfo;
-//         // $data['subtitle'] = $currentNpoInfo;
+//         $data['user_info'] = $currentUserInfo;
+
+
+// //         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
+// //         $currentUserInfo = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
+// // //連想配列に入れtBladeテンプレートに渡しています。
+// //         $data['npo_info'] = $currentNpoInfo;
+// //         // $data['subtitle'] = $currentNpoInfo;
+// //         return view('home/home_own_timeline', $data);
+
+//         $query = DB::table('main_omikuji_data');
+
+//         // 用編集(データベースから取ってくる用に変更...)
+//         $user_name_sei_kanji = $request->input('user_name_sei_kanji');
+//         $user_name_mei_kanji = $request->input('user_name_mei_kanji');
+//         $user_name_sei_roma  = $request->input('user_name_sei_roma');
+//         $user_name_mei_roma  = $request->input('user_name_mei_roma');
+//         $sex_type            = $request->input('sex_type');
+//         $birthday_year       = $request->input('birthday_year');
+//         $birthday_month      = $request->input('birthday_month');
+//         $birthday_day        = $request->input('birthday_day');
+//         $bank_name           = $request->input('bank_name');
+//         $bank_branch         = $request->input('bank_branch');
+//         $bank_type_account   = $request->input('bank_type_account');
+//         $bank_account_number = $request->input('bank_account_number');
+//         $bank_account_name   = $request->input('bank_account_name');
+
+//         session(['user_name_sei_kanji' => $user_name_sei_kanji]);
+//         session(['user_name_mei_kanji' => $user_name_mei_kanji]);
+//         session(['user_name_sei_roma' => $user_name_sei_roma]);
+//         session(['user_name_mei_roma' => $user_name_mei_roma]);
+//         session(['sex_type' => $sex_type]);
+//         session(['birthday_year' => $birthday_year]);
+//         session(['birthday_month' => $birthday_month]);
+//         session(['birthday_day' => $birthday_day]);
+//         session(['bank_name' => $bank_name]);
+//         session(['bank_branch' => $bank_branch]);
+//         session(['bank_type_account' => $bank_type_account]);
+//         session(['bank_account_number' => $bank_account_number]);
+//         session(['bank_account_name' => $bank_account_name]);
+//         // 要変更ここまで(2018.1.5)
+
+//         $image_id = '';
+//         $image    = '';
+
+//         $image = DB::table('image_data')
+//         ->where('user_id', $user)->first(); // firstは一個だけ取得  getは全て取得
+
+//         // dd($query->image_id);
+
+//         if($image){
+//             $image_id = $image->image_id; // $imageの中のimage_idを取得
+//             $image_id = asset('/images'). '/'. $image_id;
+//         } else {
+//             $image_id = '/img/contents/user-default.png';
+//         }
+
+//         return view('home/home_own_timeline')
+//         ->with('id', $id)
+//         ->with('user', $user)
+//         //2018.1.4追加ここから
+//         ->with('image_id', $image_id)
+//         ->with('user_name_sei_kanji', $user_name_sei_kanji)
+//         ->with('user_name_mei_kanji', $user_name_mei_kanji)
+//         ->with('user_name_sei_roma', $user_name_sei_roma)
+//         ->with('user_name_mei_roma', $user_name_mei_roma)
+//         ->with('sex_type', $sex_type)
+//         ->with('birthday_year', $birthday_year)
+//         ->with('birthday_month', $birthday_month)
+//         ->with('birthday_day', $birthday_day)
+//         ->with('bank_name', $bank_name)
+//         ->with('bank_branch', $bank_branch)
+//         ->with('bank_type_account', $bank_type_account)
+//         ->with('bank_account_number', $bank_account_number)
+//         ->with('bank_account_name', $bank_account_name)
+//         ;
+//         //2018.1.4追加ここまで
+
 //         return view('home/home_own_timeline', $data);
-
-        $query = DB::table('main_omikuji_data');
-
-        // 用編集(データベースから取ってくる用に変更...)
-        $user_name_sei_kanji = $request->input('user_name_sei_kanji');
-        $user_name_mei_kanji = $request->input('user_name_mei_kanji');
-        $user_name_sei_roma  = $request->input('user_name_sei_roma');
-        $user_name_mei_roma  = $request->input('user_name_mei_roma');
-        $sex_type            = $request->input('sex_type');
-        $birthday_year       = $request->input('birthday_year');
-        $birthday_month      = $request->input('birthday_month');
-        $birthday_day        = $request->input('birthday_day');
-        $bank_name           = $request->input('bank_name');
-        $bank_branch         = $request->input('bank_branch');
-        $bank_type_account   = $request->input('bank_type_account');
-        $bank_account_number = $request->input('bank_account_number');
-        $bank_account_name   = $request->input('bank_account_name');
-
-        session(['user_name_sei_kanji' => $user_name_sei_kanji]);
-        session(['user_name_mei_kanji' => $user_name_mei_kanji]);
-        session(['user_name_sei_roma' => $user_name_sei_roma]);
-        session(['user_name_mei_roma' => $user_name_mei_roma]);
-        session(['sex_type' => $sex_type]);
-        session(['birthday_year' => $birthday_year]);
-        session(['birthday_month' => $birthday_month]);
-        session(['birthday_day' => $birthday_day]);
-        session(['bank_name' => $bank_name]);
-        session(['bank_branch' => $bank_branch]);
-        session(['bank_type_account' => $bank_type_account]);
-        session(['bank_account_number' => $bank_account_number]);
-        session(['bank_account_name' => $bank_account_name]);
-        // 要変更ここまで(2018.1.5)
-
-        $image_id = '';
-        $image    = '';
-
-        $image = DB::table('image_data')
-        ->where('user_id', $user)->first(); // firstは一個だけ取得  getは全て取得
-
-        // dd($query->image_id);
-
-        if($image){
-            $image_id = $image->image_id; // $imageの中のimage_idを取得
-            $image_id = asset('/images'). '/'. $image_id;
-        } else {
-            $image_id = '/img/contents/user-default.png';
-        }
-
-        return view('home/home_own_timeline')
-        ->with('id', $id)
-        ->with('user', $user)
-        //2018.1.4追加ここから
-        ->with('image_id', $image_id)
-        ->with('user_name_sei_kanji', $user_name_sei_kanji)
-        ->with('user_name_mei_kanji', $user_name_mei_kanji)
-        ->with('user_name_sei_roma', $user_name_sei_roma)
-        ->with('user_name_mei_roma', $user_name_mei_roma)
-        ->with('sex_type', $sex_type)
-        ->with('birthday_year', $birthday_year)
-        ->with('birthday_month', $birthday_month)
-        ->with('birthday_day', $birthday_day)
-        ->with('bank_name', $bank_name)
-        ->with('bank_branch', $bank_branch)
-        ->with('bank_type_account', $bank_type_account)
-        ->with('bank_account_number', $bank_account_number)
-        ->with('bank_account_name', $bank_account_name)
-        ;
-        //2018.1.4追加ここまで
-
-        return view('home/home_own_timeline', $data);
-    }
+//     }
 
 
     // ホーム画面投資家や選手のタイムライン
