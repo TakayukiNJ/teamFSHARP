@@ -24,7 +24,7 @@
                             <div class="text-center">
                                 <span class="btn btn-outline-default btn-file btn-round"><span class="fileinput-new">画像変更</span><span class="fileinput-exists">画像変更</span><input type="file" name="image_id"></span>
                                 <br />
-                                <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> キャンセル</a>
+                                <a href="#cancel" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> キャンセル</a>
                             </div>
                         </div>
                     </div>

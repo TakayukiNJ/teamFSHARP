@@ -11,9 +11,10 @@
                 <div class="container">
                     <form enctype="multipart/form-data" action="{{ route('npo_registers.store') }}" method="POST">
                         <div class="row">
-                            <div class="col-md-3 col-sm-3">
+                            <div class="col-md-7 content-center">
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                    <div class="fileinput-new thumbnail img-no-padding" style="max-width: 150px; max-height: 150px;">
+                                    <br>
+                                    <div class="fileinput-new thumbnail img-no-padding" style="max-width: 100px; max-height: 100px;">
                                         @if($npo_info)
                                             @if($npo_info->avater)
                                             <img src='/img/project_logo/{{ $npo_info->avater }}' alt="{{ Auth::user()->npo }}">
@@ -24,16 +25,14 @@
                                             <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
                                         @endif
                                     </div>
-                                    <div class="fileinput-preview fileinput-exists thumbnail img-no-padding" style="max-width: 150px; max-height: 150px;"></div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail img-no-padding" style="max-width: 100px; max-height: 100px;"></div>
                                     <div>
-                                        <span class="btn btn-outline-neutral btn-round btn-file"><span class="fileinput-new">ロゴ変更*</span><span class="fileinput-exists">Change</span><input type="file" name="avater"></span>
-                                        <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-                                        <h6>*全プロジェクトのロゴに適応</h6>
+                                        <span class="btn btn-outline-neutral btn-round btn-file"><span class="fileinput-new">ロゴ変更</span><span class="fileinput-exists">ロゴ変更</span><input type="file" name="avater"></span>
+                                        <a href="#paper-kit" class="btn btn-link btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> 削除</a>
                                     </div>
-                                <br>
+                                    <br>
                                 </div>
-                            </div>
-                            <div class="col-md-9 col-sm-9">
+                                
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     @if ((Auth::user()->npo) == "")
                                     <div class="form-group @if($errors->has('title')) has-error @endif">
@@ -78,7 +77,6 @@
                                     @endif
                                 <div class="well well-sm">
                                     <button type="submit" class="btn btn-primary">Create</button>
-                                    <!--<a class="btn btn-link pull-right" href="{{ route('npo_registers.index') }}"><i class="glyphicon glyphicon-backward"></i> Back</a>-->
                                 </div>
                                 {!! csrf_field() !!}
                             </div>

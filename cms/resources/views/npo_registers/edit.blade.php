@@ -23,7 +23,6 @@
                             <div class="col-md-5">
                                 <div class="iframe-container">
                                     <iframe src="https://www.youtube.com/embed/{{ $npo_info->embed_youtube }}?modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen height="250"></iframe>
-                                    <!--<iframe src="https://www.youtube.com/embed/xdgqBFFQXKY?modestbranding=1&autohide=1&showinfo=0" frameborder="0" allowfullscreen height="250"></iframe>-->
                                 </div>
                             </div>
                             <div class="col-md-6 ml-auto">
@@ -69,8 +68,15 @@
             <h4>詳細編集</h4>
             <div class="row">
                 <div class="col-md-5 col-sm-5">
-                    <h6>画像編集</h6>
+                    <h6>　</h6>
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                         <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
                             @if($npo_info->background_pic)
                             <img src='/img/project_back/{{ $npo_info->background_pic }}' alt="{{ Auth::user()->npo }}">

@@ -119,7 +119,7 @@
                             <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">@lang('app.ask my page')</a>
                         </li>
                         
-                    
+                        {{--
                         <!-- message 用編集 -->
                         <!--GRAY-->
                         <!--<li class="nav-item">-->
@@ -193,25 +193,27 @@
                             
                             <!--<span class="label label-danger notification-bubble">2</span>-->
                         </li>
-                        
-                        
+                        --}}
+
                         <li class="nav-item dropdown">
-                            <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30" style="margin-left:17px">
-                                <div class="profile-photo-small">
-                                    @if($personal_info)
-                                        @if($personal_info->image_id)
+                            @if($personal_info)
+                                @if($personal_info->image_id)
+                                    <a href="#paper-kit" class="nav-link navbar-brand" data-toggle="dropdown" width="30" height="30" style="margin-left:17px">
+                                        <div class="profile-photo-small">
                                             <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}" class="img-circle img-responsive img-no-padding">
-                                        @else
-                                            <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default" class="img-circle img-responsive img-no-padding">
-                                        @endif
-                                    @endif
-                                </div>
-                            </a>
+                                        </div>
+                                    </a>
+                                @endif
+                            @else
+                                <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }}</a>
+                                <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+                            @endif
+                            
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                                 <a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
                         @endif        		
                                 <a class="dropdown-item" href="{{ url('home/home_own_timeline') }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
-                                <a class="dropdown-item" href="{{ url('chat/chat') }}"><i class="nc-icon nc-badge"></i>&nbsp; chat</a>
+                                <a class="dropdown-item" href="{{ url('home/home_register') }}"><i class="nc-icon nc-badge"></i>&nbsp; マイページ設定</a>
                                 <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();"><i class="nc-icon nc-spaceship"></i>&nbsp; @lang('app.logout')</a>
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

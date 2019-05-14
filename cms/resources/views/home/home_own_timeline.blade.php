@@ -22,9 +22,7 @@
                             @endif
                         </div>
                         <div class="name">
-                            @if($this_auth->point != 0)
                             <h4 class="title text-center">{{ $this_auth->name }}さんのページ@if($this_personal_info)<br><small>{{ $this_personal_info->description }}</small>@endif</h4>
-                            @endif
                         </div>
                   </div>
                 </div>

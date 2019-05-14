@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -224,6 +225,9 @@ class HomeController extends Controller
         $npo_auth  = Auth::user()->npo;
         $this->middleware('auth');
         
+        $data['npo_info_personal'] = [];
+        $data['npo_info_enterprise'] = [];
+        
         $image_file            = $request->file('image_id');
         $user_name_sei_kanji   = $request->input('user_name_sei_kanji');
         $user_name_mei_kanji   = $request->input('user_name_mei_kanji');
@@ -292,7 +296,6 @@ class HomeController extends Controller
             // $image_file->move('./img/personal_info/', $image_id); // cloud9だけかな？
         }
         
-        
         if(!empty($data['personal_info'])){
             // データがすでにあったら更新
             \DB::table('personal_info')->where('user_id', $user_auth)->update([
@@ -340,7 +343,97 @@ class HomeController extends Controller
             ]);
 		}
 		
-        return back()
+		
+        $data["this_auth"] = Auth::user();
+        $data['this_personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+		
+		$premierData_personal = \DB::table('premier_data')->where('user_define', $user_auth)->orderBy('updated_at', 'desc')->get();
+        // 新着情報を取得
+        $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
+		$data['premierData_personal'] = $premierData_personal;
+        $data['donater']          = array(0=>"Donater");
+        $data['donater_gold']     = array(0=>"Company");
+        $data['donater_pratinum'] = array(0=>"Company(pratinum)");
+		$buyer_count                     = 0; // 寄付した人・団体の数字
+    	$currency_amount                 = 0; // 現在いくらか
+    	$currency_amount_personal        = 0; // 個人寄付はいくらか         (premier_idが1の時)
+    	$donater_count                   = 0; // 寄付した人は何人か
+    	$company_count_gold              = 0; // 寄付した人は何人か(企業)
+    	$company_count_pratinum          = 0; // 寄付した人は何人か(プラチナ企業)
+    	$currency_amount_company         = 0; // 企業寄付はいくらか         (premier_idが2の時)
+    	$currency_amount_company_premier = 0; // 企業プレミア寄付はいくらか (premier_idが3の時)
+    	if($premierData_personal){
+		    for($i = 0; $i < count($premierData_personal); $i++){
+    		    $each_donater_count = 0;
+    		    $premierData_email = $premierData_personal[$i]->vision_id;
+    		    $data['npo_info_personal'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_email)->first();
+    		    // そのままNpo_registerControllerをコピペ
+        		$currentPremierData = \DB::table('premier_data')->where('vision_id', $data['npo_info_personal'][$i]->npo_name)->get();
+                // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
+                // 何人がいくら寄付したのか、誰が寄付したのか表示
+                $mail_message = "";
+                $donater = 'donater_'.$i;
+                $data['donater'][$i]   = array(0=>"Donater");
+            	$data['donater_times'][$i] = array(0=>"Donater times");
+                for($array_count=0; $array_count<count($currentPremierData); $array_count++){
+                    
+                    $buyer_count++; // 人数
+                    $currency_origin = $currentPremierData[$array_count]->status;
+                    $currency_amount += $currency_origin; // 金額
+                    if(1 == $currentPremierData[$array_count]->premier_id){ // 個人
+                        $currency_amount_personal += $currency_origin;
+                        $donater_count++;
+                        $each_donater_count++;
+                        $donater_email = $currentPremierData[$array_count]->user_define;
+                        $donater_info  = \DB::table('users')->where('email', $donater_email)->first();
+                        $donater_times = $currentPremierData[$array_count]->participants;
+                        $donater_name  = $donater_info->name;
+                        $data['donater'][$i] += array($each_donater_count=>$donater_name);
+                        $data['donater_times'][$i] += array($each_donater_count=>$donater_times);
+                        // $data['donater'.$donater_count] = $donater_name;
+                    }else if(2 == $currentPremierData[$array_count]->premier_id){ // 企業
+                        $currency_amount_company += $currency_origin;
+                        $company_count_gold++;
+                        $donater_npo = $currentPremierData[$array_count]->user_define;
+                        // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
+                        // $donater_name  = $donater_info->name;
+                        $data['donater_gold'] += array($company_count_gold=>$donater_npo);
+                    }else if(3 == $currentPremierData[$array_count]->premier_id){ // 法人
+                        $currency_amount_company_premier += $currency_origin;
+                        $company_count_pratinum++;
+                        $donater_npo = $currentPremierData[$array_count]->user_define;
+                        // $donater_info  = \DB::table('users')->where('npo', $donater_npo)->first();
+                        // $donater_name  = $donater_info->name;
+                        $data['donater_pratinum'] += array($company_count_pratinum=>$donater_npo);
+                    }
+                }
+    		    
+    		}
+		}
+		$data['buyer_data']    = $buyer_count;
+        $data['donater_count'] = $donater_count;
+        $data['currency_data'] = $currency_amount;
+        
+        // 寄付した団体を取得（企業）
+		$premierData_enterprise = \DB::table('premier_data')->where('user_define', $npo_auth)->orderBy('updated_at', 'desc')->get();
+		$data['premierData_enterprise'] = $premierData_enterprise;
+		if($premierData_enterprise){
+		    for($i = 0; $i < count($premierData_enterprise); $i++){
+    		    $premierData_npo = $premierData_enterprise[$i]->vision_id;
+    		    $data['npo_info_enterprise'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_npo)->first();
+    		}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+        
+		
+		return view('home/home_own_timeline', $data)
             ->with('image_id', $image_id)
             ->with('message', '更新完了しました。');
     }
@@ -508,7 +601,6 @@ class HomeController extends Controller
         $data['npo_info_enterprise'] = [];
         
         $premierData_personal = \DB::table('premier_data')->where('user_define', $email)->orderBy('updated_at', 'desc')->get();
-	    
         // 新着情報を取得
         $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
 		$data['premierData_personal'] = $premierData_personal;
