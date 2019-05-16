@@ -16,6 +16,37 @@
     			<div class="w3-panel w3-large">
                     <br>
                     @if (Auth::guest())
+                    <button type="button" class="btn-lg btn btn-neutral" data-toggle="modal" data-target="#howtoModal">
+                        使い方
+                    </button>
+                    
+                    <div class="modal fade" id="howtoModal" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-register">
+                            <div class="modal-content">
+                                <div class="modal-header no-border-header text-center">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h3 class="modal-title text-center">使い方</h3>
+                                </div>
+                                <div class="modal-body">
+                                	<iframe class="text-center" width="392" height="220" src="https://www.youtube.com/embed/pxyYDFHtJp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	                                <br>
+	                                <br>
+	                                <h5>使い方の手順</h5>
+                                	<p>①ユーザー登録</p>
+									<p>②団体登録</p>
+									<p>③プロジェクト登録</p>
+									<p>④プロジェクト編集・公開</p>
+									<p>⑤拡散</p>
+                                    <div class="modal-footer no-border-footer">
+                                        <p>以上です。質問がございました、お気軽にご連絡ください→g181tg2061@dhw.ac.jp</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!--<a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
                     <button type="button" class="btn-lg btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
                         スタート
@@ -103,7 +134,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">リターン</h4>
-								<p>プロジェクトによっては、リターンがあるものや、個数に限りがございます。宛先や詳細などに関しては、メッセージでやりとりをしてください。<br>※費用は一切かかりません。</p>
+								<p>プロジェクトによっては、リターンがあるものや、個数に限りがございます。（掲載側は、自由に変更できます。突然内容が変わることもあるとは思いますが、ご了承ください。）{{--宛先や詳細などに関しては、メッセージでやりとりをしてください。<br>※費用は一切かかりません。--}}</p>
 							</div>
 						</div>
 					</div>
