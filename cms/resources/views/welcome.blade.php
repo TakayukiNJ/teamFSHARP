@@ -15,11 +15,9 @@
     			<h2 class="presentation-subtitle text-center">NPOの資金不足を解決する、資金調達Webサービス</h2>
     			<div class="w3-panel w3-large">
                     <br>
-                    @if (Auth::guest())
                     <button type="button" class="btn-lg btn btn-neutral" data-toggle="modal" data-target="#howtoModal">
                         使い方
                     </button>
-                    
                     <div class="modal fade" id="howtoModal" tabindex="-1" role="dialog" aria-hidden="false">
                         <div class="modal-dialog modal-register">
                             <div class="modal-content">
@@ -46,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    @if (Auth::guest())
                     <!--<a href="{{ url('/login') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
                     <button type="button" class="btn-lg btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
                         スタート
