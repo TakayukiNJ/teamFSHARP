@@ -21,7 +21,7 @@ class Npo_registerController extends Controller {
 	public function index()
 	{
 	    $name_auth = Auth::user()->name;
-	    $npo_auth = Auth::user()->npo;
+	    $npo_auth  = Auth::user()->npo;
 	    $user_auth = Auth::user()->email;
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
