@@ -63,7 +63,7 @@
                                                 支援する
                                             </a>
                                             @else
-                                            <a href="#support" class="btn btn-danger">
+                                            <a href="#support" class="btn">
                                                 募集完売
                                             </a>
                                             @endif
