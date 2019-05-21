@@ -258,6 +258,9 @@ class Npo_registerController extends Controller {
         }
         //連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
+        if($currentNpoInfo->proval > 0){
+            return redirect('/'.$currentNpoInfo->npo_name);
+        }
         
         if($name_auth === $currentNpoInfo->manager){
     		return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
