@@ -38,7 +38,7 @@
 									<p>④プロジェクト編集・公開</p>
 									<p>⑤拡散</p>
                                     <div class="modal-footer no-border-footer">
-                                        <p>以上です。質問がございました、お気軽にご連絡ください→g181tg2061@dhw.ac.jp</p>
+                                        <p>質問がございました、お気軽にご連絡ください→g181tg2061@dhw.ac.jp</p>
                                     </div>
                                 </div>
                             </div>
