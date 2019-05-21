@@ -390,13 +390,13 @@
                                     {{-- 画像 --}}
                                     <div class="col-md-5">
                                         <div class="card-img-top">
-                                            {{--<a href="#pablo">--}}
+                                            <a href="{{ url('/home') }}/{{$npo_info->$member}}">
                                                 @if($personal_info_image_id[$i])
                                                     <img class="img" src="{{ !$personal_info_image_id[$i] ? 'img/placeholder.jpg' : '/img/personal_info/'.$personal_info_image_id[$i]}}"/>
                                                 @else
                                                 <img class="img" src="{{ url('/') }}/../img/placeholder.jpg"/>
                                                 @endif
-                                            {{--</a>--}}
+                                            </a>
                                         </div>
                                     </div>
                                     {{-- 詳細 --}}
