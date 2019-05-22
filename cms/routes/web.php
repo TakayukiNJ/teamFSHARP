@@ -247,8 +247,6 @@ Route::resource("omikujis","OmikujiController"); // 使えてない？->テー�
 // ビジョン
 Route::resource("visions","VisionController");
 
-// NPO
-Route::resource("npo_registers","Npo_registerController");
 // Route::resource("npo_register/{npo_name}/edit","Npo_registerController@edit");
 // Route::get('npo_registers/{npo_name}/edit', 'Npo_registerController@edit')->middleware('auth');
 
@@ -256,7 +254,8 @@ Route::resource("npo_registers","Npo_registerController");
 Route::post('/npo_register/create', 'Npo_registerController@create');
 Route::post('/npo_register/{npo_name}/edit', 'Npo_registerController@edit');
 //フォルダ名をURLに反映(2018.01.04仲条追加項目)
-Route::get('/{npo_name}','Npo_registerController@landing');
+Route::get('/{npo}/{npo_name}','Npo_registerController@landing');
+// Route::get('/org/{id}/{npo_name}','Npo_registerController@landing');
 Route::get('/{npo_name}/edit','Npo_registerController@editing');
 Route::post('/{npo_name}/payment','Npo_registerController@payment');
 Route::post('/{npo_name}/payment_company','Npo_registerController@payment_company');
@@ -270,6 +269,9 @@ Route::post('/npo/{npo_name}/payment_company','Npo_registerController@payment_co
 Route::post('/npo/{npo_name}/payment_company_pratinum','Npo_registerController@payment_company_pratinum');
 Route::post('/npo/{npo_name}/send_mail','Npo_registerController@send_mail');
 
+// NPO
+Route::resource("npo_registers","Npo_registerController");
+Route::get("{npo}","Npo_registerController@index");
 // スタブ機能
 Route::post('/testviews', 'TestViewController@index');
 Route::get('/testviews', 'TestViewController@index');

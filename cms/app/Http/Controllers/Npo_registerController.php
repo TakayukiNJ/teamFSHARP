@@ -18,11 +18,16 @@ class Npo_registerController extends Controller {
         $this->middleware('auth', ['except' => ['landing', 'pieces']]);
     }
 
-	public function index()
+	public function index(string $npo)
 	{
-	    $name_auth = Auth::user()->name;
-	    $npo_auth  = Auth::user()->npo;
-	    $user_auth = Auth::user()->email;
+        $user_info = \DB::table('users')->where('npo', $npo)->first();
+		if(!$user_info){
+		    return view('/errors/503');
+		}
+		$name_auth = $user_info->name;
+	    $npo_auth  = $user_info->npo;
+	    $user_auth = $user_info->email;
+    
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
@@ -286,8 +291,9 @@ class Npo_registerController extends Controller {
 	 * @return Response
 	 */
     // トップページ
-    public function landing(string $npo_name)
+    public function landing(string $npo, string $npo_name)
     {
+        // dd($npo);
         // nav部分、ユーザーがアカウント設定をしていたら取得
         if(Auth::user()){
             $user_auth = Auth::user()->email;
@@ -359,7 +365,6 @@ class Npo_registerController extends Controller {
         $data['currency_data_personal'] = $currency_amount_personal;
         $data['currency_data_company']  = $currency_amount_company; // 企業寄付の合計
         $data['currency_data_company_premier'] = $currency_amount_company_premier; // 企業寄付(プラチナ)の合計
-        // }
         
     	// NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
