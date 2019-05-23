@@ -14,11 +14,13 @@
                     <div class="col-md-12 ml-auto">
                         <div class="owner text-center">
                             <div class="name">
-                                <h3>{{Auth::user()->npo}}</h3>
+                                <h3>{{$npo_owner_info->npo}}</h3>
                             </div>
+                            @if($npo_owner_info->npo == Auth::user()->npo)
                             <div class="following">
                                 <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>        
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -44,15 +46,18 @@
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>{{ $npo_owner_info->name }} — {{ $npo_owner_info->email }}</p>
+                    <p>管理者：<a href="{{ url('/home') }}/{{ $npo_owner_info->name }}">{{ $npo_owner_info->name }}さん</a></p>
                     <div class="description-details">
                         <ul class="list-unstyled">
-                            <li>集まっている金額：{{ $npo_owner_info->total_deposit }}円</li>
+                            <li>合計支援金額：{{ $npo_owner_info->total_deposit }}円</li>
+                            @if($npo_owner_info->npo == Auth::user()->npo)
+                            <li>出勤可能金額：{{ $npo_owner_info->total_deposit }}円</li>
+                            <li>※出勤可能金額は管理者のみ表示</li>
+                            @endif
                         </ul>
                     </div>
                 </div>
             </div>
-            
             <div class="row">
                 @if($npo_registers->count())
                     @foreach($npo_registers as $npo_register)
@@ -64,11 +69,10 @@
                                     @else
                                         <a href="/{{ $npo_register->npo_name }}">
                                     @endif
-                                    
                                         @if($npo_register->background_pic)
                                         <img class="img" src="/img/project_back/{{ $npo_register->background_pic }}" />
                                         @else
-                                        <img class="img" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" />
+                                        <!--<img class="img" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" />-->
                                         @endif
                                     </a>
                                 </div>
@@ -79,7 +83,7 @@
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
                                         <a class="btn btn-info btn-round" href="/{{ $npo_register->npo_name }}">公開画面</a>
                                         <a class="btn btn-success btn-round" href="/{{ $npo_register->npo_name }}/edit">編集</a>
-                                    @else
+                                    @elseif($npo_owner_info->npo == Auth::user()->npo)
                                         @if(($npo_register->proval) == 0)
                                         <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（未公開）</a></h4>
                                         @elseif(($npo_register->proval) == -1)

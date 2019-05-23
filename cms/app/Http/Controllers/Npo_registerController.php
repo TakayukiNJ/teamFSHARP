@@ -31,14 +31,45 @@ class Npo_registerController extends Controller {
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
-        
+        // dd($data);
         // もしまだnpoを一度も登録していなかったら、createの方に誘導
         if(!$npo_auth){
 	        return view('npo_registers/create', $data);
 	    }
         $data['npo_owner_info'] = \DB::table('users')->where('npo', $npo_auth)->first();
         $npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
-		return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
+		// 金額を計算
+		for($array_count=0; $array_count<count($npo_registers); $array_count++){
+        
+		}
+// 		dd($npo_registers);
+       // return view('npo_registers/create', $data);
+    	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
+	}
+	
+	public function index_old()
+	{
+		$npo = Auth::user()->npo;
+        $user_info = \DB::table('users')->where('npo', $npo)->first();
+		if(!$user_info){
+		    return view('/errors/503');
+		}
+		$name_auth = $user_info->name;
+	    $npo_auth  = $user_info->npo;
+	    $user_auth = $user_info->email;
+    
+        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
+        $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
+        // dd($data);
+        // もしまだnpoを一度も登録していなかったら、createの方に誘導
+        if(!$npo_auth){
+	        return view('npo_registers/create', $data);
+	    }
+        $data['npo_owner_info'] = \DB::table('users')->where('npo', $npo_auth)->first();
+        $npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
+// 		dd($data);
+    	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -163,6 +194,7 @@ class Npo_registerController extends Controller {
 	 */
 	public function show($npo_name)
 	{
+	    
 		$user_auth = Auth::user()->email;
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
         
@@ -305,6 +337,10 @@ class Npo_registerController extends Controller {
         // データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
     	$currentNpoInfo     = \DB::table('npo_registers')->where('npo_name', $npo_name)->first();
     	$currentPremierData = \DB::table('premier_data')->where('vision_id', $npo_name)->get();
+        if(!$currentNpoInfo){
+		    return view('/errors/503');
+		}
+        
         // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
         // 何人がいくら寄付したのか、誰が寄付したのか表示
         $data['donater']          = array(0=>"Donater");
