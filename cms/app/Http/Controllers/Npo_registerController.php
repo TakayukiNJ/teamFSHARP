@@ -31,7 +31,6 @@ class Npo_registerController extends Controller {
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
 		// データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
-        // dd($data);
         // もしまだnpoを一度も登録していなかったら、createの方に誘導
         if(!$npo_auth){
 	        return view('npo_registers/create', $data);
@@ -39,12 +38,12 @@ class Npo_registerController extends Controller {
         $data['npo_owner_info'] = \DB::table('users')->where('npo', $npo_auth)->first();
         $npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
 		// 金額を計算
+		$data['project_total_price'] = 0;
 		for($array_count=0; $array_count<count($npo_registers); $array_count++){
-        
+            $project_total_price = $npo_registers[$array_count]->follower;
+            $data['project_total_price'] += $project_total_price;
 		}
-// 		dd($npo_registers);
-       // return view('npo_registers/create', $data);
-    	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
+      	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	
 	public function index_old()
@@ -66,9 +65,15 @@ class Npo_registerController extends Controller {
         if(!$npo_auth){
 	        return view('npo_registers/create', $data);
 	    }
+	    
         $data['npo_owner_info'] = \DB::table('users')->where('npo', $npo_auth)->first();
         $npo_registers = Npo_register::orderBy('proval', 'desc')->where('manager', $name_auth)->paginate(10);
-// 		dd($data);
+    	// 金額を計算
+		$data['project_total_price'] = 0;
+		for($array_count=0; $array_count<count($npo_registers); $array_count++){
+            $project_total_price = $npo_registers[$array_count]->follower;
+            $data['project_total_price'] += $project_total_price;
+		}
     	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	/**
