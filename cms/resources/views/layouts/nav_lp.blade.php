@@ -108,7 +108,7 @@
         				<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }}</a>
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-        						<a class="dropdown-item" href="https://goo.gl/YZLao1"><i class="nc-icon nc-money-coins"></i>&nbsp; 団体登録申請</a>
+        						<a class="dropdown-item" href="https://docs.google.com/forms/d/e/1FAIpQLSf7W-37Y-fGkoz7P5tyx-vx4e47ny7UQd-6XC8o1z3Y9xOO0Q/viewform"><i class="nc-icon nc-money-coins"></i>&nbsp; 団体登録申請</a>
                         @else
                         @if(Auth::user()->total_deposit)
                         <li class="nav-item">
@@ -210,7 +210,7 @@
                             @endif
                             
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-                                <a class="dropdown-item" href="{{ url('/npo_registers') }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
+                                <a class="dropdown-item" href="{{ url('/') }}/{{ Auth::user()->npo }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
                         @endif        		
                                 <a class="dropdown-item" href="{{ url('home/home_own_timeline') }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
                                 <a class="dropdown-item" href="{{ url('home/home_register') }}"><i class="nc-icon nc-badge"></i>&nbsp; マイページ設定</a>

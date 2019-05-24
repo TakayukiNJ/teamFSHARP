@@ -49,10 +49,10 @@
                     <p>管理者：<a href="{{ url('/home') }}/{{ $npo_owner_info->name }}">{{ $npo_owner_info->name }}さん</a></p>
                     <div class="description-details">
                         <ul class="list-unstyled">
-                            <li>合計支援金額：{{ $npo_owner_info->total_deposit }}円</li>
+                            <li>合計支援金額：{{ $project_total_price }}円</li>
                             @if($npo_owner_info->npo == Auth::user()->npo)
-                            <li>出勤可能金額：{{ $npo_owner_info->total_deposit }}円</li>
-                            <li>※出勤可能金額は管理者のみ表示</li>
+                            <li>出金可能金額：{{ $npo_owner_info->total_deposit }}円</li>
+                            <li>※出金可能金額は管理者のみ表示</li>
                             @endif
                         </ul>
                     </div>
