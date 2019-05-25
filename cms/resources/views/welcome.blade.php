@@ -156,7 +156,7 @@
 						<div class="col-md-4">
 							<div class="card card-blog">
 								<div class="card-image">
-									<a href="/{{ $npo_info1->npo_name }}">
+									<a href="/{{$npo1}}/{{ $npo_info1->npo_name }}">
 									    @if($npo_info1->background_pic)
                                         <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info1->background_pic }}" />
                                         @else
@@ -169,7 +169,7 @@
 									<!--    Sustainable Cities And Communities-->
 									<!--</h6>-->
 									<h5 class="card-title">
-										<a href="/{{ $npo_info1->npo_name }}">{{ $npo_info1->subtitle }}</a>
+										<a href="/{{$npo1}}/{{ $npo_info1->npo_name }}">{{ $npo_info1->subtitle }}</a>
 									</h5>
 									<p class="card-description">
 										{{ $npo_info1->title }}<br>
@@ -196,7 +196,7 @@
 						<div class="col-md-4">
 							<div class="card card-blog">
 								<div class="card-image">
-									<a href="/{{ $npo_info2->npo_name }}">
+									<a href="/{{$npo2}}/{{ $npo_info2->npo_name }}">
 									    @if($npo_info2->background_pic)
                                         <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info2->background_pic }}" />
                                         @else
@@ -209,7 +209,7 @@
 									<!--	Quality Education-->
 									<!--</h6>-->
 									<h5 class="card-title">
-										<a href="/{{ $npo_info2->npo_name }}">{{ $npo_info2->subtitle }}</a>
+										<a href="/{{$npo2}}/{{ $npo_info2->npo_name }}">{{ $npo_info2->subtitle }}</a>
 									</h5>
 									<p class="card-description">
 										{{ $npo_info2->title }}<br>
@@ -236,7 +236,7 @@
 						<div class="col-md-4">
 							<div class="card card-blog">
 								<div class="card-image">
-									<a href="/{{ $npo_info3->npo_name }}">
+									<a href="/{{$npo3}}/{{ $npo_info3->npo_name }}">
 									    @if($npo_info3->background_pic)
                                         <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info3->background_pic }}" />
                                         @else
@@ -250,7 +250,7 @@
 									<!--	Life No Land-->
 									<!--</h6>-->
 									<h5 class="card-title">
-										<a href="/{{ $npo_info3->npo_name }}">{{ $npo_info3->subtitle }}</a>
+										<a href="/{{$npo3}}/{{ $npo_info3->npo_name }}">{{ $npo_info3->subtitle }}</a>
 									</h5>
 									<p class="card-description">
 										{{ $npo_info3->title }}<br>
