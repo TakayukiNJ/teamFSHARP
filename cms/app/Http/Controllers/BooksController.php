@@ -29,9 +29,12 @@ class BooksController extends Controller
         }    
         //$books = Book::orderBy('created_at', 'asc')->paginate(3);
         //$books = Book::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(5);
-        $data['npo_info1']  = \DB::table('npo_registers')->where('npo_name', 'toyama_bootcamp')->first();
-        $data['npo_info2']  = \DB::table('npo_registers')->where('npo_name', 'biosbootcamp')->first();
-        $data['npo_info3']  = \DB::table('npo_registers')->where('npo_name', 'clean_man')->first();
+        $data['npo_info1'] = \DB::table('npo_registers')->where('npo_name', 'toyama_bootcamp')->first();
+        $data['npo_info2'] = \DB::table('npo_registers')->where('npo_name', 'biosbootcamp')->first();
+        $data['npo_info3'] = \DB::table('npo_registers')->where('npo_name', 'clean_man')->first();
+        $data['npo1'] = \DB::table('users')->where('name', $data['npo_info1']->manager)->first()->npo;
+        $data['npo2'] = \DB::table('users')->where('name', $data['npo_info2']->manager)->first()->npo;
+        $data['npo3'] = \DB::table('users')->where('name', $data['npo_info3']->manager)->first()->npo;
         //$this->middleware('guest', ['except' => 'logout']);
         return view('welcome', $data);
         
