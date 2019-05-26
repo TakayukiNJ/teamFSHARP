@@ -309,7 +309,7 @@
                                             <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
                                         </div>
                                         <div class="col-md-8 col-4">
-                                            <h6><a href="/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a><br>{{ $npo_info_proval[$i]->title }}</h6>
+                                            <h6><a href="/{{ $npo_info_proval[$i]->title }}/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a><br>{{ $npo_info_proval[$i]->title }}</h6>
                                             <h6><small>
                                                 現在合計：{{ $npo_info_proval[$i]->follower }}円
         										<br>一口：{{ $npo_info_proval[$i]->support_amount }}円
