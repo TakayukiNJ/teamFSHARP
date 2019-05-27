@@ -146,12 +146,12 @@
                                                     <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
                                                 </div>
                                                 <div class="col-md-7 col-4">
-                                                    <h6><a href="/{{ $npo_info_enterprise[$i]->npo_name }}">{{ $npo_info_enterprise[$i]->subtitle }}</a><br><small>{{ $npo_info_enterprise[$i]->title }}</small></h6></h6>
+                                                    <h6><a href="/{{$npo_info_enterprise[$i]->title}}/{{ $npo_info_enterprise[$i]->npo_name }}">{{ $npo_info_enterprise[$i]->subtitle }}</a><br><small>{{ $npo_info_enterprise[$i]->title }}</small></h6></h6>
                                                 </div>
                                                 <div class="col-md-3 col-2">
-                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_enterprise[$i]->npo_name }}">GO!</a>
+                                                    <a class="btn btn-xs btn-primary" href="/{{$npo_info_enterprise[$i]->title}}/{{ $npo_info_enterprise[$i]->npo_name }}">GO!</a>
                                                     @if($npo_info_enterprise[$i]->url)
-                                                    <br><br><a class="btn btn-xs btn-success" href="{{ $npo_info_enterprise[$i]->url }}" target="_blank">外部LINK</a>
+                                                    <br><br><a class="btn btn-xs btn-success" href="/{{ $npo_info_enterprise[$i]->url }}" target="_blank">外部LINK</a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -167,8 +167,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-md-6 col-5">
-                                                    <!--<a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge">-->
-                                                    <a href="/{{ $npo_info_personal[$i]->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info_personal[$i]->npo_name }}" aria-label="Close">
+                                                    <a href="/{{ $npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info_personal[$i]->npo_name }}" aria-label="Close">
                                                         <svg viewBox="0 0 210 210">
                                                             <g stroke="none" fill="none">
                                                                 <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
@@ -251,7 +250,7 @@
                                                                                 、
                                                                             @endif
                                                                             @if(($this_auth->name) == $donater[$i][$d])
-                                                                                <b><font color="red">{{$donater[$i][$d]}}さん@if(Auth::user()->name == $this_auth->name)（あなた）@endif @if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
+                                                                                <b><a href="{{ url('/home') }}/{{ $donater[$i][$d] }}">{{$donater[$i][$d]}}</a>さん@if(Auth::user()->name == $this_auth->name)（あなた）@endif @if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
                                                                             @else
                                                                                 <a href="{{ url('/home') }}/{{ $donater[$i][$d] }}">{{$donater[$i][$d]}}</a>さん@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif
                                                                             @endif
@@ -263,7 +262,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 col-3">
-                                                    <h6><a href="/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br>
+                                                    <h6><a href="/{{$npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br>
                                                     <small>{{ $npo_info_personal[$i]->title }}</small><br>
                                                     <small>単価:{{ $npo_info_personal[$i]->support_amount }}円</small><br>
                                                     <small>現在:{{ $npo_info_personal[$i]->follower }}円</small><br>
@@ -280,7 +279,7 @@
                                                     </h6></h6><br>
                                                 </div>
                                                 <div class="col-md-1 col-1">
-                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_personal[$i]->npo_name }}">GO!</a>
+                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}">GO!</a>
                                                     @if($npo_info_personal[$i]->url)
                                                     <br><br><a class="btn btn-xs btn-success" href="{{ $npo_info_personal[$i]->url }}" target="_blank">外部LINK</a>
                                                     @endif
@@ -290,7 +289,7 @@
                                         <hr><br><br>
                                     @endfor
                                 @elseif(!$npo_info_enterprise)
-                                    <p class="text-muted text-center">まだどこにも支援していないようです！</p>
+                                    <p class="text-muted text-center">まだどこにも支援していないようです。</p>
                                 @endif
                             </ul>
                         </div>
@@ -320,7 +319,7 @@
         									</small></h6>
                                         </div>
                                         <div class="col-md-3 col-2">
-                                            <a class="btn btn-xs btn-primary" href="/{{ $npo_info_proval[$i]->npo_name }}">GO!</a>
+                                            <a class="btn btn-xs btn-primary" href="/{{$npo_info_proval[$i]->title}}/{{ $npo_info_proval[$i]->npo_name }}">GO!</a>
                                         </div>
                                     </div>
                                 </li>
