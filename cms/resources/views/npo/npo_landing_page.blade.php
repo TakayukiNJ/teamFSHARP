@@ -133,13 +133,13 @@
                                 <br>
                                 @if($npo_info->certificated_npo)
                                 <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
-                                    <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                    <img src="/img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
                                 </a>
                                 @endif
                                 @for($i = 1; $i < 7; $i++)
                                     <?php $sdgs = "sdgs".$i ?>
                                     @if($npo_info->$sdgs)
-                                    <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
+                                    <img src="/img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="72" height="72">
                                     @endif
                                 @endfor
                             </div>
@@ -341,13 +341,13 @@
                                                             <br>
                                                             @if($npo_info->certificated_npo)
                                                             <a href="https://www.npo-homepage.go.jp/npoportal/detail/{{ $npo_info->certificated_npo }}" target="_blank">
-                                                                <img src="img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
+                                                                <img src="/img/sdgs-logo/certificated_npo.jpeg" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
                                                             </a>
                                                             @endif
                                                             @for ($i = 1; $i < 7; $i++)
                                                                 <?php $sdgs = "sdgs".$i ?>
                                                                 @if($npo_info->$sdgs)
-                                                                <img src="img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
+                                                                <img src="/img/sdgs-logo/sdg_icon_{{$npo_info->$sdgs}}.png" class="img-thumbnail img-responsive media-object" alt="Rounded Image" width="60" height="60">
                                                                 @endif
                                                             @endfor
                                                         </div>
@@ -375,7 +375,7 @@
                                                                 @endif
                                                                 @if(!Auth::guest())
                                                                     @if((Auth::user()->name) == $donater[$i])
-                                                                        <b><font color="red">{{$donater[$i]}}（あなた）@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif</font></b>
+                                                                        <b><a href="{{ url('/home') }}/{{$donater[$i]}}">{{$donater[$i]}}（あなた）@if($donater_times[$i] > 1)</a><small>×{{$donater_times[$i]}}</small>@endif</b>
                                                                     @else
                                                                         <a href="{{ url('/home') }}/{{$donater[$i]}}">{{$donater[$i]}}</a>さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
                                                                     @endif
