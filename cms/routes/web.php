@@ -250,7 +250,9 @@ Route::resource("visions","VisionController");
 // Route::resource("npo_register/{npo_name}/edit","Npo_registerController@edit");
 // Route::get('npo_registers/{npo_name}/edit', 'Npo_registerController@edit')->middleware('auth');
 
+Route::resource("npo_registers","Npo_registerController");
 //自己紹介表示画面
+Route::get('/npo_register/create', 'Npo_registerController@create');
 Route::post('/npo_register/create', 'Npo_registerController@create');
 Route::post('/npo_register/{npo_name}/edit', 'Npo_registerController@edit');
 //フォルダ名をURLに反映(2018.01.04仲条追加項目)
@@ -270,7 +272,7 @@ Route::post('/npo/{npo_name}/payment_company_pratinum','Npo_registerController@p
 Route::post('/npo/{npo_name}/send_mail','Npo_registerController@send_mail');
 
 // NPO
-Route::resource("npo_registers","Npo_registerController");
+// Route::resource("npo_registers","Npo_registerController");
 Route::get("npo_registers","Npo_registerController@index_old");
 Route::get("{npo}","Npo_registerController@index");
 // スタブ機能
