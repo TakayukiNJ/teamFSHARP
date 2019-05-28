@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Auth;
 //use App\Book;
 //use Validator;
-//use Auth;
 
 class BooksController extends Controller
 {
