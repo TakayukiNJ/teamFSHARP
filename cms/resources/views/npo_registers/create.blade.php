@@ -12,6 +12,7 @@
                     <form enctype="multipart/form-data" action="{{ route('npo_registers.store') }}" method="POST">
                         <div class="row">
                             <div class="col-md-7 content-center">
+                                
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                     <br>
                                     <div class="fileinput-new thumbnail img-no-padding" style="max-width: 100px; max-height: 100px;">
@@ -59,21 +60,21 @@
                                     </div>
                                     <input type="hidden" id="title-field" name="title" class="form-control text-center" value="{{ Auth::user()->npo }}"/>
                                     {{-- 募集支援数 --}}
-                                    <div class="form-group @if($errors->has('support_limit')) has-error @endif">
-                                       <label for="support_limit-field">募集支援数</label>
-                                    <input type="text" id="support_limit-field" name="support_limit" class="form-control text-center" value="{{ old("support_limit") }}"/>
-                                       @if($errors->has("support_limit"))
-                                        <span class="help-block">{{ $errors->first("support_limit") }}<</span>
-                                       @endif
-                                    </div>
+                                    <!--<div class="form-group @if($errors->has('support_limit')) has-error @endif">-->
+                                    <!--   <label for="support_limit-field">募集支援数</label>-->
+                                    <!--<input type="text" id="support_limit-field" name="support_limit" class="form-control text-center" value="{{ old("support_limit") }}"/>-->
+                                    <!--   @if($errors->has("support_limit"))-->
+                                    <!--    <span class="help-block">{{ $errors->first("support_limit") }}<</span>-->
+                                    <!--   @endif-->
+                                    <!--</div>-->
                                     {{-- 一口の値段 --}}
-                                    <div class="form-group @if($errors->has('support_amount')) has-error @endif">
-                                       <label for="support_amount-field">一口の値段</label>
-                                    <input type="text" id="support_amount-field" name="support_amount" class="form-control text-center" value="{{ old("support_amount") }}"/>
-                                       @if($errors->has("support_amount"))
-                                        <span class="help-block">{{ $errors->first("support_amount") }}<</span>
-                                       @endif
-                                    </div>
+                                    <!--<div class="form-group @if($errors->has('support_amount')) has-error @endif">-->
+                                    <!--   <label for="support_amount-field">一口の値段</label>-->
+                                    <!--<input type="text" id="support_amount-field" name="support_amount" class="form-control text-center" value="{{ old("support_amount") }}"/>-->
+                                    <!--   @if($errors->has("support_amount"))-->
+                                    <!--    <span class="help-block">{{ $errors->first("support_amount") }}<</span>-->
+                                    <!--   @endif-->
+                                    <!--</div>-->
                                     @endif
                                 <div class="well well-sm">
                                     <button type="submit" class="btn btn-primary">Create</button>
