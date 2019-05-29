@@ -461,7 +461,7 @@ class Npo_registerController extends Controller {
 	{
 		$npo_register = Npo_register::findOrFail($npo_name);
  		
-        $name_auth = Auth::user()->name;
+ 		$name_auth = Auth::user()->name;
         $npo_id    = Auth::user()->npo_id;
 		$npo_register->npo_name      = $request->input("npo_name"); // URL
         // $npo_register->support_price = $request->input("support_price"); // 目標金額
@@ -630,9 +630,10 @@ class Npo_registerController extends Controller {
 // 		if($npo_register->published){
 // 		    return view('npo.npo_landing_page', compact('npo_register'));
 // 		}
+        $this_url = "/".$npo_register->title."/".$npo_register->npo_name;
         if($npo_register->proval != 0){
-            // return view('npo.npo_landing_page');
-            // return redirect()->route('npo_registers.landing', compact('npo_register'))->with('message', 'Item updated successfully.');
+            // return view('/npo/npo_landing_page');
+            return redirect($this_url)->with('message', 'Item updated successfully.');
         }
         return redirect()->route('npo_registers.show', compact('npo_register'))->with('message', 'Item updated successfully.');
 	}
