@@ -187,7 +187,7 @@ class Npo_registerController extends Controller {
         if($npo_register->subtitle){
             $npo_register->save();
         }
-		return redirect()->route('npo_registers.index',$npo_auth)->with('message', 'Item created successfully.');
+		return redirect()->route('npo_registers.index')->with('message', 'Item created successfully.');
 	}
 
 	/**
