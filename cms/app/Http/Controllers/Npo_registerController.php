@@ -17,8 +17,8 @@ class Npo_registerController extends Controller {
     {
         $this->middleware('auth', ['except' => ['landing', 'pieces']]);
     }
-
-	public function index(string $npo)
+    
+	public function index2(string $npo)
 	{
         $user_info = \DB::table('users')->where('npo', $npo)->first();
 		if(!$user_info){
@@ -46,7 +46,7 @@ class Npo_registerController extends Controller {
       	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	
-	public function index_old()
+	public function index()
 	{
 		$npo = Auth::user()->npo;
         $user_info = \DB::table('users')->where('npo', $npo)->first();
@@ -187,7 +187,7 @@ class Npo_registerController extends Controller {
         if($npo_register->subtitle){
             $npo_register->save();
         }
-		return redirect()->route('npo_registers.index')->with('message', 'Item created successfully.');
+		return redirect()->route('npo_registers.index',$npo_auth)->with('message', 'Item created successfully.');
 	}
 
 	/**
