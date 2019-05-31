@@ -343,7 +343,6 @@ class HomeController extends Controller
             ]);
 		}
 		
-		
         $data["this_auth"] = Auth::user();
         $data['this_personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
 		
@@ -407,7 +406,6 @@ class HomeController extends Controller
                         $data['donater_pratinum'] += array($company_count_pratinum=>$donater_npo);
                     }
                 }
-    		    
     		}
 		}
 		$data['buyer_data']    = $buyer_count;
@@ -423,15 +421,6 @@ class HomeController extends Controller
     		    $data['npo_info_enterprise'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_npo)->first();
     		}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-        
 		
 		return view('home/home_own_timeline', $data)
             ->with('image_id', $image_id)
@@ -602,7 +591,7 @@ class HomeController extends Controller
         
         $premierData_personal = \DB::table('premier_data')->where('user_define', $email)->orderBy('updated_at', 'desc')->get();
         // 新着情報を取得
-        $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
+        $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->limit(10)->get();     
 		$data['premierData_personal'] = $premierData_personal;
         $data['donater']          = array(0=>"Donater");
         $data['donater_gold']     = array(0=>"Company");
