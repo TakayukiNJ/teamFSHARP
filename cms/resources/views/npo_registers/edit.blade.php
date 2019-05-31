@@ -208,10 +208,10 @@
                     </div>
                     {{-- 説明・紹介文 --}}
                     <div class="form-group @if($errors->has('body')) has-error @endif">
-                        <h6>説明・紹介文</h6>
-						<textarea class="form-control textarea-limited" id="body-field" name="body" placeholder="説明・紹介文は、200文字までです。" rows="6", maxlength="200" value="{{ is_null(old("yellow_card_body")) ? $npo_info->yellow_card_body : old("yellow_card_body") }}"></textarea>
+                        <h6 for="body-field">説明・紹介文</h6>
+						<textarea class="form-control textarea-limited" id="body-field" name="body" placeholder="説明・紹介文は、200文字までです。" rows="6", maxlength="200">{{ is_null(old("body")) ? $npo_info->body : old("body") }}</textarea>
                         <h5><small><span id="textarea-limited-message" class="pull-right">残り200文字</span></small></h5>
-                        @if($errors->has("yellow_card_body"))
+                        @if($errors->has("body"))
                             <span class="help-block icon-danger">{{ $errors->first("body") }}</span>
                         @endif
                     </div>

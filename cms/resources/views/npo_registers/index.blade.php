@@ -81,8 +81,10 @@
                                         <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                         <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
-                                        <a class="btn btn-info btn-round" href="/{{ $npo_register->npo_name }}">公開画面</a>
+                                        <a class="btn btn-info btn-round" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">公開画面</a>
+                                        @if($npo_owner_info->npo == Auth::user()->npo)
                                         <a class="btn btn-success btn-round" href="/{{ $npo_register->npo_name }}/edit">編集</a>
+                                        @endif
                                     @elseif($npo_owner_info->npo == Auth::user()->npo)
                                         @if(($npo_register->proval) == 0)
                                         <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（未公開）</a></h4>

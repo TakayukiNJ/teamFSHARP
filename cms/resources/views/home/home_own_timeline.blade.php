@@ -24,7 +24,7 @@
                         <div class="name">
                             <h4 class="title text-center">{{ $this_auth->name }}さんのページ@if($this_personal_info)<br><small>{{ $this_personal_info->description }}</small>@endif</h4>
                         </div>
-                  </div>
+                    </div>
                 </div>
             </div>
             @if(Auth::user()->name == $this_auth->name)
