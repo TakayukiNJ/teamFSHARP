@@ -3,9 +3,14 @@
         <div class="container">
             <div class="navbar-translate">
                 <div class="navbar-header">
+                    @if (Auth::guest())
                     <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
+                    @elseif ((Auth::user()->npo) == "")
+                    <a class="navbar-brand" href="{{ url('/home') }}">F♯</a>
+                    @else
+                    <a class="navbar-brand" href="{{ url('/') }}/{{ Auth::user()->npo }}">F♯</a>
+                    @endif
                 </div>
-        
                 <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-bar"></span>
                     <span class="navbar-toggler-bar"></span>
@@ -212,10 +217,12 @@
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                                 <a class="dropdown-item" href="{{ url('/') }}/{{ Auth::user()->npo }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
                         @endif        		
-                                <a class="dropdown-item" href="{{ url('home/home_own_timeline') }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
+                                <a class="dropdown-item" href="{{ url('home') }}/530"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
                                 <a class="dropdown-item" href="{{ url('home/home_register') }}"><i class="nc-icon nc-badge"></i>&nbsp; マイページ設定</a>
+                                {{--
                                 <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();"><i class="nc-icon nc-spaceship"></i>&nbsp; @lang('app.logout')</a>
+                                --}}
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
