@@ -121,6 +121,9 @@ class Npo_registerController extends Controller {
 		// NPOの名前をヘッダーに表示
 		if("" == $npo_auth){
             $npo_auth = $npo_register->npo_name;
+            if("home" == $npo_auth){
+                return view('/errors/503');
+    	    }
             Auth::user()->where('id', $id_auth)->update([
                 'npo' => $npo_register->title
             ]);
