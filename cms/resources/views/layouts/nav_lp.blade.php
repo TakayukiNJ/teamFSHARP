@@ -6,7 +6,7 @@
                     @if (Auth::guest())
                     <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
                     @elseif ((Auth::user()->npo) == "")
-                    <a class="navbar-brand" href="{{ url('/home') }}">F♯</a>
+                    <a class="navbar-brand" href="{{ url('/home') }}/{{ Auth::user()->name }}">F♯</a>
                     @else
                     <a class="navbar-brand" href="{{ url('/') }}/{{ Auth::user()->npo }}">F♯</a>
                     @endif
@@ -217,7 +217,7 @@
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
                                 <a class="dropdown-item" href="{{ url('/') }}/{{ Auth::user()->npo }}"><i class="nc-icon nc-money-coins"></i>&nbsp; {{ Auth::user()->npo }}</a>
                         @endif        		
-                                <a class="dropdown-item" href="{{ url('home') }}/530"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
+                                <a class="dropdown-item" href="{{ url('home') }}/{{ Auth::user()->name }}"><i class="nc-icon nc-badge"></i>&nbsp; @lang('app.mypage')</a>
                                 <a class="dropdown-item" href="{{ url('home/home_register') }}"><i class="nc-icon nc-badge"></i>&nbsp; マイページ設定</a>
                                 {{--
                                 <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();

@@ -125,11 +125,22 @@
                                         @endif
                                     </div>
                                 </div>
+                                
+                                
+                            {{-- ユーザー名 --}}
+                            <div class="form-group">
+                                <label>ユーザー名</label>
+                                <input type="text" class="form-control border-input" value="{{ Auth::user()->name }}" readonly="readonly"/>
+                            </div>
+                            {{-- メールアドレス --}}
+                            <div class="form-group">
+                                <label>メールアドレス</label>
+                                <input type="text" class="form-control border-input" value="{{ Auth::user()->email }}" readonly="readonly"/>
                             </div>
                             {{-- 郵便番号(ハイフン無し半角英数) --}}
                             <div class="form-group @if($errors->has('post_up')) has-error @endif">
                                 <label for="post_up-field">郵便番号(ハイフン無し半角英数)</label>
-                                <input type="text" id="post_up-field" name="post_up" class="form-control border-input" placeholder="かぶしきがいしゃえふしゃーぷ" value="{{ is_null(old("post_up")) ? $post_up : old("post_up") }}"/>
+                                <input type="text" id="post_up-field" name="post_up" class="form-control border-input" placeholder="1010062" value="{{ is_null(old("post_up")) ? $post_up : old("post_up") }}"/>
                                 @if($errors->has("post_up"))
                                 <span class="help-block form-control-feedback">{{ $errors->first("post_up") }}</span>
                                 @endif
@@ -197,138 +208,17 @@
                                 <br>
                                 <button type="submit" class="btn btn-wd btn-info btn-round">保存</button>
                             </div>
-                            {{ csrf_field() }}
-    {{--
-                        <label>Notifications</label>
-                        <ul class="notifications">
-                              <li class="notification-item">
-    							Updates regarding platform changes
-    							<input type="checkbox" data-toggle="switch" checked="" data-on-color="info" data-off-color="info"><span class="toggle"></span>
-                              </li>
-                              <li class="notification-item">
-                                Updates regarding product changes
-    		                    <input type="checkbox" data-toggle="switch" checked="" data-on-color="info" data-off-color="info"><span class="toggle"></span>
-                              </li>
-                              <li class="notification-item">
-                                Weekly newsletter
-    							<input type="checkbox" data-toggle="switch" checked="" data-on-color="info" data-off-color="info"><span class="toggle"></span>
-                              </li>
-                          </ul>
-                        
-                        <form name="changeform" method="POST">
-    
-                        <!--<div class="form-group">-->
-                        <!--    <label for="title-field">Email</label>-->
-                        <!--    <input type="text" id="title-field" name="user" class="form-control" value="{{ $user }}" readonly="readonly"/>-->
-                        <!--</div>-->
-    
-                        <div class="form-group @if($errors->has('sex_type')) has-error @endif">
-                            <label for="title-field">性別</label><br>
-        					@if ($sex_type == 2)
-                            <input type="radio" id="sex_type_1" name="sex_type" value="1" style="width:40px;height:30px">男
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="sex_type_2" name="sex_type" value="2" style="width:40px;height:30px" CHECKED>女
-                            @else
-                            <input type="radio" id="sex_type_1" name="sex_type" value="1" style="width:40px;height:30px" CHECKED>男
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="sex_type_2" name="sex_type" value="2" style="width:40px;height:30px">女
-                            @endif
-                            @if($errors->has("sex_type"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("sex_type") }}</span>
-                            @endif
-                        </div>
-    
-                        <div class="form-group @if($errors->has('birthday_year')) has-error @endif @if($errors->has('birthday_month')) has-error @endif @if($errors->has('birthday_day')) has-error @endif">
-                            <label for="title-field">生年月日</label><BR>
-                            <table>
-                            <input type="text" id="birthday_year-field" name="birthday_year" class="form-control" style="width:30%" value="{{ $birthday_year }}" placeholder="年 (例)2008"/>
-                            <input type="text" id="birthday_month-field" name="birthday_month" class="form-control" style="width:20%" value="{{ $birthday_month }}" placeholder="月 (例)12"/>
-                            <input type="text" id="birthday_year-field" name="birthday_day" class="form-control" style="width:20%" value="{{ $birthday_day }}" placeholder="日 (例)01"/>
-                            </table>
-                            @if($errors->has("birthday_year"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("birthday_year") }}</span>
-                            @endif
-                            @if($errors->has("birthday_month"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("birthday_month") }}</span>
-                            @endif
-                            @if($errors->has("birthday_day"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("birthday_day") }}</span>
-                            @endif
-                        </div>
-                        
-                        <div class="form-group">
-                        	<label for="title-feled">画像イメージ</label>
-    	                	<IMG id='own_image'>
-    		                <INPUT TYPE="button" id="image_upload_button" class="btn btn-primary" value="　画像登録　" onClick="ZZ1_run('HOME_REGIST')" >
-    		                <INPUT TYPE="button" id="image_delete_button" class="btn btn-primary" style="display:none" value="　画像消す　" onClick="ZZ2_run()" >
-                        </div>
-    --}}
-                        {{-- 銀行口座関係 --}}
-                        {{--
-                        <div class="form-group @if($errors->has('bank_name')) has-error @endif @if($errors->has('bank_branch')) has-error @endif @if($errors->has('bank_type_account')) has-error @endif @if($errors->has('bank_account_number')) has-error @endif @if($errors->has('bank_account_name')) has-error @endif">
-                            <label for="title-field">銀行口座振込先（プロジェクトの振込先）※設定後、変更不可</label><BR>
-                            <table>
-                            銀行名<input type="text" id="bank_name-field" name="bank_name" class="form-control" style="width:20%" value="{{ $bank_name }}" placeholder="例：三菱ＵＦＪ銀行" {{ !$bank_name ? '' : 'readonly="readonly"'}}/>
-                            支店名<input type="text" id="bank_branch-field" name="bank_branch" class="form-control" style="width:20%" value="{{ $bank_branch }}" placeholder="例：代々木支店" {{ !$bank_branch ? '' : 'readonly="readonly"'}}/>
-                            <p for="title-field">預金科目</p>
-        					@if ($bank_type_account == 9)
-                            <input type="radio" id="bank_type_account_1" name="bank_type_account" value="1" style="width:40px;height:30px">普通預金<br>
-                            <input type="radio" id="bank_type_account_2" name="bank_type_account" value="2" style="width:40px;height:30px">当座預金<br>
-                            <input type="radio" id="bank_type_account_4" name="bank_type_account" value="4" style="width:40px;height:30px">貯蓄預金<br>
-                            <input type="radio" id="bank_type_account_9" name="bank_type_account" value="9" style="width:40px;height:30px" CHECKED>その他<br>
-                            @elseif ($bank_type_account == 4)
-                            <input type="radio" id="bank_type_account_1" name="bank_type_account" value="1" style="width:40px;height:30px">普通預金<br>
-                            <input type="radio" id="bank_type_account_2" name="bank_type_account" value="2" style="width:40px;height:30px">当座預金<br>
-                            <input type="radio" id="bank_type_account_4" name="bank_type_account" value="4" style="width:40px;height:30px" CHECKED>貯蓄預金<br>
-                            <input type="radio" id="bank_type_account_9" name="bank_type_account" value="9" style="width:40px;height:30px">その他<br>
-                            @elseif ($bank_type_account == 2)
-                            <input type="radio" id="bank_type_account_1" name="bank_type_account" value="1" style="width:40px;height:30px">普通預金<br>
-                            <input type="radio" id="bank_type_account_2" name="bank_type_account" value="2" style="width:40px;height:30px" CHECKED>当座預金<br>
-                            <input type="radio" id="bank_type_account_4" name="bank_type_account" value="4" style="width:40px;height:30px">貯蓄預金<br>
-                            <input type="radio" id="bank_type_account_9" name="bank_type_account" value="9" style="width:40px;height:30px">その他<br>
-                            @else
-                            <input type="radio" id="bank_type_account_1" name="bank_type_account" value="1" style="width:40px;height:30px" CHECKED>普通預金<br>
-                            <input type="radio" id="bank_type_account_2" name="bank_type_account" value="2" style="width:40px;height:30px">当座預金<br>
-                            <input type="radio" id="bank_type_account_4" name="bank_type_account" value="4" style="width:40px;height:30px">貯蓄預金<br>
-                            <input type="radio" id="bank_type_account_9" name="bank_type_account" value="9" style="width:40px;height:30px">その他<br>
-                            @endif
-                            <br>
-                            口座番号<input type="text" id="bank_account_number-field" name="bank_account_number" class="form-control" style="width:20%" value="{{ $bank_account_number }}" placeholder="例：1234567" {{ !$bank_account_number ? '' : 'readonly="readonly"'}}/>
-                            受取人口座名<input type="text" id="bank_account_name-field" name="bank_account_name" class="form-control" style="width:30%" value="{{ $bank_account_name }}" placeholder="例：テ゛シ゛タルハリウツト゛（カ" {{ !$bank_account_name ? '' : 'readonly="readonly"'}}/>
-                            </table>
-                            @if($errors->has("bank_name"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("bank_name") }}</span>
-                            @endif
-                            @if($errors->has("bank_branch"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("bank_branch") }}</span>
-                            @endif
-                            @if($errors->has("bank_type_account"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("bank_type_account") }}</span>
-                            @endif
-                            @if($errors->has("bank_account_number"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("bank_account_number") }}</span>
-                            @endif
-                            @if($errors->has("bank_account_name"))
-                               <span class="help-block form-control-feedback">{{ $errors->first("bank_account_name") }}</span>
-                            @endif
-                        </div>
-                    <div class="well well-sm">
-                        <button type="button" class="btn btn-primary" onClick="C03_run()">　確　認　</button>
-                    </div>
-                    {{ csrf_field() }}
-                </form>
-                --}}
-    
+                        {{ csrf_field() }}
                     </div>
                 </div>
             </form>
         </div>
-            <br>
-            <div class="text-center">
-                <a class="btn btn-outline-default btn-round text-center" href="/home/home_own_timeline">
-                    戻る
-                </a>
-            </div>
+        <br>
+        <div class="text-center">
+            <a class="btn btn-outline-default btn-round text-center" href="/home/home_own_timeline">
+                戻る
+            </a>
+        </div>
     </div>
 </div>
 
