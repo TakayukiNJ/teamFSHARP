@@ -375,7 +375,7 @@
                                                                 @endif
                                                                 @if(!Auth::guest())
                                                                     @if((Auth::user()->name) == $donater[$i])
-                                                                        <b><a href="{{ url('/home') }}/{{$donater[$i]}}">{{$donater[$i]}}（あなた）@if($donater_times[$i] > 1)</a><small>×{{$donater_times[$i]}}</small>@endif</b>
+                                                                        <b><a href="{{ url('/home') }}/{{$donater[$i]}}">{{$donater[$i]}}</a>さん（あなた）@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif</b>
                                                                     @else
                                                                         <a href="{{ url('/home') }}/{{$donater[$i]}}">{{$donater[$i]}}</a>さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
                                                                     @endif
