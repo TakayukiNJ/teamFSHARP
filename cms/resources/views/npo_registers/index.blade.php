@@ -83,7 +83,7 @@
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
                                         <a class="btn btn-info btn-round" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">公開画面</a>
                                         @if($npo_owner_info->npo == Auth::user()->npo)
-                                        <a class="btn btn-success btn-round" href="/{{ $npo_register->npo_name }}/edit">編集</a>
+                                        <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                         @endif
                                     @elseif($npo_owner_info->npo == Auth::user()->npo)
                                         @if(($npo_register->proval) == 0)
@@ -102,7 +102,7 @@
                                             <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                         @else
                                             <a class="btn btn-info btn-round" href="/{{ $npo_register->npo_name }}">プレビュー</a>
-                                            <a class="btn btn-success btn-round" href="/{{ $npo_register->npo_name }}/edit">編集</a>
+                                            <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                         @endif
                                         @if(($npo_register->published) == "")
                                         <form action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
