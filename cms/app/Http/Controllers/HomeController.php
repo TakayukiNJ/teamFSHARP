@@ -213,9 +213,9 @@ class HomeController extends Controller
     {
         $rules = [
             'image_id' => 'image',
-	        'post_up' => 'integer',
-	        'home_tel' => 'integer',
-            'bank_account_number' => 'digits:7',
+	        'post_up' => 'numeric',
+	        'home_tel' => 'numeric',
+            'bank_account_number' => 'numeric',
 	    ];
         $this -> validate($request, $rules);
 		
