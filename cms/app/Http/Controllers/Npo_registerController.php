@@ -201,9 +201,25 @@ class Npo_registerController extends Controller {
 	 */
 	public function show($npo_name)
 	{
-	    
-		$user_auth = Auth::user()->email;
-        $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+	    $currentNpoInfo = Npo_register::find($npo_name);
+        $npo_manager    = $currentNpoInfo->manager;
+        
+        $project        = $currentNpoInfo->subtitle;
+        $this_user_auth = \DB::table('users')->where('name', $npo_manager)->first();
+        $org            = $this_user_auth->npo;
+        $url            = './'.$org.'/'.$project;
+        // dd($org);
+	    if(Auth::user()){
+    		$user_auth = Auth::user()->email;
+            $auth_name = Auth::user()->name;
+	    }else{
+            return redirect($url);
+        }
+        
+	    if($auth_name !== $npo_manager || $currentNpoInfo->proval > 0){
+            return redirect($url);
+	    }
+	    $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
         
         $currentNpoInfo = Npo_register::find($npo_name);
     // 	$currentNpoInfo     = \DB::table('npo_registers')->where('id', $npo_name)->first();
