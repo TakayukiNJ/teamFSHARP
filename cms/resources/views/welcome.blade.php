@@ -28,7 +28,7 @@
                                     <h3 class="modal-title text-center">使い方</h3>
                                 </div>
                                 <div class="modal-body">
-                                	<iframe class="text-center" width="392" height="220" src="https://www.youtube.com/embed/pxyYDFHtJp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                	<iframe class="text-center" width="392" height="220" src="https://www.youtube.com/embed/aHb0e-R-qPs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	                                <br>
 	                                <br>
 	                                <h5>使い方の手順</h5>
