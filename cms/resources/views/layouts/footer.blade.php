@@ -139,6 +139,9 @@
                                     About Us
                                 </a>
                             </li>
+                            <li>
+                                <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">Contact Us</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -120,9 +120,6 @@
                             <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">出金可能金額：{{Auth::user()->total_deposit}}円</a>
                         </li>
                         @endif
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">@lang('app.ask my page')</a>
-                        </li>
                         
                         {{--
                         <!-- message 用編集 -->
