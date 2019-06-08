@@ -33,7 +33,7 @@ class HomeController extends Controller
         // }
         // dd($name);
         
-        $this->middleware('auth', ['except' => ['terms', 'privacy_policy', 'specified_commercial_transactions_law', 'npo_landing_page']]);
+        $this->middleware('auth', ['except' => ['terms', 'privacy_policy', 'specified_commercial_transactions_law', 'npo_landing_page', 'home_own_timeline']]);
     }
 
     /**

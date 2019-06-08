@@ -107,10 +107,7 @@
                         </li>
                     @else
                         @if ((Auth::user()->npo) == "")
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">@lang('app.ask my page')</a>
-                        </li>
-        				<li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }}</a>
                             <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
         						<a target="_blank" class="dropdown-item" href="https://form.run/@fsharp"><i class="nc-icon nc-money-coins"></i>&nbsp; 団体登録</a>

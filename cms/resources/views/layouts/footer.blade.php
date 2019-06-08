@@ -124,7 +124,7 @@
                     <div class="links">
                         <ul class="uppercase-links stacked-links">
                             <li>
-                                <a href="https://goo.gl/YZLao1">
+                                <a href="https://goo.gl/YZLao1" target="_blank">
                                     Contact Us
                                 </a>
                             </li>
@@ -138,9 +138,6 @@
                                 <a href="{{ url('/teamFSHARP') }}">
                                     About Us
                                 </a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="https://goo.gl/YZLao1" target="_blank">Contact Us</a>
                             </li>
                         </ul>
                     </div>
