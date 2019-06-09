@@ -43,13 +43,6 @@
                                         <span class="help-block">{{ $errors->first("title") }}</span>
                                         @endif
                                     </div>
-                                    <div class="form-group @if($errors->has('subtitle')) has-error @endif">
-                                       <label for="subtitle-field">最初のプロジェクト名（あとで変更可能）</label>
-                                    <input type="text" id="subtitle-field" name="subtitle" class="form-control text-center" value="{{ old("subtitle") }}"/>
-                                       @if($errors->has("subtitle"))
-                                        <span class="help-block">{{ $errors->first("subtitle") }}</span>
-                                       @endif
-                                    </div>
                                     @else
                                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
                                        <label for="subtitle-field">新しいプロジェクト名</label>
