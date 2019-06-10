@@ -37,7 +37,7 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     @if ((Auth::user()->npo) == "")
                                     <div class="form-group @if($errors->has('title')) has-error @endif">
-                                        <label for="title-field">団体名（あとで変更不可）</label>
+                                        <label for="title-field">団体名 ※あとで変更不可</label>
                                         <input type="text" id="title-field" name="title" class="form-control text-center" value="{{ old("title") }}"/>
                                         @if($errors->has("title"))
                                         <span class="help-block">{{ $errors->first("title") }}</span>
@@ -53,24 +53,24 @@
                                     </div>
                                     <input type="hidden" id="title-field" name="title" class="form-control text-center" value="{{ Auth::user()->npo }}"/>
                                     {{-- 募集支援数 --}}
-                                    <!--<div class="form-group @if($errors->has('support_limit')) has-error @endif">-->
-                                    <!--   <label for="support_limit-field">募集支援数</label>-->
-                                    <!--<input type="text" id="support_limit-field" name="support_limit" class="form-control text-center" value="{{ old("support_limit") }}"/>-->
-                                    <!--   @if($errors->has("support_limit"))-->
-                                    <!--    <span class="help-block">{{ $errors->first("support_limit") }}<</span>-->
-                                    <!--   @endif-->
-                                    <!--</div>-->
+                                    <div class="form-group @if($errors->has('support_limit')) has-error @endif">
+                                       <label for="support_limit-field">最大支援者数</label>
+                                    <input type="text" id="support_limit-field" name="support_limit" class="form-control text-center" value="{{ old("support_limit") }}"/>
+                                       @if($errors->has("support_limit"))
+                                        <span class="help-block">{{ $errors->first("support_limit") }}<</span>
+                                       @endif
+                                    </div>
                                     {{-- 一口の値段 --}}
-                                    <!--<div class="form-group @if($errors->has('support_amount')) has-error @endif">-->
-                                    <!--   <label for="support_amount-field">一口の値段</label>-->
-                                    <!--<input type="text" id="support_amount-field" name="support_amount" class="form-control text-center" value="{{ old("support_amount") }}"/>-->
-                                    <!--   @if($errors->has("support_amount"))-->
-                                    <!--    <span class="help-block">{{ $errors->first("support_amount") }}<</span>-->
-                                    <!--   @endif-->
-                                    <!--</div>-->
+                                    <div class="form-group @if($errors->has('support_amount')) has-error @endif">
+                                       <label for="support_amount-field">一回の支払い価格</label>
+                                    <input type="text" id="support_amount-field" name="support_amount" class="form-control text-center" value="{{ old("support_amount") }}"/>
+                                       @if($errors->has("support_amount"))
+                                        <span class="help-block">{{ $errors->first("support_amount") }}<</span>
+                                       @endif
+                                    </div>
                                     @endif
                                 <div class="well well-sm">
-                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <button type="submit" class="btn btn-primary">作成</button>
                                 </div>
                                 {!! csrf_field() !!}
                             </div>
