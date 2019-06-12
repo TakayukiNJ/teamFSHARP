@@ -520,6 +520,62 @@
                 </div>
             </div>
         </div>
+        
+        <div class="cd-section section-white" id="chats">
+            <div class="container">
+                <div class="space-top"></div>
+                <h2 class="title">交渉チャット</h2>
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+	                    @if(!Auth::guest())
+	                    <form class="contact-form" action="{{action('ChatController@sendMessage')}}" method="POST">
+                            <label>ユーザー名</label>
+                            <input name="from" class="form-control" placeholder="Name" value="{{ Auth::user()->name }}" readonly="readonly">
+	                        <input name="to" type="hidden" value="{{ $npo_info->npo_name }}" readonly="readonly">
+	                        <label>内容</label>
+	                        <textarea name="message" class="form-control" rows="4" placeholder="ここに交渉内容を記述してください。"></textarea>
+	                        <div class="row">
+	                            <div class="col-md-4 offset-md-4">
+	                                <button class="btn btn-danger btn-lg btn-fill">送信</button>
+	                            </div>
+	                        </div>
+	                        {!! csrf_field() !!}
+                        </form>
+	                    @endif
+	                </div>
+	                
+                    <div class="col-md-8 ml-auto mr-auto">
+                    <div class="media">
+                    </div>
+                    
+                    @for ($i = 1; $i < count($message); $i++)
+                    <div class="media">
+                        <a class="pull-left" href="#paper-kit">
+                            <div class="avatar big-avatar">
+                                @if("placeholder.jpg" != $fromPic[$i])
+                                <img class="media-object" alt="64x64" src="/img/personal_info/{{ $fromPic[$i] }}">
+                                @else
+                                <img class="media-object" alt="64x64" src="{{ url('/') }}/../img/placeholder.jpg">
+                                @endif
+                            </div>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading pull-left">{{ $from[$i] }} </h4>
+                            <div class="right">
+                                <br>
+                                <br><!--<a href="#paper-kit" class="btn btn-default btn-round ">　</a>-->
+                            </div>
+                            <p class="media-heading pull-left">{{$message[$i]}}</p>
+                        </div>
+                        <p> {{ $created[$i] }}</p>
+                    </div>
+                    
+                    @endfor
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
     {{--
     @if($mail_message == "")
@@ -553,7 +609,7 @@
                         <br>
                         <div class="row">
                             <div class="col-md-6 ml-auto mr-auto">
-                                <button type="submit" class="btn btn-primary btn-block btn-round">Send </button>
+                                <button type="submit" class="btn btn-primary btn-block btn-round">送信</button>
                             </div>
                         </div>
                     </form>
