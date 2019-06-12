@@ -348,7 +348,6 @@ class Npo_registerController extends Controller {
     // トップページ
     public function landing(string $npo, string $npo_name)
     {
-        // dd($npo);
         // nav部分、ユーザーがアカウント設定をしていたら取得
         if(Auth::user()){
             $user_auth = Auth::user()->email;
@@ -363,7 +362,35 @@ class Npo_registerController extends Controller {
         if(!$currentNpoInfo){
 		    return view('/errors/503');
 		}
-        
+		// messagesテーブルからメッセージを取ってくる（6/3の開発合宿で追加）
+        $messageData     = \DB::table('messages')->where('to', $npo_name)->orderBy('id','desc')->get();
+        $data['from']    = array(0=>"from");
+        $data['to']      = array(0=>"to");
+        $data['message'] = array(0=>"message");
+        $data['created'] = array(0=>"created");
+        $data['fromPic'] = array(0=>"fromPic");
+        $from_pic        = "";
+        for($message_count=0; $message_count <count($messageData); $message_count++){
+            $from_origin    = $messageData[$message_count]->from;
+            $to_origin      = $messageData[$message_count]->to;
+            $message_origin = $messageData[$message_count]->message;
+            $created_origin = $messageData[$message_count]->created_at;
+            $from_user_info = \DB::table('users')->where('name', $from_origin)->first();
+            $from_user_pic  = \DB::table('personal_info')->where('user_id', $from_user_info->email)->first();
+            if($from_user_pic){
+                $from_pic = $from_user_pic->image_id;
+            }else{
+                $from_pic = "placeholder.jpg";
+            }
+            // dd($from_user_pic->image_id);
+            
+            $data['from']    += array($message_count+1 => $from_origin);
+            $data['to']      += array($message_count+1 => $to_origin);
+            $data['message'] += array($message_count+1 => $message_origin);
+            $data['created'] += array($message_count+1 => $created_origin);
+            $data['fromPic'] += array($message_count+1 => $from_pic);
+            // dd($data);
+        }
         // $data['premier_datas'] = $currentPremierData; // これのuser_defineは、団体には教えないと。アドレスだから。→サイト上でコンタクト取れるようにしたい。
         // 何人がいくら寄付したのか、誰が寄付したのか表示
         $data['donater']          = array(0=>"Donater");

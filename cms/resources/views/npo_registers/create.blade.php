@@ -45,7 +45,7 @@
                                     </div>
                                     @else
                                     <div class="form-group @if($errors->has('subtitle')) has-error @endif">
-                                       <label for="subtitle-field">新しいプロジェクト名</label>
+                                       <label for="subtitle-field">プロジェクト名</label>
                                     <input type="text" id="subtitle-field" name="subtitle" class="form-control text-center" value="{{ old("subtitle") }}"/>
                                        @if($errors->has("subtitle"))
                                         <span class="help-block">{{ $errors->first("subtitle") }}</span>
