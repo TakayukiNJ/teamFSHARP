@@ -71,7 +71,7 @@
                                     @endif
                                 </div>
                                 <br>
-                                <h6>現在：{{$npo_info->buyer}}口（{{$currency_data}}円）／ 募集：{{$npo_info->support_limit}}口（残り{{$npo_info->support_limit - $npo_info->buyer}}口）</h6>
+                                <h6>現在：{{ number_format($npo_info->buyer) }}口（{{ number_format($currency_data) }}円）／ 募集：{{ number_format($npo_info->support_limit) }}口（残り{{ number_format($npo_info->support_limit - $npo_info->buyer) }}口）</h6>
                                 @if($npo_info->buyer != 0)
                                 @if($parcentage < 10)
                                 <div class="progress">
@@ -103,7 +103,7 @@
                     <div class="col-md-4">
                         <h2 class="title text-center">SUPPORT</h2>
                         <div class="tab-content text-center" >
-                            <p>現在<b>{{$npo_info->buyer}}</b>口（残り{{$npo_info->support_limit - $npo_info->buyer}}口）</p>
+                            <p>現在<b>{{ number_format($npo_info->buyer) }}</b>口（残り{{ number_format($npo_info->support_limit - $npo_info->buyer) }}口）</p>
                             <p>支援するとバッジにニックネームが記載されます。</p>
                             @if($npo_info->body)
                             <button type="button" class="btn btn-round btn-warning"
@@ -166,7 +166,7 @@
                                         <div class="card card-pricing">
                                             <div class="card-body">
                                                 <h6 class="card-category text-danger">{{ $npo_info->subtitle }}を支援</h6>
-                                                <h1 class="card-title">{{ $npo_info->support_amount }}円</h1>
+                                                <h1 class="card-title">{{ number_format($npo_info->support_amount) }}円</h1>
                                                 <ul>
                                                     <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
                                                     @if($npo_info->support_contents)
@@ -237,7 +237,7 @@
                                                     </textPath>
                                                 </text>
                                             </svg>
-                                            <span>残り{{$npo_info->support_limit - $npo_info->buyer}}口</span>
+                                            <span>残り{{ number_format($npo_info->support_limit - $npo_info->buyer) }}口</span>
                                         </a>
                                         {{-- ポップアップの中身 --}}
                                         <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">

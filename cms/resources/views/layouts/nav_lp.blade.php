@@ -5,10 +5,12 @@
                 <div class="navbar-header">
                     @if (Auth::guest())
                     <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
-                    @elseif ((Auth::user()->npo) == "")
-                    <a class="navbar-brand" href="{{ url('/home') }}/{{ Auth::user()->name }}">F♯</a>
+                    @elseif ((Auth::user()->npo) !== "")
+                    <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
+                    <!--<a class="navbar-brand" href="{{ url('/home') }}/{{ Auth::user()->name }}">F♯</a>-->
                     @else
-                    <a class="navbar-brand" href="{{ url('/') }}/{{ Auth::user()->npo }}">F♯</a>
+                    <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
+                    <!--<a class="navbar-brand" href="{{ url('/') }}/{{ Auth::user()->npo }}">F♯</a>-->
                     @endif
                 </div>
                 <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
