@@ -458,7 +458,7 @@
         <div class="cd-section section-white" id="chats">
             <div class="container">
                 <div class="space-top"></div>
-                <h2 class="title">交渉チャット</h2>
+                <h2 class="title">メッセージ</h2>
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
 	                    @if(!Auth::guest())

@@ -139,8 +139,8 @@
 				</div>
 
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                    <h2 class="title">Projects Pick Up<br></h2>
-                    <h5 class="description">登録されたプロジェクトの中から3つ選出</h5>
+                    <h2 class="title">Project Pick Ups<br></h2>
+                    <h5 class="description">登録されたプロジェクト一覧</h5>
                     <br><br>
                 </div>
                 {{--
@@ -255,10 +255,10 @@
 									<p class="card-description">
 										{{ $npo_info3->title }}<br>
 										現在合計：{{ $npo_info3->follower }}円<br>
-										一口：{{ $npo_info3->support_amount }}円<br>
+										支援金額：{{ $npo_info3->support_amount }}円<br>
                                         残り：{{ $npo_info3->support_limit - $npo_info3->buyer}}口<br>
 										@if($npo_info3->support_contents != '')
-    										リターン：{{ $npo_info3->support_contents }}<br>
+    										支援特典：{{ $npo_info3->support_contents }}<br>
 										@endif
 									</p>
                                     <hr>
@@ -267,44 +267,62 @@
 	                                       <span>{{ $npo_info3->manager }}</span>
     	                                </div>
                                         <div class="stats">
-     	                                    現在寄付数：{{ $npo_info3->buyer }}
+     	                                    現在支援数：{{ $npo_info3->buyer }}
      	                                </div>
     	                            </div>
 								</div>
 							</div>
 						</div>
 					</div>
-				    <div class="row">
-                        <div class="col-md-12 ml-auto mr-auto">
-        					<!--<h4 class="title">NPO法人（内閣府公式サイトに掲載されている特定非営利活動法人）や社会課題の解決を目的とする団体のプロジェクトに、チームメンバーとして関わったり、そのプロジェクトに寄付を行ったりすると、当サイトにユーザー名や自分の団体名を証として掲載することができます。</h4>-->
-        					<div class="page-header section-dark" style="background-image: url('/img/farid-askerov.jpg')">
-                                <div class="content-center">
-                                    <div class="container">
-                                        <div class="title-brand">
-                                            <h1 class="presentation-title"></h1>
-                                        </div>
-                                        <h2 class="presentation-subtitle text-center">NPOの資金不足を解決する、資金調達Webサービス</h2>
-
-                                        <div class="w3-panel w3-large">
-                                            <br>
-                                            @if (Auth::guest())
-                                            <button type="button" class="btn-lg btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
-                                                スタート
-                                            </button>
-                                            {{-- NPO登録がなければ--}}
-                                            @elseif ((Auth::user()->npo) == "")
-                                            <a href="{{ url('//home/home_own_timeline') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
-                                            @else
-                                            <a href="{{ url('/npo_registers') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                        	</div>
-            			</div>
-        				<!-- overview ここまで -->
-        			</div>
-    			</div><!-- tabcontents　ここまで-->
+					
+					
+					<div class="row">
+                    @foreach($products as $product)
+                    <div class="col-md-4">
+						<div class="card card-blog">
+							<div class="card-image">
+								<a href="/npo_registers/{{ $product->id }}">
+								    @if($product->background_pic)
+                                    <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $product->background_pic }}" />
+                                    @else
+                                    <img class="img img-raised" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=">
+                                    @endif
+									{{--<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_15_ja.png" /> --}}
+								</a>
+							</div>
+							<div class="card-body">
+								<!--<h6 class="card-category text-success">-->
+								<!--	Life No Land-->
+								<!--</h6>-->
+								<h5 class="card-title">
+									<a href="/npo_registers/{{ $product->id }}">{{ $product->subtitle }}</a>
+								</h5>
+								<p class="card-description">
+									{{ $product->title }}<br>
+									支援金額 (1口)：{{ number_format($product->support_amount) }}円<br>
+									集まった金額合計：{{ number_format($product->follower) }}円<br>
+                                    残り：{{ number_format($product->support_limit - $product->buyer) }}口<br>
+									@if($product->support_contents != '')
+										支援特典：{{ $product->support_contents }}<br>
+									@endif
+								</p>
+                                <hr>
+                                <div class="card-footer">
+                                    <div class="author">
+                                        <a href="{{ url('/') }}/home/{{ $product->manager }}">
+                                            <span>{{ $product->manager }}</span>
+                                        </a>
+	                                </div>
+                                    <div class="stats">
+ 	                                    現在支援数：{{ number_format($product->buyer) }}
+ 	                                </div>
+	                            </div>
+							</div>
+						</div>
+					</div>
+                    @endforeach
+					</div>
+				</div><!-- tabcontents　ここまで-->
             </div> <!-- container -->
         <!--</div>-->
         </div>
