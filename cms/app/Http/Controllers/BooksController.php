@@ -35,6 +35,7 @@ class BooksController extends Controller
         $data['npo2'] = \DB::table('users')->where('name', $data['npo_info2']->manager)->first()->npo;
         $data['npo3'] = \DB::table('users')->where('name', $data['npo_info3']->manager)->first()->npo;
         //$this->middleware('guest', ['except' => 'logout']);
+        $data['products'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get(); 
         return view('welcome', $data);
         
     }
