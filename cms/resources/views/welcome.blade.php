@@ -153,130 +153,6 @@
                 --}}
                 <div class="col-md-10 ml-auto mr-auto">
 					<div class="row">
-						<div class="col-md-4">
-							<div class="card card-blog">
-								<div class="card-image">
-									<a href="/{{$npo1}}/{{ $npo_info1->npo_name }}">
-									    @if($npo_info1->background_pic)
-                                        <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info1->background_pic }}" />
-                                        @else
-                                        <img class="img img-raised" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=">
-                                        @endif
-    								</a>
-								</div>
-								<div class="card-body">
-									<!--<h6 class="card-category text-warning">-->
-									<!--    Sustainable Cities And Communities-->
-									<!--</h6>-->
-									<h5 class="card-title">
-										<a href="/{{$npo1}}/{{ $npo_info1->npo_name }}">{{ $npo_info1->subtitle }}</a>
-									</h5>
-									<p class="card-description">
-										{{ $npo_info1->title }}<br>
-										現在合計：{{ $npo_info1->follower }}円<br>
-										一口：{{ $npo_info1->support_amount }}円<br>
-                                        残り：{{ $npo_info1->support_limit - $npo_info1->buyer}}口<br>
-										@if($npo_info1->support_contents != '')
-    										リターン：{{ $npo_info1->support_contents }}<br>
-										@endif
-									</p>
-                                    <hr>
-                                    <div class="card-footer">
-                                        <div class="author">
-	                                       <span>{{ $npo_info1->manager }}</span>
-    	                                </div>
-                                        <div class="stats">
-     	                                    現在寄付数：{{ $npo_info1->buyer }}
-     	                                </div>
-    	                            </div>
-								</div>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-4">
-							<div class="card card-blog">
-								<div class="card-image">
-									<a href="/{{$npo2}}/{{ $npo_info2->npo_name }}">
-									    @if($npo_info2->background_pic)
-                                        <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info2->background_pic }}" />
-                                        @else
-                                        <img class="img img-raised" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=">
-                                        @endif
-									</a>
-								</div>
-								<div class="card-body">
-									<!--<h6 class="card-category text-danger">-->
-									<!--	Quality Education-->
-									<!--</h6>-->
-									<h5 class="card-title">
-										<a href="/{{$npo2}}/{{ $npo_info2->npo_name }}">{{ $npo_info2->subtitle }}</a>
-									</h5>
-									<p class="card-description">
-										{{ $npo_info2->title }}<br>
-										現在合計：{{ $npo_info2->follower }}円<br>
-										一口：{{ $npo_info2->support_amount }}円<br>
-                                        残り：{{ $npo_info2->support_limit - $npo_info2->buyer}}口<br>
-										@if($npo_info2->support_contents != '')
-    										リターン：{{ $npo_info2->support_contents }}<br>
-										@endif
-									</p>
-                                    <hr>
-                                    <div class="card-footer">
-                                        <div class="author">
-	                                       <span>{{ $npo_info2->manager }}</span>
-    	                                </div>
-                                        <div class="stats">
-     	                                    現在寄付数：{{ $npo_info2->buyer}}
-     	                                </div>
-    	                            </div>
-								</div>
-							</div>
-						</div>
-                        <br>
-						<div class="col-md-4">
-							<div class="card card-blog">
-								<div class="card-image">
-									<a href="/{{$npo3}}/{{ $npo_info3->npo_name }}">
-									    @if($npo_info3->background_pic)
-                                        <img class="img img-raised" src="{{ url('/') }}/../img/project_back/{{ $npo_info3->background_pic }}" />
-                                        @else
-                                        <img class="img img-raised" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=">
-                                        @endif
-										{{--<img class="img img-raised" src="{{ url('/') }}/../img/sdgs-logo/sdg_icon_15_ja.png" /> --}}
-									</a>
-								</div>
-								<div class="card-body">
-									<!--<h6 class="card-category text-success">-->
-									<!--	Life No Land-->
-									<!--</h6>-->
-									<h5 class="card-title">
-										<a href="/{{$npo3}}/{{ $npo_info3->npo_name }}">{{ $npo_info3->subtitle }}</a>
-									</h5>
-									<p class="card-description">
-										{{ $npo_info3->title }}<br>
-										現在合計：{{ $npo_info3->follower }}円<br>
-										支援金額：{{ $npo_info3->support_amount }}円<br>
-                                        残り：{{ $npo_info3->support_limit - $npo_info3->buyer}}口<br>
-										@if($npo_info3->support_contents != '')
-    										支援特典：{{ $npo_info3->support_contents }}<br>
-										@endif
-									</p>
-                                    <hr>
-                                    <div class="card-footer">
-                                        <div class="author">
-	                                       <span>{{ $npo_info3->manager }}</span>
-    	                                </div>
-                                        <div class="stats">
-     	                                    現在支援数：{{ $npo_info3->buyer }}
-     	                                </div>
-    	                            </div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					
-					<div class="row">
                     @foreach($products as $product)
                     <div class="col-md-4">
 						<div class="card card-blog">
@@ -319,6 +195,7 @@
 	                            </div>
 							</div>
 						</div>
+					<br>
 					</div>
                     @endforeach
 					</div>

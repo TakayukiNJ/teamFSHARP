@@ -161,8 +161,8 @@
                                     <br>
                                 @endif
                                 @if($npo_info_personal)
-                                    <h4 class="text-muted text-center">【個人バッジ（履歴）】</h4>
-                                    <br><br><br><br><br>
+                                    <!--<h4 class="text-muted text-center">【個人バッジ（履歴）】</h4>-->
+                                    <br><br><br><br>
                                     @for($i = 0; $i < count($npo_info_personal); $i++)
                                         <li>
                                             <div class="row">
@@ -240,8 +240,8 @@
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <label>管理者：<b><a href="{{ url('/home') }}/{{ $npo_info_personal[$i]->manager }}">{{ $npo_info_personal[$i]->manager }}</a>さん</b></label><br>
-                                                                    <label>{{$this_auth->name}}さんの合計支援回数：<b>{{ $premierData_personal[$i]->participants }}口</b></label><br>
-                                                                    <label>{{$this_auth->name}}さんの合計支援金額：<b>{{ $premierData_personal[$i]->status }}円</b></label><br>
+                                                                    <label>{{$this_auth->name}}さんの合計支援回数：<b>{{ number_format($premierData_personal[$i]->participants) }}口</b></label><br>
+                                                                    <label>{{$this_auth->name}}さんの合計支援金額：<b>{{ number_format($premierData_personal[$i]->status) }}円</b></label><br>
                                                                     <label>{{$this_auth->name}}さんの最終支援日時：<b>{{ Carbon\Carbon::parse($premierData_personal[$i]->updated_at)->format('Y年m月d日H:i') }}</b></label><br>
                                                                     <label><b>支援者</b></label>
                                                                     <p>
@@ -264,10 +264,10 @@
                                                 <div class="col-md-3 col-3">
                                                     <h6><a href="/{{$npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br>
                                                     <small>{{ $npo_info_personal[$i]->title }}</small><br>
-                                                    <small>単価:{{ $npo_info_personal[$i]->support_amount }}円</small><br>
-                                                    <small>現在:{{ $npo_info_personal[$i]->follower }}円</small><br>
-                                                    <small>支援数:{{ $npo_info_personal[$i]->buyer }}</small><br>
-                                                    <small>募集数:{{ $npo_info_personal[$i]->support_limit }}</small><br>
+                                                    <small>一口金額：{{ number_format($npo_info_personal[$i]->support_amount) }}円</small><br>
+                                                    <small>現在合計：{{ number_format($npo_info_personal[$i]->follower) }}円</small><br>
+                                                    <small>支援数：{{ $npo_info_personal[$i]->buyer }}</small><br>
+                                                    <small>募集数：{{ $npo_info_personal[$i]->support_limit }}</small><br>
                                                     @if($npo_info_personal[$i]->support_contents != "")
                                                     <small>リターン:{{ $npo_info_personal[$i]->support_contents }}</small><br>
                                                     @endif
@@ -310,9 +310,9 @@
                                         <div class="col-md-8 col-4">
                                             <h6><a href="/{{ $npo_info_proval[$i]->title }}/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a><br>{{ $npo_info_proval[$i]->title }}</h6>
                                             <h6><small>
-                                                現在合計：{{ $npo_info_proval[$i]->follower }}円
-        										<br>一口：{{ $npo_info_proval[$i]->support_amount }}円
-                                                <br>残り：{{ $npo_info_proval[$i]->support_limit - $npo_info_proval[$i]->buyer}}口
+                                                現在合計：{{ number_format($npo_info_proval[$i]->follower) }}円
+        										<br>一口：{{ number_format($npo_info_proval[$i]->support_amount) }}円
+                                                <br>残り：{{ number_format($npo_info_proval[$i]->support_limit - $npo_info_proval[$i]->buyer) }}口
         										@if($npo_info_proval[$i]->support_contents != '')
             										<br>リターン：{{ $npo_info_proval[$i]->support_contents }}
         										@endif
