@@ -277,9 +277,7 @@ Route::post('/npo/{npo_name}/send_mail','Npo_registerController@send_mail');
 // NPO
 // Route::resource("npo","Npo_registerController");
 // $npo = Auth::user()->npo;
-// if($npo){
-//  Route::get("npo_register","Npo_registerController@index_old");
-// }
+
 Route::resource("npo_registers","Npo_registerController");
 // Route::resource("npo","Npo_registerController");
 Route::get("{npo}","Npo_registerController@index2");
