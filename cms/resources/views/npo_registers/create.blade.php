@@ -12,7 +12,7 @@
                     <form enctype="multipart/form-data" action="{{ route('npo_registers.store') }}" method="POST">
                         <div class="row">
                             <div class="col-md-7 content-center">
-                                
+                                {{--
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                     <br>
                                     <div class="fileinput-new thumbnail img-no-padding" style="max-width: 100px; max-height: 100px;">
@@ -33,6 +33,7 @@
                                     </div>
                                     <br>
                                 </div>
+                                --}}
                                 
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     @if ((Auth::user()->npo) == "")
