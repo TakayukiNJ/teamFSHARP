@@ -71,10 +71,9 @@
                         </span>
                     @endif
                     {{-- NPO登録をまだしていなかった場合 --}}
-                    @elseif ((Auth::user()->npo) == "")
-                    <a href="{{ url('/home/home_own_timeline') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
                     @else
-                    <a href="{{ url('/npo_registers') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                    <a href="{{ url('/home/home_own_timeline') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>
+                    <!--<a href="{{ url('/npo_registers') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
                     @endif
                     <br>
                     <h1 class="presentation-subtitle text-center">▼</h1>
