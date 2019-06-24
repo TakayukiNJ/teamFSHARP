@@ -520,8 +520,8 @@ class Npo_registerController extends Controller {
     	if($npo_register->published){
 		    $rules = [
                 'title'                   => 'required | min:1 | max:55',
-                // 'support_limit'           => 'digits_between:2,9',
-                'support_amount'          => 'required | digits_between:1,10', // 個人寄付の金額
+                'support_limit'           => 'digits_between:1,9',
+                'support_amount'          => 'required | digits_between:1,6', // 個人寄付の金額
                 'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
                 'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
                 'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
@@ -535,8 +535,8 @@ class Npo_registerController extends Controller {
         		$rules = [
                     'title'                   => 'required | min:1 | max:55',
         		    'support_contents_detail' => 'date | after:tomorrow',
-                    // 'support_limit'           => 'digits_between:1,9',
-                    'support_amount'          => 'required | digits_between:1,10', // 個人寄付の金額
+                    'support_limit'           => 'digits_between:1,9',
+                    'support_amount'          => 'required | digits_between:1,6', // 個人寄付の金額
                     'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
                     'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
                     'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
@@ -548,7 +548,7 @@ class Npo_registerController extends Controller {
     		    $rules = [
                     'title'                   => 'required | min:1 | max:55',
         		    'support_amount'          => 'digits_between:1,10',
-                    // 'support_limit'           => 'digits_between:2,9',
+                    'support_limit'           => 'digits_between:1,9',
         	        'support_price_gold'      => 'required | digits_between:5,7', // 企業寄付の金額
                     'support_amount_gold'     => 'required | digits_between:1,2', // 企業寄付の定員数
                     'support_price_pratinum'  => 'required | digits_between:6,8', // 企業（プラチナ）寄付の金額
