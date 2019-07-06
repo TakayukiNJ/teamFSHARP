@@ -31,7 +31,7 @@
                             @endif
                                 <div class="form-group @if($errors->has('subtitle')) has-error @endif">
                                    <label for="subtitle-field">プロジェクト名 <span class="icon-danger">*</span></label>
-                                <input type="text" id="subtitle-field" name="subtitle" class="form-control text-center" value="{{ is_null(old("subtitle")) ? $npo_info->subtitle : old("subtitle") }}"/>
+                                <input type="text" id="subtitle-field" name="subtitle" class="form-control text-center" value="{{ is_null(old("subtitle")) ? $npo_info->subtitle : old("subtitle") }}" required/>
                                    @if($errors->has("subtitle"))
                                     <span class="help-block icon-danger">{{ $errors->first("subtitle") }}</span>
                                    @endif
@@ -162,13 +162,13 @@
                     {{-- FsharpのURL --}}
                     <div class="form-group @if($errors->has('npo_name')) has-error @endif">
                     @if($npo_info->proval < 1)
-                        <label for="npo_name-field">URL（https://fsharp.me/〇〇〇〇部分。設定後変更不可）</label>
-                        <input type="text" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
+                        <label for="npo_name-field">ユニークURL（「https://fsharp.me/[団体名]/***」の***部分。設定後変更不可） <span class="icon-danger">*</span></label>
+                        <input type="text" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}} required/>
                         @if($errors->has("npo_name"))
                         <span class="help-block icon-danger">この{{ $errors->first("npo_name") }}（重複不可）</span>
                         @endif
                     @else
-                        <input type="hidden" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}}/>
+                        <input type="hidden" id="npo_name-field" name="npo_name" class="form-control" placeholder="test_project" value="{{ is_null(old("npo_name")) ? $npo_info->npo_name : old("npo_name") }}" {{ !$npo_info->npo_name ? '' : 'readonly="readonly"'}} required/>
                     @endif
                     </div>
                     {{-- 特典利用期限 --}}
@@ -177,7 +177,7 @@
                             <h6>一口の値段（6桁まで） <span class="icon-danger">*</span></h6>
                             <div class="input-group border-input form-group  @if($errors->has('support_amount')) has-error @endif">
                                 <span class="input-group-addon"><i class="fa fa-yen"></i></span>
-                                <input type="text" id="support_amount-field" name="support_amount" placeholder="3,000" class="form-control border-input" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ $npo_info->buyer == 0 ? '' : 'readonly="readonly"'}}>
+                                <input type="text" id="support_amount-field" name="support_amount" placeholder="3,000" class="form-control border-input" value="{{ is_null(old("support_amount")) ? $npo_info->support_amount : old("support_amount") }}" {{ $npo_info->buyer == 0 ? '' : 'readonly="readonly"'}} required>
                                 @if($errors->has("support_amount"))
                                     <span class="help-block icon-danger">{{ $errors->first("support_amount") }}</span>
                                 @endif
@@ -198,7 +198,7 @@
     			            </div>
                         </div>
                     </div>
-                    {{-- 資金の使い道 --}}
+                    {{-- 資金の使い道 --}}{{--
                     <div class="form-group @if($errors->has('support_purpose')) has-error @endif">
                        <h6 for="support_purpose-field">資金の使い道</h6>
                     <input type="text" id="support_purpose-field" name="support_purpose" class="form-control" value="{{ is_null(old("support_purpose")) ? $npo_info->support_purpose : old("support_purpose") }}"/>
@@ -206,6 +206,7 @@
                         <span class="help-block icon-danger">{{ $errors->first("support_purpose") }}</span>
                        @endif
                     </div>
+                    --}}
                     {{-- 説明・紹介文 --}}
                     <div class="form-group @if($errors->has('body')) has-error @endif">
                         <h6 for="body-field">説明・紹介文</h6>

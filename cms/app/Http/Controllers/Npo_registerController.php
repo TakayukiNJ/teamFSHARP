@@ -323,7 +323,7 @@ class Npo_registerController extends Controller {
         }
         
         if($name_auth === $currentNpoInfo->manager){
-    		return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+    		return view('npo_registers.show', $data);
         }
         // member1~10の_twitterカラムに権限があれば見れる処理
         for($i = 1; $i < 11; $i++){

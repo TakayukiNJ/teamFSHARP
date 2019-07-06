@@ -53,7 +53,7 @@
                                 <br>
                                 {{--<h6>目標金額：{{$npo_info->support_price}}円（{{$parcentage}}％達成）</h6>--}}
                                 @if($npo_info->support_limit != "")
-                                <h6>現在：{{$npo_info->buyer}}口（{{$currency_data}}円） ／ 募集：{{$npo_info->support_limit}}口</h6>
+                                <h6>現在：{{$npo_info->buyer}}口（{{$currency_data}}円） ／ 募集：{{ number_format($npo_info->support_limit) }}口</h6>
                                 @endif
                                 @if($npo_info->buyer != 0)
                                 @if($parcentage < 10)
@@ -162,9 +162,9 @@
                                         <div class="card card-pricing">
                                             <div class="card-body">
                                                 <h6 class="card-category text-danger">{{ $npo_info->subtitle }}を支援</h6>
-                                                <h1 class="card-title">{{ $npo_info->support_amount }}円</h1>
+                                                <h1 class="card-title">{{ number_format($npo_info->support_amount) }}円</h1>
                                                 <ul>
-                                                    <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
+                                                    <li>残り購入可能数：<b>{{ number_format($npo_info->support_limit - $npo_info->buyer) }}</b></li>
                                                     @if($npo_info->support_contents)
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
                                                     @endif
@@ -185,7 +185,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <br><br><br><br><br>
-                                        <a href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}" aria-label="Close">
+                                        <a href="this_coin" class="badge" data-toggle="modal" data-target="#this_coin" aria-label="Close">
                                             <svg viewBox="0 0 210 210">
                                                 <g stroke="none" fill="none">
                                                     <path d="M22,104.5 C22,58.9365081 58.9365081,22 104.5,22 C150.063492,22 187,58.9365081 187,104.5" id="top"></path>
@@ -205,10 +205,10 @@
                                                     </textPath>
                                                 </text>
                                             </svg>
-                                            <span>現在<b>{{ $npo_info->buyer }}</b>口（<b>{{$parcentage}}</b>%）</span>
+                                            <span>TAP HERE !!</span>
                                         </a>
                                         {{-- ポップアップの中身 --}}
-                                        <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
+                                        <div class="modal fade" id="this_coin" tabindex="-1" role="dialog" aria-hidden="false">
                                             <div class="modal-dialog modal-register">
                                                 <div class="modal-content">
                                                     <div class="modal-header no-border-header text-center">

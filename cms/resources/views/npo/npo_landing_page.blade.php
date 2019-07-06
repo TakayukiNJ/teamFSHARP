@@ -109,8 +109,8 @@
                             <button type="button" class="btn btn-round btn-warning"
                                 data-toggle="popover"
                                 data-placement="bottom"
-                                title="説明・紹介文"
-                                data-content="{{ $npo_info->body }}">説明・紹介文
+                                title="説明・紹介文・資金の使い道"
+                                data-content="{{ $npo_info->body }}">説明・紹介文・資金の使い道
                             </button>
                             <br>
                             @endif
@@ -168,7 +168,7 @@
                                                 <h6 class="card-category text-danger">{{ $npo_info->subtitle }}を支援</h6>
                                                 <h1 class="card-title">{{ number_format($npo_info->support_amount) }}円</h1>
                                                 <ul>
-                                                    <li><b>使用目的: {{ $npo_info->support_purpose or '活動費' }}</b></li>
+                                                    <li>残り購入可能数：<b>{{ number_format($npo_info->support_limit - $npo_info->buyer) }}</b></li>
                                                     @if($npo_info->support_contents)
                                                     <li><b>リターン: {{ $npo_info->support_contents or '未設定' }}</b></li>
                                                     @endif
@@ -237,7 +237,7 @@
                                                     </textPath>
                                                 </text>
                                             </svg>
-                                            <span>残り{{ number_format($npo_info->support_limit - $npo_info->buyer) }}口</span>
+                                            <span>TAP HERE !!</span>
                                         </a>
                                         {{-- ポップアップの中身 --}}
                                         <div class="modal fade" id="{{ $npo_info->npo_name }}" tabindex="-1" role="dialog" aria-hidden="false">
@@ -325,8 +325,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <br><br><br><br><br><br>
-                                        ▲タップで詳細確認▲
+                                        <br><br>
                                     </div>
                                 </div>
                             </div>
