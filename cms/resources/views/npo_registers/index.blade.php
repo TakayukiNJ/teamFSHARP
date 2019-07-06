@@ -49,7 +49,7 @@
                     <p>管理者：<a href="{{ url('/home') }}/{{ $npo_owner_info->name }}">{{ $npo_owner_info->name }}さん</a></p>
                     <div class="description-details">
                         <ul class="list-unstyled">
-                            <li>合計支援金額：{{ $project_total_price }}円</li>
+                            <li>合計獲得金額：{{ number_format($project_total_price) }}円</li>
                             @if($npo_owner_info->npo == Auth::user()->npo)
                             <li>出金可能金額：{{ $npo_owner_info->total_deposit }}円</li>
                             <li>※出金可能金額は管理者のみ表示</li>
@@ -79,7 +79,7 @@
                                 <div class="card-body">
                                     @if(($npo_register->proval) > 0)
                                         <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
-                                        <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
+                                        <p class="card-description">獲得金額: {{number_format($npo_register->follower)}} 円</p>
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
                                         <a class="btn btn-info btn-round" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">公開画面</a>
                                         @if($npo_owner_info->npo == Auth::user()->npo)
@@ -95,7 +95,7 @@
                                         @else
                                         <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                         @endif
-                                        <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
+                                        <p class="card-description">獲得金額: {{number_format($npo_register->follower)}} 円</p>
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
                                         @if(($npo_register->npo_name) == "")
                                             <a class="btn btn-info btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">プレビュー</a>
