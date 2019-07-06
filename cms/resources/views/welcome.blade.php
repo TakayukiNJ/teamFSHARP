@@ -98,7 +98,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">人とお金の流れを可視化</h4>
-								<p class="description">支払いが完了後に、黒いコインの部分をタップすると、購入者の履歴や最新情報を確認することができます。</p>
+								<p class="description">支払いが完了後に、黒いバッジをタップすると、購入者の履歴や最新情報を確認することができます。</p>
 							</div>
 						</div>
 					</div>
@@ -120,7 +120,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">SDGsポイント</h4>
-								<p>総額の<strong>1%</strong>がポイントとして溜まり、マイページで確認ができます。<strong>SDGs</strong>の内訳も見ることができ、自分がどの分野に貢献したのかご確認いただけます。</p>
+								<p>総額の<strong>1%</strong>がポイントとして溜まり、マイページで確認ができます。<strong>SDGs</strong>の内訳も見ることができ、自分がどの分野の<strong>SDGs</strong>に貢献したのかご確認いただけます。</p>
 							</div>
 						</div>
 					</div>
@@ -131,7 +131,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">リターン</h4>
-								<p>プロジェクトによっては、リターンがあるものや、個数に限りがございます。(掲載側は、自由に変更できます。突然内容が変わることもあるとは思いますが、ご了承ください。){{--宛先や詳細などに関しては、メッセージでやりとりをしてください。<br>※費用は一切かかりません。--}}</p>
+								<p>プロジェクトによっては、リターンがあるものや、個数に限りがございます。（やり取りは、プロジェクトページのメッセージで行ってください。）</p>
 							</div>
 						</div>
 					</div>
@@ -170,16 +170,18 @@
 								<!--	Life No Land-->
 								<!--</h6>-->
 								<h5 class="card-title">
-									<a href="/npo_registers/{{ $product->id }}">{{ $product->subtitle }}</a>
+									{{ $product->subtitle }}
 								</h5>
-								<p class="card-description">
-									{{ $product->title }}<br>
-									支援金額 (1口)：{{ number_format($product->support_amount) }}円<br>
-									集まった金額合計：{{ number_format($product->follower) }}円<br>
-                                    残り：{{ number_format($product->support_limit - $product->buyer) }}口<br>
+                                <p class="card-description">
+									金額：{{ number_format($product->support_amount) }}円<br>
+									合計獲得金額：{{ number_format($product->follower) }}円<br>
+                                    支援数：{{ number_format($product->buyer) }}/{{ number_format($product->support_limit) }}<br>
 									@if($product->support_contents != '')
 										支援特典：{{ $product->support_contents }}<br>
 									@endif
+                                    @if($product->support_contents_detail)
+                                        期限：{{ Carbon\Carbon::parse($product->support_contents_detail)->format('Y年m月d日H:i') }}
+                                    @endif
 								</p>
                                 <hr>
                                 <div class="card-footer">
@@ -189,8 +191,8 @@
                                         </a>
 	                                </div>
                                     <div class="stats">
- 	                                    現在支援数：{{ number_format($product->buyer) }}
- 	                                </div>
+                                        <a href="/{{$product->title}}"><small>@ {{ $product->title }}</small></a><br>
+								    </div>
 	                            </div>
 							</div>
 						</div>

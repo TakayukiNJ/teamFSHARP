@@ -45,12 +45,17 @@
                             <a class="nav-link active" data-toggle="tab" href="#new" role="tab">新着</a>
                         </li>
                         @endif
+                        @if($this_auth->npo != "")
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">団体</a>
+                        </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
                         </li>
                         @if($this_auth->point != 0)
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">SDGs</a>
+                            <a class="nav-link" data-toggle="tab" href="#SDGs" role="tab">SDGs</a>
                         </li>
                         @endif
                     </ul>
@@ -59,7 +64,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 @if($this_auth->point != 0)
-                <div class="tab-pane text-center" id="myProjects" role="tabpanel">
+                <div class="tab-pane text-center" id="SDGs" role="tabpanel">
                     @if($this_auth->point != 0)
                         <div class="chart-container" style="position: relative; height:100vh">
                             <canvas id="myPieChart"></canvas>
@@ -263,10 +268,11 @@
                                                 </div>
                                                 <div class="col-md-3 col-3">
                                                     <h6><a href="/{{$npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br>
+                                                    <br>金額：{{ number_format($npo_info_proval[$i]->support_amount) }}円
                                                     <small>{{ $npo_info_personal[$i]->title }}</small><br>
-                                                    <small>一口金額：{{ number_format($npo_info_personal[$i]->support_amount) }}円</small><br>
+                                                    <small>金額：{{ number_format($npo_info_personal[$i]->support_amount) }}円</small><br>
                                                     <small>現在合計：{{ number_format($npo_info_personal[$i]->follower) }}円</small><br>
-                                                    <small>支援数：{{ $npo_info_personal[$i]->buyer }}</small><br>
+                                                    <small>支援数：{{ number_format($npo_info_proval[$i]->buyer) }}/{{ number_format($npo_info_proval[$i]->support_limit) }}</small><br>
                                                     <small>募集数：{{ $npo_info_personal[$i]->support_limit }}</small><br>
                                                     @if($npo_info_personal[$i]->support_contents != "")
                                                     <small>リターン:{{ $npo_info_personal[$i]->support_contents }}</small><br>
@@ -295,6 +301,22 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="tab-pane text-center" id="myProjects" role="tabpanel">
+                    @if(Auth::user()->npo == $this_auth->npo)
+                        @if(Auth::user()->npo)
+                        <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">管理ページへ</a>
+                        @else
+                        <h3 class="text-muted">まずは団体登録！</h3>
+                        <br>
+                        <a href="{{ url('/npo_registers') }}" class="btn btn-warning btn-round">プロジェクト作成</a>
+                        @endif
+                    @endif
+                </div>
+
+
+
+
                 @if(Auth::user()->name == $this_auth->name)
                 <div class="tab-pane active" id="new" role="tabpanel">
                     <div class="row">
@@ -303,19 +325,23 @@
                                 @for($i = 0; $i < count($npo_info_proval); $i++)
                                 <li>
                                     <div class="row">
-                                        <div class="col-md-1 col-3">
-                                            {{$i + 1}}
+                                        <div class="col-md-1 col-2">
+                                            <!-- {{$i + 1}} -->
                                             <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
                                         </div>
-                                        <div class="col-md-8 col-4">
-                                            <h6><a href="/{{ $npo_info_proval[$i]->title }}/{{ $npo_info_proval[$i]->npo_name }}">{{ $npo_info_proval[$i]->subtitle }}</a><br>{{ $npo_info_proval[$i]->title }}</h6>
-                                            <h6><small>
-                                                現在合計：{{ number_format($npo_info_proval[$i]->follower) }}円
-        										<br>一口：{{ number_format($npo_info_proval[$i]->support_amount) }}円
-                                                <br>残り：{{ number_format($npo_info_proval[$i]->support_limit - $npo_info_proval[$i]->buyer) }}口
+                                        <div class="col-md-8 col-6">
+                                            <h6>{{ $npo_info_proval[$i]->title }}
+                                            <small>
+        										<br><a href="/{{ $npo_info_proval[$i]->title }}">@ {{ $npo_info_proval[$i]->subtitle }}</a>
+                                                <br>金額：{{ number_format($npo_info_proval[$i]->support_amount) }}円
+                                                <br>支援数：{{ number_format($npo_info_proval[$i]->buyer) }}/{{ number_format($npo_info_proval[$i]->support_limit) }}
         										@if($npo_info_proval[$i]->support_contents != '')
             										<br>リターン：{{ $npo_info_proval[$i]->support_contents }}
         										@endif
+                                                @if($npo_info_proval[$i]->support_contents_detail)
+                                                    <br>期限：{{ Carbon\Carbon::parse($npo_info_proval[$i]->support_contents_detail)->format('Y年m月d日H:i') }}
+                                                @endif
+                                                    
         									</small></h6>
                                         </div>
                                         <div class="col-md-3 col-2">
