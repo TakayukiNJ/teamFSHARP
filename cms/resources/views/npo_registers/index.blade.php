@@ -67,7 +67,7 @@
                                     @if(($npo_register->npo_name) == "")
                                         <a href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">
                                     @else
-                                        <a href="/{{ $npo_register->npo_name }}">
+                                        <a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">
                                     @endif
                                         @if($npo_register->background_pic)
                                         <img class="img" src="/img/project_back/{{ $npo_register->background_pic }}" />
@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="card-body">
                                     @if(($npo_register->proval) > 0)
-                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
+                                        <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                         <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
                                         <a class="btn btn-info btn-round" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">公開画面</a>
@@ -87,13 +87,13 @@
                                         @endif
                                     @elseif($npo_owner_info->npo == Auth::user()->npo)
                                         @if(($npo_register->proval) == 0)
-                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（未公開）</a></h4>
+                                        <h4 class="card-title"><a href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">{{$npo_register->subtitle}}（未公開）</a></h4>
                                         @elseif(($npo_register->proval) == -1)
-                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（期限切れ）</a></h4>
+                                        <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（期限切れ）</a></h4>
                                         @elseif(($npo_register->proval) == -2)
-                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（要編集）</a></h4>
+                                        <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}（要編集）</a></h4>
                                         @else
-                                        <h4 class="card-title"><a href="/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
+                                        <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                         @endif
                                         <p class="card-description">獲得金額: {{$npo_register->follower}} 円</p>
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
@@ -101,7 +101,7 @@
                                             <a class="btn btn-info btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">プレビュー</a>
                                             <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                         @else
-                                            <a class="btn btn-info btn-round" href="/{{ $npo_register->npo_name }}">プレビュー</a>
+                                            <a class="btn btn-info btn-round" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">プレビュー</a>
                                             <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                         @endif
                                         @if(($npo_register->published) == "")
