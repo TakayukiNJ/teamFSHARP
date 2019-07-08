@@ -302,16 +302,65 @@
                     </div>
                 </div>
 
-                <div class="tab-pane text-center" id="myProjects" role="tabpanel">
+                <div class="tab-pane" id="myProjects" role="tabpanel">
+                    <div class="text-center">
                     @if(Auth::user()->npo == $this_auth->npo)
                         @if(Auth::user()->npo)
                         <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">管理ページへ</a>
+                        <br>
                         @else
                         <h3 class="text-muted">まずは団体登録！</h3>
                         <br>
                         <a href="{{ url('/npo_registers') }}" class="btn btn-warning btn-round">プロジェクト作成</a>
+                        <br>
+                        @endif
+                        <br>
+                    @else
+                        @if($this_auth->npo)
+                        <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">{{$this_auth->npo}} Page</a><br>
+                        <br>
                         @endif
                     @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <div class="text-center">
+                                <p>▼ {{$this_auth->npo}} Projects</p>
+                            </div>
+                            <hr />
+                            <ul class="list-unstyled follows">
+                                @for($i = 0; $i < count($this_user_npo_info_proval); $i++)
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-1 col-2">
+                                            <!-- {{$i + 1}} -->
+                                            <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <h6>{{ $this_user_npo_info_proval[$i]->title }}
+                                            <small>
+        										<br><a href="/{{ $this_user_npo_info_proval[$i]->title }}">@ {{ $this_user_npo_info_proval[$i]->subtitle }}</a>
+                                                <br>金額：{{ number_format($this_user_npo_info_proval[$i]->support_amount) }}円
+                                                <br>支援数：{{ number_format($this_user_npo_info_proval[$i]->buyer) }}/{{ number_format($this_user_npo_info_proval[$i]->support_limit) }}
+        										@if($this_user_npo_info_proval[$i]->support_contents != '')
+            										<br>リターン：{{ $this_user_npo_info_proval[$i]->support_contents }}
+        										@endif
+                                                @if($this_user_npo_info_proval[$i]->support_contents_detail)
+                                                    <br>期限：{{ Carbon\Carbon::parse($this_user_npo_info_proval[$i]->support_contents_detail)->format('Y年m月d日H:i') }}
+                                                @endif
+                                                    
+        									</small></h6>
+                                        </div>
+                                        <div class="col-md-3 col-2">
+                                            <a class="btn btn-xs btn-primary" href="/{{$this_user_npo_info_proval[$i]->title}}/{{ $this_user_npo_info_proval[$i]->npo_name }}">GO!</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <hr />
+                                @endfor
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
 
