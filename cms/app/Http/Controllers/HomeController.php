@@ -348,8 +348,9 @@ class HomeController extends Controller
 		
 		$premierData_personal = \DB::table('premier_data')->where('user_define', $user_auth)->orderBy('updated_at', 'desc')->get();
         // 新着情報を取得
-        $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();     
-		$data['premierData_personal'] = $premierData_personal;
+        $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();
+        $data['this_user_npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->where('manager', $user_auth)->orderBy('published', 'desc')->get();
+        $data['premierData_personal'] = $premierData_personal;
         $data['donater']          = array(0=>"Donater");
         $data['donater_gold']     = array(0=>"Company");
         $data['donater_pratinum'] = array(0=>"Company(pratinum)");
@@ -592,7 +593,9 @@ class HomeController extends Controller
         $premierData_personal = \DB::table('premier_data')->where('user_define', $email)->orderBy('updated_at', 'desc')->get();
         // 新着情報を取得
         $data['npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->limit(10)->get();     
-		$data['premierData_personal'] = $premierData_personal;
+        $data['this_user_npo_info_proval'] = \DB::table('npo_registers')->where('proval', 1)->where('manager', $name)->orderBy('published', 'desc')->get();
+        
+        $data['premierData_personal'] = $premierData_personal;
         $data['donater']          = array(0=>"Donater");
         $data['donater_gold']     = array(0=>"Company");
         $data['donater_pratinum'] = array(0=>"Company(pratinum)");
