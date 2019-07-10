@@ -76,13 +76,13 @@
                     <!--<a href="{{ url('/npo_registers') }}" class="btn-lg btn btn-outline-neutral"><span class="network-name">スタート</span></a>-->
                     @endif
                     <br>
-                    <h1 class="presentation-subtitle text-center">▼</h1>
+                    <h1 class="presentation-subtitle text-center"><a href="#features">▼</a></h1>
                 </div>
     		</div>
     	</div>
     </div>
     
-    <div class="team-5 section-image" style="background-image: url('/img/sections/martin-knize.jpg')">
+    <div id="features" class="team-5 section-image" style="background-image: url('/img/sections/martin-knize.jpg')">
         <div class="projects-1">
             <div class="container">
                 <div class="col-md-8 ml-auto mr-auto text-center">

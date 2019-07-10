@@ -300,7 +300,7 @@
                                                         <p></p>
                                                         <label>現在：<b>{{ $npo_info->buyer }}口（{{ $npo_info->follower }}円）</b></label>
                                                         <p></p>
-                                                        <label>寄付者</label>
+                                                        <label>支援者</label>
                                                         <p>
                                                         @if(count($donater)>1)
                                                             @for($i = 1; $i < count($donater); $i++)
@@ -314,11 +314,11 @@
                                                                         <a href="{{ url('/home') }}/{{$donater[$i]}}">{{$donater[$i]}}</a>さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
                                                                     @endif
                                                                 @else
-                                                                    {{$donater[$i]}}さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
+                                                                    <a href="{{ url('/home') }}/{{$donater[$i]}}">{{$donater[$i]}}</a>さん@if($donater_times[$i] > 1)<small>×{{$donater_times[$i]}}</small>@endif
                                                                 @endif
                                                             @endfor
                                                         @else
-                                                            まだ寄付者はいません。
+                                                            まだ支援者はいません。
                                                         @endif
                                                         </p>
                                                     </div>
