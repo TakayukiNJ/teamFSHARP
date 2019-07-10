@@ -15,7 +15,7 @@ class Npo_registerController extends Controller {
     
 	public function __construct()
     {
-        $this->middleware('auth', ['except' => ['landing', 'pieces']]);
+        $this->middleware('auth', ['except' => ['landing', 'pieces', 'index2']]);
     }
     
 	public function index2(string $npo)
@@ -297,7 +297,6 @@ class Npo_registerController extends Controller {
         
 		// データベースからnpo_nameに該当するユーザーの情報をまとめて抜き出して
         // $currentNpoInfo = \DB::table('npo_registers')->where('id', $npo_name)->first();
-        // NPOメンバーが画像を保存していれば、はめていく。
         // NPOメンバーが画像を保存していれば、はめていく。
         for($i = 1; $i < 11; $i++){
             $member              = "member".$i;

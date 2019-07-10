@@ -27,6 +27,7 @@
                     </div>
                 </div>
             </div>
+            @if(Auth::user())
             @if(Auth::user()->name == $this_auth->name)
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
@@ -36,28 +37,31 @@
                 </div>
             </div>
             @endif
+            @endif
             <br/>
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
                     <ul class="nav nav-tabs" role="tablist">
+                    @if(Auth::user())
                         @if(Auth::user()->name == $this_auth->name)
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#new" role="tab">新着</a>
                         </li>
                         @endif
-                        @if($this_auth->npo != "")
+                    @endif
+                    @if($this_auth->npo != "")
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">団体</a>
                         </li>
-                        @endif
+                    @endif
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
                         </li>
-                        @if($this_auth->point != 0)
+                    @if($this_auth->point != 0)
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#SDGs" role="tab">SDGs</a>
                         </li>
-                        @endif
+                    @endif
                     </ul>
                 </div>
             </div>
@@ -172,6 +176,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-md-6 col-5">
+                                                <br>
                                                     <a href="/{{ $npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info_personal[$i]->npo_name }}" aria-label="Close">
                                                         <svg viewBox="0 0 210 210">
                                                             <g stroke="none" fill="none">
@@ -254,7 +259,7 @@
                                                                             @if($d > 1)
                                                                                 、
                                                                             @endif
-                                                                            @if(($this_auth->name) == $donater[$i][$d])
+                                                                            @if(($this_auth->name) == $donater[$i][$d] && Auth::user())
                                                                                 <b><a href="{{ url('/home') }}/{{ $donater[$i][$d] }}">{{$donater[$i][$d]}}</a>さん@if(Auth::user()->name == $this_auth->name)（あなた）@endif @if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif</font></b>
                                                                             @else
                                                                                 <a href="{{ url('/home') }}/{{ $donater[$i][$d] }}">{{$donater[$i][$d]}}</a>さん@if($donater_times[$i][$d] > 1)<small>×{{$donater_times[$i][$d]}}</small>@endif
@@ -267,9 +272,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 col-3">
-                                                    <h6><a href="/{{$npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}">{{ $npo_info_personal[$i]->subtitle }}</a><br>
-                                                    <br>金額：{{ number_format($npo_info_proval[$i]->support_amount) }}円
-                                                    <small>{{ $npo_info_personal[$i]->title }}</small><br>
+                                                    <b>{{ $npo_info_personal[$i]->subtitle }}</b><br>
+                                                    <small><h6><a href="/{{$npo_info_personal[$i]->title }}">{{ $npo_info_personal[$i]->title }}</a></small><br>
                                                     <small>金額：{{ number_format($npo_info_personal[$i]->support_amount) }}円</small><br>
                                                     <small>現在合計：{{ number_format($npo_info_personal[$i]->follower) }}円</small><br>
                                                     <small>支援数：{{ number_format($npo_info_proval[$i]->buyer) }}/{{ number_format($npo_info_proval[$i]->support_limit) }}</small><br>
@@ -304,22 +308,15 @@
 
                 <div class="tab-pane" id="myProjects" role="tabpanel">
                     <div class="text-center">
-                    @if(Auth::user()->npo == $this_auth->npo)
-                        @if(Auth::user()->npo)
-                        <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">管理ページへ</a>
+                    @if(Auth::guest() || $this_auth->npo)
+                        <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">{{$this_auth->npo}} Page</a><br>
                         <br>
-                        @else
+                    @else
                         <h3 class="text-muted">まずは団体登録！</h3>
                         <br>
                         <a href="{{ url('/npo_registers') }}" class="btn btn-warning btn-round">プロジェクト作成</a>
                         <br>
-                        @endif
                         <br>
-                    @else
-                        @if($this_auth->npo)
-                        <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">{{$this_auth->npo}} Page</a><br>
-                        <br>
-                        @endif
                     @endif
                     </div>
                     <div class="row">
@@ -337,9 +334,9 @@
                                             <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            <h6>{{ $this_user_npo_info_proval[$i]->title }}
+                                            <h6>{{ $this_user_npo_info_proval[$i]->subtitle }}
                                             <small>
-        										<br><a href="/{{ $this_user_npo_info_proval[$i]->title }}">@ {{ $this_user_npo_info_proval[$i]->subtitle }}</a>
+        										<br><a href="/{{ $this_user_npo_info_proval[$i]->title }}">@ {{ $this_user_npo_info_proval[$i]->title }}</a>
                                                 <br>金額：{{ number_format($this_user_npo_info_proval[$i]->support_amount) }}円
                                                 <br>支援数：{{ number_format($this_user_npo_info_proval[$i]->buyer) }}/{{ number_format($this_user_npo_info_proval[$i]->support_limit) }}
         										@if($this_user_npo_info_proval[$i]->support_contents != '')
@@ -366,6 +363,7 @@
 
 
 
+                @if(Auth::user())
                 @if(Auth::user()->name == $this_auth->name)
                 <div class="tab-pane active" id="new" role="tabpanel">
                     <div class="row">
@@ -404,6 +402,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 @endif
             </div>
         </div>
