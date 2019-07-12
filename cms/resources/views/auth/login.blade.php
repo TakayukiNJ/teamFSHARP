@@ -42,9 +42,9 @@
                             </div>
                             <div class="form-group forgot">
                                 <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
-                                <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
-                                    ご登録がお済みでない方はこちら
-                                </button>
+                                <div class="forgot">
+                                    <a href="#paper-kit" class="btn btn-link btn-danger">Forgot password?</a>
+                                </div>
                             </div>
                             </form>
                         </div>
