@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group forgot">
                                 <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
-                                <a href="#paper-kit" class="btn btn-link btn-danger">パスワードを忘れた方はこちら</a>
+                                <a href="{{ url('/password/reset') }}" class="btn btn-link btn-danger">パスワードを忘れた方はこちら</a>
                             </div>
                             </form>
                         </div>
