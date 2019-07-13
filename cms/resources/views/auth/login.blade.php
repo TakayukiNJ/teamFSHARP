@@ -7,9 +7,7 @@
 <body class="full-screen login">
     <div class="wrapper">
         <div class="page-header" style="background-image: url('/img/sections/bruno-abatti.jpg');">
-            <br>
-            <div class="filter"><br></div>
-            <br>
+            <div class="filter"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 ml-auto mr-auto">
@@ -36,15 +34,10 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 次回から自動ログイン
-                                </label>
                             </div>
                             <div class="form-group forgot">
                                 <button type="submit" class="btn btn-danger btn-block btn-round">ログイン</button>
-                                <div class="forgot">
-                                    <a href="#paper-kit" class="btn btn-link btn-danger">Forgot password?</a>
-                                </div>
+                                <a href="{{ url('/password/reset') }}" class="btn btn-link btn-danger">パスワードを忘れた方はこちら</a>
                             </div>
                             </form>
                         </div>
