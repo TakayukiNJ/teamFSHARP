@@ -4,12 +4,12 @@
             <div class="navbar-translate">
                 <div class="navbar-header">
                     @if (Auth::guest())
-                    <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
+                    <a class="navbar-brand" href="{{ url('/') }}">F♯ β</a>
                     @elseif ((Auth::user()->npo) !== "")
-                    <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
+                    <a class="navbar-brand" href="{{ url('/') }}">F♯ β</a>
                     <!--<a class="navbar-brand" href="{{ url('/home') }}/{{ Auth::user()->name }}">F♯</a>-->
                     @else
-                    <a class="navbar-brand" href="{{ url('/') }}">F♯</a>
+                    <a class="navbar-brand" href="{{ url('/') }}">F♯ β</a>
                     <!--<a class="navbar-brand" href="{{ url('/') }}/{{ Auth::user()->npo }}">F♯</a>-->
                     @endif
                 </div>
@@ -204,6 +204,8 @@
                                             <img src='/img/personal_info/{{ $personal_info->image_id }}' alt="{{ Auth::user()->name }}" class="img-circle img-responsive img-no-padding">
                                         </div>
                                     </a>
+                                @else
+                                    <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }}</a>
                                 @endif
                             @else
                                 <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="javascript:void(0)">{{ Auth::user()->name }}</a>
