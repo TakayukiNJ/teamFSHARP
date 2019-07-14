@@ -12,7 +12,7 @@
     				<h1 class="presentation-title"></h1>
     				<!--<div class="type">F♯</div>-->
     			</div>
-    			<h2 class="presentation-subtitle text-center">NPOの資金不足を解決する、資金調達Webサービス</h2>
+    			<h2 class="presentation-subtitle text-center">NPOの資金と人材不足を解決するWebサービス「F♯」</h2>
     			<div class="w3-panel w3-large">
                     <br>
                     <button type="button" class="btn-lg btn btn-neutral" data-toggle="modal" data-target="#howtoModal">
