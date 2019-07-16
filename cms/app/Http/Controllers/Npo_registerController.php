@@ -204,7 +204,7 @@ class Npo_registerController extends Controller {
 	    $currentNpoInfo = Npo_register::find($npo_name);
         $npo_manager    = $currentNpoInfo->manager;
         
-        $project        = $currentNpoInfo->subtitle;
+        $project        = $currentNpoInfo->npo_name;
         $this_user_auth = \DB::table('users')->where('name', $npo_manager)->first();
         $org            = $this_user_auth->npo;
         $url            = './'.$org.'/'.$project;
@@ -315,6 +315,7 @@ class Npo_registerController extends Controller {
             	}
             }
         }
+
         //連想配列に入れtBladeテンプレートに渡しています。
         $data['npo_info'] = $currentNpoInfo;
         if($currentNpoInfo->proval > 0){
@@ -330,7 +331,8 @@ class Npo_registerController extends Controller {
             $member_auth = $name_auth."1";
             $check_auth  = "member".$i."_twitter";
             if($member_auth === $currentNpoInfo->$check_auth){
-                return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+                return view('npo_registers.show', $data);
+                //return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
                 // return view('npo_registers.edit', $data);
             }
         }
@@ -478,7 +480,8 @@ class Npo_registerController extends Controller {
                 return view('/errors/503');
             }
             if($name_auth === $currentNpoInfo->manager){
-        		return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+                return view('npo_registers.show', $data);
+                //return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
             }
             // member1~10の_twitterカラムに権限があれば見れる処理
             for($i = 1; $i < 11; $i++){
@@ -486,7 +489,8 @@ class Npo_registerController extends Controller {
                 $member_auth = $name_auth."1";
                 $check_auth  = "member".$i."_twitter";
                 if($member_auth === $currentNpoInfo->$check_auth){
-                    return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
+                    return view('npo_registers.show', $data);
+                    //return view('npo_registers.show', $data, compact('npo_register'))->with('message', 'こちらは、Preview画面です。');
                     // return view('npo_registers.edit', $data);
                 }
             }
@@ -681,7 +685,7 @@ class Npo_registerController extends Controller {
             return redirect($this_url)->with('message', 'Item updated successfully.');
         }
         return redirect()->route('npo_registers.show', compact('npo_register'))->with('message', 'Item updated successfully.');
-	}
+    }
 
 	/**
 	 * Remove the specified resource from storage.
