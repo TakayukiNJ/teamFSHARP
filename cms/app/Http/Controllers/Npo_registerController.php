@@ -15,7 +15,7 @@ class Npo_registerController extends Controller {
     
 	public function __construct()
     {
-        $this->middleware('auth', ['except' => ['landing', 'pieces', 'index2']]);
+        $this->middleware('auth', ['except' => ['landing', 'pieces', 'index2', 'show']]);
     }
     
 	public function index2(string $npo)
