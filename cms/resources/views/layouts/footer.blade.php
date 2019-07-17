@@ -128,14 +128,22 @@
                                     Contact Us
                                 </a>
                             </li>
+                            @if (Auth::guest())
+                            <li>
+                                <a href="{{ url('/teamFSHARP') }}">
+                                    team F♯
+                                </a>
+                            </li>
+                            @else
                             <li>
                                 <a href="{{ url('home/home_own_timeline') }}">
                                     <!--We're Hiring-->
                                     Own page
                                 </a>
                             </li>
+                            @endif
                             <li>
-                                <a href="{{ url('/teamFSHARP') }}">
+                                <a href="{{ url('/teamFSHARP/teamFSHARP') }}">
                                     About Us
                                 </a>
                             </li>
@@ -146,17 +154,17 @@
                     <div class="links">
                         <ul class="uppercase-links stacked-links">
                             <li>
-                                <a href="{{ url('/teamFSHARP#pricing') }}">
+                                <a href="{{ url('/teamFSHARP/teamFSHARP#pricing') }}">
                                     Support F♯
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/teamFSHARP#my-tab-content') }}">
+                                <a href="{{ url('/teamFSHARP/teamFSHARP#my-tab-content') }}">
                                     Origin
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/teamFSHARP#teams') }}">
+                                <a href="{{ url('/teamFSHARP/teamFSHARP#teams') }}">
                                     F♯ members
                                 </a>
                             </li>
