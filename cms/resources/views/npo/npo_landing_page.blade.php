@@ -67,6 +67,9 @@
                                                 募集完売
                                             </a>
                                             @endif
+                                            <button type="button" class="btn btn-outline-neutral" >
+                                                フォローする
+                                            </button>
                                         @endif
                                     @endif
                                 </div>
@@ -117,7 +120,7 @@
                             <br>
                             <div class="containersns">
                                 {{-- Facebook --}}
-                                <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                                <div class="fb-like" data-href="{{ url()->current() }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
                                 <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
                                 <div>　</div>
                                 {{-- Twitter --}}
@@ -125,7 +128,7 @@
                                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                 <div>　</div>
                                 {{-- LINE --}}
-                                <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
+                                <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="{{ url()->current() }}" style="display: none;"></div>
                                 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
                                 {{-- SDGs --}}
                             </div>
@@ -258,7 +261,7 @@
                                                     {{-- SNS share --}}
                                                     <div class="containersns">
                                                         {{-- Facebook --}}
-                                                        <div class="fb-like" data-href="https://fsharp.me/{{ $npo_info->npo_name }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                                                        <div class="fb-like" data-href="{{ url()->current() }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
                                                         <script async defer src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2&appId=1545608625538119&autoLogAppEvents=1"></script>
                                                         <div>　</div>
                                                         {{-- Twitter --}}
@@ -266,7 +269,7 @@
                                                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                                         <div>　</div>
                                                         {{-- LINE --}}
-                                                        <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="https://fsharp.me/{{ $npo_info->npo_name }}" style="display: none;"></div>
+                                                        <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="2" data-url="{{ url()->current() }}" style="display: none;"></div>
                                                         <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
                                                     </div>
                                                     {{-- SDGs --}}
