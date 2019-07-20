@@ -21,7 +21,15 @@
                             <div class="following">
                                 <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>        
                             </div>
+                            @else
+                            <button type="button" class="btn btn-outline-neutral" >
+                                フォローする
+                            </button>
                             @endif
+                            @else
+                            <button type="button" class="btn btn-outline-neutral" >
+                                フォローする
+                            </button>
                             @endif
                         </div>
                     </div>
