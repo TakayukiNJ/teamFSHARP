@@ -375,3 +375,9 @@ Route::get('/contact/result', 'ContactController@result')->name('contact.result'
 Route::get('chat/chat', 'ChatController@index');
 Route::get('chat/messages', 'ChatController@fetchMessages');
 Route::post('chat/messages', 'ChatController@sendMessage');
+
+// フォロー機能(2019/7/21)
+// フォロー一覧
+// Route::get('/follow-list', 'FollowController@index');
+// フォロー処理
+Route::get('/follow/store/2019', 'FollowController@store');

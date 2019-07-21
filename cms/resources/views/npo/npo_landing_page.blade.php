@@ -37,9 +37,19 @@
                                 </h5>
                                 <div>
                                     @if(Auth::guest())
-                                    <button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal">
-                                        ユーザー登録
-                                    </button>
+                                    <form action="{{action('FollowController@store')}}" method="GET">
+                                        <input name="followee" type="hidden" value="{{ $npo_info->npo_name }}" readonly="readonly">
+                                        <a href="#support" class="btn btn-danger btn-outline-neutral">
+                                            支援する
+                                        </a>
+                                        <button class="btn btn-outline-neutral btn-fill" >
+                                            フォローする
+                                        </button>
+                                        {{--<button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal">--}}
+                                            {{--ユーザー登録--}}
+                                        {{--</button>--}}
+                                        {!! csrf_field() !!}
+                                    </form>
                                     @else
                                         @if($npo_info->manager == Auth::user()->name)
                                         <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
@@ -67,9 +77,14 @@
                                                 募集完売
                                             </a>
                                             @endif
-                                            <button type="button" class="btn btn-outline-neutral" >
-                                                フォローする
-                                            </button>
+                                            <form class="contact-form" action="{{action('ChatController@sendMessage')}}" method="POST">
+                                                <label>ユーザー名</label>
+                                                <input name="followee" type="hidden" value="{{ $npo_info->npo_name }}" readonly="readonly">
+                                                <button type="button" class="btn btn-outline-neutral" >
+                                                    フォローする
+                                                </button>
+                                                {!! csrf_field() !!}
+                                            </form>
                                         @endif
                                     @endif
                                 </div>
