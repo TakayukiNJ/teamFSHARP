@@ -37,12 +37,12 @@
                                 </h5>
                                 <div>
                                     @if(Auth::guest())
-                                    <form action="{{action('FollowController@store')}}" method="GET">
+                                    <form action="{{action('FollowController@store')}}" method="POST">
                                         <input name="followee" type="hidden" value="{{ $npo_info->npo_name }}" readonly="readonly">
                                         <a href="#support" class="btn btn-danger btn-outline-neutral">
                                             支援する
                                         </a>
-                                        <button class="btn btn-outline-neutral btn-fill" >
+                                        <button type="button" class="btn btn-outline-neutral btn-fill" data-toggle="modal" data-target="#loginModal">
                                             フォローする
                                         </button>
                                         {{--<button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal">--}}

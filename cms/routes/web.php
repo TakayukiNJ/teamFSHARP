@@ -381,3 +381,4 @@ Route::post('chat/messages', 'ChatController@sendMessage');
 // Route::get('/follow-list', 'FollowController@index');
 // フォロー処理
 Route::get('/follow/store/2019', 'FollowController@store');
+Route::post('/follow/store/2019', 'FollowController@store');

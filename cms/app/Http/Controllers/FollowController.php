@@ -13,7 +13,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use Image;
 
 class FollowController extends Controller {
-
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -63,8 +66,16 @@ class FollowController extends Controller {
     public function store(Request $request)
     {
 //        Log::debug($request);
-        dd($request);
-        // viewでボタンが押されたときに、フォロー中だったかどうかの判断フラグ
+        if(Auth::user()) {
+            $followee = $request->followee;
+            if(!$followee){
+              return back();
+            };
+        }else{
+            return redirect('/auth/login');
+        }
+
+            // viewでボタンが押されたときに、フォロー中だったかどうかの判断フラグ
         $follow_active_flag = intval($request->follow_active_flag);
         // フォローするインフルエンサーの情報を取得
         $influencer_original_id = $request->influencer_original_id;
