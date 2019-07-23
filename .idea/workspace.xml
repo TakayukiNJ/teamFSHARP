@@ -4,6 +4,7 @@
     <list default="true" id="1a3faa67-3512-436e-9589-e98a1ac9f8da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +24,8 @@
           <file leaf-file-name="npo_landing_page.blade.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="62" column="96" selection-start-line="62" selection-start-column="96" selection-end-line="62" selection-end-column="96" />
+                <state relative-caret-position="566">
+                  <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
                 </state>
               </provider>
             </entry>
@@ -33,11 +34,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="FollowController.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php">
+          <file leaf-file-name="Npo_registerController.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="415">
-                  <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+                <state relative-caret-position="367">
+                  <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
                   <folding>
                     <element signature="e#40#62#0#PHP" expanded="true" />
                   </folding>
@@ -51,10 +52,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>You are receiving this email b</find>
+      <find />
       <find>regards</find>
-      <find>Reset Password</find>
-      <find>class=&quot;nav-item dropdown&quot;</find>
+      <find />
+      <find />
       <find>pk_test</find>
       <find>sk_test</find>
       <find>pk_t</find>
@@ -63,13 +64,20 @@
       <find>dd(</find>
       <find>$project</find>
       <find>compact</find>
-      <find>Show the form for editing the specified resource.</find>
+      <find />
       <find>内閣府</find>
       <find>certificated_npo</find>
-      <find>own page</find>
+      <find />
       <find>支援すると</find>
       <find>https://fsharp.me</find>
       <find>login</find>
+      <find>update</find>
+      <find>$npo_register</find>
+      <find>Carbon</find>
+      <find>landing</find>
+      <find>personal_info</find>
+      <find>$personal_info</find>
+      <find>$data['personal_info']</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -91,13 +99,13 @@
         <option value="$PROJECT_DIR$/cms/public/index.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/auth/passwords/email.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/welcome.blade.php" />
-        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" />
         <option value="$PROJECT_DIR$/cms/app/Follow.php" />
         <option value="$PROJECT_DIR$/cms/routes/web.php" />
-        <option value="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" />
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" />
+        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
+        <option value="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" />
       </list>
     </option>
   </component>
@@ -129,9 +137,10 @@
       <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1280" />
-    <option name="height" value="800" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="1280" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -260,18 +269,18 @@
       <workItem from="1563597376224" duration="63000" />
       <workItem from="1563612955382" duration="4850000" />
       <workItem from="1563787280229" duration="2411000" />
-      <workItem from="1563861976759" duration="1536000" />
+      <workItem from="1563861976759" duration="4907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20815000" />
+    <option name="totallyTimeSpent" value="24186000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="1280" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19951534" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1315229" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -280,7 +289,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.15954416" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.11405295" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -515,13 +524,6 @@
         <state relative-caret-position="-1514" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="138" column="81" selection-start-line="138" selection-start-column="81" selection-end-line="138" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-289">
@@ -550,20 +552,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="62" column="96" selection-start-line="62" selection-start-column="96" selection-end-line="62" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="103" column="14" selection-start-line="103" selection-start-column="14" selection-end-line="103" selection-end-column="14" />
+        <state relative-caret-position="315">
+          <caret line="84" column="45" lean-forward="true" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
           <folding>
             <element signature="e#40#62#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
+          <folding>
+            <element signature="e#40#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
         </state>
       </provider>
     </entry>

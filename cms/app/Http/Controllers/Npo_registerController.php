@@ -496,6 +496,13 @@ class Npo_registerController extends Controller {
             }
             return view('/errors/503');
     	}
+    	//follow機能追加 20190724
+        $data['follow_data'] = \DB::table('follows')->where('followee_id', $currentNpoInfo->title)->orderBy('id','desc')->get();
+        if(Auth::user()){
+            $follower_id = Auth::user()->name;
+            $data['this_follow'] = $data['follow_data']->where('follower_id', $follower_id)->first();
+        }
+//        dd($data);
         return view('npo.npo_landing_page', $data);
     }
     
@@ -863,8 +870,7 @@ class Npo_registerController extends Controller {
                     'updated_at'  => new Carbon(Carbon::now())
                 ]);
         }else{
-            \DB::table('premier_data')->insert(
-                [
+            \DB::table('premier_data')->insert([
                 'user_id'     => $token,                          // 誰が寄付したのかemailで管理
                 'vision_id'   => $npo_name,                       // どのプロジェクトに寄付したのかURLで管理
                 'premier_id'  => 1,                               // 通常の寄付なら1、企業からの寄付なら2、企業からのプレミア寄付なら3
@@ -876,8 +882,7 @@ class Npo_registerController extends Controller {
                 'delflg'      => 0,                               // 1だったら非表示。未実装
                 'created_at'  => new Carbon(Carbon::now()),       // 寄付した時刻
                 'updated_at'  => new Carbon(Carbon::now())        // 寄付した時刻
-                ]
-            );
+            ]);
         }
         // デポジットに追加（NPOテーブル）
         \DB::table('npo_registers')->where('npo_name', $npo_name)->update([
