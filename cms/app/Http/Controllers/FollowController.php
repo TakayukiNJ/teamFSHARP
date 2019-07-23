@@ -75,50 +75,32 @@ class FollowController extends Controller {
             return redirect('/auth/login');
         }
 
-            // viewでボタンが押されたときに、フォロー中だったかどうかの判断フラグ
-        $follow_active_flag = intval($request->follow_active_flag);
-        // フォローするインフルエンサーの情報を取得
-        $influencer_original_id = $request->influencer_original_id;
-        $user_original_id = $request->user_original_id;
+        $follower = Auth::user()->name;
 
-
-        $auth = Auth::user();
-        $original_id = $auth->original_id;
-
-        // ログインユーザーIDとpostされてきたIDを照らし合わせて違ったらトップに飛ばす
-        if($original_id !== $user_original_id)
-        {
-            return redirect('/');
-        };
-
-        // インフルエンサーのユーザーIDから情報を取得
-        $influencer_info = User::where('original_id', $influencer_original_id)->first();
-
-        // フォローしていなければフォローテーブルに追加
-        // フォローしていれば削除
-        if($follow_active_flag === 0)
-        {
+        // フォローしていれば削除を実装しないと。
+//        if($follow_active_flag === 0)
+//        {
             $follow = new Follow;
 
-            $follow->followee_id = $influencer_original_id;
-            $follow->follower_id = $user_original_id;
+            $follow->follower_id = $follower;
+            $follow->followee_id = $followee;
             $follow->save();
 
-            $detail = Detail::where('user_id', $influencer_info->id)->first();
-            $follower = $detail->follower_num;
-            $new_follower = $follower + 1;
-            Detail::where('user_id', $influencer_info->id)->update(['follower_num' => $new_follower]);
+//            $detail = Detail::where('user_id', $influencer_info->id)->first();
+//            $follower = $detail->follower_num;
+//            $new_follower = $follower + 1;
+//            Detail::where('user_id', $influencer_info->id)->update(['follower_num' => $new_follower]);
 
 
-        } else {
+//        } else {
 
-            Follow::where('followee_id', $influencer_original_id)->where('follower_id', $user_original_id)->delete();
-
-            $detail = Detail::where('user_id', $influencer_info->id)->first();
-            $follower = $detail->follower_num;
-            $new_follower = $follower - 1;
-            Detail::where('user_id', $influencer_info->id)->update(['follower_num' => $new_follower]);
-        }
-
+//            Follow::where('followee_id', $influencer_original_id)->where('follower_id', $user_original_id)->delete();
+//
+//            $detail = Detail::where('user_id', $influencer_info->id)->first();
+//            $follower = $detail->follower_num;
+//            $new_follower = $follower - 1;
+//            Detail::where('user_id', $influencer_info->id)->update(['follower_num' => $new_follower]);
+//        }
+return back();
     }
 }
