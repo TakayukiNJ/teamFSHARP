@@ -36,57 +36,51 @@
                                     {!! nl2br(e(trans($npo_info->title))) !!}
                                 </h5>
                                 <div>
-                                    @if(Auth::guest())
                                     <form action="{{action('FollowController@store')}}" method="POST">
                                         <input name="followee" type="hidden" value="{{ $npo_info->npo_name }}" readonly="readonly">
-                                        <a href="#support" class="btn btn-danger btn-outline-neutral">
-                                            支援する
-                                        </a>
-                                        <button type="button" class="btn btn-outline-neutral btn-fill" data-toggle="modal" data-target="#loginModal">
-                                            フォローする
-                                        </button>
+                                        @if(Auth::guest())
+                                            <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
+                                                フォローする
+                                            </button>
+                                        @else
+                                            @if($npo_info->manager == Auth::user()->name)
+                                                <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                                    編集する
+                                                </a>
+                                            @else
+                                                @for ($i = 1; $i <= 10; $i++)
+                                                    <?php $member = "member".$i ?>
+                                                    @if($npo_info->$member)
+                                                        <?php $member_twitter = $member."_twitter" ?>
+                                                        <?php $member_auth    = $npo_info->$member . "1" ?>
+                                                        @if($npo_info->$member_twitter == $member_auth && Auth::user()->name == $npo_info->$member)
+                                                            <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                                                編集する
+                                                            </a>
+                                                        @endif
+                                                    @endif
+                                                @endfor
+                                                <button class="btn btn-outline-neutral btn-fill">
+                                                    フォローする
+                                                </button>
+                                            @endif
+                                        @endif
+                                        @if($npo_info->buyer < $npo_info->support_limit)
+                                            <a href="#support" class="btn btn-danger btn-outline-neutral">
+                                                支援する
+                                            </a>
+                                        @else
+                                            <a href="#support" class="btn">
+                                                募集完売
+                                            </a>
+                                        @endif
+
                                         {{--<button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal">--}}
                                             {{--ユーザー登録--}}
                                         {{--</button>--}}
                                         {!! csrf_field() !!}
                                     </form>
-                                    @else
-                                        @if($npo_info->manager == Auth::user()->name)
-                                        <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
-                                            編集する
-                                        </a>
-                                        @else
-                                            @for ($i = 1; $i <= 10; $i++)
-                                                <?php $member = "member".$i ?>
-                                                @if($npo_info->$member)
-                                                    <?php $member_twitter = $member."_twitter" ?>
-                                                    <?php $member_auth    = $npo_info->$member . "1" ?>
-                                                    @if($npo_info->$member_twitter == $member_auth && Auth::user()->name == $npo_info->$member)
-                                                        <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
-                                                            編集する
-                                                        </a>
-                                                    @endif
-                                                @endif
-                                            @endfor
-                                            @if($npo_info->buyer < $npo_info->support_limit)
-                                            <a href="#support" class="btn btn-danger">
-                                                支援する
-                                            </a>
-                                            @else
-                                            <a href="#support" class="btn">
-                                                募集完売
-                                            </a>
-                                            @endif
-                                            <form class="contact-form" action="{{action('ChatController@sendMessage')}}" method="POST">
-                                                <label>ユーザー名</label>
-                                                <input name="followee" type="hidden" value="{{ $npo_info->npo_name }}" readonly="readonly">
-                                                <button type="button" class="btn btn-outline-neutral" >
-                                                    フォローする
-                                                </button>
-                                                {!! csrf_field() !!}
-                                            </form>
-                                        @endif
-                                    @endif
+
                                 </div>
                                 <br>
                                 <h6>現在：{{ number_format($npo_info->buyer) }}口（{{ number_format($currency_data) }}円）／ 募集：{{ number_format($npo_info->support_limit) }}口（残り{{ number_format($npo_info->support_limit - $npo_info->buyer) }}口）</h6>
