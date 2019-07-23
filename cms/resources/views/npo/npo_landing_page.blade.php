@@ -37,7 +37,7 @@
                                 </h5>
                                 <div>
                                     <form action="{{action('FollowController@store')}}" method="POST">
-                                        <input name="followee" type="hidden" value="{{ $npo_info->npo_name }}" readonly="readonly">
+                                        <input name="followee" type="hidden" value="{{ $npo_info->title }}" readonly="readonly">
                                         @if(Auth::guest())
                                             <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
                                                 フォローする
@@ -60,9 +60,17 @@
                                                         @endif
                                                     @endif
                                                 @endfor
+                                                @if($this_follow->delete_flg === 0)
+                                                <input name="delete_flg" type="hidden" value="1" readonly="readonly">
+                                                <button class="btn btn-neutral btn-fill">
+                                                    フォロー中
+                                                </button>
+                                                @else
+                                                <input name="delete_flg" type="hidden" value="0" readonly="readonly">
                                                 <button class="btn btn-outline-neutral btn-fill">
                                                     フォローする
                                                 </button>
+                                                @endif
                                             @endif
                                         @endif
                                         @if($npo_info->buyer < $npo_info->support_limit)
