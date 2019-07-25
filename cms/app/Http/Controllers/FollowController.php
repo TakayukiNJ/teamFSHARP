@@ -67,9 +67,10 @@ class FollowController extends Controller {
     {
 //        Log::debug($request);
         if(Auth::user()) {
-            $follower = Auth::user()->name;
-            $followee = $request->followee;
+            $follower   = Auth::user()->name;
+            $followee   = $request->followee;
             $delete_flg = $request->delete_flg;
+            $new_flg    = $request->new_flg;
             if(!$followee){
               return back();
             };
@@ -78,14 +79,16 @@ class FollowController extends Controller {
         }
 
         // フォローしていれば削除
-        if($delete_flg === 0)
+        if($new_flg == "new")
         {
+//            dd("a");
             $follow = new Follow;
             $follow->follower_id = $follower;
             $follow->followee_id = $followee;
             $follow->delete_flg = $delete_flg;
             $follow->save();
 
+//            dd("aas");
 //            $detail = Detail::where('user_id', $influencer_info->id)->first();
 //            $follower = $detail->follower_num;
 //            $new_follower = $follower + 1;
@@ -94,7 +97,7 @@ class FollowController extends Controller {
             Follow::where('follower_id', $follower)
                 ->where('followee_id', $followee)
                 ->update([
-                    'delete_flg' => $delete_flg, // 1が削除（html側のhiddenで持ってきている。）
+                    'delete_flg' => $delete_flg,
                     'updated_at' => new Carbon(Carbon::now())
                 ]);
         }

@@ -509,12 +509,12 @@ class Npo_registerController extends Controller {
             return view('/errors/503');
     	}
     	//follow機能追加 20190724
+//        $data['this_follow'] = "";
         $data['follow_data'] = \DB::table('follows')->where('followee_id', $currentNpoInfo->title)->orderBy('id','desc')->get();
         if(Auth::user()){
             $follower_id = Auth::user()->name;
             $data['this_follow'] = $data['follow_data']->where('follower_id', $follower_id)->first();
         }
-//        dd($data);
         return view('npo.npo_landing_page', $data);
     }
     

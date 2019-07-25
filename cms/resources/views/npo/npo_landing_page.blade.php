@@ -60,12 +60,20 @@
                                                         @endif
                                                     @endif
                                                 @endfor
-                                                @if($this_follow->delete_flg === 0)
-                                                <input name="delete_flg" type="hidden" value="1" readonly="readonly">
-                                                <button class="btn btn-neutral btn-fill">
-                                                    フォロー中
-                                                </button>
+                                                @if($this_follow)
+                                                    @if($this_follow->delete_flg === 0)
+                                                    <input name="delete_flg" type="hidden" value="1" readonly="readonly">
+                                                    <button class="btn btn-neutral btn-fill">
+                                                        フォロー中
+                                                    </button>
+                                                    @else
+                                                    <input name="delete_flg" type="hidden" value="0" readonly="readonly">
+                                                    <button class="btn btn-outline-neutral btn-fill">
+                                                        フォローする
+                                                    </button>
+                                                    @endif
                                                 @else
+                                                <input name="new_flg" type="hidden" value="new" readonly="readonly">
                                                 <input name="delete_flg" type="hidden" value="0" readonly="readonly">
                                                 <button class="btn btn-outline-neutral btn-fill">
                                                     フォローする
