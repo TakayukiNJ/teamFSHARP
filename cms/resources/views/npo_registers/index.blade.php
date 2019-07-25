@@ -13,24 +13,39 @@
                 <div class="row">
                     <div class="col-md-12 ml-auto">
                         <div class="owner text-center">
-                            <div class="name">
-                                <h3>{{$npo_owner_info->npo}}</h3>
-                            </div>
-                            @if(Auth::user())
-                            @if($npo_owner_info->npo == Auth::user()->npo)
-                            <div class="following">
-                                <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>        
-                            </div>
-                            @else
-                            <button type="button" class="btn btn-outline-neutral" >
-                                フォローする
-                            </button>
-                            @endif
-                            @else
-                            <button type="button" class="btn btn-outline-neutral" >
-                                フォローする
-                            </button>
-                            @endif
+
+                            <form action="{{action('FollowController@store')}}" method="POST">
+                                <input name="followee" type="hidden" value="{{ $npo_owner_info->npo }}" readonly="readonly">
+
+                                <div class="name">
+                                    <h3>{{$npo_owner_info->npo}}</h3>
+                                </div>
+                                @if(Auth::user())
+                                    @if($npo_owner_info->npo == Auth::user()->npo)
+                                    <div class="following">
+                                        <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>
+                                    </div>
+                                    @else
+                                        @if($this_follow->delete_flg === 0)
+                                            <input name="delete_flg" type="hidden" value="1" readonly="readonly">
+                                            <button class="btn btn-neutral btn-fill">
+                                                フォロー中
+                                            </button>
+                                        @else
+                                            <input name="delete_flg" type="hidden" value="0" readonly="readonly">
+                                            <button class="btn btn-outline-neutral btn-fill">
+                                                フォローする
+                                            </button>
+                                        @endif
+                                    @endif
+                                @else
+                                <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#loginModal">
+                                    フォローする
+                                </button>
+                                @endif
+
+                                {!! csrf_field() !!}
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -43,6 +43,12 @@ class Npo_registerController extends Controller {
             $project_total_price = $npo_registers[$array_count]->follower;
             $data['project_total_price'] += $project_total_price;
 		}
+        //follow機能追加 20190725
+        $data['follow_data'] = \DB::table('follows')->where('followee_id', $npo_auth)->orderBy('id','desc')->get();
+        if(Auth::user()){
+            $follower_id = Auth::user()->name;
+            $data['this_follow'] = $data['follow_data']->where('follower_id', $follower_id)->first();
+        }
       	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	
@@ -74,6 +80,12 @@ class Npo_registerController extends Controller {
             $project_total_price = $npo_registers[$array_count]->follower;
             $data['project_total_price'] += $project_total_price;
 		}
+        //follow機能追加 20190725
+        $data['follow_data'] = \DB::table('follows')->where('followee_id', $npo_auth)->orderBy('id','desc')->get();
+        if(Auth::user()){
+            $follower_id = Auth::user()->name;
+            $data['this_follow'] = $data['follow_data']->where('follower_id', $follower_id)->first();
+        }
     	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	/**
