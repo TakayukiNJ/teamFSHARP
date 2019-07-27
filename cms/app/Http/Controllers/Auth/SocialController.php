@@ -58,5 +58,5 @@ class SocialController extends Controller {
             return 'something went wrong';
         }
     }
-}
+//}
 }

@@ -22,6 +22,7 @@ class Npo_registerController extends Controller {
 	{
         $user_info = \DB::table('users')->where('npo', $npo)->first();
 		if(!$user_info){
+//		    dd("a");
 		    return view('/errors/503');
 		}
 		$name_auth = $user_info->name;

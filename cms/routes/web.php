@@ -260,6 +260,7 @@ Route::post('/npo_register/create', 'Npo_registerController@create');
 Route::post('/npo_register/{npo_name}/edit', 'Npo_registerController@edit');
 //フォルダ名をURLに反映(2018.01.04仲条追加項目)
 Route::get('/{npo}/{npo_name}','Npo_registerController@landing');
+//Route::get('/{npo_name}','Npo_registerController@landing');
 // Route::get('/org/{id}/{npo_name}','Npo_registerController@landing');
 Route::get('/{npo_name}/edit','Npo_registerController@editing');
 Route::post('/{npo_name}/payment','Npo_registerController@payment');
@@ -306,21 +307,21 @@ Route::get('auth/login/callback/google', 'Auth\SocialController@getGoogleAuthCal
 //});
 
 // bitflyerの履歴(購入履歴：送金履歴）
-Route::get('bitflyer/getHistorySupportTo', function()
-{
-/*    $article = [
-    { "no": 1, "date1":"20180510", "date2":"20180510", "npo_or_person":"テストNPO", "amount":100000, "intermediary":"BitFlyer" , "hand_counting_material":500, "suitable_for": "送金"},
-    { "no": 2, "date1":"20180510", "date2":"20180510", "npo_or_person":"テストNPO", "amount":100000, "intermediary":"BitFlyer" , "hand_counting_material":500, "suitable_for": "送金"}
-    ];*/
-    return Response::json($article);
-});
+//Route::get('bitflyer/getHistorySupportTo', function()
+//{
+///*    $article = [
+//    { "no": 1, "date1":"20180510", "date2":"20180510", "npo_or_person":"テストNPO", "amount":100000, "intermediary":"BitFlyer" , "hand_counting_material":500, "suitable_for": "送金"},
+//    { "no": 2, "date1":"20180510", "date2":"20180510", "npo_or_person":"テストNPO", "amount":100000, "intermediary":"BitFlyer" , "hand_counting_material":500, "suitable_for": "送金"}
+//    ];*/
+//    return Response::json($article);
+//});
 
 // bitflyerの履歴(販売履歴：入金履歴)
-Route::get('bitflyer/getHistorySupportFrom', function()
-{
-    $article = ['id' => 1, 'title' => "today's dialy", 'content' => "It's a sunny day."];
-    return Response::json($article);
-});
+//Route::get('bitflyer/getHistorySupportFrom', function()
+//{
+//    $article = ['id' => 1, 'title' => "today's dialy", 'content' => "It's a sunny day."];
+//    return Response::json($article);
+//});
 
 // bitflyerの送金
 
@@ -382,3 +383,4 @@ Route::post('chat/messages', 'ChatController@sendMessage');
 // フォロー処理
 Route::get('/follow/store/2019', 'FollowController@store');
 Route::post('/follow/store/2019', 'FollowController@store');
+
