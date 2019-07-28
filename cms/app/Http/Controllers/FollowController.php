@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use Image;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+
 class FollowController extends Controller {
     public function __construct()
     {
@@ -77,22 +80,31 @@ class FollowController extends Controller {
         }else{
             return redirect('/auth/login');
         }
-
+        $email = Auth::user()->email;
         // フォローしていれば削除
         if($new_flg == "new")
         {
-//            dd("a");
             $follow = new Follow;
             $follow->follower_id = $follower;
             $follow->followee_id = $followee;
             $follow->delete_flg = $delete_flg;
             $follow->save();
-
-//            dd("aas");
-//            $detail = Detail::where('user_id', $influencer_info->id)->first();
-//            $follower = $detail->follower_num;
-//            $new_follower = $follower + 1;
-//            Detail::where('user_id', $influencer_info->id)->update(['follower_num' => $new_follower]);
+            // メール送信処理（//view/emails/follow-to.blade.phpにデータを送る）
+            Mail::send(['text' => 'emails.follow-to'], [
+//                    'purchase'=>$purchase , //購入者のユーザー情報
+//                    'detail'=>$detail,
+//                    'purchasedetails'=>$purchasedetails
+                ]
+                , function($message) use($email) {
+                    // $email = $request->stripeEmail;
+                    // dd($email);
+                    $message
+                        ->from('g181tg2061@dhw.ac.jp')
+                        ->to($email)
+                        ->bcc('nj.takayuki@gmail.com')
+                        ->subject("【ONSTA】商品の注文が完了いたしました。");
+                }
+            );
         } else {
             Follow::where('follower_id', $follower)
                 ->where('followee_id', $followee)
@@ -101,13 +113,6 @@ class FollowController extends Controller {
                     'updated_at' => new Carbon(Carbon::now())
                 ]);
         }
-//            Follow::where('followee_id', $influencer_original_id)->where('follower_id', $user_original_id)->delete();
-//
-//            $detail = Detail::where('user_id', $influencer_info->id)->first();
-//            $follower = $detail->follower_num;
-//            $new_follower = $follower - 1;
-//            Detail::where('user_id', $influencer_info->id)->update(['follower_num' => $new_follower]);
-//        }
-return back();
+        return back();
     }
 }
