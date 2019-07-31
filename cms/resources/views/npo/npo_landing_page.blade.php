@@ -33,7 +33,7 @@
                                     @if($npo_info->avater)
                                     <img src="{{ url('/') }}/img/project_logo/{{$npo_info->avater}}" class="img-thumbnail img-no-padding img-responsive" alt="Rounded Image" width="32" height="32">
                                     @endif
-                                    {!! nl2br(e(trans($npo_info->title))) !!}
+                                    {!! nl2br(e(trans($npo_info->title))) !!}（{{ $follower_count }}）
                                 </h5>
                                 <div>
                                     <form action="{{action('FollowController@store')}}" method="POST">
