@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Carbon\Carbon;
 use App\Npo_register;
+use App\Follow;
 use App;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -376,7 +377,10 @@ class Npo_registerController extends Controller {
         if(!$currentNpoInfo){
 		    return view('/errors/503');
 		}
-		// messagesテーブルからメッセージを取ってくる（6/3の開発合宿で追加）
+		// フォロー数をカウント
+        $followers = Follow::where('followee_id', $currentNpoInfo->title)->where('delete_flg', 0)->get();
+        $data['follower_count'] = count($followers);
+        // messagesテーブルからメッセージを取ってくる（6/3の開発合宿で追加）
         $messageData     = \DB::table('messages')->where('to', $npo_name)->orderBy('id','desc')->get();
         $data['from']    = array(0=>"from");
         $data['to']      = array(0=>"to");
