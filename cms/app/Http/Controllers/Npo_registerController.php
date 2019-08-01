@@ -51,7 +51,10 @@ class Npo_registerController extends Controller {
             $follower_id = Auth::user()->name;
             $data['this_follow'] = $data['follow_data']->where('follower_id', $follower_id)->first();
         }
-      	return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
+        // フォロー数をカウント
+        $followers = Follow::where('followee_id', $data['npo_info']->title)->where('delete_flg', 0)->get();
+        $data['follower_count'] = count($followers);
+        return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}
 	
 	public function index()

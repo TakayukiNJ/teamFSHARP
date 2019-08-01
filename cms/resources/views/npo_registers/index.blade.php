@@ -18,7 +18,7 @@
                                 <input name="followee" type="hidden" value="{{ $npo_owner_info->npo }}" readonly="readonly">
 
                                 <div class="name">
-                                    <h3>{{$npo_owner_info->npo}}</h3>
+                                    <h3>{{$npo_owner_info->npo}} <small>({{ $follower_count }})</small></h3>
                                 </div>
                                 @if(Auth::user())
                                     @if($npo_owner_info->npo == Auth::user()->npo)
