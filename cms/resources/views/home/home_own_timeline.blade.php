@@ -377,9 +377,9 @@
                                             <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            <h6>{{ $npo_info_proval[$i]->title }}
+                                            <h6>{{ $npo_info_proval[$i]->subtitle }}
                                             <small>
-        										<br><a href="/{{ $npo_info_proval[$i]->title }}">@ {{ $npo_info_proval[$i]->subtitle }}</a>
+        										<br><a href="/{{ $npo_info_proval[$i]->title }}">@ {{ $npo_info_proval[$i]->title }}</a>
                                                 <br>金額：{{ number_format($npo_info_proval[$i]->support_amount) }}円
                                                 <br>支援数：{{ number_format($npo_info_proval[$i]->buyer) }}/{{ number_format($npo_info_proval[$i]->support_limit) }}
         										@if($npo_info_proval[$i]->support_contents != '')
