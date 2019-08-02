@@ -52,7 +52,7 @@ class Npo_registerController extends Controller {
             $data['this_follow'] = $data['follow_data']->where('follower_id', $follower_id)->first();
         }
         // フォロー数をカウント
-        $followers = Follow::where('followee_id', $data['npo_info']->title)->where('delete_flg', 0)->get();
+        $followers = Follow::where('followee_id', $data['npo_owner_info']->npo)->where('delete_flg', 0)->get();
         $data['follower_count'] = count($followers);
         return view('npo_registers.index', $data, compact('npo_registers'))->with('message', 'Item created successfully.');
 	}

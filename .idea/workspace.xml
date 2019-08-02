@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1a3faa67-3512-436e-9589-e98a1ac9f8da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +20,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.559799">
       <split-first>
         <leaf>
-          <file leaf-file-name="Npo_registerController.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
+          <file leaf-file-name="FollowController.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="379">
-                  <caret line="55" column="52" lean-forward="true" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
+                <state relative-caret-position="356">
+                  <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
                   <folding>
                     <element signature="e#40#62#0#PHP" expanded="true" />
                   </folding>
@@ -36,11 +36,14 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
+          <file leaf-file-name="Npo_registerController.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="232">
-                  <caret line="20" column="66" lean-forward="true" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+                <state relative-caret-position="121">
+                  <caret line="54" column="8" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#40#62#0#PHP" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -51,7 +54,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Reset Password</find>
       <find>class=&quot;nav-item dropdown&quot;</find>
       <find>pk_test</find>
       <find>sk_test</find>
@@ -81,6 +83,7 @@
       <find>Hello!</find>
       <find>password</find>
       <find>count(</find>
+      <find>【ONSTA】</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -110,11 +113,11 @@
         <option value="$PROJECT_DIR$/cms/routes/web.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/payment-to.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php" />
-        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/follow-from.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" />
-        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" />
+        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" />
+        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
       </list>
     </option>
   </component>
@@ -353,27 +356,29 @@
       <workItem from="1563787280229" duration="2411000" />
       <workItem from="1563861976759" duration="17709000" />
       <workItem from="1564477386527" duration="1310000" />
-      <workItem from="1564583496625" duration="1772000" />
+      <workItem from="1564583496625" duration="2045000" />
+      <workItem from="1564742048385" duration="1435000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40070000" />
+    <option name="totallyTimeSpent" value="41778000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20597738" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.15954416" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2092084" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.15954416" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -383,7 +388,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,26 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="102" column="20" lean-forward="true" selection-start-line="102" selection-start-column="20" selection-end-line="102" selection-end-column="20" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="55" column="52" lean-forward="true" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -711,8 +695,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="20" column="66" lean-forward="true" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="66" />
+        <state relative-caret-position="118">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
+          <folding>
+            <element signature="e#40#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="54" column="8" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
+          <folding>
+            <element signature="e#40#62#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

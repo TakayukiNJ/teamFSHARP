@@ -80,7 +80,8 @@ class FollowController extends Controller {
         }else{
             return redirect('/auth/login');
         }
-        $email = Auth::user()->email;
+        $user_info = \DB::table('users')->where('npo', $followee)->first();
+        $email = $user_info->email;
         // フォローしていれば削除
         if($new_flg == "new")
         {
@@ -89,20 +90,21 @@ class FollowController extends Controller {
             $follow->followee_id = $followee;
             $follow->delete_flg = $delete_flg;
             $follow->save();
+            $subject = $follower."さんが".$followee."をフォローしました。";
             // メール送信処理（//view/emails/follow-to.blade.phpにデータを送る）
             Mail::send(['text' => 'emails.follow-to'], [
 //                    'purchase'=>$purchase , //購入者のユーザー情報
 //                    'detail'=>$detail,
 //                    'purchasedetails'=>$purchasedetails
                 ]
-                , function($message) use($email) {
+                , function($message) use($email, $subject) {
                     // $email = $request->stripeEmail;
                     // dd($email);
                     $message
                         ->from('g181tg2061@dhw.ac.jp')
                         ->to($email)
                         ->bcc('nj.takayuki@gmail.com')
-                        ->subject("【ONSTA】商品の注文が完了いたしました。");
+                        ->subject($subject);
                 }
             );
         } else {
