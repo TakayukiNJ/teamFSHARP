@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a3faa67-3512-436e-9589-e98a1ac9f8da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,14 +17,14 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.38100103">
+    <splitter split-orientation="horizontal" split-proportion="0.48314607">
       <split-first>
         <leaf>
           <file leaf-file-name="FollowController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="356">
-                  <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
+                <state relative-caret-position="234">
+                  <caret line="95" column="21" lean-forward="true" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
                   <folding>
                     <element signature="e#40#62#0#PHP" expanded="true" />
                   </folding>
@@ -34,11 +36,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="home_own_timeline.blade.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php">
+          <file leaf-file-name="follow-to.blade.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="154">
-                  <caret line="381" column="132" selection-start-line="381" selection-start-column="132" selection-end-line="381" selection-end-column="132" />
+                <state relative-caret-position="434">
+                  <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
@@ -107,13 +109,13 @@
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Auth/SocialController.php" />
         <option value="$PROJECT_DIR$/cms/routes/web.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/payment-to.blade.php" />
-        <option value="$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/follow-from.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" />
-        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" />
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" />
+        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" />
+        <option value="$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php" />
       </list>
     </option>
   </component>
@@ -277,12 +279,12 @@
       <workItem from="1563861976759" duration="17709000" />
       <workItem from="1564477386527" duration="1310000" />
       <workItem from="1564583496625" duration="2045000" />
-      <workItem from="1564742048385" duration="1838000" />
+      <workItem from="1564742048385" duration="3567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42181000" />
+    <option name="totallyTimeSpent" value="43910000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -578,13 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/follow-from.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -603,16 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -635,6 +620,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="381" column="132" selection-start-line="381" selection-start-column="132" selection-end-line="381" selection-end-column="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="95" column="21" lean-forward="true" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
+          <folding>
+            <element signature="e#40#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
         </state>
       </provider>
     </entry>

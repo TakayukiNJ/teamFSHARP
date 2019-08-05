@@ -93,8 +93,8 @@ class FollowController extends Controller {
             $subject = $follower."さんが".$followee."をフォローしました。";
             // メール送信処理（//view/emails/follow-to.blade.phpにデータを送る）
             Mail::send(['text' => 'emails.follow-to'], [
-//                    'purchase'=>$purchase , //購入者のユーザー情報
-//                    'detail'=>$detail,
+                    'user_info'=>$user_info,
+                    'follower'=>$follower,
 //                    'purchasedetails'=>$purchasedetails
                 ]
                 , function($message) use($email, $subject) {
