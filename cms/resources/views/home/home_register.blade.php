@@ -42,7 +42,7 @@
                     </div>
                     <br>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-wd btn-info btn-round">保存</button>
+                        <button type="submit" class="btn btn-wd btn-outline-default">保存</button>
                     </div>
                 </div>
                 <br>
@@ -204,20 +204,15 @@
                             </div>
                             <span>※ 個人の場合は、姓と名の間に1文字分の全角スペースを入力してください。<span><br>
                             <span>※ 法人の場合は、カ）などの法人略語をご使用ください。<span><br>
-                            <div class="text-center">
-                                <br>
-                                <button type="submit" class="btn btn-wd btn-info btn-round">保存</button>
+                            <br>
+                            <div class="well well-sm">
+                               <button type="submit" class="btn btn-wd btn-outline-default">保存</button>
+                               <a class="btn btn-link pull-right" href="/home/home_own_timeline"><i class="glyphicon glyphicon-backward"></i>  戻る</a>
                             </div>
                         {{ csrf_field() }}
                     </div>
                 </div>
             </form>
-        </div>
-        <br>
-        <div class="text-center">
-            <a class="btn btn-outline-default btn-round text-center" href="/home/home_own_timeline">
-                戻る
-            </a>
         </div>
     </div>
 </div>

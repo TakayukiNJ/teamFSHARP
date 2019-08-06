@@ -71,7 +71,7 @@
                                     </div>
                                     @endif
                                 <div class="well well-sm">
-                                    <button type="submit" class="btn btn-primary">作成</button>
+                                    <button type="submit" class="btn btn-outline-neutral btn-fill">作成</button>
                                 </div>
                                 {!! csrf_field() !!}
                             </div>

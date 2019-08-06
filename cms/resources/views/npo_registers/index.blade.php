@@ -23,7 +23,7 @@
                                 @if(Auth::user())
                                     @if($npo_owner_info->npo == Auth::user()->npo)
                                     <div class="following">
-                                        <a class="btn btn-success" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>
+                                        <a class="btn btn-outline-neutral btn-fill" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>
                                     </div>
                                     @else
                                         @if($this_follow)
@@ -79,7 +79,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>管理者：<a href="{{ url('/home') }}/{{ $npo_owner_info->name }}">{{ $npo_owner_info->name }}さん</a></p>
+                    <p>管理者：<a href="{{ url('/home') }}/{{ $npo_owner_info->name }}">{{ $npo_owner_info->name }}</a>さん</p>
                     <div class="description-details">
                         <ul class="list-unstyled">
                             <li>合計獲得金額：{{ number_format($project_total_price) }}円</li>
@@ -116,10 +116,10 @@
                                         <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                         <p class="card-description">獲得金額: {{number_format($npo_register->follower)}} 円</p>
                                         <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
-                                        <a class="btn btn-info btn-round" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">公開画面</a>
+                                        <a class="btn btn-outline-default" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">閲覧</a>
                                         @if(Auth::user())
                                         @if($npo_owner_info->npo == Auth::user()->npo)
-                                        <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
+                                        <a class="btn btn-outline-default" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                         @endif
                                         @endif
                                     @elseif(Auth::user())
@@ -136,17 +136,17 @@
                                             <p class="card-description">獲得金額: {{number_format($npo_register->follower)}} 円</p>
                                             <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
                                             @if(($npo_register->npo_name) == "")
-                                                <a class="btn btn-info btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">プレビュー</a>
-                                                <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
+                                                <a class="btn btn-outline-default" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">プレビュー</a>
+                                                <a class="btn btn-outline-default" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                             @else
-                                                <a class="btn btn-info btn-round" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">プレビュー</a>
-                                                <a class="btn btn-success btn-round" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
+                                                <a class="btn btn-outline-default" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">プレビュー</a>
+                                                <a class="btn btn-outline-default" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                             @endif
                                             @if(($npo_register->published) == "")
                                             <form action="{{ route('npo_registers.destroy', $npo_register->id) }}" method="POST" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <button type="submit" class="btn btn-danger btn-round">削除</button>
+                                                <button type="submit" class="btn btn-outline-danger">削除</button>
                                             </form>
                                             @endif
                                         @endif
