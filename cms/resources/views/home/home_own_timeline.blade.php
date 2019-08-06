@@ -158,9 +158,9 @@
                                                     <h6><a href="/{{$npo_info_enterprise[$i]->title}}/{{ $npo_info_enterprise[$i]->npo_name }}">{{ $npo_info_enterprise[$i]->subtitle }}</a><br><small>{{ $npo_info_enterprise[$i]->title }}</small></h6></h6>
                                                 </div>
                                                 <div class="col-md-3 col-2">
-                                                    <a class="btn btn-xs btn-primary" href="/{{$npo_info_enterprise[$i]->title}}/{{ $npo_info_enterprise[$i]->npo_name }}">GO!</a>
+                                                    <a class="btn btn-outline-default" href="/{{$npo_info_enterprise[$i]->title}}/{{ $npo_info_enterprise[$i]->npo_name }}">GO!</a>
                                                     @if($npo_info_enterprise[$i]->url)
-                                                    <br><br><a class="btn btn-xs btn-success" href="/{{ $npo_info_enterprise[$i]->url }}" target="_blank">外部LINK</a>
+                                                    <br><br><a class="btn btn-xs btn-outline-default" href="/{{ $npo_info_enterprise[$i]->url }}" target="_blank">外部LINK</a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -289,7 +289,7 @@
                                                     </h6></h6><br>
                                                 </div>
                                                 <div class="col-md-1 col-1">
-                                                    <a class="btn btn-xs btn-primary" href="/{{ $npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}">GO!</a>
+                                                    <a class="btn btn-outline-default" href="/{{ $npo_info_personal[$i]->title }}/{{ $npo_info_personal[$i]->npo_name }}">GO!</a>
                                                     @if($npo_info_personal[$i]->url)
                                                     <br><br><a class="btn btn-xs btn-success" href="{{ $npo_info_personal[$i]->url }}" target="_blank">外部LINK</a>
                                                     @endif
@@ -309,7 +309,7 @@
                 <div class="tab-pane" id="myProjects" role="tabpanel">
                     <div class="text-center">
                     @if(Auth::guest() || $this_auth->npo)
-                        <a href="{{ url('/npo_registers') }}" class="btn btn-success btn-round">{{$this_auth->npo}} Page</a><br>
+                        <a href="{{ url('/npo_registers') }}" class="btn btn-outline-default">{{$this_auth->npo}} Page</a><br>
                         <br>
                     @else
                         <h3 class="text-muted">まずは団体登録！</h3>
@@ -322,7 +322,7 @@
                     <div class="row">
                         <div class="col-md-6 ml-auto mr-auto">
                             <div class="text-center">
-                                <p>▼ {{$this_auth->npo}} Projects</p>
+                                <p>▼ Projects</p>
                             </div>
                             <hr />
                             <ul class="list-unstyled follows">
@@ -349,7 +349,7 @@
         									</small></h6>
                                         </div>
                                         <div class="col-md-3 col-2">
-                                            <a class="btn btn-xs btn-primary" href="/{{$this_user_npo_info_proval[$i]->title}}/{{ $this_user_npo_info_proval[$i]->npo_name }}">GO!</a>
+                                            <a class="btn btn-outline-default" href="/{{$this_user_npo_info_proval[$i]->title}}/{{ $this_user_npo_info_proval[$i]->npo_name }}">GO!</a>
                                         </div>
                                     </div>
                                 </li>
@@ -392,7 +392,7 @@
         									</small></h6>
                                         </div>
                                         <div class="col-md-3 col-2">
-                                            <a class="btn btn-xs btn-primary" href="/{{$npo_info_proval[$i]->title}}/{{ $npo_info_proval[$i]->npo_name }}">GO!</a>
+                                            <a class="btn btn-outline-default" href="/{{$npo_info_proval[$i]->title}}/{{ $npo_info_proval[$i]->npo_name }}">GO!</a>
                                         </div>
                                     </div>
                                 </li>

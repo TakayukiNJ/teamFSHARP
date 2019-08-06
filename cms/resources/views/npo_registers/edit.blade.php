@@ -37,7 +37,7 @@
                                    @endif
                                 </div>
                                 <div class="form-group @if($errors->has('title')) has-error @endif">
-                                   <label for="title-field">団体の名前（変更不可）</label>
+                                   <label for="title-field">団体名（変更不可）</label>
                                    <input type="text" id="title-field" name="title" class="form-control text-center" value="{{ is_null(old("title")) ? $npo_info->title : old("title") }}" readonly="readonly"/>
                                    @if($errors->has("title"))
                                     <span class="help-block icon-danger">{{ $errors->first("title") }}</span>
@@ -64,7 +64,8 @@
             </div>
         </div>
         
-        <div class="container">
+        <div class="pricing-5 section-gray">
+            <div class="container">
             <h4>詳細編集</h4>
             <div class="row">
                 <div class="col-md-5 col-sm-5">
@@ -96,7 +97,7 @@
                         @for ($i = 1; $i < 7; $i++)
                         <div class="col-md-5">
                             <div class="form-group @if($errors->has('sdgs'.$i)) has-error @endif">
-                                <select class="selectpicker" data-style="btn btn-outline-default btn-round" name="sdgs{{$i}}">
+                                <select class="selectpicker" data-style="btn btn-outline-default" name="sdgs{{$i}}">
                                     <?php $sdgs = "sdgs".$i ?>
                                     <option disabled <?php if($npo_info->$sdgs == 0){ echo "selected"; } ?>>SDGsを選択</option>
                                     <option value="01_ja" <?php if($npo_info->$sdgs == "01_ja"){ echo "selected"; } ?>>1.貧困をなくそう</option>
@@ -283,6 +284,8 @@
                 <span class="help-block icon-danger">{{ $errors->first("support_contents_detail_pratinum") }}</span>
                @endif
             </div>
+        </div>
+
         </div>
      {{--     *********    3cards     *********      --}}
     <div class="nav-tabs-navigation">
@@ -508,8 +511,8 @@
                     </div>
                     @endif
                    <div class="well well-sm">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <a class="btn btn-link pull-right" href="{{ route('npo_registers.index') }}"><i class="glyphicon glyphicon-backward"></i>  Back</a>
+                    <button type="submit" class="btn btn-wd btn-outline-default">保存</button>
+                    <a class="btn btn-link pull-right" href="{{ route('npo_registers.index') }}"><i class="glyphicon glyphicon-backward"></i>  戻る</a>
                 </div>
             <br><br><br><br><br>
         </div>
