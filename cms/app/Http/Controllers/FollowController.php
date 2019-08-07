@@ -95,11 +95,8 @@ class FollowController extends Controller {
             Mail::send(['text' => 'emails.follow-to'], [
                     'user_info'=>$user_info,
                     'follower'=>$follower,
-//                    'purchasedetails'=>$purchasedetails
                 ]
                 , function($message) use($email, $subject) {
-                    // $email = $request->stripeEmail;
-                    // dd($email);
                     $message
                         ->from('g181tg2061@dhw.ac.jp')
                         ->to($email)
