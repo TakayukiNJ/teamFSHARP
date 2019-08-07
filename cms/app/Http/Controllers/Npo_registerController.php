@@ -11,6 +11,7 @@ use App;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use Image;
+use Illuminate\Support\Facades\Mail;
 
 class Npo_registerController extends Controller {
     
@@ -805,6 +806,7 @@ class Npo_registerController extends Controller {
     public function payment(Request $request, string $npo_name) {
         $this->middleware('auth');
         $user_request_email = $request->stripeEmail;
+        $auth      = Auth::user();
         $npo_id    = Auth::user()->npo_id;
         $name_auth = Auth::user()->name;
         $user_auth = Auth::user()->email;
@@ -964,8 +966,44 @@ class Npo_registerController extends Controller {
             'sdgs16' => $currentUserInfo->sdgs16 + $sdgs_point_box[16],
             'sdgs17' => $currentUserInfo->sdgs17 + $sdgs_point_box[17]
         ]);
-        
-        // この後にサンクスメール送る...
+//        dd($auth);
+//        dd($currentUserInfo);
+        // 購入者にメール送信処理（/views/emails/payment-from.blade.phpにデータを送る）
+        $subject_payment_from = $npo_name."への支払いが完了しました。";
+        Mail::send(['text' => 'emails.payment-from'], [
+                'auth_before'   => $auth, // 購入前のauthデータ
+                'auth_after'    => $currentUserInfo, // 購入後のauthデータ
+                'npo_user_info' => $npoUserInfo,
+                'npo_info'      => $currentNpoInfo,
+                'npo_name'      => $npo_name
+            ]
+            , function($message) use($user_request_email, $subject_payment_from) {
+                $message
+                ->from('g181tg2061@dhw.ac.jp')
+                ->to($user_request_email)
+                ->bcc('nj.takayuki@gmail.com')
+                ->subject($subject_payment_from);
+            }
+        );
+
+        // NPO管理者にメール送信処理（/views/emails/payment-from.blade.phpにデータを送る）
+        $subject_payment_to = $name_auth."さんから".$npo_name."への支払いがありました。";
+        Mail::send(['text' => 'emails.payment-to'], [
+                'auth_before'   => $auth, // 購入前のauthデータ
+                'auth_after'    => $currentUserInfo, // 購入後のauthデータ
+                'npo_user_info' => $npoUserInfo,
+                'npo_info'      => $currentNpoInfo,
+                'npo_name'      => $npo_name
+            ]
+            , function($message) use($npoUserInfo, $subject_payment_to) {
+                $message
+                    ->from('g181tg2061@dhw.ac.jp')
+                    ->to($npoUserInfo->email)
+                    ->bcc('nj.takayuki@gmail.com')
+                    ->subject($subject_payment_to);
+            }
+        );
+
         // return view('/thank_you_for_support');
         return back();
     }
