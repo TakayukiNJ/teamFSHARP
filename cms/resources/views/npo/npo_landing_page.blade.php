@@ -44,7 +44,7 @@
                                             </button>
                                         @else
                                             @if($npo_info->manager == Auth::user()->name)
-                                                <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                                <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-outline-neutral">
                                                     編集する
                                                 </a>
                                             @else
@@ -54,7 +54,7 @@
                                                         <?php $member_twitter = $member."_twitter" ?>
                                                         <?php $member_auth    = $npo_info->$member . "1" ?>
                                                         @if($npo_info->$member_twitter == $member_auth && Auth::user()->name == $npo_info->$member)
-                                                            <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-warning">
+                                                            <a href="{{ url('/npo_registers') }}/{{ $npo_info->id }}/edit" class="btn btn-outline-neutral">
                                                                 編集する
                                                             </a>
                                                         @endif
