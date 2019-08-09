@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1a3faa67-3512-436e-9589-e98a1ac9f8da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/emails/follow-from.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/emails/payment-from.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/emails/payment-from.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/emails/payment-to.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/emails/payment-to.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,14 +17,14 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.38564104">
+    <splitter split-orientation="horizontal" split-proportion="0.5223301">
       <split-first>
         <leaf>
-          <file leaf-file-name="payment-from.blade.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/payment-from.blade.php">
+          <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+                <state relative-caret-position="226">
+                  <caret line="72" column="156" lean-forward="true" selection-start-line="72" selection-start-column="156" selection-end-line="72" selection-end-column="156" />
                 </state>
               </provider>
             </entry>
@@ -40,8 +36,8 @@
           <file leaf-file-name="Npo_registerController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="192">
-                  <caret line="977" column="44" selection-start-line="977" selection-start-column="44" selection-end-line="977" selection-end-column="44" />
+                <state relative-caret-position="203">
+                  <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
                   <folding>
                     <element signature="e#40#62#0#PHP" expanded="true" />
                   </folding>
@@ -55,12 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>login</find>
-      <find>update</find>
-      <find>$npo_register</find>
-      <find>Carbon</find>
-      <find>personal_info</find>
-      <find>$personal_info</find>
       <find>$data['personal_info']</find>
       <find>landing</find>
       <find>index2</find>
@@ -84,7 +74,13 @@
       <find>$user_request_email</find>
       <find>$auth</find>
       <find>$currentUserInfo</find>
+      <find>npo_re</find>
+      <find>form.run</find>
+      <find>編集する</find>
+      <find>pk_test</find>
       <find>$currentNpoInfo</find>
+      <find>フォローする</find>
+      <find>&lt;a</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -100,7 +96,6 @@
         <option value="$PROJECT_DIR$/cms/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email-plain.blade.php" />
         <option value="$PROJECT_DIR$/cms/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/auth/passwords/reset.blade.php" />
-        <option value="$PROJECT_DIR$/cms/resources/views/layouts/nav_lp.blade.php" />
         <option value="$PROJECT_DIR$/cms/.env" />
         <option value="$PROJECT_DIR$/cms/public/.htaccess" />
         <option value="$PROJECT_DIR$/cms/public/index.php" />
@@ -113,17 +108,18 @@
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Auth/SocialController.php" />
         <option value="$PROJECT_DIR$/cms/routes/web.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/follow-from.blade.php" />
-        <option value="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/create.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" />
-        <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/home/home_register.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/edit.blade.php" />
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/FollowController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/follow-to.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/payment-to.blade.php" />
-        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/payment-from.blade.php" />
+        <option value="$PROJECT_DIR$/cms/resources/views/layouts/nav_lp.blade.php" />
+        <option value="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" />
+        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
+        <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" />
       </list>
     </option>
   </component>
@@ -164,6 +160,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -201,13 +198,28 @@
               <item name="cms" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="emails" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fsharp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fsharp" type="462c0819:PsiDirectoryNode" />
+              <item name="cms" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="npo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fsharp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fsharp" type="462c0819:PsiDirectoryNode" />
+              <item name="cms" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="npo_registers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -254,18 +266,19 @@
       <workItem from="1564477386527" duration="1310000" />
       <workItem from="1564583496625" duration="2045000" />
       <workItem from="1564742048385" duration="8286000" />
-      <workItem from="1565178740491" duration="4446000" />
+      <workItem from="1565178740491" duration="6256000" />
+      <workItem from="1565334395618" duration="2953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53075000" />
+    <option name="totallyTimeSpent" value="57838000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21243942" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16801292" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -298,44 +311,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php</url>
-          <line>990</line>
+          <line>991</line>
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="1" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5016">
-          <caret line="264" column="140" lean-forward="true" selection-start-line="264" selection-start-column="140" selection-end-line="264" selection-end-column="140" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email-plain.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/nav_lp.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/public/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -371,15 +353,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1473" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/head.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/head_npo_lp.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Follow.php" />
@@ -561,27 +535,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="140" column="49" selection-start-line="140" selection-start-column="49" selection-end-line="140" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="131" column="15" selection-start-line="131" selection-start-column="15" selection-end-line="131" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/follow-from.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/follow-from.blade.php" />
     <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -610,20 +564,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/payment-from.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/common_nav_lp.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/common_nav_npo_lp.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/head_npo_create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/head_npo_index.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/head_npo_lp.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9">
+          <caret line="99" column="71" selection-start-line="99" selection-start-column="71" selection-end-line="99" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/nav_lp.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="98" column="40" lean-forward="true" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="977" column="44" selection-start-line="977" selection-start-column="44" selection-end-line="977" selection-end-column="44" />
+        <state relative-caret-position="203">
+          <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
           <folding>
             <element signature="e#40#62#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/payment-from.blade.php">
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+        <state relative-caret-position="226">
+          <caret line="72" column="156" lean-forward="true" selection-start-line="72" selection-start-column="156" selection-end-line="72" selection-end-column="156" />
         </state>
       </provider>
     </entry>

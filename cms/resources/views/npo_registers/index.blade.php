@@ -51,7 +51,35 @@
                                     フォローする
                                 </button>
                                 @endif
+                                @if($follower_count != 0)
+                                    <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#followerModal">
+                                        フォロワ一覧
+                                    </button>
+                                    <div class="modal fade" id="followerModal" tabindex="-1" role="dialog" aria-hidden="false">
+                                        <div class="modal-dialog modal-register">
+                                            <div class="modal-content">
+                                                <div class="modal-header no-border-header text-center">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h3 class="modal-title text-center">フォロワ一覧</h3>
+                                                    <p>ユーザーの詳細は、ユーザー名をタップすると確認可能です。</p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @for ($j = 0; $j < $follower_count; $j++)
+                                                        @if($j != 0)
 
+                                                        @endif
+                                                        <a href="{{ url('/home') }}/{{ $followers[$j]->follower_id }}">{{ $followers[$j]->follower_id }}</a>
+                                                    @endfor
+                                                    {{--<div class="modal-footer no-border-footer">--}}
+                                                        {{--<p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>--}}
+                                                    {{--</div>--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                                 {!! csrf_field() !!}
                             </form>
                         </div>
