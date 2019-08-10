@@ -24,6 +24,183 @@
                         <div class="name">
                             <h4 class="title text-center">{{ $this_auth->name }}さんのページ@if($this_personal_info)<br><small>{{ $this_personal_info->description }}</small>@endif</h4>
                         </div>
+
+                        @if($this_auth->point != 0)
+                            <div class="text-center">
+                                <button type="button" class="btn btn-outline-default" data-toggle="modal" data-target="#SDGscore">
+                                    SDGsスコア
+                                </button>
+                            </div>
+                            <div class="modal fade" id="SDGscore" tabindex="-1" role="dialog" aria-hidden="false">
+                                <div class="modal-dialog modal-register">
+                                    <div class="modal-content">
+                                        <div class="modal-header no-border-header text-center">
+                                            <div class="chart-container" style="position: relative; height:100vh">
+                                                <canvas id="myPieChart"></canvas>
+                                            </div>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+                                            <script>
+                                                var ctx = document.getElementById("myPieChart");
+                                                var myPieChart = new Chart(ctx, {
+                                                    type: 'pie',
+                                                    cutoutPercentage: 50,
+                                                    data: {
+                                                        labels: [
+                                                            @if($this_auth->sdgs1 != 0)
+                                                            "貧困をなくそう",
+                                                            @endif
+                                                            @if($this_auth->sdgs2 != 0)
+                                                            "飢餓をゼロに",
+                                                            @endif
+                                                            @if($this_auth->sdgs3 != 0)
+                                                            "すべての人に福祉と健康を",
+                                                            @endif
+                                                            @if($this_auth->sdgs4 != 0)
+                                                            "質の高い教育をみんなに",
+                                                            @endif
+                                                            @if($this_auth->sdgs5 != 0)
+                                                            "ジェンダー平等を実現しよう",
+                                                            @endif
+                                                            @if($this_auth->sdgs6 != 0)
+                                                            "安全な水とトイレを世界中に",
+                                                            @endif
+                                                            @if($this_auth->sdgs7 != 0)
+                                                            "エネルギーをみんなに そしてクリーンに",
+                                                            @endif
+                                                            @if($this_auth->sdgs8 != 0)
+                                                            "働きがいも 経済成長も",
+                                                            @endif
+                                                            @if($this_auth->sdgs9 != 0)
+                                                            "産業と技術革新の基盤をつくろう",
+                                                            @endif
+                                                            @if($this_auth->sdgs10 != 0)
+                                                            "人や国の不平等を無くそう",
+                                                            @endif
+                                                            @if($this_auth->sdgs11 != 0)
+                                                            "住み続けられるまちづくりを",
+                                                            @endif
+                                                            @if($this_auth->sdgs12 != 0)
+                                                            "つくる責任 つかう責任",
+                                                            @endif
+                                                            @if($this_auth->sdgs13 != 0)
+                                                            "気候変動に具体的な対策を",
+                                                            @endif
+                                                            @if($this_auth->sdgs14 != 0)
+                                                            "海の豊かさを守ろう",
+                                                            @endif
+                                                            @if($this_auth->sdgs15 != 0)
+                                                            "陸の豊かさも守ろう",
+                                                            @endif
+                                                            @if($this_auth->sdgs16 != 0)
+                                                            "平和と公正をすべての人に",
+                                                            @endif
+                                                            @if($this_auth->sdgs17 != 0)
+                                                            "パートナーシップで目標を達成しよう"
+                                                            @endif
+                                                        ],
+                                                        datasets: [{
+                                                            backgroundColor: [
+                                                                @if($this_auth->sdgs1 != 0)
+                                                                "#eb1c2d",
+                                                                @endif
+                                                                @if($this_auth->sdgs2 != 0)
+                                                                "#d3a029",
+                                                                @endif
+                                                                @if($this_auth->sdgs3 != 0)
+                                                                "#279b48",
+                                                                @endif
+                                                                @if($this_auth->sdgs4 != 0)
+                                                                "#c31f33",
+                                                                @endif
+                                                                @if($this_auth->sdgs5 != 0)
+                                                                "#ef402b",
+                                                                @endif
+                                                                @if($this_auth->sdgs6 != 0)
+                                                                "#00aed9",
+                                                                @endif
+                                                                @if($this_auth->sdgs7 != 0)
+                                                                "#fdb714",
+                                                                @endif
+                                                                @if($this_auth->sdgs8 != 0)
+                                                                "#911838",
+                                                                @endif
+                                                                @if($this_auth->sdgs9 != 0)
+                                                                "#f36d25",
+                                                                @endif
+                                                                @if($this_auth->sdgs10 != 0)
+                                                                "#e11384",
+                                                                @endif
+                                                                @if($this_auth->sdgs11 != 0)
+                                                                "#f99d26",
+                                                                @endif
+                                                                @if($this_auth->sdgs12 != 0)
+                                                                "#cf8d2a",
+                                                                @endif
+                                                                @if($this_auth->sdgs13 != 0)
+                                                                "#48773e",
+                                                                @endif
+                                                                @if($this_auth->sdgs14 != 0)
+                                                                "#017dbc",
+                                                                @endif
+                                                                @if($this_auth->sdgs15 != 0)
+                                                                "#3db049",
+                                                                @endif
+                                                                @if($this_auth->sdgs16 != 0)
+                                                                "#02558b",
+                                                                @endif
+                                                                @if($this_auth->sdgs17 != 0)
+                                                                "#183667"
+                                                                @endif
+                                                            ],
+                                                            data: [
+                                                                @for ($s = 1; $s < 18; $s++)
+                                                                <?php $sdgs = "sdgs".$s ?>
+                                                                    @if($this_auth->$sdgs != 0)
+                                                                    {{$this_auth->$sdgs}},
+                                                                    @endif
+                                                                @endfor
+                                                            ]
+                                                        }]
+                                                    },
+                                                    options: {
+                                                        cutoutPercentage: 55,
+                                                        maintainAspectRatio: false,
+                                                        title: {
+                                                            display: true,
+                                                            text: 'SDGsスコア：{{ $this_auth->point }}'
+                                                        }
+                                                    }
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+
+
+
+
+
+
+
+
+
+                                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+                                                {{--<span aria-hidden="true">&times;</span>--}}
+                                            {{--</button>--}}
+                                            {{--<h3 class="modal-title text-center">フォロワ一覧</h3>--}}
+                                            {{--<p>ユーザーの詳細は、ユーザー名をタップすると確認可能です。</p>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="modal-body">--}}
+                                            {{--@for ($j = 0; $j < $follower_count; $j++)--}}
+                                                {{--@if($j != 0)--}}
+
+                                                {{--@endif--}}
+                                                {{--<a href="{{ url('/home') }}/{{ $followers[$j]->follower_id }}">{{ $followers[$j]->follower_id }}</a>--}}
+                                            {{--@endfor--}}
+
                     </div>
                 </div>
             </div>
@@ -69,75 +246,7 @@
             <div class="tab-content">
                 @if($this_auth->point != 0)
                 <div class="tab-pane text-center" id="SDGs" role="tabpanel">
-                    @if($this_auth->point != 0)
-                        <div class="chart-container" style="position: relative; height:100vh">
-                            <canvas id="myPieChart"></canvas>
-                        </div>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-                        <script>
-                            var ctx = document.getElementById("myPieChart");
-                            var myPieChart = new Chart(ctx, {
-                                type: 'pie',
-                                cutoutPercentage: 50,
-                                data: {
-                                    labels: [
-                                        "貧困をなくそう",
-                                        "飢餓をゼロに",
-                                        "すべての人に福祉と健康を",
-                                        "質の高い教育をみんなに",
-                                        "ジェンダー平等を実現しよう",
-                                        "安全な水とトイレを世界中に",
-                                        "エネルギーをみんなに そしてクリーンに",
-                                        "働きがいも 経済成長も",
-                                        "産業と技術革新の基盤をつくろう",
-                                        "人や国の不平等を無くそう",
-                                        "住み続けられるまちづくりを",
-                                        "つくる責任 つかう責任",
-                                        "気候変動に具体的な対策を",
-                                        "海の豊かさを守ろう",
-                                        "陸の豊かさも守ろう",
-                                        "平和と公正をすべての人に",
-                                        "パートナーシップで目標を達成しよう"
-                                    ],
-                                    datasets: [{
-                                        backgroundColor: [
-                                            "#eb1c2d",
-                                            "#d3a029",
-                                            "#279b48",
-                                            "#c31f33",
-                                            "#ef402b",
-                                            "#00aed9",
-                                            "#fdb714",
-                                            "#911838",
-                                            "#f36d25",
-                                            "#e11384",
-                                            "#f99d26",
-                                            "#cf8d2a",
-                                            "#48773e",
-                                            "#017dbc",
-                                            "#3db049",
-                                            "#02558b",
-                                            "#183667"
-                                        ],
-                                        data: [
-                                            @for ($s = 1; $s < 18; $s++)
-                                                <?php $sdgs = "sdgs".$s ?>
-                                                {{$this_auth->$sdgs}},
-                                            @endfor
-                                        ]
-                                    }]
-                                },
-                                options: {
-                                    cutoutPercentage: 55,
-                                    maintainAspectRatio: false,
-                                    title: {
-                                        display: true,
-                                        text: 'SDGsポイント：{{ $this_auth->point }}'
-                                  }
-                                }
-                            });
-                        </script>
-                    @endif
+
                 </div>
                 @endif
                 <div class="tab-pane" id="supporting" role="tabpanel">
@@ -359,10 +468,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
                 @if(Auth::user())
                 @if(Auth::user()->name == $this_auth->name)
                 <div class="tab-pane active" id="new" role="tabpanel">
@@ -388,7 +493,6 @@
                                                 @if($npo_info_proval[$i]->support_contents_detail)
                                                     <br>期限：{{ Carbon\Carbon::parse($npo_info_proval[$i]->support_contents_detail)->format('Y年m月d日H:i') }}
                                                 @endif
-                                                    
         									</small></h6>
                                         </div>
                                         <div class="col-md-3 col-2">
