@@ -234,18 +234,18 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
                         </li>
-                    @if($this_auth->point != 0)
+                    @if($follower_count != 0)
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#SDGs" role="tab">SDGs</a>
+                            <a class="nav-link" data-toggle="tab" href="#follow" role="tab">フォロー</a>
                         </li>
                     @endif
                     </ul>
                 </div>
             </div>
-            <!-- Tab panes -->
+            {{-- Tab panes --}}
             <div class="tab-content">
-                @if($this_auth->point != 0)
-                <div class="tab-pane text-center" id="SDGs" role="tabpanel">
+                @if($follower_count != 0)
+                <div class="tab-pane text-center" id="follow" role="tabpanel">
 
                 </div>
                 @endif
@@ -418,7 +418,47 @@
                 <div class="tab-pane" id="myProjects" role="tabpanel">
                     <div class="text-center">
                     @if(Auth::guest() || $this_auth->npo)
-                        <a href="{{ url('/npo_registers') }}" class="btn btn-outline-default">{{$this_auth->npo}} Page</a><br>
+                        <a href="{{ url('/npo_registers') }}" class="btn btn-outline-default">{{$this_auth->npo}} Page</a>
+
+                            @if($follower_count != 0)
+                                <button type="button" class="btn btn-outline-default" data-toggle="modal" data-target="#followerModal">
+                                    フォロワ一覧 <small>({{ $follower_count }})</small>
+                                </button>
+                                <div class="modal fade" id="followerModal" tabindex="-1" role="dialog" aria-hidden="false">
+                                    <div class="modal-dialog modal-register">
+                                        <div class="modal-content">
+                                            <div class="modal-header no-border-header text-center">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h3 class="modal-title text-center">フォロワ一覧</h3>
+                                                <p>ユーザー名をタップで詳細確認可能</p>
+                                            </div>
+                                            <div class="modal-body">
+                                                @for ($j = 0; $j < $follower_count; $j++)
+                                                    @if($j != 0)
+
+                                                    @endif
+                                                    <a href="{{ url('/home') }}/{{ $followers[$j]->follower_id }}">{{ $followers[$j]->follower_id }}</a>
+                                                @endfor
+                                                {{--<div class="modal-footer no-border-footer">--}}
+                                                {{--<p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>--}}
+                                                {{--</div>--}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+
+
+                            <br>
+
+
+
+
+
+
                         <br>
                     @else
                         <h3 class="text-muted">まずは団体登録！</h3>
