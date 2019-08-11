@@ -8,6 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Npo_register;
+use App\Follow;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Validator;
@@ -422,8 +423,7 @@ class HomeController extends Controller
     		    $data['npo_info_enterprise'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_npo)->first();
     		}
 		}
-		
-		return view('home/home_own_timeline', $data)
+        return view('home/home_own_timeline', $data)
             ->with('image_id', $image_id)
             ->with('message', '更新完了しました。');
     }
@@ -712,6 +712,12 @@ class HomeController extends Controller
         } else {
             $image_id = '/img/contents/user-default.png';
         }
+
+        // フォロー数をカウント
+        $followers = Follow::where('followee_id', $auth_npo)->where('delete_flg', 0)->get();
+        $data['followers'] = $followers;
+        $data['follower_count'] = count($followers);
+//        dd($data['follower_count']);
 
         return view('home/home_own_timeline', $data)
         ->with('id', $id)

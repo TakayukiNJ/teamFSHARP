@@ -522,9 +522,14 @@ class Npo_registerController extends Controller {
             }
             return view('/errors/503');
     	}
-    	//follow機能追加 20190724
-//        $data['this_follow'] = "";
+        // フォロー数をカウント
+        $followers = Follow::where('followee_id', $currentNpoInfo->title)->where('delete_flg', 0)->get();
+        $data['followers'] = $followers;
+        $data['follower_count'] = count($followers);
+
+        //follow機能追加 20190724
         $data['follow_data'] = \DB::table('follows')->where('followee_id', $currentNpoInfo->title)->orderBy('id','desc')->get();
+        $data['follower_count'] = count($data['follow_data']);
         if(Auth::user()){
             $follower_id = Auth::user()->name;
             $data['this_follow'] = $data['follow_data']->where('follower_id', $follower_id)->first();

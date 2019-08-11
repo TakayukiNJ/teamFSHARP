@@ -18,13 +18,15 @@
                                 <input name="followee" type="hidden" value="{{ $npo_owner_info->npo }}" readonly="readonly">
 
                                 <div class="name">
-                                    <h3>{{$npo_owner_info->npo}} <small>({{ $follower_count }})</small></h3>
+                                    <h3>{{$npo_owner_info->npo}}</h3>
                                 </div>
                                 @if(Auth::user())
                                     @if($npo_owner_info->npo == Auth::user()->npo)
-                                    <div class="following">
-                                        <a class="btn btn-outline-neutral btn-fill" href="{{ route('npo_registers.create') }}"><i class="glyphicon glyphicon-plus"></i>プロジェクト作成</a>
-                                    </div>
+                                    {{--<div class="following">--}}
+                                        <button class="btn btn-outline-neutral btn-fill" href="{{ route('npo_registers.create') }}">
+                                            <i class="glyphicon glyphicon-plus"></i>プロジェクト作成
+                                        </button>
+                                    {{--</div>--}}
                                     @else
                                         @if($this_follow)
                                             @if($this_follow->delete_flg === 0)
@@ -53,7 +55,7 @@
                                 @endif
                                 @if($follower_count != 0)
                                     <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#followerModal">
-                                        フォロワ一覧
+                                        フォロワ一覧 <small>({{ $follower_count }})</small>
                                     </button>
                                     <div class="modal fade" id="followerModal" tabindex="-1" role="dialog" aria-hidden="false">
                                         <div class="modal-dialog modal-register">
@@ -63,7 +65,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                     <h3 class="modal-title text-center">フォロワ一覧</h3>
-                                                    <p>ユーザーの詳細は、ユーザー名をタップすると確認可能です。</p>
+                                                    <p>ユーザー名をタップで詳細確認可能</p>
                                                 </div>
                                                 <div class="modal-body">
                                                     @for ($j = 0; $j < $follower_count; $j++)

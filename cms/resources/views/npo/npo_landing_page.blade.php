@@ -33,7 +33,7 @@
                                     @if($npo_info->avater)
                                     <img src="{{ url('/') }}/img/project_logo/{{$npo_info->avater}}" class="img-thumbnail img-no-padding img-responsive" alt="Rounded Image" width="32" height="32">
                                     @endif
-                                    {!! nl2br(e(trans($npo_info->title))) !!}（{{ $follower_count }}）
+                                    {!! nl2br(e(trans($npo_info->title))) !!}
                                 </h5>
                                 <div>
                                     <form action="{{action('FollowController@store')}}" method="POST">
@@ -81,14 +81,43 @@
                                                 @endif
                                             @endif
                                         @endif
-                                        @if($npo_info->buyer < $npo_info->support_limit)
-                                            <a href="#support" class="btn btn-danger btn-outline-neutral">
-                                                支援する
-                                            </a>
-                                        @else
-                                            <a href="#support" class="btn">
-                                                募集完売
-                                            </a>
+                                        {{--@if($npo_info->buyer < $npo_info->support_limit)--}}
+                                            {{--<a href="#support" class="btn btn-danger btn-outline-neutral">--}}
+                                                {{--支援する--}}
+                                            {{--</a>--}}
+                                        {{--@else--}}
+                                            {{--<a href="#support" class="btn">--}}
+                                                {{--募集完売--}}
+                                            {{--</a>--}}
+                                        {{--@endif--}}
+                                        @if($follower_count != 0)
+                                            <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#followerModal">
+                                                フォロワ一覧 <small>({{ $follower_count }})</small>
+                                            </button>
+                                            <div class="modal fade" id="followerModal" tabindex="-1" role="dialog" aria-hidden="false">
+                                                <div class="modal-dialog modal-register">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header no-border-header text-center">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            <h3 class="modal-title text-center">フォロワ一覧</h3>
+                                                            <p>ユーザー名をタップで詳細確認可能</p>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @for ($j = 0; $j < $follower_count; $j++)
+                                                                @if($j != 0)
+
+                                                                @endif
+                                                                <a href="{{ url('/home') }}/{{ $follow_data[$j]->follower_id }}">{{ $follow_data[$j]->follower_id }}</a>
+                                                            @endfor
+                                                            {{--<div class="modal-footer no-border-footer">--}}
+                                                            {{--<p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>--}}
+                                                            {{--</div>--}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
 
                                         {{--<button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal">--}}
