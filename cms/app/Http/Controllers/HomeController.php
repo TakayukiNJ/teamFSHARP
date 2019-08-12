@@ -713,8 +713,13 @@ class HomeController extends Controller
             $image_id = '/img/contents/user-default.png';
         }
 
-        // フォロー数をカウント
-        $followers = Follow::where('followee_id', $auth_npo)->where('delete_flg', 0)->get();
+        // フォロワー数をカウント
+        $followees = Follow::where('followee_id', $auth_npo)->where('delete_flg', 0)->get();
+        $data['followees'] = $followees;
+        $data['followee_count'] = count($followees);
+
+        // フォロー数を表示
+        $followers = Follow::where('follower_id', $name)->where('delete_flg', 0)->get();
         $data['followers'] = $followers;
         $data['follower_count'] = count($followers);
 //        dd($data['follower_count']);
