@@ -5,8 +5,6 @@
       <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,11 +20,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5223301">
       <split-first>
         <leaf>
-          <file leaf-file-name="home_own_timeline.blade.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php">
+          <file leaf-file-name="npo_landing_page.blade.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="138">
-                  <caret line="424" column="81" selection-start-line="424" selection-start-column="81" selection-end-line="424" selection-end-column="81" />
+                <state relative-caret-position="461">
+                  <caret line="100" column="77" selection-start-line="100" selection-start-column="77" selection-end-line="100" selection-end-column="77" />
                 </state>
               </provider>
             </entry>
@@ -38,8 +36,8 @@
           <file leaf-file-name="Npo_registerController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="213">
-                  <caret line="525" column="72" selection-start-line="525" selection-start-column="72" selection-end-line="525" selection-end-column="72" />
+                <state relative-caret-position="183">
+                  <caret line="527" column="42" selection-start-line="527" selection-start-column="42" selection-end-line="527" selection-end-column="42" />
                   <folding>
                     <element signature="e#40#62#0#PHP" expanded="true" />
                   </folding>
@@ -53,11 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>toMail</find>
-      <find>Hello!</find>
-      <find>password</find>
-      <find>count(</find>
-      <find>【ONSTA】</find>
       <find>title</find>
       <find>金額</find>
       <find>follower_c</find>
@@ -83,6 +76,11 @@
       <find>landing</find>
       <find>proj</find>
       <find>$followers</find>
+      <find>landin</find>
+      <find>follower</find>
+      <find>new</find>
+      <find>auth</find>
+      <find>マイページ</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -118,11 +116,11 @@
         <option value="$PROJECT_DIR$/cms/resources/views/emails/payment-to.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/payment-from.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/layouts/nav_lp.blade.php" />
-        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php" />
-        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" />
+        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" />
+        <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
       </list>
     </option>
   </component>
@@ -285,18 +283,18 @@
       <workItem from="1564583496625" duration="2045000" />
       <workItem from="1564742048385" duration="8286000" />
       <workItem from="1565178740491" duration="6256000" />
-      <workItem from="1565334395618" duration="7342000" />
+      <workItem from="1565334395618" duration="10637000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62227000" />
+    <option name="totallyTimeSpent" value="65522000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16801292" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16801292" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -305,7 +303,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.15954416" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.15954416" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -329,7 +327,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php</url>
-          <line>996</line>
+          <line>997</line>
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="1" />
@@ -608,10 +606,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="57" column="46" lean-forward="true" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="715" column="18" selection-start-line="715" selection-start-column="18" selection-end-line="715" selection-end-column="18" />
+        <state relative-caret-position="233">
+          <caret line="596" column="8" lean-forward="true" selection-start-line="596" selection-start-column="8" selection-end-line="596" selection-end-column="8" />
           <folding>
             <element signature="e#40#62#0#PHP" expanded="true" />
           </folding>
@@ -620,32 +625,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="525" column="72" selection-start-line="525" selection-start-column="72" selection-end-line="525" selection-end-column="72" />
+        <state relative-caret-position="183">
+          <caret line="527" column="42" selection-start-line="527" selection-start-column="42" selection-end-line="527" selection-end-column="42" />
           <folding>
             <element signature="e#40#62#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="57" column="46" lean-forward="true" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="85" />
+        <state relative-caret-position="171">
+          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+          <folding>
+            <element signature="e#205#287#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
+        <state relative-caret-position="461">
           <caret line="100" column="77" selection-start-line="100" selection-start-column="77" selection-end-line="100" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="424" column="81" selection-start-line="424" selection-start-column="81" selection-end-line="424" selection-end-column="81" />
         </state>
       </provider>
     </entry>

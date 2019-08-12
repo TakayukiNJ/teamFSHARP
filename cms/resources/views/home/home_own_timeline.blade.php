@@ -19,13 +19,19 @@
                                 @else
                                     <img src="{{ url('/') }}/../img/placeholder.jpg" alt="default">
                                 @endif
+                            @else
+                                @if(Auth::user())
+                                @if(Auth::user()->name != $this_auth->name)
+                                <br><br><br>
+                                @endif
+                                @else
+                                <br><br><br>
+                                @endif
                             @endif
                         </div>
                         <div class="name">
-                            <h4 class="title text-center">{{ $this_auth->name }}さんのページ@if($this_personal_info)<br><small>{{ $this_personal_info->description }}</small>@endif</h4>
-                        </div>
-
-                        @if($this_auth->point != 0)
+                            <h4 class="title text-center">{{ $this_auth->name }}'s Page @if($this_personal_info)<br><small>{{ $this_personal_info->description }}</small>@endif</h4>
+                            @if($this_auth->point != 0)
                             <div class="text-center">
                                 <button type="button" class="btn btn-outline-default" data-toggle="modal" data-target="#SDGscore">
                                     SDGsスコア
@@ -176,31 +182,8 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
-
-
-
-
-
-
-
-
-
-
-                                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                                                {{--<span aria-hidden="true">&times;</span>--}}
-                                            {{--</button>--}}
-                                            {{--<h3 class="modal-title text-center">フォロワ一覧</h3>--}}
-                                            {{--<p>ユーザーの詳細は、ユーザー名をタップすると確認可能です。</p>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="modal-body">--}}
-                                            {{--@for ($j = 0; $j < $follower_count; $j++)--}}
-                                                {{--@if($j != 0)--}}
-
-                                                {{--@endif--}}
-                                                {{--<a href="{{ url('/home') }}/{{ $followers[$j]->follower_id }}">{{ $followers[$j]->follower_id }}</a>--}}
-                                            {{--@endfor--}}
-
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -215,38 +198,73 @@
             </div>
             @endif
             @endif
+
             <br/>
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
                     <ul class="nav nav-tabs" role="tablist">
-                    @if(Auth::user())
+                        @if(Auth::user())
                         @if(Auth::user()->name == $this_auth->name)
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#new" role="tab">新着</a>
                         </li>
                         @endif
-                    @endif
-                    @if($this_auth->npo != "")
+                        @endif
+                        @if($this_auth->npo != "")
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#myProjects" role="tab">団体</a>
                         </li>
-                    @endif
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#supporting" role="tab">バッジ</a>
                         </li>
-                    @if($follower_count != 0)
+                        @if($follower_count != 0)
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#follow" role="tab">フォロー</a>
                         </li>
-                    @endif
+                        @endif
                     </ul>
                 </div>
             </div>
             {{-- Tab panes --}}
             <div class="tab-content">
                 @if($follower_count != 0)
-                <div class="tab-pane text-center" id="follow" role="tabpanel">
-
+                <div class="tab-pane" id="follow" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <ul class="list-unstyled follows">
+                                @for($i = 0; $i < $follower_count; $i++)
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-1 col-2">
+                                        <!-- {{$i + 1}} -->
+                                            <!--<img src="../assets/img/faces/clem-onojeghuo-3.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">-->
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <h6>{{ $followers[$i]->followee_id }}
+                                                {{--<small>--}}
+                                                    {{--<br><a href="/{{ $npo_info_proval[$i]->title }}">@ {{ $npo_info_proval[$i]->title }}</a>--}}
+                                                    {{--<br>金額：{{ number_format($npo_info_proval[$i]->support_amount) }}円--}}
+                                                    {{--<br>支援数：{{ number_format($npo_info_proval[$i]->buyer) }}/{{ number_format($npo_info_proval[$i]->support_limit) }}--}}
+                                                    {{--@if($npo_info_proval[$i]->support_contents != '')--}}
+                                                        {{--<br>リターン：{{ $npo_info_proval[$i]->support_contents }}--}}
+                                                    {{--@endif--}}
+                                                    {{--@if($npo_info_proval[$i]->support_contents_detail)--}}
+                                                        {{--<br>期限：{{ Carbon\Carbon::parse($npo_info_proval[$i]->support_contents_detail)->format('Y年m月d日H:i') }}--}}
+                                                    {{--@endif--}}
+                                                {{--</small>--}}
+                                            </h6>
+                                        </div>
+                                        <div class="col-md-3 col-2">
+                                            <a class="btn btn-outline-default" href="/{{ $followers[$i]->followee_id }}">GO!</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <hr />
+                                @endfor
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 @endif
                 <div class="tab-pane" id="supporting" role="tabpanel">
@@ -420,9 +438,9 @@
                     @if(Auth::guest() || $this_auth->npo)
                         <a href="{{ url('/npo_registers') }}" class="btn btn-outline-default">{{$this_auth->npo}} Page</a>
 
-                            @if($follower_count != 0)
+                            @if($followee_count != 0)
                                 <button type="button" class="btn btn-outline-default" data-toggle="modal" data-target="#followerModal">
-                                    フォロワ一覧 <small>({{ $follower_count }})</small>
+                                    フォロワ一覧 <small>({{ $followee_count }})</small>
                                 </button>
                                 <div class="modal fade" id="followerModal" tabindex="-1" role="dialog" aria-hidden="false">
                                     <div class="modal-dialog modal-register">
@@ -435,11 +453,11 @@
                                                 <p>ユーザー名をタップで詳細確認可能</p>
                                             </div>
                                             <div class="modal-body">
-                                                @for ($j = 0; $j < $follower_count; $j++)
+                                                @for ($j = 0; $j < $followee_count; $j++)
                                                     @if($j != 0)
 
                                                     @endif
-                                                    <a href="{{ url('/home') }}/{{ $followers[$j]->follower_id }}">{{ $followers[$j]->follower_id }}</a>
+                                                    <a href="{{ url('/home') }}/{{ $followees[$j]->follower_id }}">{{ $followees[$j]->follower_id }}</a>
                                                 @endfor
                                                 {{--<div class="modal-footer no-border-footer">--}}
                                                 {{--<p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>--}}
