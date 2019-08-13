@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a3faa67-3512-436e-9589-e98a1ac9f8da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/cms/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +21,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5223301">
       <split-first>
         <leaf>
-          <file leaf-file-name="npo_landing_page.blade.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
+          <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="461">
-                  <caret line="100" column="77" selection-start-line="100" selection-start-column="77" selection-end-line="100" selection-end-column="77" />
+                <state relative-caret-position="39">
+                  <caret line="164" column="58" selection-start-line="164" selection-start-column="58" selection-end-line="165" selection-end-column="59" />
                 </state>
               </provider>
             </entry>
@@ -33,13 +34,13 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="Npo_registerController.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
+          <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/app/User.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="183">
-                  <caret line="527" column="42" selection-start-line="527" selection-start-column="42" selection-end-line="527" selection-end-column="42" />
+                <state relative-caret-position="190">
+                  <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
                   <folding>
-                    <element signature="e#40#62#0#PHP" expanded="true" />
+                    <element signature="e#22#58#0#PHP" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -106,7 +107,6 @@
         <option value="$PROJECT_DIR$/cms/resources/views/errors/503.blade.php" />
         <option value="$PROJECT_DIR$/cms/vendor/laravel/framework/src/Illuminate/Notifications/resources/views/email-payment.blade.php" />
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Auth/SocialController.php" />
-        <option value="$PROJECT_DIR$/cms/routes/web.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/emails/follow-from.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/npo_registers/create.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/home/home_register.blade.php" />
@@ -121,6 +121,8 @@
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" />
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
+        <option value="$PROJECT_DIR$/cms/routes/web.php" />
+        <option value="$PROJECT_DIR$/cms/app/User.php" />
       </list>
     </option>
   </component>
@@ -184,21 +186,6 @@
               <item name="fsharp" type="b2602c69:ProjectViewProjectNode" />
               <item name="fsharp" type="462c0819:PsiDirectoryNode" />
               <item name="cms" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fsharp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fsharp" type="462c0819:PsiDirectoryNode" />
-              <item name="cms" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fsharp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fsharp" type="462c0819:PsiDirectoryNode" />
-              <item name="cms" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -231,6 +218,12 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="npo_registers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fsharp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fsharp" type="462c0819:PsiDirectoryNode" />
+              <item name="cms" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -283,18 +276,19 @@
       <workItem from="1564583496625" duration="2045000" />
       <workItem from="1564742048385" duration="8286000" />
       <workItem from="1565178740491" duration="6256000" />
-      <workItem from="1565334395618" duration="10637000" />
+      <workItem from="1565334395618" duration="10853000" />
+      <workItem from="1565706486418" duration="1104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65522000" />
+    <option name="totallyTimeSpent" value="66842000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16801292" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17043619" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -303,7 +297,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.15954416" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3190883" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -334,13 +328,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cms/public/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="15" lean-forward="true" selection-start-column="24" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -487,13 +474,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="365" column="13" selection-start-line="365" selection-start-column="13" selection-end-line="365" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/emails/contact.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -617,19 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="233">
           <caret line="596" column="8" lean-forward="true" selection-start-line="596" selection-start-column="8" selection-end-line="596" selection-end-column="8" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="527" column="42" selection-start-line="527" selection-start-column="42" selection-end-line="527" selection-end-column="42" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -637,16 +604,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-          <folding>
-            <element signature="e#205#287#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
+        <state relative-caret-position="463">
           <caret line="100" column="77" selection-start-line="100" selection-start-column="77" selection-end-line="100" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="164" column="58" selection-start-line="164" selection-start-column="58" selection-end-line="165" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="527" column="20" selection-start-line="527" selection-start-column="20" selection-end-line="527" selection-end-column="20" />
+          <folding>
+            <element signature="e#40#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="58" selection-start-line="10" selection-start-column="58" selection-end-line="10" selection-end-column="58" />
+          <folding>
+            <element signature="e#22#58#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
