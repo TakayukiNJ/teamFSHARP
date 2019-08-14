@@ -42,8 +42,7 @@ use App\Http\Requests;
 // A-0 ログイン機能
 // Auth/LoginController.php
 /*********************/
-//Auth::routes();
-Auth::routes(['verify' => true]);
+Auth::routes();
 // Auth::post('/', 'LoginController@__construct');
 //Route::get('/login', 'HomeController@home_own_timeline');
 // Route::group(['middleware' => 'guest'], function () {
@@ -164,8 +163,8 @@ Route::post('/connect/sell_detail_modify_complete', 'VisionDealController@sell_d
 // ログイン後初期画面は、自分のホーム画面
 //Route::get('/home', 'HomeController@home_own_timeline');
 //Route::post('/home', 'HomeController@home_own_timeline');
-Route::get('/home', 'HomeController@home_own_timeline')->name('home')->middleware("verified");
-Route::post('/home', 'HomeController@home_own_timeline')->name('home')->middleware("verified");
+//Route::get('/home', 'HomeController@home_own_timeline')->name('home')->middleware("verified");
+//Route::post('/home', 'HomeController@home_own_timeline')->name('home')->middleware("verified");
 
 Route::get('/home/register', 'HomeController@register');
 

@@ -12,7 +12,7 @@
     				<h1 class="presentation-title"></h1>
     				<!--<div class="type">F♯</div>-->
     			</div>
-    			<h2 class="presentation-subtitle text-center">NPOの資金と人材不足を解決するWebサービス「F♯」</h2>
+    			<h2 class="presentation-subtitle text-center">社会貢献の活動資金と人材を獲得できるWebサービス「F♯」</h2>
     			<div class="w3-panel w3-large">
                     <br>
                     <button type="button" class="btn-lg btn btn-neutral" data-toggle="modal" data-target="#howtoModal">
@@ -97,8 +97,8 @@
 								<i class="nc-icon nc-palette"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">人とお金の流れを可視化</h4>
-								<p class="description">支払いが完了後に、黒いバッジをタップすると、購入者の履歴や最新情報を確認することができます。</p>
+								<h4 class="info-title">社会貢献活動を可視化</h4>
+								<p class="description">各ページの黒いバッジをタップすると、購入者の履歴や最新情報を確認することができます。これによって、社会貢献活動のお金と人の流れを可視化します。</p>
 							</div>
 						</div>
 					</div>
@@ -119,8 +119,8 @@
 								<i class="nc-icon nc-bulb-63"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">SDGsポイント</h4>
-								<p>総額の<strong>1%</strong>がポイントとして溜まり、マイページで確認ができます。<strong>SDGs</strong>の内訳も見ることができ、自分がどの分野の<strong>SDGs</strong>に貢献したのかご確認いただけます。</p>
+								<h4 class="info-title">SDGsスコア</h4>
+								<p>総額の<strong>1%</strong>が<strong>SDGs</strong>スコアとして溜まり、マイページで確認ができます。<strong>SDGs</strong>の内訳も見ることができ、自分がどの分野にどれくらい貢献したかを確認できます。</p>
 							</div>
 						</div>
 					</div>
@@ -130,7 +130,7 @@
 								<i class="nc-icon nc-sun-fog-29"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">リターン</h4>
+								<h4 class="info-title">支援に対するリターン</h4>
 								<p>プロジェクトによっては、リターンがあるものや、個数に限りがございます。（やり取りは、プロジェクトページのメッセージで行ってください。）</p>
 							</div>
 						</div>
