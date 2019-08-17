@@ -435,49 +435,38 @@
 
                 <div class="tab-pane" id="myProjects" role="tabpanel">
                     <div class="text-center">
-                    @if(Auth::guest() || $this_auth->npo)
-                        <a href="{{ url('/npo_registers') }}" class="btn btn-outline-default">{{$this_auth->npo}} Page</a>
+                    @if($this_auth->npo)
+                        <a href="{{ url('/'.$this_auth->npo) }}" class="btn btn-outline-default">{{$this_auth->npo}} Page</a>
+                        @if($followee_count != 0)
+                            <button type="button" class="btn btn-outline-default" data-toggle="modal" data-target="#followerModal">
+                                フォロワ一覧 <small>({{ $followee_count }})</small>
+                            </button>
+                            <div class="modal fade" id="followerModal" tabindex="-1" role="dialog" aria-hidden="false">
+                                <div class="modal-dialog modal-register">
+                                    <div class="modal-content">
+                                        <div class="modal-header no-border-header text-center">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h3 class="modal-title text-center">フォロワ一覧</h3>
+                                            <p>ユーザー名をタップで詳細確認可能</p>
+                                        </div>
+                                        <div class="modal-body">
+                                            @for ($j = 0; $j < $followee_count; $j++)
+                                                @if($j != 0)
 
-                            @if($followee_count != 0)
-                                <button type="button" class="btn btn-outline-default" data-toggle="modal" data-target="#followerModal">
-                                    フォロワ一覧 <small>({{ $followee_count }})</small>
-                                </button>
-                                <div class="modal fade" id="followerModal" tabindex="-1" role="dialog" aria-hidden="false">
-                                    <div class="modal-dialog modal-register">
-                                        <div class="modal-content">
-                                            <div class="modal-header no-border-header text-center">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <h3 class="modal-title text-center">フォロワ一覧</h3>
-                                                <p>ユーザー名をタップで詳細確認可能</p>
-                                            </div>
-                                            <div class="modal-body">
-                                                @for ($j = 0; $j < $followee_count; $j++)
-                                                    @if($j != 0)
-
-                                                    @endif
-                                                    <a href="{{ url('/home') }}/{{ $followees[$j]->follower_id }}">{{ $followees[$j]->follower_id }}</a>
-                                                @endfor
-                                                {{--<div class="modal-footer no-border-footer">--}}
-                                                {{--<p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>--}}
-                                                {{--</div>--}}
-                                            </div>
+                                                @endif
+                                                <a href="{{ url('/home') }}/{{ $followees[$j]->follower_id }}">{{ $followees[$j]->follower_id }}</a>
+                                            @endfor
+                                            {{--<div class="modal-footer no-border-footer">--}}
+                                            {{--<p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>--}}
+                                            {{--</div>--}}
                                         </div>
                                     </div>
                                 </div>
-                            @endif
-
-
-
-                            <br>
-
-
-
-
-
-
-                        <br>
+                            </div>
+                        @endif
+                        <br><br>
                     @else
                         <h3 class="text-muted">まずは団体登録！</h3>
                         <br>
