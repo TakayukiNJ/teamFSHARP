@@ -143,7 +143,7 @@
                             </li>
                             @endif
                             <li>
-                                <a href="{{ url('/teamFSHARP/teamFSHARP') }}">
+                                <a href="{{ url('teamFSHARP/company/about') }}">
                                     About Us
                                 </a>
                             </li>

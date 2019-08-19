@@ -18,7 +18,7 @@
 
 <b>販売事業者名</b>
 <ul>
-F♯　仲条高幸
+株式会社Fsharp
 </ul>
 
 <b>運営責任者名</b>
@@ -70,7 +70,7 @@ g181tg2061@dhw.ac.jp
 <br>
 <div style="text-align: right;" align="right">作成日：2018年11月21日
 <br><br><br><br><br><br><br>
-</p></div>
+</div>
 
 </div><br>
 @endsection

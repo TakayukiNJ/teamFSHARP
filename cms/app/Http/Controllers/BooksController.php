@@ -10,7 +10,7 @@ use Auth;
 class BooksController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index', 'welcome']]);
+        $this->middleware('auth', ['except' => ['index', 'welcome', 'this_company']]);
         //$this->middleware('guest', ['except' => 'index']);
     }
     //
@@ -20,7 +20,16 @@ class BooksController extends Controller
         //$this->middleware('guest', ['except' => 'logout']);
         return view('index');
     }
-    
+
+    public function this_company(Request $request){
+        if(Auth::user()){
+            $user_auth = Auth::user()->email;
+            $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
+        }
+        $data['products'] = \DB::table('npo_registers')->where('proval', 1)->orderBy('published', 'desc')->get();
+        return view('this_company', $data);
+    }
+
     public function welcome(Request $request){
         if(Auth::user()){
             $user_auth = Auth::user()->email;
