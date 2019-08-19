@@ -56,6 +56,7 @@ Route::get('/carbon', 'CarbonController@getIndex');
 
 Route::get('/', 'BooksController@welcome');
 Route::get('/cms', 'BooksController@welcome');
+Route::get('teamFSHARP/company/about', 'BooksController@this_company');
 //一覧
 Route::get('/menu', 'BooksController@index');
 Route::post('/menu', 'BooksController@index');
