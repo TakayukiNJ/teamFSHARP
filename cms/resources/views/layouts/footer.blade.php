@@ -144,7 +144,7 @@
                             @endif
                             <li>
                                 <a href="{{ url('teamFSHARP/company/about') }}">
-                                    About Us
+                                    Fsharp Co., Ltd.
                                 </a>
                             </li>
                         </ul>

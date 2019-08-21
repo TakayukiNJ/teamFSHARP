@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1a3faa67-3512-436e-9589-e98a1ac9f8da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/app/Http/Controllers/BooksController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/app/Http/Controllers/BooksController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/privacy_policy.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/privacy_policy.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/specified_commercial_transactions_law.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/specified_commercial_transactions_law.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/terms.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/terms.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,14 +16,14 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.31152344">
+    <splitter split-orientation="horizontal" split-proportion="0.6269531">
       <split-first>
         <leaf>
-          <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
+          <file leaf-file-name="footer.blade.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="54" column="51" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="51" />
+                <state relative-caret-position="163">
+                  <caret line="146" column="43" selection-start-line="146" selection-start-column="43" selection-end-line="146" selection-end-column="43" />
                 </state>
               </provider>
             </entry>
@@ -40,11 +35,8 @@
           <file leaf-file-name="this_company.blade.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cms/resources/views/this_company.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="57">
-                  <caret line="3" column="46" lean-forward="true" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
-                  <folding>
-                    <element signature="e#249#280#0#HTML" expanded="true" />
-                  </folding>
+                <state relative-caret-position="247">
+                  <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
@@ -126,11 +118,11 @@
         <option value="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" />
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/BooksController.php" />
         <option value="$PROJECT_DIR$/cms/routes/web.php" />
-        <option value="$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/specified_commercial_transactions_law.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/terms.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/privacy_policy.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/this_company.blade.php" />
+        <option value="$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php" />
       </list>
     </option>
   </component>
@@ -162,7 +154,7 @@
       <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1280" />
     <option name="height" value="800" />
   </component>
@@ -171,6 +163,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -243,7 +236,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -293,18 +285,19 @@
       <workItem from="1565178740491" duration="6256000" />
       <workItem from="1565334395618" duration="10853000" />
       <workItem from="1565706486418" duration="4063000" />
-      <workItem from="1566052450700" duration="2988000" />
+      <workItem from="1566052450700" duration="4866000" />
+      <workItem from="1566294627328" duration="722000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72789000" />
+    <option name="totallyTimeSpent" value="75389000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17285945" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17528272" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -313,7 +306,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3190883" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3190883" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -577,16 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="19" column="75" selection-start-line="19" selection-start-column="75" selection-end-line="19" selection-end-column="75" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -601,31 +584,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1176">
-          <caret line="145" column="73" selection-start-line="145" selection-start-column="73" selection-end-line="145" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/BooksController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="54" column="51" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cms/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="146" column="31" lean-forward="true" selection-end-line="209" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -657,13 +619,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="54" column="34" lean-forward="true" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/this_company.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="46" lean-forward="true" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+        <state relative-caret-position="247">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="310" column="16" lean-forward="true" selection-start-line="310" selection-start-column="16" selection-end-line="310" selection-end-column="16" />
           <folding>
-            <element signature="e#249#280#0#HTML" expanded="true" />
+            <element signature="e#40#62#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="146" column="43" selection-start-line="146" selection-start-column="43" selection-end-line="146" selection-end-column="43" />
         </state>
       </provider>
     </entry>
