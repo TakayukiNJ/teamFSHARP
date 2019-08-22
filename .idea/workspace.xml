@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1a3faa67-3512-436e-9589-e98a1ac9f8da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cms/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,11 +19,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.6269531">
       <split-first>
         <leaf>
-          <file leaf-file-name="footer.blade.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php">
+          <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="163">
-                  <caret line="146" column="43" selection-start-line="146" selection-start-column="43" selection-end-line="146" selection-end-column="43" />
+                <state relative-caret-position="143">
+                  <caret line="75" column="20" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="20" />
                 </state>
               </provider>
             </entry>
@@ -47,7 +47,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>follower_c</find>
       <find>Projects</find>
       <find>GO!</find>
       <find>edit</find>
@@ -77,6 +76,7 @@
       <find>マイページ</find>
       <find>page</find>
       <find>welcome</find>
+      <find>/home'</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -117,12 +117,12 @@
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/Npo_registerController.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/home/home_own_timeline.blade.php" />
         <option value="$PROJECT_DIR$/cms/app/Http/Controllers/BooksController.php" />
-        <option value="$PROJECT_DIR$/cms/routes/web.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/specified_commercial_transactions_law.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/terms.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/privacy_policy.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/this_company.blade.php" />
         <option value="$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php" />
+        <option value="$PROJECT_DIR$/cms/routes/web.php" />
       </list>
     </option>
   </component>
@@ -163,7 +163,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -236,6 +235,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -286,18 +286,20 @@
       <workItem from="1565334395618" duration="10853000" />
       <workItem from="1565706486418" duration="4063000" />
       <workItem from="1566052450700" duration="4866000" />
-      <workItem from="1566294627328" duration="722000" />
+      <workItem from="1566294627328" duration="987000" />
+      <workItem from="1566451027914" duration="776000" />
+      <workItem from="1566462350412" duration="280000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75389000" />
+    <option name="totallyTimeSpent" value="76710000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17528272" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18012924" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -619,13 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="54" column="34" lean-forward="true" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/this_company.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -652,8 +647,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/layouts/footer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="146" column="43" selection-start-line="146" selection-start-column="43" selection-end-line="146" selection-end-column="43" />
+        <state relative-caret-position="53">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cms/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="75" column="20" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="20" />
         </state>
       </provider>
     </entry>
