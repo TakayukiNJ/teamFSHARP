@@ -423,9 +423,10 @@ class HomeController extends Controller
     		    $data['npo_info_enterprise'][$i] = \DB::table('npo_registers')->where('npo_name', $premierData_npo)->first();
     		}
 		}
-        return view('home/home_own_timeline', $data)
-            ->with('image_id', $image_id)
-            ->with('message', '更新完了しました。');
+        return redirect('home/home_own_timeline');
+//        return view('home/home_own_timeline', $data)
+//            ->with('image_id', $image_id)
+//            ->with('message', '更新完了しました。');
     }
     // 自己紹介登録確認画面
     public function home_register_confirm(Request $request)
