@@ -12,7 +12,7 @@
     				<h1 class="presentation-title"></h1>
     				<!--<div class="type">F♯</div>-->
     			</div>
-    			<h2 class="presentation-subtitle text-center">社会貢献の活動資金と人材を獲得できるWebサービス「F♯」</h2>
+    			<h2 class="presentation-subtitle text-center">社会活動のための資金と人材を獲得できるWebサービス「F♯」</h2>
     			<div class="w3-panel w3-large">
                     <br>
                     <button type="button" class="btn-lg btn btn-neutral" data-toggle="modal" data-target="#howtoModal">
@@ -97,7 +97,7 @@
 								<i class="nc-icon nc-palette"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">社会貢献活動を可視化</h4>
+								<h4 class="info-title">社会活動を可視化</h4>
 								<p class="description">各ページの黒いバッジをタップすると、購入者の履歴や最新情報を確認することができます。これによって、社会貢献活動のお金と人の流れを可視化します。</p>
 							</div>
 						</div>
@@ -109,7 +109,7 @@
 							</div>
 							<div class="description">
 								<h4 class="info-title">簡単公開・簡単管理 </h4>
-								<p>ログイン後、右上のメニューバーから団体登録をしてください。審査に合格後、ご自身の団体とプロジェクトを簡単に公開と管理ができ、資金調達がより手軽にできます。</p>
+								<p>ログイン後、右上のメニューバーから団体登録をしてください。誰でも簡単に、ご自身の団体とプロジェクトを公開して管理ができ、資金調達をする事ができます。</p>
                             </div>
 						</div>
 					</div>
@@ -119,7 +119,7 @@
 								<i class="nc-icon nc-bulb-63"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">SDGsスコア</h4>
+								<h4 class="info-title"><strong>SDGs</strong>スコア</h4>
 								<p>総額の<strong>1%</strong>が<strong>SDGs</strong>スコアとして溜まり、マイページで確認ができます。<strong>SDGs</strong>の内訳も見ることができ、自分がどの分野にどれくらい貢献したかを確認できます。</p>
 							</div>
 						</div>
@@ -130,7 +130,7 @@
 								<i class="nc-icon nc-sun-fog-29"></i>
 							</div>
 							<div class="description">
-								<h4 class="info-title">支援に対するリターン</h4>
+								<h4 class="info-title">支援後のリターン</h4>
 								<p>プロジェクトによっては、リターンがあるものや、個数に限りがございます。（やり取りは、プロジェクトページのメッセージで行ってください。）</p>
 							</div>
 						</div>

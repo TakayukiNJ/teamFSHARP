@@ -111,7 +111,7 @@ class Npo_registerController extends Controller {
         $data['personal_info'] = \DB::table('personal_info')->where('user_id', $user_auth)->first();
         // データベースからnpo_nameに該当するユーザーの情報を抜き出す
         $data['npo_info'] = \DB::table('npo_registers')->where('npo_name', $npo_auth)->first();
-		return view('npo_registers/create', $data);
+		return redirect('npo_registers/create', $data);
 	}
 
 	/**

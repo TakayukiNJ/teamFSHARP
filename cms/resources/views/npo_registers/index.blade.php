@@ -23,9 +23,9 @@
                                 @if(Auth::user())
                                     @if($npo_owner_info->npo == Auth::user()->npo)
                                     {{--<div class="following">--}}
-                                        <button class="btn btn-outline-neutral btn-fill" href="{{ route('npo_registers.create') }}">
+                                        <a class="btn btn-outline-neutral btn-fill" href="{{ url('/npo_register/create') }}">
                                             <i class="glyphicon glyphicon-plus"></i>プロジェクト作成
-                                        </button>
+                                        </a>
                                     {{--</div>--}}
                                     @else
                                         @if($this_follow)
