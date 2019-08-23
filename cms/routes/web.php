@@ -163,9 +163,7 @@ Route::post('/connect/sell_detail_modify_complete', 'VisionDealController@sell_d
 /*********************/
 // ログイン後初期画面は、自分のホーム画面
 Route::get('/home', 'HomeController@home_own_timeline');
-//Route::post('/home', 'HomeController@home_own_timeline');
-//Route::get('/home', 'HomeController@home_own_timeline')->name('home')->middleware("verified");
-//Route::post('/home', 'HomeController@home_own_timeline')->name('home')->middleware("verified");
+Route::post('/home', 'HomeController@home_own_timeline');
 
 Route::get('/home/register', 'HomeController@register');
 
