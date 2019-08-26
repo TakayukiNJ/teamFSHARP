@@ -16,7 +16,6 @@
 
                             <form action="{{action('FollowController@store')}}" method="POST">
                                 <input name="followee" type="hidden" value="{{ $npo_owner_info->npo }}" readonly="readonly">
-
                                 <div class="name">
                                     <h3>{{$npo_owner_info->npo}}</h3>
                                 </div>
@@ -130,22 +129,35 @@
                             <div class="card card-profile card-plain">
                                 <div class="card-img-top">
                                     @if(($npo_register->npo_name) == "")
-                                        <a href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">
+                                    <a href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">
                                     @else
-                                        <a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">
+                                    <a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">
                                     @endif
                                         @if($npo_register->background_pic)
-                                        <img class="img" src="/img/project_back/{{ $npo_register->background_pic }}" />
+                                            @if($npo_register->proval > 0)
+                                            <img class="img" src="/img/project_back/{{ $npo_register->background_pic }}" />
+                                            @elseif(Auth::user())
+                                                @if($npo_owner_info->npo == Auth::user()->npo)
+                                                <img class="img" src="/img/project_back/{{ $npo_register->background_pic }}" />
+                                                @endif
+                                            @endif
                                         @else
-                                        <!--<img class="img" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" />-->
+                                            @if(Auth::user())
+                                                @if($npo_owner_info->npo == Auth::user()->npo)
+                                                    <img class="img" src="https://images.unsplash.com/photo-1486310662856-32058c639c65?dpr=2&auto=format&fit=crop&w=1500&h=1125&q=80&cs=tinysrgb&crop=" />
+                                                @endif
+                                            @endif
                                         @endif
                                     </a>
                                 </div>
                                 <div class="card-body">
                                     @if(($npo_register->proval) > 0)
                                         <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
-                                        <p class="card-description">獲得金額: {{number_format($npo_register->follower)}} 円</p>
-                                        <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
+                                        <p class="card-description">金額: {{number_format($npo_register->support_amount)}} 円</p>
+                                        <p class="card-description">支援数: {{ $npo_info->buyer }}/{{number_format($npo_info->support_limit)}}</p>
+                                        @if($npo_register->support_contents)
+                                        <p class="card-description">リターン: {{$npo_register->support_contents}}</p>
+                                        @endif
                                         <a class="btn btn-outline-default" href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">閲覧</a>
                                         @if(Auth::user())
                                         @if($npo_owner_info->npo == Auth::user()->npo)
@@ -163,9 +175,12 @@
                                             @else
                                             <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                             @endif
-                                            <p class="card-description">獲得金額: {{number_format($npo_register->follower)}} 円</p>
-                                            <p class="card-description">寄付数: {{$npo_register->buyer}}</p>
-                                            @if(($npo_register->npo_name) == "")
+                                            <p class="card-description">金額: {{number_format($npo_register->support_amount)}} 円</p>
+                                            <p class="card-description">支援数: {{ $npo_info->buyer }}/{{number_format($npo_info->support_limit)}}</p>
+                                                @if($npo_register->support_contents)
+                                                <p class="card-description">リターン: {{$npo_register->support_contents}}</p>
+                                                @endif
+                                                @if(($npo_register->npo_name) == "")
                                                 <a class="btn btn-outline-default" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}">プレビュー</a>
                                                 <a class="btn btn-outline-default" href="{{ url('/npo_registers') }}/{{ $npo_register->id }}/edit">編集</a>
                                             @else
