@@ -81,15 +81,16 @@
                                                 @endif
                                             @endif
                                         @endif
-                                        {{--@if($npo_info->buyer < $npo_info->support_limit)--}}
-                                            {{--<a href="#support" class="btn btn-danger btn-outline-neutral">--}}
-                                                {{--支援する--}}
-                                            {{--</a>--}}
-                                        {{--@else--}}
-                                            {{--<a href="#support" class="btn">--}}
-                                                {{--募集完売--}}
-                                            {{--</a>--}}
-                                        {{--@endif--}}
+                                        @if($npo_info->buyer < $npo_info->support_limit)
+                                            <a href="#support" class="btn btn-outline-neutral">
+                                                支援する
+                                            </a>
+                                        @else
+                                            <a href="#support" class="btn btn-neutral btn-fill">
+                                                募集完売
+                                            </a>
+                                        @endif
+                                        {{--
                                         @if($follower_count != 0)
                                             <button type="button" class="btn btn-outline-neutral" data-toggle="modal" data-target="#followerModal">
                                                 フォロワ一覧 <small>({{ $follower_count }})</small>
@@ -111,15 +112,12 @@
                                                                 @endif
                                                                 <a href="{{ url('/home') }}/{{ $follow_data[$j]->follower_id }}">{{ $follow_data[$j]->follower_id }}</a>
                                                             @endfor
-                                                            {{--<div class="modal-footer no-border-footer">--}}
-                                                            {{--<p>すでにご登録済みの方は <a href="{{ url('/login') }}">こちら</a></p>--}}
-                                                            {{--</div>--}}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endif
-
+                                        --}}
                                         {{--<button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal">--}}
                                             {{--ユーザー登録--}}
                                         {{--</button>--}}
@@ -162,15 +160,10 @@
                         <div class="tab-content text-center" >
                             <p>現在<b>{{ number_format($npo_info->buyer) }}</b>口（残り{{ number_format($npo_info->support_limit - $npo_info->buyer) }}口）</p>
                             <p>支援するとバッジにニックネームが記載されます。</p>
-                            @if($npo_info->body)
-                            <button type="button" class="btn btn-round btn-warning"
-                                data-toggle="popover"
-                                data-placement="bottom"
-                                title="説明・紹介文・資金の使い道"
-                                data-content="{{ $npo_info->body }}">説明・紹介文・資金の使い道
+                            <button type="button" class="btn btn-outline-default" href="/{{ $npo_info->npo_name }}" class="badge" data-toggle="modal" data-target="#{{ $npo_info->npo_name }}" aria-label="Close">
+                                管理者・支援者詳細
                             </button>
                             <br>
-                            @endif
                             <br>
                             <div class="containersns">
                                 {{-- Facebook --}}
@@ -307,10 +300,11 @@
                                                         <h3 class="modal-title text-center">{{ $npo_info->subtitle }}</h3>
                                                         <p>{{ $npo_info->title }}</p>
                                                         @if($npo_info->url)
-                                                        <a href="{{ $npo_info->url }}" class="btn btn-danger" target="_blank">
+                                                        <a href="{{ $npo_info->url }}" class="btn btn-outline-default" target="_blank">
                                                             外部公式サイト
                                                         </a>
                                                         @endif
+                                                        <p> {{ $npo_info->body }}</p>
                                                     </div>
                                                     {{-- SNS share --}}
                                                     <div class="containersns">
@@ -353,9 +347,9 @@
                                                     <div class="modal-body">
                                                         <label>管理者：<b><a href="{{ url('/home') }}/{{ $npo_info->manager }}">{{ $npo_info->manager }}</a>さん</b></label>
                                                         <p></p>
-                                                        <label>募集支援数：<b>{{ $npo_info->support_limit }}口</b></label>
+                                                        <label>募集支援数：<b>{{ $npo_info->support_limit }}</b></label>
                                                         <p></p>
-                                                        <label>現在：<b>{{ $npo_info->buyer }}口（{{ $npo_info->follower }}円）</b></label>
+                                                        <label>現在：<b>{{ $npo_info->buyer }}（{{ $npo_info->follower }}円）</b></label>
                                                         <p></p>
                                                         <label>支援者</label>
                                                         <p>
@@ -377,6 +371,16 @@
                                                         @else
                                                             まだ支援者はいません。
                                                         @endif
+                                                        </p>
+                                                        <p>　</p>
+                                                        <label>フォロワー ({{ $follower_count }}人)</label>
+                                                        <p>
+                                                            @for ($j = 0; $j < $follower_count; $j++)
+                                                                @if($j != 0)
+                                                                    、
+                                                                @endif
+                                                                    <a href="{{ url('/home') }}/{{ $follow_data[$j]->follower_id }}">{{ $follow_data[$j]->follower_id }}</a>さん
+                                                            @endfor
                                                         </p>
                                                     </div>
                                                 </div>
