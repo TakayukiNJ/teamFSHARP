@@ -227,9 +227,11 @@
                                                     @endif
                                                 </ul>
                                                 @if (Auth::guest())
-                                                <button type="button" class="btn btn-danger btn-round" data-toggle="modal" data-target="#loginModal">
-                                                    ユーザー登録
+                                                <button type="button" class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#loginModal">
+                                                    支援する
                                                 </button>
+                                                <br>
+                                                <br>
                                                 @elseif($npo_info->buyer < $npo_info->support_limit)
                                                     <form action="/{{$npo_info->npo_name}}/payment" method="POST">
                                                         {!! csrf_field() !!}
