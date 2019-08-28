@@ -154,7 +154,7 @@
                                     @if(($npo_register->proval) > 0)
                                         <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                         <p class="card-description">金額: {{number_format($npo_register->support_amount)}} 円</p>
-                                        <p class="card-description">支援数: {{ $npo_info->buyer }}/{{number_format($npo_info->support_limit)}}</p>
+                                        <p class="card-description">支援数: {{ $npo_register->buyer }}/{{number_format($npo_register->support_limit)}}</p>
                                         @if($npo_register->support_contents)
                                         <p class="card-description">リターン: {{$npo_register->support_contents}}</p>
                                         @endif
@@ -176,7 +176,7 @@
                                             <h4 class="card-title"><a href="/{{$npo_owner_info->npo}}/{{ $npo_register->npo_name }}">{{$npo_register->subtitle}}</a></h4>
                                             @endif
                                             <p class="card-description">金額: {{number_format($npo_register->support_amount)}} 円</p>
-                                            <p class="card-description">支援数: {{ $npo_info->buyer }}/{{number_format($npo_info->support_limit)}}</p>
+                                            <p class="card-description">支援数: {{ $npo_register->buyer }}/{{number_format($npo_register->support_limit)}}</p>
                                                 @if($npo_register->support_contents)
                                                 <p class="card-description">リターン: {{$npo_register->support_contents}}</p>
                                                 @endif

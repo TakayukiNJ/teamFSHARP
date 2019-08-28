@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a3faa67-3512-436e-9589-e98a1ac9f8da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php" afterDir="false" />
     </list>
@@ -17,14 +16,14 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5444664">
+    <splitter split-orientation="horizontal" split-proportion="0.63142294">
       <split-first>
         <leaf>
           <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="343">
-                  <caret line="186" column="62" selection-start-line="186" selection-start-column="62" selection-end-line="186" selection-end-column="81" />
+                <state relative-caret-position="121">
+                  <caret line="178" column="133" selection-start-line="178" selection-start-column="133" selection-end-line="178" selection-end-column="133" />
                 </state>
               </provider>
             </entry>
@@ -36,8 +35,8 @@
           <file leaf-file-name="npo_landing_page.blade.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="494">
-                  <caret line="374" column="60" selection-start-line="374" selection-start-column="60" selection-end-line="374" selection-end-column="60" />
+                <state relative-caret-position="261">
+                  <caret line="233" column="48" selection-start-line="232" selection-start-column="48" selection-end-line="233" selection-end-column="48" />
                 </state>
               </provider>
             </entry>
@@ -48,8 +47,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>写真左</find>
-      <find>$user_request_email</find>
       <find>$auth</find>
       <find>$currentUserInfo</find>
       <find>npo_re</find>
@@ -78,6 +75,8 @@
       <find>bluez</find>
       <find>pk</find>
       <find>口</find>
+      <find>npo_info</find>
+      <find>ユーザー登録</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -293,12 +292,12 @@
       <workItem from="1566294627328" duration="987000" />
       <workItem from="1566451027914" duration="776000" />
       <workItem from="1566462350412" duration="8072000" />
-      <workItem from="1566751987312" duration="3512000" />
+      <workItem from="1566751987312" duration="4382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88014000" />
+    <option name="totallyTimeSpent" value="88884000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -313,7 +312,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.56125355" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -647,15 +646,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/npo_registers/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="186" column="62" selection-start-line="186" selection-start-column="62" selection-end-line="186" selection-end-column="81" />
+        <state relative-caret-position="121">
+          <caret line="178" column="133" selection-start-line="178" selection-start-column="133" selection-end-line="178" selection-end-column="133" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cms/resources/views/npo/npo_landing_page.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="374" column="60" selection-start-line="374" selection-start-column="60" selection-end-line="374" selection-end-column="60" />
+        <state relative-caret-position="261">
+          <caret line="233" column="48" selection-start-line="232" selection-start-column="48" selection-end-line="233" selection-end-column="48" />
         </state>
       </provider>
     </entry>
